@@ -1,0 +1,88 @@
+﻿<Window x:Class="VistaCharacter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VistaCharacter"
+        mc:Ignorable="d"
+        Title="Character Form" Height="450" Width="800">
+    <Border Padding="10">
+        <!-- Incorporar Imagen -->
+        <!--<Image Source="https://upload.wikimedia.org/wikipedia/commons/3/30/Googlelogo.png" />-->
+        <StackPanel>
+            <!-- Estats -->
+            <!-- Fue -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock FontWeight="Bold" Margin="0,-1,0,1" Text="Nombre"/>
+                <TextBox Grid.Column="1" Margin="10,0,183,130" Grid.ColumnSpan="2"/>
+
+                <TextBlock FontWeight="Bold" Margin="0,30,0,0" Text="Clase"/>
+                <ComboBox  Grid.Column="3" Margin="0 30 0 100"/>
+
+                <TextBlock FontWeight="Bold" Margin="0,59,0,1" Text="Raza"/>
+                <ComboBox  Grid.Column="3" Margin="0 60 0 70"/>
+
+                <TextBlock FontWeight="Bold" Margin="0,90,0,0" Text="Edad"/>
+                <TextBox  Grid.Column="3" Margin="0 90 0 40"/>
+
+                <TextBlock FontWeight="Bold" Margin="0,119,0,1" Text="Sexo"/>
+                <CheckBox Grid.Column="3" Margin="0 120 0 0" Content="H"/>
+                <CheckBox Grid.Column="3" Margin="35 120 0 0" Content="M"/>
+            </Grid>
+            <!-- Fue -->
+            <Grid Margin="0 20 0 0">
+                <TextBlock Margin="0 0 0 10" FontWeight="Bold" Text="Fuerza"/>
+                <TextBox  Margin="80 0 120 10"/>
+                <!--<Grid Margin="135 0 0 0">
+                    <TextBlock Margin="0 0 0 10" FontWeight="Bold" Text="Vida"/>
+                    <TextBox  Margin="70 0 0 10"/>
+                </Grid>-->
+            </Grid>
+            <!-- Des -->
+            <Grid>
+                <TextBlock Margin="0 0 0 10" FontWeight="Bold" Text="Destreza"/>
+                <TextBox  Margin="80 0 120 10"/>
+            </Grid>
+            <!-- Con -->
+            <Grid>
+                <TextBlock Margin="0 0 0 10" FontWeight="Bold" Text="Constitucion"/>
+                <TextBox  Margin="80 0 120 10"/>
+            </Grid>
+            <!-- Car -->
+            <Grid>
+                <TextBlock Margin="0 0 0 10" FontWeight="Bold" Text="Carisma"/>
+                <TextBox  Margin="80 0 120 10"/>
+            </Grid>
+            <!-- Int -->
+            <Grid>
+                <TextBlock Margin="0 0 0 10" FontWeight="Bold" Text="Inteligencia"/>
+                <TextBox  Margin="80 0 120 10"/>
+            </Grid>
+            <!-- Sab -->
+            <Grid>
+                <TextBlock Margin="0 0 0 10" FontWeight="Bold" Text="Sabiduria"/>
+                <TextBox  Margin="80 0 120 10"/>
+            </Grid>
+            <!-- Historia del Personaje -->
+            <TextBlock Margin="0 20 0 10" FontWeight="Bold" Text="Historia del Personaje :"/>
+            <TextBox Padding="50"/>
+            <!-- Boton para enviar los datos -->
+            <Grid>
+                <Button Margin="0 20 0 0" Content="Finish"/>
+            </Grid>
+        </StackPanel>
+        <!--<StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Historia del Personaje"/>
+            </StackPanel>
+            <Button Content="Roll"/>
+            <Button Content="Finish"/>
+        </StackPanel>-->
+    </Border>
+</Window>
