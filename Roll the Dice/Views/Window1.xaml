@@ -5,25 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="800">
-    <Grid RenderTransformOrigin="0.504,0.463" Cursor="Arrow" Background="#FFE795FF">
-        <Grid.Effect>
-            <DropShadowEffect/>
-        </Grid.Effect>
-        <Button Margin="0,289,484,81" Width="146" HorizontalAlignment="Right" Click="Button_Click">Crear Sala</Button>
-        <Button Margin="0,289,162,81" Width="146" HorizontalAlignment="Right" Click="Button_Click">Unirse a una Sala</Button>
-        <Image Margin="149,107,474,130">
-            <Image.Source>
-                <BitmapImage DecodePixelWidth="300" UriSource="/images/join.png" />
-            </Image.Source>
-        </Image>
-        <Image Margin="473,107,150,130">
-            <Image.Source>
-                <BitmapImage DecodePixelWidth="300" UriSource="/images/create.png" />
-            </Image.Source>
-        </Image>
-        <TextBlock FontSize="50" Margin="222,39,222,301" Grid.Column="1" TextDecorations="{x:Null}" FontWeight="Bold" Foreground="#FF6C6C6C">
-           ROLL THE DICE
-        </TextBlock>
+        Title="Window1" Height="900" Width="1600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*"  />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+        </Grid.RowDefinitions>
+        <Image HorizontalAlignment="Left" Height="415" Margin="118,10,0,0" VerticalAlignment="Top" Width="470" Source="/Roll the Dice;component/Images/create.png" Grid.Column="1"/>
+        <Image HorizontalAlignment="Left" Height="415" Margin="110,20,0,0" VerticalAlignment="Top" Width="470" Source="/Roll the Dice;component/Images/create.png"/>
+        <Image HorizontalAlignment="Left" Height="415" Margin="180,0,0,0" VerticalAlignment="Top" Width="470" Source="/Roll the Dice;component/Images/create.png" Grid.Row="1"/>
+        <Image HorizontalAlignment="Left" Height="415" Margin="152,430,0,0" VerticalAlignment="Top" Width="470" Source="/Roll the Dice;component/Images/create.png" Grid.Column="1" Grid.RowSpan="2"/>
+
     </Grid>
 </Window>
