@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\CharacterShe.xaml.cs">
+      <DependentUpon>CharacterShe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
@@ -70,6 +73,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\CharacterShe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Window1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -103,12 +110,20 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\background.jpg" />
-    <Resource Include="Images\create.png" />
     <Resource Include="Images\dice.png" />
     <Resource Include="Images\join.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\victor-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icons8-plus-521.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\campfire.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
