@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
         Title="Log In" Height="900" Width="1600">
-    <Grid>
+    <Grid Background="#FFF3F3F3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="50*"  />
@@ -20,6 +20,8 @@
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            
         </Grid.RowDefinitions>
         <Rectangle  Height="Auto" Grid.RowSpan="2" Stroke="Black" Width="Auto" Grid.ColumnSpan="3" Fill="#FFE86565"/>
         <Image Source="/Roll the Dice;component/Images/dice.png" Grid.Row="0" Grid.Column="0"/>
@@ -27,7 +29,7 @@
         <Viewbox Grid.Row="0" Grid.Column="1">
             <Label Content="Roll The Dice" FontFamily="SimSun-ExtB" FontWeight="Bold" FontStyle="Italic"/>
         </Viewbox>
-        <Border BorderThickness="1" CornerRadius="50,50,50,50"  Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="4" RenderTransformOrigin="0.5,0.5">
+        <Border Grid.ColumnSpan="1" Grid.Column="1" Grid.Row="1" BorderThickness="1" CornerRadius="50,50,50,50"   Grid.RowSpan="5" RenderTransformOrigin="0.5,0.5" BorderBrush="Black" Background="#FFFDFDFD">
             <Border.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -36,17 +38,12 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </Border.RenderTransform>
-            <Rectangle Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="5" Fill="#FFF" Width="Auto" Height="Auto" RadiusY="27.265" RadiusX="27.265" Margin="0,0,0,-1">
-                <Rectangle.Effect>
-                    <DropShadowEffect BlurRadius="5" Color="#008080"/>
-                </Rectangle.Effect>
-            </Rectangle>
         </Border>
         <Viewbox Grid.Row="1" Grid.Column="1">
             <!--<TextBlock Text="LOGIN" Margin="20,20,20,20"/>-->
             <Label Content="LOGIN" Margin="20,20,20,20" FontFamily="Frank Ruehl CLM MediumOblique" FontSize="20" FontWeight="Bold"/>
         </Viewbox>
-        <Viewbox Grid.Column="1" Grid.Row="4" Margin="0,20,0,20">
+        <Viewbox Grid.Column="1" Grid.Row="5" Margin="0,20,0,30">
             <Button Content="Sign In" FontSize="18">
                 <Button.Resources>
                     <Style TargetType="Border">
