@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
         Title="Log In" Height="900" Width="1600">
-    <Grid Background="#FFF3F3F3">
+    <Grid Background="#6C5B7B">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="50*"  />
@@ -18,18 +18,22 @@
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
-            
         </Grid.RowDefinitions>
-        <Rectangle  Height="Auto" Grid.RowSpan="2" Stroke="Black" Width="Auto" Grid.ColumnSpan="3" Fill="#FFE86565"/>
+        <Rectangle  Height="Auto" Grid.RowSpan="2" Stroke="Black" Width="Auto" Grid.ColumnSpan="3" Fill="#F67280"/>
         <Image Source="/Roll the Dice;component/Images/dice.png" Grid.Row="0" Grid.Column="0"/>
         <Image Source="/Roll the Dice;component/Images/dice.png" Grid.Row="0" Grid.Column="2"/>
         <Viewbox Grid.Row="0" Grid.Column="1">
             <Label Content="Roll The Dice" FontFamily="SimSun-ExtB" FontWeight="Bold" FontStyle="Italic"/>
         </Viewbox>
-        <Border Grid.ColumnSpan="1" Grid.Column="1" Grid.Row="1" BorderThickness="1" CornerRadius="50,50,50,50"   Grid.RowSpan="5" RenderTransformOrigin="0.5,0.5" BorderBrush="Black" Background="#FFFDFDFD">
+        <Border Grid.ColumnSpan="1" Grid.Column="1" Grid.Row="1" BorderThickness="1" CornerRadius="50,50,50,50" Grid.RowSpan="7" RenderTransformOrigin="0.5,0.5" BorderBrush="Black" Background="#FFF">
+            <Border.Effect>
+                <DropShadowEffect/>
+            </Border.Effect>
             <Border.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -40,17 +44,22 @@
             </Border.RenderTransform>
         </Border>
         <Viewbox Grid.Row="1" Grid.Column="1">
-            <!--<TextBlock Text="LOGIN" Margin="20,20,20,20"/>-->
-            <Label Content="LOGIN" Margin="20,20,20,20" FontFamily="Frank Ruehl CLM MediumOblique" FontSize="20" FontWeight="Bold"/>
+            <Label Content="LOGIN" Margin="20,20,20,20" FontFamily="Georgia" FontSize="72" FontWeight="Bold" Foreground="#6C5B7B"/>
         </Viewbox>
-        <Viewbox Grid.Column="1" Grid.Row="5" Margin="0,20,0,30">
-            <Button Content="Sign In" FontSize="18">
+        <Viewbox Grid.Column="1" Grid.Row="7" Margin="20">
+            <Button Content="Sign In" FontSize="18" Background="#f67280" BorderBrush="AliceBlue" Height="33" FontFamily="Georgia">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
                     </Style>
                 </Button.Resources>
             </Button>
+        </Viewbox>
+        <Viewbox Grid.Row="4" Grid.Column="1" Margin="10,15,10,15">
+            <TextBlock Text="Registrarse" Foreground="Blue" TextDecorations="Underline" FontFamily="Georgia"/>
+        </Viewbox>
+        <Viewbox Grid.Row="5" Grid.Column="1" Margin="10,15,10,15">
+            <TextBlock Text="¿Has olvidado la contraseña?" Foreground="Blue" TextDecorations="Underline" FontFamily="Georgia"/>
         </Viewbox>
         <Viewbox Grid.Column="1" Grid.Row="2" Margin="20">
             <TextBox   Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="User" Width="247" Height="53"/>

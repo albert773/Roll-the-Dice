@@ -23,5 +23,10 @@ namespace Roll_the_Dice.Views
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
