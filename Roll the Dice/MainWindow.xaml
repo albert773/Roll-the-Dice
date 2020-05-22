@@ -5,20 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Roll_the_Dice"
         mc:Ignorable="d"
-        Height="900" Width="1600" MinWidth="800" MinHeight="450">
-    <Grid Background="#FFDC6289">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="60*"/>
-            <ColumnDefinition Width="20*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="20*"/>
-        </Grid.RowDefinitions>
-        <Rectangle Grid.Column="1" Fill="White" Stroke="Black" Height="521" VerticalAlignment="Bottom" Grid.Row="1"/>
-        <Label Content="Roll the Dice" Grid.Column="1" HorizontalAlignment="Left" Margin="251,27,0,0" VerticalAlignment="Top" Height="111" Width="446" FontSize="72" FontWeight="Bold" FontStyle="Italic"/>
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        
     </Grid>
-
 </Window>

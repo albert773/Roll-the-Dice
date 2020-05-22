@@ -24,15 +24,5 @@ namespace Roll_the_Dice
         {
             InitializeComponent();
         }
-
-        private void InputTextBox2_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void InputTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }
