@@ -6,8 +6,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="CREACION DE PERSONAJES" Height="450" Width="800" WindowState="Maximized">
-    <Grid Background="#c06c84">
+        Title="CREACION DE PERSONAJES" Height="450"	 Width="850" WindowState="Maximized" WindowStartupLocation="CenterScreen" MinWidth="1280" MinHeight="720">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Roll the Dice;component/Images/background.jpg"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="50*" />
@@ -16,6 +19,8 @@
             <ColumnDefinition Width="50*"  />
             <ColumnDefinition Width="50*"  />
             <ColumnDefinition Width="50*"  />
+            <ColumnDefinition Width="50*"  />
+
 
 
         </Grid.ColumnDefinitions>
@@ -35,19 +40,30 @@
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
         </Grid.RowDefinitions>
+        <Border Grid.Column="1" Height="auto" Grid.Row="4" Grid.RowSpan="10" Grid.ColumnSpan="6"  Width="auto" Background="#FFA0A0A0" CornerRadius="25"/>
+        <Rectangle Grid.Column="1" Height="auto" Grid.Row="4" Grid.RowSpan="10" Grid.ColumnSpan="6" Stroke="Black"  Width="auto" Opacity="0.6" Margin="0,0,0,0">
+            <Rectangle.Fill>
+
+                <ImageBrush ImageSource="/Roll the Dice;component/Images/dif-fondo.jpg"/>
+            </Rectangle.Fill>
+        </Rectangle>
         <Image Height="auto" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="4" Width="auto"  Source="/Roll the Dice;component/Images/logo.png"  />
-        <Rectangle Grid.Column="2" Fill="#6c5b7b" Height="auto" Margin="0,0,0,0" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="3" Stroke="Black"  Width="auto"/>
-        <Viewbox Grid.Column="2" Grid.Row="1"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Nombre:"  Width="543" Height="151" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" />
+        <Image Height="auto" Grid.ColumnSpan="1" Grid.Row="5" Grid.RowSpan="4" Width="auto"  Source="/Roll the Dice;component/Images/victor-removebg-preview.png" Grid.Column="5"  />
+        <Viewbox Grid.Column="2" Grid.Row="5"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Nombre:"  Width="726" Height="175" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"  />
         </Viewbox>
-        <Viewbox Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2"  Height="auto"  Width="auto">
-            <TextBox  Height="25"  Grid.Row="5" Grid.RowSpan="2" TextWrapping="Wrap" Text=""  FontSize="15" Width="183" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}"/>
+        <Viewbox Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="2"  Height="auto"  Width="auto">
+            <TextBox  Height="29"  Grid.Row="5" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="239" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}"/>
         </Viewbox>
-        <Viewbox Grid.Column="2" Grid.Row="2"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Raza:"  Width="547" Height="151" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" />
+        <Viewbox Grid.Column="2" Grid.Row="6"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Raza:"  Width="707" Height="170" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" />
         </Viewbox>
-        <ComboBox Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2"  Width="auto" Height="62" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="40" >
+        <ComboBox Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2"  Width="auto" Height="38" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="25"  >
             <ComboBoxItem Content="Humano"></ComboBoxItem>
             <ComboBoxItem Content="Elfo"></ComboBoxItem>
             <ComboBoxItem Content="SemiElfo"></ComboBoxItem>
@@ -56,28 +72,181 @@
             <ComboBoxItem Content="Enano"></ComboBoxItem>
         </ComboBox>
 
-        <Viewbox Grid.Column="2" Grid.Row="3"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Clase:"  Width="547" Height="151" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" />
+        <Viewbox Grid.Column="2" Grid.Row="7"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Clase:"  Width="749" Height="179" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"  />
         </Viewbox>
-        <ComboBox Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2"  Width="auto" Height="62" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="40" >
+        <ComboBox Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="2"  Width="auto" Height="38" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="25"  >
             <ComboBoxItem Content="Asesino"></ComboBoxItem>
             <ComboBoxItem Content="Guerrero"></ComboBoxItem>
             <ComboBoxItem Content="Místico"></ComboBoxItem>
             <ComboBoxItem Content="Arquero"></ComboBoxItem>
             <ComboBoxItem Content="Mago"></ComboBoxItem>
         </ComboBox>
-        <Viewbox Grid.Column="2" Grid.Row="4"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Sexo:"  Width="551" Height="151" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"/>
+        <Viewbox Grid.Column="2" Grid.Row="8"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Sexo:"  Width="745" Height="170" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"/>
         </Viewbox>
-        <ComboBox Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="2"  Width="auto" Height="62" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="40" >
+        <ComboBox Grid.Column="3" Grid.Row="8" Grid.ColumnSpan="2"  Width="auto" Height="38" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="25" >
             <ComboBoxItem Content="Hombre"></ComboBoxItem>
             <ComboBoxItem Content="Mujer"></ComboBoxItem>
             <ComboBoxItem Content="Otro"></ComboBoxItem>
             <ComboBoxItem Content="No Especificado"></ComboBoxItem>
             <ComboBoxItem Content="Helicoptero de combate"></ComboBoxItem>
         </ComboBox>
-        <Viewbox Grid.Column="2" Grid.Row="5"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Fuerza:"  Width="551" Height="151" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"/>
+        <Viewbox Grid.Column="2" Grid.Row="9"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Fue:"  Width="745" Height="179" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"/>
+        </Viewbox>
+        <ComboBox Grid.Column="3" Grid.Row="9" Grid.ColumnSpan="1"  Width="auto" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Height="38" >
+            <ComboBoxItem Content="1"></ComboBoxItem>
+            <ComboBoxItem Content="2"></ComboBoxItem>
+            <ComboBoxItem Content="3"></ComboBoxItem>
+            <ComboBoxItem Content="4"></ComboBoxItem>
+            <ComboBoxItem Content="5"></ComboBoxItem>
+            <ComboBoxItem Content="6"></ComboBoxItem>
+            <ComboBoxItem Content="7"></ComboBoxItem>
+            <ComboBoxItem Content="8"></ComboBoxItem>
+            <ComboBoxItem Content="9"></ComboBoxItem>
+            <ComboBoxItem Content="10"></ComboBoxItem>
+            <ComboBoxItem Content="11"></ComboBoxItem>
+            <ComboBoxItem Content="12"></ComboBoxItem>
+            <ComboBoxItem Content="13"></ComboBoxItem>
+            <ComboBoxItem Content="14"></ComboBoxItem>
+            <ComboBoxItem Content="15"></ComboBoxItem>
+            <ComboBoxItem Content="16"></ComboBoxItem>
+            <ComboBoxItem Content="17"></ComboBoxItem>
+            <ComboBoxItem Content="18"></ComboBoxItem>
+            <ComboBoxItem Content="19"></ComboBoxItem>
+            <ComboBoxItem Content="20"></ComboBoxItem>
+        </ComboBox>
+        <Viewbox Grid.Column="2" Grid.Row="10"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Des:"  Width="702" Height="168" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"/>
+        </Viewbox>
+        <ComboBox Grid.Column="3" Grid.Row="10" Grid.ColumnSpan="1"  Width="auto" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Height="38" >
+            <ComboBoxItem Content="1"></ComboBoxItem>
+            <ComboBoxItem Content="2"></ComboBoxItem>
+            <ComboBoxItem Content="3"></ComboBoxItem>
+            <ComboBoxItem Content="4"></ComboBoxItem>
+            <ComboBoxItem Content="5"></ComboBoxItem>
+            <ComboBoxItem Content="6"></ComboBoxItem>
+            <ComboBoxItem Content="7"></ComboBoxItem>
+            <ComboBoxItem Content="8"></ComboBoxItem>
+            <ComboBoxItem Content="9"></ComboBoxItem>
+            <ComboBoxItem Content="10"></ComboBoxItem>
+            <ComboBoxItem Content="11"></ComboBoxItem>
+            <ComboBoxItem Content="12"></ComboBoxItem>
+            <ComboBoxItem Content="13"></ComboBoxItem>
+            <ComboBoxItem Content="14"></ComboBoxItem>
+            <ComboBoxItem Content="15"></ComboBoxItem>
+            <ComboBoxItem Content="16"></ComboBoxItem>
+            <ComboBoxItem Content="17"></ComboBoxItem>
+            <ComboBoxItem Content="18"></ComboBoxItem>
+            <ComboBoxItem Content="19"></ComboBoxItem>
+            <ComboBoxItem Content="20"></ComboBoxItem>
+        </ComboBox>
+        <Viewbox Grid.Column="2" Grid.Row="11"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Con:"  Width="811" Height="192" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"/>
+        </Viewbox>
+        <ComboBox Grid.Column="3" Grid.Row="11" Grid.ColumnSpan="1" Width="auto" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Height="38" >
+            <ComboBoxItem Content="1"></ComboBoxItem>
+            <ComboBoxItem Content="2"></ComboBoxItem>
+            <ComboBoxItem Content="3"></ComboBoxItem>
+            <ComboBoxItem Content="4"></ComboBoxItem>
+            <ComboBoxItem Content="5"></ComboBoxItem>
+            <ComboBoxItem Content="6"></ComboBoxItem>
+            <ComboBoxItem Content="7"></ComboBoxItem>
+            <ComboBoxItem Content="8"></ComboBoxItem>
+            <ComboBoxItem Content="9"></ComboBoxItem>
+            <ComboBoxItem Content="10"></ComboBoxItem>
+            <ComboBoxItem Content="11"></ComboBoxItem>
+            <ComboBoxItem Content="12"></ComboBoxItem>
+            <ComboBoxItem Content="13"></ComboBoxItem>
+            <ComboBoxItem Content="14"></ComboBoxItem>
+            <ComboBoxItem Content="15"></ComboBoxItem>
+            <ComboBoxItem Content="16"></ComboBoxItem>
+            <ComboBoxItem Content="17"></ComboBoxItem>
+            <ComboBoxItem Content="18"></ComboBoxItem>
+            <ComboBoxItem Content="19"></ComboBoxItem>
+            <ComboBoxItem Content="20"></ComboBoxItem>
+        </ComboBox>
+        <Viewbox Grid.Column="4" Grid.Row="9"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="  Car:"  Width="744" Height="175" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"/>
+        </Viewbox>
+        <ComboBox Grid.Column="5" Grid.Row="9" Grid.ColumnSpan="1"  Width="auto" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Height="38" >
+            <ComboBoxItem Content="1"></ComboBoxItem>
+            <ComboBoxItem Content="2"></ComboBoxItem>
+            <ComboBoxItem Content="3"></ComboBoxItem>
+            <ComboBoxItem Content="4"></ComboBoxItem>
+            <ComboBoxItem Content="5"></ComboBoxItem>
+            <ComboBoxItem Content="6"></ComboBoxItem>
+            <ComboBoxItem Content="7"></ComboBoxItem>
+            <ComboBoxItem Content="8"></ComboBoxItem>
+            <ComboBoxItem Content="9"></ComboBoxItem>
+            <ComboBoxItem Content="10"></ComboBoxItem>
+            <ComboBoxItem Content="11"></ComboBoxItem>
+            <ComboBoxItem Content="12"></ComboBoxItem>
+            <ComboBoxItem Content="13"></ComboBoxItem>
+            <ComboBoxItem Content="14"></ComboBoxItem>
+            <ComboBoxItem Content="15"></ComboBoxItem>
+            <ComboBoxItem Content="16"></ComboBoxItem>
+            <ComboBoxItem Content="17"></ComboBoxItem>
+            <ComboBoxItem Content="18"></ComboBoxItem>
+            <ComboBoxItem Content="19"></ComboBoxItem>
+            <ComboBoxItem Content="20"></ComboBoxItem>
+        </ComboBox>
+        <Viewbox Grid.Column="4" Grid.Row="10"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="  Sab:"  Width="711" Height="172" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"/>
+        </Viewbox>
+        <ComboBox Grid.Column="5" Grid.Row="10" Grid.ColumnSpan="1"  Width="auto" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Height="38" >
+            <ComboBoxItem Content="1"></ComboBoxItem>
+            <ComboBoxItem Content="2"></ComboBoxItem>
+            <ComboBoxItem Content="3"></ComboBoxItem>
+            <ComboBoxItem Content="4"></ComboBoxItem>
+            <ComboBoxItem Content="5"></ComboBoxItem>
+            <ComboBoxItem Content="6"></ComboBoxItem>
+            <ComboBoxItem Content="7"></ComboBoxItem>
+            <ComboBoxItem Content="8"></ComboBoxItem>
+            <ComboBoxItem Content="9"></ComboBoxItem>
+            <ComboBoxItem Content="10"></ComboBoxItem>
+            <ComboBoxItem Content="11"></ComboBoxItem>
+            <ComboBoxItem Content="12"></ComboBoxItem>
+            <ComboBoxItem Content="13"></ComboBoxItem>
+            <ComboBoxItem Content="14"></ComboBoxItem>
+            <ComboBoxItem Content="15"></ComboBoxItem>
+            <ComboBoxItem Content="16"></ComboBoxItem>
+            <ComboBoxItem Content="17"></ComboBoxItem>
+            <ComboBoxItem Content="18"></ComboBoxItem>
+            <ComboBoxItem Content="19"></ComboBoxItem>
+            <ComboBoxItem Content="20"></ComboBoxItem>
+        </ComboBox>
+        <Viewbox Grid.Column="4" Grid.Row="11"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="  Int:"  Width="690" Height="165" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"/>
+        </Viewbox>
+        <ComboBox Grid.Column="5" Grid.Row="11" Grid.ColumnSpan="1"  Width="auto" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Height="37" >
+            <ComboBoxItem Content="1"></ComboBoxItem>
+            <ComboBoxItem Content="2"></ComboBoxItem>
+            <ComboBoxItem Content="3"></ComboBoxItem>
+            <ComboBoxItem Content="4"></ComboBoxItem>
+            <ComboBoxItem Content="5"></ComboBoxItem>
+            <ComboBoxItem Content="6"></ComboBoxItem>
+            <ComboBoxItem Content="7"></ComboBoxItem>
+            <ComboBoxItem Content="8"></ComboBoxItem>
+            <ComboBoxItem Content="9"></ComboBoxItem>
+            <ComboBoxItem Content="10"></ComboBoxItem>
+            <ComboBoxItem Content="11"></ComboBoxItem>
+            <ComboBoxItem Content="12"></ComboBoxItem>
+            <ComboBoxItem Content="13"></ComboBoxItem>
+            <ComboBoxItem Content="14"></ComboBoxItem>
+            <ComboBoxItem Content="15"></ComboBoxItem>
+            <ComboBoxItem Content="16"></ComboBoxItem>
+            <ComboBoxItem Content="17"></ComboBoxItem>
+            <ComboBoxItem Content="18"></ComboBoxItem>
+            <ComboBoxItem Content="19"></ComboBoxItem>
+            <ComboBoxItem Content="20"></ComboBoxItem>
+        </ComboBox>
+        <Viewbox Grid.Column="2" Grid.Row="12"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Historia:"  Width="698" Height="172" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" />
+        </Viewbox>
+        <Viewbox Grid.Column="3" Grid.Row="12" Grid.ColumnSpan="3" Grid.RowSpan="2"  Height="auto"  Width="auto">
+            <TextBox Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"  Height="54"  Grid.Row="5" Grid.RowSpan="2" TextWrapping="Wrap" Text=""  Width="332" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}"/>
         </Viewbox>
 
 
