@@ -72,9 +72,6 @@
     <Compile Include="Views\Registrarse.xaml.cs">
       <DependentUpon>Registrarse.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -98,10 +95,6 @@
     <Page Include="Views\Registrarse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Window1.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +146,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\chill8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dif-fondo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.3.1.2\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.3.1.2\build\MaterialDesignThemes.targets')" />
