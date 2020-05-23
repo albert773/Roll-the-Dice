@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="CREACION DE PERSONAJES" Height="900" Width="1600">
+        Title="CREACION DE PERSONAJES" Height="450" Width="800" WindowState="Maximized">
     <Grid Background="#c06c84">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />

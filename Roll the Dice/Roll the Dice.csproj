@@ -66,8 +66,8 @@
     <Compile Include="Views\LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CharacterShe.xaml.cs">
-      <DependentUpon>CharacterShe.xaml</DependentUpon>
+    <Compile Include="Views\CharacterSheet.xaml.cs">
+      <DependentUpon>CharacterSheet.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Registrarse.xaml.cs">
       <DependentUpon>Registrarse.xaml</DependentUpon>
@@ -91,7 +91,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CharacterShe.xaml">
+    <Page Include="Views\CharacterSheet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

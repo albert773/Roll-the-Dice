@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="Log In" Height="900" Width="1600">
+        Title="Log In" Height="450" Width="800" WindowState="Maximized" ResizeMode="CanResizeWithGrip">
     <Grid Background="#6C5B7B">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
