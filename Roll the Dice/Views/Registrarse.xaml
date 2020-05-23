@@ -3,30 +3,65 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="Registrarse" Height="450" Width="800" WindowState="Maximized">
+        Title="Registrarse" Height="450" Width="800" MinHeight="720" MinWidth="1280" WindowState="Maximized" ResizeMode="CanResizeWithGrip">
     <Grid Background="#6C5B7B">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="5*"  />
             <ColumnDefinition Width="50*"  />
+            <ColumnDefinition Width="5*"  />
             <ColumnDefinition Width="50*"  />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50*" />
-            <RowDefinition Height="75*" />
-            <RowDefinition Height="25*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="10*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
-            <RowDefinition Height="25*" />
-            <RowDefinition Height="50*" />
+            <RowDefinition Height="40*" />
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="20*" />
             <RowDefinition Height="50*" />
         </Grid.RowDefinitions>
-        <Rectangle  Height="Auto" Grid.RowSpan="2" Stroke="Black" Width="Auto" Grid.ColumnSpan="3" Fill="#F67280"/>
+        <Rectangle  Height="Auto" Grid.RowSpan="2" Stroke="Black" Width="Auto" Grid.ColumnSpan="5" Fill="#F67280"/>
         <Image Source="/Roll the Dice;component/Images/dice.png" Grid.Row="0" Grid.Column="0"/>
-        <Image Source="/Roll the Dice;component/Images/dice.png" Grid.Row="0" Grid.Column="2"/>
-        <!-- Nickname, Correo, Contraseña x2 + Button-->
+        <Image Source="/Roll the Dice;component/Images/dice.png" Grid.Row="0" Grid.Column="5"/>
+        <Viewbox Grid.Row="0" Grid.Column="2">
+            <Label Content="Roll the Dice" FontFamily="SimSun-ExtB" FontWeight="Bold" FontStyle="Italic"/>
+        </Viewbox>
+        <Border Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="9" BorderBrush="Black" Background="#FFF" BorderThickness="1" CornerRadius="25">
+            <Border.Effect>
+                <DropShadowEffect/>
+            </Border.Effect>
+        </Border>
+        <Viewbox Grid.Row="1" Grid.Column="2">
+            <Label Content="Registrarse" FontFamily="Georgia" FontSize="72" FontWeight="Bold" Foreground="#6C5B7B"/>
+        </Viewbox>
+        <Viewbox Grid.Column="2" Grid.Row="4">
+            <TextBox   Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="NickName" Width="247" Height="53" RenderTransformOrigin="0.499,0.609" FontFamily="Georigia"/>
+        </Viewbox>
+        <Viewbox Grid.Column="2" Grid.Row="3">
+            <TextBox   Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Email" Width="247" Height="53" RenderTransformOrigin="0.504,0.696" FontFamily="Georigia"/>
+        </Viewbox>
+        <Viewbox Grid.Column="2" Grid.Row="5">
+            <PasswordBox Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Password" Width="223" Height="47"/>
+        </Viewbox>
+        <Viewbox  Grid.Column="2" Grid.Row="6">
+            <PasswordBox Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Confirm your Password" Width="223" Height="47"/>
+        </Viewbox>
+        <Viewbox Grid.Column="2" Grid.Row="8">
+            <Button Content="Registrarse" FontSize="18" Background="#f67280" BorderBrush="AliceBlue" Height="33" FontFamily="Georgia">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Viewbox>
     </Grid>
 </Window>
