@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Roll_the_Dice.Views
 {
     /// <summary>
-    /// Lógica de interacción para CreacionArmaduras.xaml
+    /// Lógica de interacción para TicketCharacter.xaml
     /// </summary>
-    public partial class CreacionArmaduras : Page
+    public partial class TicketCharacter : Window
     {
-        public CreacionArmaduras()
+        public TicketCharacter()
         {
             InitializeComponent();
         }

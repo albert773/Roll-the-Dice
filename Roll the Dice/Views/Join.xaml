@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="Join" Height="450" Width="800" MinHeight="720" MinWidth="1280">
+        Title="Join" Height="auto" Width="auto"  MinWidth="1280" MinHeight="720" d:DesignWidth="850" d:DesignHeight="450">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Roll the Dice;component/Images/Irithyl.jpg"/>

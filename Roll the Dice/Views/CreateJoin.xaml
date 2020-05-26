@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="CreateJoin" Height="450" Width="800" MinHeight="720" MinWidth="1280">
+        Title="CreateJoin" Height="auto" Width="auto"  MinWidth="1280" MinHeight="720" d:DesignWidth="850" d:DesignHeight="450">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Roll the Dice;component/Images/Irithyl.jpg"/>
@@ -45,7 +45,7 @@
             </Button>
         </Viewbox>
         <Border Grid.Row="3" Grid.RowSpan="2" Grid.Column="3" Background="GreenYellow" CornerRadius="15"/>
-        <Image Source="/Roll the Dice;component/Images/icons8-plus-521.png" Grid.Row="3" Grid.RowSpan="2" Grid.Column="3" ButtonBase.Click=""/>
+        <Image Source="/Roll the Dice;component/Images/icons8-plus-521.png" Grid.Row="3" Grid.RowSpan="2" Grid.Column="3" ></Image>
         <Border  Grid.Row="3" Grid.RowSpan="2" Grid.Column="5" Background="OrangeRed" CornerRadius="15"/>
         <Image Source="/Roll the Dice;component/Images/join.png" Grid.Row="3" Grid.RowSpan="2" Grid.Column="5" MouseEnter="Join_Clicked"/>
         <Viewbox Grid.Row="5" Grid.Column="3">

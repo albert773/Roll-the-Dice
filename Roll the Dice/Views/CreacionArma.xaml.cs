@@ -17,7 +17,7 @@ namespace Roll_the_Dice.Views
     /// <summary>
     /// Lógica de interacción para CreacionArma.xaml
     /// </summary>
-    public partial class CreacionArma : Window
+    public partial class CreacionArma : Page
     {
         public CreacionArma()
         {

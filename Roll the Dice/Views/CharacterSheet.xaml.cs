@@ -17,7 +17,7 @@ namespace Roll_the_Dice.Views
     /// <summary>
     /// Lógica de interacción para CharacterShe.xaml
     /// </summary>
-    public partial class CharacterShe : Window
+    public partial class CharacterShe : Page
     {
         public CharacterShe()
         {

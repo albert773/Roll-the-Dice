@@ -17,7 +17,7 @@ namespace Roll_the_Dice.Views
     /// <summary>
     /// Lógica de interacción para CreacionNPC.xaml
     /// </summary>
-    public partial class CreacionNPC : Window
+    public partial class CreacionNPC : Page
     {
         public CreacionNPC()
         {

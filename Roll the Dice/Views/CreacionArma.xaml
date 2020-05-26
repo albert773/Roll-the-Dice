@@ -1,11 +1,11 @@
-﻿<Window x:Class="Roll_the_Dice.Views.CreacionArma"
+﻿<Page x:Class="Roll_the_Dice.Views.CreacionArma"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="CreacionArma" Height="450"	 Width="850" WindowState="Maximized" WindowStartupLocation="CenterScreen" MinWidth="1280" MinHeight="720">
+        Title="CreacionArma" Height="auto" Width="auto"  MinWidth="1280" MinHeight="720" d:DesignWidth="850" d:DesignHeight="450">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Roll the Dice;component/Images/background.jpg"/>
@@ -135,5 +135,5 @@
 
 
     </Grid>
-</Window>
+</Page>
 

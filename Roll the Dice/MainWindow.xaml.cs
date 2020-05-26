@@ -11,7 +11,7 @@ namespace Roll_the_Dice
         {
             InitializeComponent();
 
-            Main.Content = new Views.Page1();
+            Main.Content = new Views.LogIn();
         }
     }
 }
