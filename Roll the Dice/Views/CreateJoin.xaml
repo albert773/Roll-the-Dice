@@ -3,10 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="CreateJoin" Height="450" Width="800">
-    <Grid Background="#6C5B7B">
+        Title="CreateJoin" Height="450" Width="800"  WindowState="Maximized" ResizeMode="CanResizeWithGrip" MinHeight="720" MinWidth="1280">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Roll the Dice;component/Images/Irithyl.jpg"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="5*"  />
@@ -18,34 +22,40 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50*" />
-            <RowDefinition Height="35*" />
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="20*" />
             <RowDefinition Height="35*" />
             <RowDefinition Height="50*" />
         </Grid.RowDefinitions>
-        <Rectangle  Height="Auto" Grid.RowSpan="2" Stroke="Black" Width="Auto" Grid.ColumnSpan="7" Fill="#F67280"/>
-        <Image Source="/Roll the Dice;component/Images/dice.png" Grid.Row="0" Grid.Column="0"/>
-        <Image Source="/Roll the Dice;component/Images/dice.png" Grid.Row="0" Grid.Column="7"/>
-        <Viewbox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3">
-            <Label Content="Roll the Dice" FontFamily="SimSun-ExtB" FontWeight="Bold" FontStyle="Italic"/>
-        </Viewbox>
-        <Border Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="6" BorderBrush="Black" Background="#FFF" BorderThickness="1" CornerRadius="25">
+        <Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="5" BorderBrush="Black" BorderThickness="1" CornerRadius="25">
+            <Border.Background>
+                <ImageBrush ImageSource="/Roll the Dice;component/Images/blackPaper324.png"/>
+            </Border.Background>
             <Border.Effect>
                 <DropShadowEffect/>
             </Border.Effect>
         </Border>
+        <Viewbox Grid.Column="3" Grid.Row="5">
+            <Button Height="55" Width="50" Background="DarkGray" Click="ReturnLogin_Click">
+                <materialDesign:PackIcon Kind="Reload" Foreground="White"/>
+            </Button>
+        </Viewbox>
         <Border Grid.Row="3" Grid.RowSpan="2" Grid.Column="2" Background="GreenYellow" CornerRadius="15"/>
-        <Image Source="/Roll the Dice;component/Images/icons8-plus-521.png" Grid.Row="3" Grid.RowSpan="2" Grid.Column="2"/>
+        <Image Source="/Roll the Dice;component/Images/icons8-plus-521.png" Grid.Row="3" Grid.RowSpan="2" Grid.Column="2" Mouse.PreviewMouseDown="CreateSala_Click"/>
         <Border  Grid.Row="3" Grid.RowSpan="2" Grid.Column="4" Background="OrangeRed" CornerRadius="15"/>
         <Image Source="/Roll the Dice;component/Images/join.png" Grid.Row="3" Grid.RowSpan="2" Grid.Column="4"/>
         <Viewbox Grid.Row="5" Grid.Column="2">
-            <Label Content="CREATE" FontFamily="Greorgia" FontWeight="Bold" Foreground="#6C5B7B" />
+            <Label Content="CREATE" FontFamily="Greorgia" FontWeight="Bold" Foreground="White" />
         </Viewbox>
         <Viewbox Grid.Row="5" Grid.Column="4">
-            <Label Content="JOIN" FontFamily="Greorgia" FontWeight="Bold" Foreground="#6C5B7B"/>
+            <Label Content="JOIN" FontFamily="Greorgia" FontWeight="Bold" Foreground="White"/>
+        </Viewbox>
+        <Image Height="auto" Grid.ColumnSpan="5" Grid.RowSpan="2" Width="auto"  Source="/Roll the Dice;component/Images/blackPaper3.png" Grid.Column="1"/>
+        <Viewbox Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="3">
+            <Label Content=" Roll The Dice" FontFamily="SimSun-ExtB" FontWeight="Bold" FontStyle="Italic" Width="96" Foreground="#FFF" FontSize="11"/>
         </Viewbox>
     </Grid>
 </Window>
