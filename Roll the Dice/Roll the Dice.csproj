@@ -63,6 +63,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\CreacionArma.xaml.cs">
+      <DependentUpon>CreacionArma.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreacionArmaduras.xaml.cs">
+      <DependentUpon>CreacionArmaduras.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreacionMonstruo.xaml.cs">
+      <DependentUpon>CreacionMonstruo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreacionNPC.xaml.cs">
+      <DependentUpon>CreacionNPC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateJoin.xaml.cs">
       <DependentUpon>CreateJoin.xaml</DependentUpon>
     </Compile>
@@ -77,9 +89,6 @@
     </Compile>
     <Compile Include="Views\CharacterSheet.xaml.cs">
       <DependentUpon>CharacterSheet.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RecuperarContr.xaml.cs">
-      <DependentUpon>RecuperarContr.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Registrarse.xaml.cs">
       <DependentUpon>Registrarse.xaml</DependentUpon>
@@ -96,6 +105,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\CreacionArma.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreacionArmaduras.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreacionMonstruo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreacionNPC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CreateJoin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -113,10 +138,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CharacterSheet.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\RecuperarContr.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,6 +201,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\BackgroundPurple.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tekstura-bumaga-ogon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\blackPaper2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Espada.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\armadura.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.3.1.2\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.3.1.2\build\MaterialDesignThemes.targets')" />
