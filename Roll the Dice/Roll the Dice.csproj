@@ -63,23 +63,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Views\CreacionArma.xaml.cs">
-      <DependentUpon>CreacionArma.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreacionArmaduras.xaml.cs">
-      <DependentUpon>CreacionArmaduras.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreacionMonstruo.xaml.cs">
-      <DependentUpon>CreacionMonstruo.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreacionNPC.xaml.cs">
-      <DependentUpon>CreacionNPC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\CreateJoin.xaml.cs">
       <DependentUpon>CreateJoin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ForgotPassword.xaml.cs">
       <DependentUpon>ForgotPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GMviewPlayer.xaml.cs">
+      <DependentUpon>GMviewPlayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Join.xaml.cs">
       <DependentUpon>Join.xaml</DependentUpon>
@@ -90,8 +81,14 @@
     <Compile Include="Views\CharacterSheet.xaml.cs">
       <DependentUpon>CharacterSheet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MenuUsuario.xaml.cs">
+      <DependentUpon>MenuUsuario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Registrarse.xaml.cs">
       <DependentUpon>Registrarse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UsuarioModelo.xaml.cs">
+      <DependentUpon>UsuarioModelo.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -105,27 +102,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\CreacionArma.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CreacionArmaduras.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CreacionMonstruo.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CreacionNPC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\CreateJoin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ForgotPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GMviewPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,7 +126,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\MenuUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Registrarse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UsuarioModelo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,16 +196,40 @@
     <Resource Include="Images\BackgroundPurple.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\tekstura-bumaga-ogon.jpg" />
+    <Resource Include="Images\PaperBackground.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\blackPaper2.png" />
+    <Resource Include="Images\banner.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Espada.png" />
+    <Resource Include="Images\fantasyWorld.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\armadura.png" />
+    <Resource Include="Images\RollTheDicePaper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\blackPaper3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ChillBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\backgroundImg1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Irithyl.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bannerWood.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Portal.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BoxBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\blackPaper324.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.3.1.2\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.3.1.2\build\MaterialDesignThemes.targets')" />
