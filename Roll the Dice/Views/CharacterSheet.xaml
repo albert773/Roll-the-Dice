@@ -58,7 +58,7 @@
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Nombre:"  Width="726" Height="175" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"  />
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="2"  Height="auto"  Width="auto">
-            <TextBox  Height="29"  Grid.Row="5" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="239" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}"/>
+            <TextBox  Height="29"  Grid.Row="5" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="239" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" TextAlignment="c"/>
         </Viewbox>
         <Viewbox Grid.Column="2" Grid.Row="6"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Raza:"  Width="707" Height="170" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" />

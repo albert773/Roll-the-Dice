@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Roll_the_Dice.Views
 {
     /// <summary>
-    /// Lógica de interacción para RecuperarContr.xaml
+    /// Lógica de interacción para CreacionArma.xaml
     /// </summary>
-    public partial class RecuperarContr : Window
+    public partial class CreacionArma : Window
     {
-        public RecuperarContr()
+        public CreacionArma()
         {
             InitializeComponent();
         }
