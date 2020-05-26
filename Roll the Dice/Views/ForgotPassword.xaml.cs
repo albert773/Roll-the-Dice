@@ -1,22 +1,26 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace Roll_the_Dice.Views
 {
     /// <summary>
     /// Lógica de interacción para ForgotPassword.xaml
     /// </summary>
-    public partial class ForgotPassword : Window
+    public partial class ForgotPassword : Page
     {
         public ForgotPassword()
         {
             InitializeComponent();
         }
 
-        private void LogIn_Click(object sender, RoutedEventArgs e)
+        private void LogIn_Clicked(object sender, RoutedEventArgs e)
         {
-            var newForm = new LogIn(); //create your new form.
-            newForm.Show(); //show the new form.
-            this.Close(); //only if you want to close the current form.
+            NavigationService.Navigate(new LogIn());
+        }
+
+        private void EnviarEmail_Clicked(object sender, RoutedEventArgs e)
+        {
+            //NavigationService.Navigate(new LogIn());
         }
     }
 }

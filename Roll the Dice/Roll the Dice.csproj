@@ -75,7 +75,7 @@
     <Compile Include="Views\CreacionNPC.xaml.cs">
       <DependentUpon>CreacionNPC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CreateJoin.xaml.cs">
+    <Compile Include="Views\CreateJoin.cs">
       <DependentUpon>CreateJoin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ForgotPassword.xaml.cs">
@@ -93,8 +93,11 @@
     <Compile Include="Views\CharacterSheet.xaml.cs">
       <DependentUpon>CharacterSheet.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MenuUsuario.xaml.cs">
-      <DependentUpon>MenuUsuario.xaml</DependentUpon>
+    <Compile Include="Views\MenuPlayer.xaml.cs">
+      <DependentUpon>MenuPlayer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Registrarse.xaml.cs">
       <DependentUpon>Registrarse.xaml</DependentUpon>
@@ -154,7 +157,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MenuUsuario.xaml">
+    <Page Include="Views\MenuPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Page1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

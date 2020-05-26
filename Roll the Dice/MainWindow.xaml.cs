@@ -10,6 +10,8 @@ namespace Roll_the_Dice
         public MainWindow()
         {
             InitializeComponent();
+
+            Main.Content = new Views.Page1();
         }
     }
 }
