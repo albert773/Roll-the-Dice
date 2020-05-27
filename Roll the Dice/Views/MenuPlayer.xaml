@@ -30,10 +30,10 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
             <RowDefinition Height="5*" />
-            <RowDefinition Height="10*" />
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="5*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="15*" />
             <RowDefinition Height="5*" />
             <RowDefinition Height="20*" />
             <RowDefinition Height="5*" />
@@ -52,7 +52,7 @@
             <materialDesign:PackIcon x:Name="sword" Kind="Sword" Width="Auto" Height="Auto" VerticalAlignment="Center" Mouse.MouseDown="Ataq_Click" Foreground="Coral"/>
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="7">
-            <materialDesign:PackIcon x:Name="shield" Kind="Shield" Width="Auto" Height="Auto" VerticalAlignment="Center" Mouse.MouseDown="Def_Click" Foreground="Coral"/>
+            <materialDesign:PackIcon x:Name="shield" Kind="Person" Width="Auto" Height="Auto" VerticalAlignment="Center" Mouse.MouseDown="Def_Click" Foreground="Coral"/>
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="9">
             <materialDesign:PackIcon x:Name="book" Kind="BookOpen" Width="Auto" Height="Auto" VerticalAlignment="Center" Mouse.MouseDown="Hability_Click" Foreground="Coral"/>
@@ -62,35 +62,35 @@
         </Viewbox>
         <Border Background="White" Grid.Column="13" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="4"/>
         <Border BorderBrush="Black" Grid.Column="1" Grid.Row="5" Grid.RowSpan="7" Grid.ColumnSpan="11" BorderThickness="1" CornerRadius="20" Background="White"/>
-        <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" OpacityMask="White">
+        <!--<Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" OpacityMask="White">
             <TextBox x:Name="passworw" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Password" Foreground="White" FontSize="20" Width="262"/>
-        </Viewbox>
-        <Viewbox Grid.Column="5" Grid.Row="1">
+        </Viewbox>-->
+        <!--<Viewbox Grid.Column="5" Grid.Row="1">
             <Button Height="Auto" Click="FixPass_Click" Background="#6c5b7b">
                 <materialDesign:PackIcon Kind="PasswordReset"/>
             </Button>
-        </Viewbox>
-        <Viewbox Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="5">
+        </Viewbox>-->
+        <Viewbox Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="5">
             <!--<Viewbox.OpacityMask>
                 <ImageBrush/>
             </Viewbox.OpacityMask>-->
-            <Label Content="192.168.X.X"/>
+            <Label Content="192.168.X.X" FontSize="10"/>
         </Viewbox>
 
-        <Viewbox Grid.Column="1" Grid.Row="13">
-            <materialDesign:PackIcon Kind="Flame" Foreground="Silver"/>
+        <Viewbox Grid.Column="1" Grid.Row="13" Visibility="Hidden">
+            <materialDesign:PackIcon Kind="Flame" Foreground="Firebrick" RenderTransformOrigin="-94721.858,-0.087"/>
         </Viewbox>
-        <Viewbox Grid.Column="3" Grid.Row="13">
-            <materialDesign:PackIcon Kind="Electricity" Foreground="Silver"/>
+        <Viewbox Grid.Column="1" Grid.Row="13" Visibility="Hidden">
+            <materialDesign:PackIcon Kind="Electricity" Foreground="Yellow"/>
         </Viewbox>
-        <Viewbox Grid.Column="7" Grid.Row="13">
-            <materialDesign:PackIcon Kind="FreezeAdvisory" Foreground="Silver"/>
+        <Viewbox Grid.Column="1" Grid.Row="13" Visibility="Hidden">
+            <materialDesign:PackIcon Kind="FreezeAdvisory" Foreground="LightBlue"/>
         </Viewbox>
-        <Viewbox Grid.Column="9" Grid.Row="13">
-            <materialDesign:PackIcon Kind="Poison" Foreground="Silver"/>
+        <Viewbox Grid.Column="1" Grid.Row="13" Visibility="Hidden">
+            <materialDesign:PackIcon Kind="Poison" Foreground="ForestGreen"/>
         </Viewbox>
-        <Viewbox Grid.Column="11" Grid.Row="13">
-            <materialDesign:PackIcon Kind="Footprints" Foreground="Silver" />
+        <Viewbox Grid.Column="1" Grid.Row="13" Visibility="Hidden">
+            <materialDesign:PackIcon Kind="Run" Foreground="SandyBrown" />
         </Viewbox>
     </Grid>
 </Window>

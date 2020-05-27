@@ -22,8 +22,8 @@ namespace Roll_the_Dice.Views
         public MenuPlayer()
         {
             InitializeComponent();
-            passworw.Background = Brushes.White;
-            passworw.Foreground = Brushes.Black;
+            //passworw.Background = Brushes.White;
+            //passworw.Foreground = Brushes.Black;
         }
 
         private void Ataq_Click(object sender, RoutedEventArgs e)
@@ -51,10 +51,10 @@ namespace Roll_the_Dice.Views
 
         }
 
-        private void FixPass_Click(object sender, RoutedEventArgs e)
+        /*private void FixPass_Click(object sender, RoutedEventArgs e)
         {
             passworw.IsReadOnly = true;
 
-        }
+        }*/
     }
 }
