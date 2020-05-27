@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Roll_the_Dice.Views
 {
@@ -20,6 +22,7 @@ namespace Roll_the_Dice.Views
 
         private void Join_Clicked(object sender, RoutedEventArgs e)
         {
+            //borderCreate.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#a39cca"));
             NavigationService.Navigate(new Join());
         }
 

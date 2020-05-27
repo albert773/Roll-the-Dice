@@ -292,6 +292,18 @@
   <ItemGroup>
     <Resource Include="Images\inventario.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MenuPlayer.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MenuPlayer4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BannerPlayer.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MenuPlayer3.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.3.1.2\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.3.1.2\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

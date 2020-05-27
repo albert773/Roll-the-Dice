@@ -51,7 +51,7 @@
             </Button>
         </Viewbox>
         <Viewbox Grid.Column="4" Grid.Row="8">
-            <Button Content="Return" FontSize="18" Background="DimGray" BorderBrush="AliceBlue " Height="39" FontFamily="Georgia" Click="CreateJoin_Click">
+            <Button Content="Return" FontSize="18" Background="DimGray" BorderBrush="AliceBlue " Height="39" FontFamily="Georgia" Click="Return_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>

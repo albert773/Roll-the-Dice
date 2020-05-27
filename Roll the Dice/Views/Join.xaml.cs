@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Roll_the_Dice.Views
@@ -13,14 +14,18 @@ namespace Roll_the_Dice.Views
             InitializeComponent();
         }
 
-        private void CreateJoin_Click(object sender, RoutedEventArgs e)
+        private void Return_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new MenuPlayer());
+            NavigationService.Navigate(new CreateJoin());
         }
 
         private void Unirse_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new CreateJoin());
+            //Cambio de pagina a Ventana
+            MenuPlayer menu = new MenuPlayer();
+            menu.Show();
+            MainWindow main = Window.GetWindow(this) as MainWindow;
+            main.Close();
         }
     }
 }

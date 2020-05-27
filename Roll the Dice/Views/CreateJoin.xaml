@@ -44,10 +44,26 @@
                 <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White"/>
             </Button>
         </Viewbox>
-        <Border Grid.Row="3" Grid.RowSpan="2" Grid.Column="3" Background="GreenYellow" CornerRadius="15"/>
-        <Image Source="/Roll the Dice;component/Images/icons8-plus-521.png" Grid.Row="3" Grid.RowSpan="2" Grid.Column="3" ></Image>
+        <Border x:Name="borderCreate" Grid.Row="3" Grid.RowSpan="2" Grid.Column="3" Background="GreenYellow" CornerRadius="15"/>
+        <Viewbox Grid.Row="3" Grid.RowSpan="2" Grid.Column="3">
+            <Button Height="Auto" Width="Auto" Click="Create_Clicked">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="/Roll the Dice;component/Images/icons8-plus-521.png"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Viewbox>
         <Border  Grid.Row="3" Grid.RowSpan="2" Grid.Column="5" Background="OrangeRed" CornerRadius="15"/>
-        <Image Source="/Roll the Dice;component/Images/join.png" Grid.Row="3" Grid.RowSpan="2" Grid.Column="5" MouseEnter="Join_Clicked"/>
+        <Viewbox  Grid.Row="3" Grid.RowSpan="2" Grid.Column="5">
+            <Button Height="Auto" Width="Auto" Click="Join_Clicked">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="/Roll the Dice;component/Images/join.png"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Viewbox>
         <Viewbox Grid.Row="5" Grid.Column="3">
             <Label Content="CREATE" FontFamily="Greorgia" FontWeight="Bold" Foreground="White" />
         </Viewbox>

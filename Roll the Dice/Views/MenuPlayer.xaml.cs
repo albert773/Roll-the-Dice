@@ -28,25 +28,26 @@ namespace Roll_the_Dice.Views
 
         private void Ataq_Click(object sender, RoutedEventArgs e)
         {
-            sword.Foreground = new SolidColorBrush(Colors.Coral);
-            if (sword.Foreground == Brushes.Coral){
+            sword.Foreground = new SolidColorBrush(Colors.White);
+            if (sword.Foreground == Brushes.White)
+            {
                 sword.Foreground = new SolidColorBrush(Colors.Purple);
             }
         }
 
         private void Def_Click(object sender, RoutedEventArgs e)
         {
-            shield.Foreground = new SolidColorBrush(Colors.Coral);
+            shield.Foreground = new SolidColorBrush(Colors.White);
         }
 
         private void Hability_Click(object sender, RoutedEventArgs e)
         {
-            book.Foreground = new SolidColorBrush(Colors.Coral);
+            book.Foreground = new SolidColorBrush(Colors.White);
         }
 
         private void Dice_Click(object sender, RoutedEventArgs e)
         {
-            dice.Foreground = new SolidColorBrush(Colors.Coral);
+            dice.Foreground = new SolidColorBrush(Colors.White);
 
         }
 
