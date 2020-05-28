@@ -1,0 +1,96 @@
+﻿<Window x:Class="Roll_the_Dice.Views.MenuPlayer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Roll_the_Dice.Views"
+        mc:Ignorable="d"
+        Title="MenuPlayer" Height="450" Width="800" MinHeight="720" MinWidth="1280" WindowState="Maximized" ResizeMode="CanResizeWithGrip">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Roll the Dice;component/Images/MenuPlayer.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="5*" />
+        </Grid.RowDefinitions>
+        <Border Grid.Column="0" Grid.ColumnSpan="15" Grid.Row="0" Grid.RowSpan="3" Background="#f67280"/>
+        <Border Background="Purple" Grid.Column="13" Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="15"/>
+        <Viewbox Grid.Column="14" Grid.Row="5">
+            <materialDesign:PackIcon x:Name="sword" Kind="Sword" Width="Auto" Height="Auto" VerticalAlignment="Center" Mouse.MouseDown="Ataq_Click" Foreground="Coral"/>
+        </Viewbox>
+        <Viewbox Grid.Column="14" Grid.Row="7">
+            <materialDesign:PackIcon x:Name="shield" Kind="Person" Width="Auto" Height="Auto" VerticalAlignment="Center" Mouse.MouseDown="Def_Click" Foreground="Coral"/>
+        </Viewbox>
+        <Viewbox Grid.Column="14" Grid.Row="9">
+            <materialDesign:PackIcon x:Name="book" Kind="BookOpen" Width="Auto" Height="Auto" VerticalAlignment="Center" Mouse.MouseDown="Hability_Click" Foreground="Coral"/>
+        </Viewbox>
+        <Viewbox Grid.Column="14" Grid.Row="11">
+            <materialDesign:PackIcon x:Name="dice" Kind="Dice6" Width="Auto" Height="Auto" VerticalAlignment="Center" Mouse.MouseDown="Dice_Click" Foreground="Coral"/>
+        </Viewbox>
+        <Border Background="White" Grid.Column="13" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="4"/>
+        <Border BorderBrush="Black" Grid.Column="1" Grid.Row="5" Grid.RowSpan="7" Grid.ColumnSpan="11" BorderThickness="1" CornerRadius="20" Background="White"/>
+        <!--<Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" OpacityMask="White">
+            <TextBox x:Name="passworw" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Password" Foreground="White" FontSize="20" Width="262"/>
+        </Viewbox>-->
+        <!--<Viewbox Grid.Column="5" Grid.Row="1">
+            <Button Height="Auto" Click="FixPass_Click" Background="#6c5b7b">
+                <materialDesign:PackIcon Kind="PasswordReset"/>
+            </Button>
+        </Viewbox>-->
+        <Viewbox Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="5">
+            <!--<Viewbox.OpacityMask>
+                <ImageBrush/>
+            </Viewbox.OpacityMask>-->
+            <Label Content="192.168.X.X" FontSize="10"/>
+        </Viewbox>
+
+        <Viewbox Grid.Column="1" Grid.Row="13" Visibility="Hidden">
+            <materialDesign:PackIcon Kind="Flame" Foreground="Firebrick" RenderTransformOrigin="-94721.858,-0.087"/>
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="13" Visibility="Hidden">
+            <materialDesign:PackIcon Kind="Electricity" Foreground="Yellow"/>
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="13" Visibility="Hidden">
+            <materialDesign:PackIcon Kind="FreezeAdvisory" Foreground="LightBlue"/>
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="13" Visibility="Hidden">
+            <materialDesign:PackIcon Kind="Poison" Foreground="ForestGreen"/>
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="13" Visibility="Hidden">
+            <materialDesign:PackIcon Kind="Run" Foreground="SandyBrown" />
+        </Viewbox>
+    </Grid>
+</Window>

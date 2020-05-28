@@ -17,7 +17,7 @@ namespace Roll_the_Dice.Views
     /// <summary>
     /// Lógica de interacción para CreacionMonstruo.xaml
     /// </summary>
-    public partial class CreacionMonstruo : Window
+    public partial class CreacionMonstruo : Page
     {
         public CreacionMonstruo()
         {

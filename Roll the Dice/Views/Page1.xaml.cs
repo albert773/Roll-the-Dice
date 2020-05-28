@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Roll_the_Dice.Views
 {
     /// <summary>
-    /// Lógica de interacción para CreateJoin.xaml
+    /// Lógica de interacción para Page1.xaml
     /// </summary>
-    public partial class CreateJoin : Window
+    public partial class Page1 : Page
     {
-        public CreateJoin()
+        public Page1()
         {
             InitializeComponent();
         }

@@ -1,27 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Roll_the_Dice.Views
 {
     /// <summary>
     /// Lógica de interacción para ForgotPassword.xaml
     /// </summary>
-    public partial class ForgotPassword : Window
+    public partial class ForgotPassword : Page
     {
         public ForgotPassword()
         {
             InitializeComponent();
+        }
+
+        private void LogIn_Clicked(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new LogIn());
+        }
+
+        private void EnviarEmail_Clicked(object sender, RoutedEventArgs e)
+        {
+            //NavigationService.Navigate(new LogIn());
         }
     }
 }

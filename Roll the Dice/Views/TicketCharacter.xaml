@@ -1,0 +1,124 @@
+﻿<Window x:Class="Roll_the_Dice.Views.TicketCharacter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Roll_the_Dice.Views"
+        mc:Ignorable="d"
+        Title="TicketCharacter" Width="370" Height="420" MinWidth="370" MinHeight="420" MaxWidth="370"  MaxHeight="420" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/paper.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*"  />
+            <ColumnDefinition Width="50*"  />
+            <ColumnDefinition Width="50*"  />
+            <ColumnDefinition Width="50*"  />
+            <ColumnDefinition Width="50*"  />
+            <ColumnDefinition Width="50*"  />
+            <ColumnDefinition Width="50*"  />
+
+
+
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+        </Grid.RowDefinitions>
+        <Image Grid.ColumnSpan="5"  Grid.RowSpan="9" Width="auto" Height="auto"  Source="/Roll the Dice;component/Images/armadura.png">
+        </Image>
+        <Viewbox Grid.Column="5" Grid.ColumnSpan="4" Grid.RowSpan="4"   Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="HAVEL THE ROCK"  Width="1454" Height="587" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center"  FontSize="200" />
+        </Viewbox>
+        <Viewbox Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="4"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="FUE:"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+        </Viewbox>
+        <Viewbox Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="6"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="DES:"  Width="726" Height="215" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center"  FontSize="200" />
+        </Viewbox>
+        <Viewbox Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="8"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="CON:"  Width="726" Height="215" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+        </Viewbox>
+        <Viewbox Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="10"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="CAR:"  Width="726" Height="205" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center"  FontSize="200" />
+        </Viewbox>
+
+        <Viewbox Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="12"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="SAB:"  Width="726" Height="215" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center"  FontSize="200" />
+        </Viewbox>
+        <Viewbox Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="14"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="INT:"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+        </Viewbox>
+        <Viewbox Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="4"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+        </Viewbox>
+        <Viewbox Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="6"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+        </Viewbox>
+        <Viewbox Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="8"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+        </Viewbox>
+        <Viewbox Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="10"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+        </Viewbox>
+        <Viewbox Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="12"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+        </Viewbox>
+        <Viewbox Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="14"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+        </Viewbox>
+        <Viewbox Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="9"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="HP:"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+        </Viewbox>
+        <Viewbox Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="9"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="100"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+        </Viewbox>
+        <Viewbox Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="11"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="LVL:"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+        </Viewbox>
+        <Viewbox Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="11"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="100"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+        </Viewbox>
+        <Viewbox Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="13"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="EXP:"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+        </Viewbox>
+        <Viewbox Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="13"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="100"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+        </Viewbox>
+        <Viewbox Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="15"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Turnos:"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="170"  />
+        </Viewbox>
+        <Viewbox Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="15"  Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="4"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+        </Viewbox>
+        <Viewbox  Grid.ColumnSpan="9" Grid.RowSpan="4" Grid.Row="18"  Height="auto"  Width="auto">
+            <TextBox Style="{StaticResource MaterialDesignComboBoxEditableTextBox }"  TextWrapping="Wrap" Text="Havel era amigo de Gwyn y uno de los soldados del ejército del Gran Señor. Era un hombre resistente y fuerte, que animaba a sus hombres a lograr grandes cosas. Tanto él como sus hombres crearon armaduras talladas de piedra maciza y llevaban anillos que les permitían transportar una carga más pesada"  Width="3381" Height="724" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Left" FontSize="150" IsReadOnly = "True" />
+        </Viewbox>
+    </Grid>
+</Window>
