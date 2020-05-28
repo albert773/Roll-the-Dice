@@ -19,6 +19,9 @@ namespace Roll_the_Dice.Views
     /// </summary>
     public partial class MenuPlayer : Window
     {
+        TicketCharacter perso = new TicketCharacter();
+        Inventario inv = new Inventario();
+
         public MenuPlayer()
         {
             InitializeComponent();
@@ -35,14 +38,24 @@ namespace Roll_the_Dice.Views
             }
         }
 
-        private void Def_Click(object sender, RoutedEventArgs e)
+        private void Perso_Click(object sender, RoutedEventArgs e)
         {
-            shield.Foreground = new SolidColorBrush(Colors.White);
+            if (perso.ShowActivated) {
+                perso.Close();
+            }
+            this.perso = new TicketCharacter();
+            perso.Show();
+          
         }
 
-        private void Hability_Click(object sender, RoutedEventArgs e)
+        private void Invetario_Click(object sender, RoutedEventArgs e)
         {
-            book.Foreground = new SolidColorBrush(Colors.White);
+            if (inv.ShowActivated)
+            {
+                inv.Close();
+            }
+            this.inv = new Inventario();
+            inv.Show();
         }
 
         private void Dice_Click(object sender, RoutedEventArgs e)
