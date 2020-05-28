@@ -22,7 +22,7 @@ namespace Roll_the_Dice.Views
     {
         TicketCharacter perso = new TicketCharacter();
         Inventario inv = new Inventario();
-        int diceNum { get; set; } = 6;
+        int diceNum { get; set; } = 10;
         
 
         public MenuPlayer()

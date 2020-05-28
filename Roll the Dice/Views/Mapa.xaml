@@ -41,7 +41,7 @@
             <RowDefinition Height="50*"  />
            
         </Grid.RowDefinitions>
-        <Image Grid.ColumnSpan="14" Height="auto"  Grid.RowSpan="14"  Width="auto" Source="/Roll the Dice;component/Images/punte.jpg" Stretch="Fill"/>
+        <Image Grid.ColumnSpan="14" Height="auto"  Grid.RowSpan="14"  Width="auto" Source="/Roll the Dice;component/Images/camino.jpg" Stretch="Fill"/>
 
 
     </Grid>
