@@ -12,44 +12,44 @@ using Roll_the_Dice_Service.Models;
 
 namespace Roll_the_Dice_Service.Controllers
 {
-    public class ArmasController : ApiController
+    public class SalasController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
-        // GET: api/Armas
-        public IQueryable<Arma> GetArma()
+        // GET: api/Salas
+        public IQueryable<Sala> GetSala()
         {
-            return db.Arma;
+            return db.Sala;
         }
 
-        // GET: api/Armas/5
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult GetArma(int id)
+        // GET: api/Salas/5
+        [ResponseType(typeof(Sala))]
+        public IHttpActionResult GetSala(int id)
         {
-            Arma arma = db.Arma.Find(id);
-            if (arma == null)
+            Sala sala = db.Sala.Find(id);
+            if (sala == null)
             {
                 return NotFound();
             }
 
-            return Ok(arma);
+            return Ok(sala);
         }
 
-        // PUT: api/Armas/5
+        // PUT: api/Salas/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutArma(int id, Arma arma)
+        public IHttpActionResult PutSala(int id, Sala sala)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != arma.armaId)
+            if (id != sala.salaId)
             {
                 return BadRequest();
             }
 
-            db.Entry(arma).State = EntityState.Modified;
+            db.Entry(sala).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Roll_the_Dice_Service.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ArmaExists(id))
+                if (!SalaExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace Roll_the_Dice_Service.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Armas
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult PostArma(Arma arma)
+        // POST: api/Salas
+        [ResponseType(typeof(Sala))]
+        public IHttpActionResult PostSala(Sala sala)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Arma.Add(arma);
+            db.Sala.Add(sala);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = arma.armaId }, arma);
+            return CreatedAtRoute("DefaultApi", new { id = sala.salaId }, sala);
         }
 
-        // DELETE: api/Armas/5
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult DeleteArma(int id)
+        // DELETE: api/Salas/5
+        [ResponseType(typeof(Sala))]
+        public IHttpActionResult DeleteSala(int id)
         {
-            Arma arma = db.Arma.Find(id);
-            if (arma == null)
+            Sala sala = db.Sala.Find(id);
+            if (sala == null)
             {
                 return NotFound();
             }
 
-            db.Arma.Remove(arma);
+            db.Sala.Remove(sala);
             db.SaveChanges();
 
-            return Ok(arma);
+            return Ok(sala);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace Roll_the_Dice_Service.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ArmaExists(int id)
+        private bool SalaExists(int id)
         {
-            return db.Arma.Count(e => e.armaId == id) > 0;
+            return db.Sala.Count(e => e.salaId == id) > 0;
         }
     }
 }

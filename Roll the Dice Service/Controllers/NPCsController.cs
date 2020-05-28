@@ -12,44 +12,44 @@ using Roll_the_Dice_Service.Models;
 
 namespace Roll_the_Dice_Service.Controllers
 {
-    public class ArmasController : ApiController
+    public class NPCsController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
-        // GET: api/Armas
-        public IQueryable<Arma> GetArma()
+        // GET: api/NPCs
+        public IQueryable<NPC> GetNPC()
         {
-            return db.Arma;
+            return db.NPC;
         }
 
-        // GET: api/Armas/5
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult GetArma(int id)
+        // GET: api/NPCs/5
+        [ResponseType(typeof(NPC))]
+        public IHttpActionResult GetNPC(int id)
         {
-            Arma arma = db.Arma.Find(id);
-            if (arma == null)
+            NPC nPC = db.NPC.Find(id);
+            if (nPC == null)
             {
                 return NotFound();
             }
 
-            return Ok(arma);
+            return Ok(nPC);
         }
 
-        // PUT: api/Armas/5
+        // PUT: api/NPCs/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutArma(int id, Arma arma)
+        public IHttpActionResult PutNPC(int id, NPC nPC)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != arma.armaId)
+            if (id != nPC.NPCId)
             {
                 return BadRequest();
             }
 
-            db.Entry(arma).State = EntityState.Modified;
+            db.Entry(nPC).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Roll_the_Dice_Service.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ArmaExists(id))
+                if (!NPCExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace Roll_the_Dice_Service.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Armas
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult PostArma(Arma arma)
+        // POST: api/NPCs
+        [ResponseType(typeof(NPC))]
+        public IHttpActionResult PostNPC(NPC nPC)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Arma.Add(arma);
+            db.NPC.Add(nPC);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = arma.armaId }, arma);
+            return CreatedAtRoute("DefaultApi", new { id = nPC.NPCId }, nPC);
         }
 
-        // DELETE: api/Armas/5
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult DeleteArma(int id)
+        // DELETE: api/NPCs/5
+        [ResponseType(typeof(NPC))]
+        public IHttpActionResult DeleteNPC(int id)
         {
-            Arma arma = db.Arma.Find(id);
-            if (arma == null)
+            NPC nPC = db.NPC.Find(id);
+            if (nPC == null)
             {
                 return NotFound();
             }
 
-            db.Arma.Remove(arma);
+            db.NPC.Remove(nPC);
             db.SaveChanges();
 
-            return Ok(arma);
+            return Ok(nPC);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace Roll_the_Dice_Service.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ArmaExists(int id)
+        private bool NPCExists(int id)
         {
-            return db.Arma.Count(e => e.armaId == id) > 0;
+            return db.NPC.Count(e => e.NPCId == id) > 0;
         }
     }
 }

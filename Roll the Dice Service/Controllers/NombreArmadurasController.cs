@@ -12,44 +12,44 @@ using Roll_the_Dice_Service.Models;
 
 namespace Roll_the_Dice_Service.Controllers
 {
-    public class ArmasController : ApiController
+    public class NombreArmadurasController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
-        // GET: api/Armas
-        public IQueryable<Arma> GetArma()
+        // GET: api/NombreArmaduras
+        public IQueryable<NombreArmadura> GetNombreArmadura()
         {
-            return db.Arma;
+            return db.NombreArmadura;
         }
 
-        // GET: api/Armas/5
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult GetArma(int id)
+        // GET: api/NombreArmaduras/5
+        [ResponseType(typeof(NombreArmadura))]
+        public IHttpActionResult GetNombreArmadura(int id)
         {
-            Arma arma = db.Arma.Find(id);
-            if (arma == null)
+            NombreArmadura nombreArmadura = db.NombreArmadura.Find(id);
+            if (nombreArmadura == null)
             {
                 return NotFound();
             }
 
-            return Ok(arma);
+            return Ok(nombreArmadura);
         }
 
-        // PUT: api/Armas/5
+        // PUT: api/NombreArmaduras/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutArma(int id, Arma arma)
+        public IHttpActionResult PutNombreArmadura(int id, NombreArmadura nombreArmadura)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != arma.armaId)
+            if (id != nombreArmadura.nombreArmaduraId)
             {
                 return BadRequest();
             }
 
-            db.Entry(arma).State = EntityState.Modified;
+            db.Entry(nombreArmadura).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Roll_the_Dice_Service.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ArmaExists(id))
+                if (!NombreArmaduraExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace Roll_the_Dice_Service.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Armas
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult PostArma(Arma arma)
+        // POST: api/NombreArmaduras
+        [ResponseType(typeof(NombreArmadura))]
+        public IHttpActionResult PostNombreArmadura(NombreArmadura nombreArmadura)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Arma.Add(arma);
+            db.NombreArmadura.Add(nombreArmadura);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = arma.armaId }, arma);
+            return CreatedAtRoute("DefaultApi", new { id = nombreArmadura.nombreArmaduraId }, nombreArmadura);
         }
 
-        // DELETE: api/Armas/5
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult DeleteArma(int id)
+        // DELETE: api/NombreArmaduras/5
+        [ResponseType(typeof(NombreArmadura))]
+        public IHttpActionResult DeleteNombreArmadura(int id)
         {
-            Arma arma = db.Arma.Find(id);
-            if (arma == null)
+            NombreArmadura nombreArmadura = db.NombreArmadura.Find(id);
+            if (nombreArmadura == null)
             {
                 return NotFound();
             }
 
-            db.Arma.Remove(arma);
+            db.NombreArmadura.Remove(nombreArmadura);
             db.SaveChanges();
 
-            return Ok(arma);
+            return Ok(nombreArmadura);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace Roll_the_Dice_Service.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ArmaExists(int id)
+        private bool NombreArmaduraExists(int id)
         {
-            return db.Arma.Count(e => e.armaId == id) > 0;
+            return db.NombreArmadura.Count(e => e.nombreArmaduraId == id) > 0;
         }
     }
 }

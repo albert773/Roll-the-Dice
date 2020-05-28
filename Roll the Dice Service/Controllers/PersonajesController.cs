@@ -12,44 +12,44 @@ using Roll_the_Dice_Service.Models;
 
 namespace Roll_the_Dice_Service.Controllers
 {
-    public class ArmasController : ApiController
+    public class PersonajesController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
-        // GET: api/Armas
-        public IQueryable<Arma> GetArma()
+        // GET: api/Personajes
+        public IQueryable<Personaje> GetPersonaje()
         {
-            return db.Arma;
+            return db.Personaje;
         }
 
-        // GET: api/Armas/5
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult GetArma(int id)
+        // GET: api/Personajes/5
+        [ResponseType(typeof(Personaje))]
+        public IHttpActionResult GetPersonaje(int id)
         {
-            Arma arma = db.Arma.Find(id);
-            if (arma == null)
+            Personaje personaje = db.Personaje.Find(id);
+            if (personaje == null)
             {
                 return NotFound();
             }
 
-            return Ok(arma);
+            return Ok(personaje);
         }
 
-        // PUT: api/Armas/5
+        // PUT: api/Personajes/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutArma(int id, Arma arma)
+        public IHttpActionResult PutPersonaje(int id, Personaje personaje)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != arma.armaId)
+            if (id != personaje.personajeId)
             {
                 return BadRequest();
             }
 
-            db.Entry(arma).State = EntityState.Modified;
+            db.Entry(personaje).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Roll_the_Dice_Service.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ArmaExists(id))
+                if (!PersonajeExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace Roll_the_Dice_Service.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Armas
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult PostArma(Arma arma)
+        // POST: api/Personajes
+        [ResponseType(typeof(Personaje))]
+        public IHttpActionResult PostPersonaje(Personaje personaje)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Arma.Add(arma);
+            db.Personaje.Add(personaje);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = arma.armaId }, arma);
+            return CreatedAtRoute("DefaultApi", new { id = personaje.personajeId }, personaje);
         }
 
-        // DELETE: api/Armas/5
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult DeleteArma(int id)
+        // DELETE: api/Personajes/5
+        [ResponseType(typeof(Personaje))]
+        public IHttpActionResult DeletePersonaje(int id)
         {
-            Arma arma = db.Arma.Find(id);
-            if (arma == null)
+            Personaje personaje = db.Personaje.Find(id);
+            if (personaje == null)
             {
                 return NotFound();
             }
 
-            db.Arma.Remove(arma);
+            db.Personaje.Remove(personaje);
             db.SaveChanges();
 
-            return Ok(arma);
+            return Ok(personaje);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace Roll_the_Dice_Service.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ArmaExists(int id)
+        private bool PersonajeExists(int id)
         {
-            return db.Arma.Count(e => e.armaId == id) > 0;
+            return db.Personaje.Count(e => e.personajeId == id) > 0;
         }
     }
 }

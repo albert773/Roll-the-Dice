@@ -12,44 +12,44 @@ using Roll_the_Dice_Service.Models;
 
 namespace Roll_the_Dice_Service.Controllers
 {
-    public class ArmasController : ApiController
+    public class MapasController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
-        // GET: api/Armas
-        public IQueryable<Arma> GetArma()
+        // GET: api/Mapas
+        public IQueryable<Mapa> GetMapa()
         {
-            return db.Arma;
+            return db.Mapa;
         }
 
-        // GET: api/Armas/5
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult GetArma(int id)
+        // GET: api/Mapas/5
+        [ResponseType(typeof(Mapa))]
+        public IHttpActionResult GetMapa(int id)
         {
-            Arma arma = db.Arma.Find(id);
-            if (arma == null)
+            Mapa mapa = db.Mapa.Find(id);
+            if (mapa == null)
             {
                 return NotFound();
             }
 
-            return Ok(arma);
+            return Ok(mapa);
         }
 
-        // PUT: api/Armas/5
+        // PUT: api/Mapas/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutArma(int id, Arma arma)
+        public IHttpActionResult PutMapa(int id, Mapa mapa)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != arma.armaId)
+            if (id != mapa.mapaId)
             {
                 return BadRequest();
             }
 
-            db.Entry(arma).State = EntityState.Modified;
+            db.Entry(mapa).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Roll_the_Dice_Service.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ArmaExists(id))
+                if (!MapaExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace Roll_the_Dice_Service.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Armas
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult PostArma(Arma arma)
+        // POST: api/Mapas
+        [ResponseType(typeof(Mapa))]
+        public IHttpActionResult PostMapa(Mapa mapa)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Arma.Add(arma);
+            db.Mapa.Add(mapa);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = arma.armaId }, arma);
+            return CreatedAtRoute("DefaultApi", new { id = mapa.mapaId }, mapa);
         }
 
-        // DELETE: api/Armas/5
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult DeleteArma(int id)
+        // DELETE: api/Mapas/5
+        [ResponseType(typeof(Mapa))]
+        public IHttpActionResult DeleteMapa(int id)
         {
-            Arma arma = db.Arma.Find(id);
-            if (arma == null)
+            Mapa mapa = db.Mapa.Find(id);
+            if (mapa == null)
             {
                 return NotFound();
             }
 
-            db.Arma.Remove(arma);
+            db.Mapa.Remove(mapa);
             db.SaveChanges();
 
-            return Ok(arma);
+            return Ok(mapa);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace Roll_the_Dice_Service.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ArmaExists(int id)
+        private bool MapaExists(int id)
         {
-            return db.Arma.Count(e => e.armaId == id) > 0;
+            return db.Mapa.Count(e => e.mapaId == id) > 0;
         }
     }
 }

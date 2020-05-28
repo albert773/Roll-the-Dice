@@ -12,44 +12,44 @@ using Roll_the_Dice_Service.Models;
 
 namespace Roll_the_Dice_Service.Controllers
 {
-    public class ArmasController : ApiController
+    public class RarezasController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
-        // GET: api/Armas
-        public IQueryable<Arma> GetArma()
+        // GET: api/Rarezas
+        public IQueryable<Rareza> GetRareza()
         {
-            return db.Arma;
+            return db.Rareza;
         }
 
-        // GET: api/Armas/5
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult GetArma(int id)
+        // GET: api/Rarezas/5
+        [ResponseType(typeof(Rareza))]
+        public IHttpActionResult GetRareza(int id)
         {
-            Arma arma = db.Arma.Find(id);
-            if (arma == null)
+            Rareza rareza = db.Rareza.Find(id);
+            if (rareza == null)
             {
                 return NotFound();
             }
 
-            return Ok(arma);
+            return Ok(rareza);
         }
 
-        // PUT: api/Armas/5
+        // PUT: api/Rarezas/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutArma(int id, Arma arma)
+        public IHttpActionResult PutRareza(int id, Rareza rareza)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != arma.armaId)
+            if (id != rareza.rarezaId)
             {
                 return BadRequest();
             }
 
-            db.Entry(arma).State = EntityState.Modified;
+            db.Entry(rareza).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Roll_the_Dice_Service.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ArmaExists(id))
+                if (!RarezaExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace Roll_the_Dice_Service.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Armas
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult PostArma(Arma arma)
+        // POST: api/Rarezas
+        [ResponseType(typeof(Rareza))]
+        public IHttpActionResult PostRareza(Rareza rareza)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Arma.Add(arma);
+            db.Rareza.Add(rareza);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = arma.armaId }, arma);
+            return CreatedAtRoute("DefaultApi", new { id = rareza.rarezaId }, rareza);
         }
 
-        // DELETE: api/Armas/5
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult DeleteArma(int id)
+        // DELETE: api/Rarezas/5
+        [ResponseType(typeof(Rareza))]
+        public IHttpActionResult DeleteRareza(int id)
         {
-            Arma arma = db.Arma.Find(id);
-            if (arma == null)
+            Rareza rareza = db.Rareza.Find(id);
+            if (rareza == null)
             {
                 return NotFound();
             }
 
-            db.Arma.Remove(arma);
+            db.Rareza.Remove(rareza);
             db.SaveChanges();
 
-            return Ok(arma);
+            return Ok(rareza);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace Roll_the_Dice_Service.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ArmaExists(int id)
+        private bool RarezaExists(int id)
         {
-            return db.Arma.Count(e => e.armaId == id) > 0;
+            return db.Rareza.Count(e => e.rarezaId == id) > 0;
         }
     }
 }

@@ -1,28 +1,118 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
+using Roll_the_Dice_Service.Models;
 
 namespace Roll_the_Dice_Service.Controllers
 {
-    [Authorize]
-    [RoutePrefix("api/usuarios")]
     public class UsuariosController : ApiController
     {
-        [HttpGet]
-        public IHttpActionResult GetId(int id)
+        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
+
+        // GET: api/Usuarios
+        public IQueryable<Usuario> GetUsuario()
         {
-            var usuarioFake = "usuario-fake";
-            return Ok(usuarioFake);
+            return db.Usuario;
         }
 
-        [HttpGet]
-        public IHttpActionResult GetAll()
+        // GET: api/Usuarios/5
+        [ResponseType(typeof(Usuario))]
+        public IHttpActionResult GetUsuario(int id)
         {
-            var usuariosFake = new string[] { "usuario-1", "usuario-2", "usuario-3" };
-            return Ok(usuariosFake);
+            Usuario usuario = db.Usuario.Find(id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(usuario);
+        }
+
+        // PUT: api/Usuarios/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutUsuario(int id, Usuario usuario)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != usuario.usuarioId)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(usuario).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UsuarioExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST: api/Usuarios
+        [ResponseType(typeof(Usuario))]
+        public IHttpActionResult PostUsuario(Usuario usuario)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Usuario.Add(usuario);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = usuario.usuarioId }, usuario);
+        }
+
+        // DELETE: api/Usuarios/5
+        [ResponseType(typeof(Usuario))]
+        public IHttpActionResult DeleteUsuario(int id)
+        {
+            Usuario usuario = db.Usuario.Find(id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            db.Usuario.Remove(usuario);
+            db.SaveChanges();
+
+            return Ok(usuario);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool UsuarioExists(int id)
+        {
+            return db.Usuario.Count(e => e.usuarioId == id) > 0;
         }
     }
 }

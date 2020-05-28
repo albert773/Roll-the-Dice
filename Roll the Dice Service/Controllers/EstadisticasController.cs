@@ -12,44 +12,44 @@ using Roll_the_Dice_Service.Models;
 
 namespace Roll_the_Dice_Service.Controllers
 {
-    public class ArmasController : ApiController
+    public class EstadisticasController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
-        // GET: api/Armas
-        public IQueryable<Arma> GetArma()
+        // GET: api/Estadisticas
+        public IQueryable<Estadistica> GetEstadistica()
         {
-            return db.Arma;
+            return db.Estadistica;
         }
 
-        // GET: api/Armas/5
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult GetArma(int id)
+        // GET: api/Estadisticas/5
+        [ResponseType(typeof(Estadistica))]
+        public IHttpActionResult GetEstadistica(int id)
         {
-            Arma arma = db.Arma.Find(id);
-            if (arma == null)
+            Estadistica estadistica = db.Estadistica.Find(id);
+            if (estadistica == null)
             {
                 return NotFound();
             }
 
-            return Ok(arma);
+            return Ok(estadistica);
         }
 
-        // PUT: api/Armas/5
+        // PUT: api/Estadisticas/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutArma(int id, Arma arma)
+        public IHttpActionResult PutEstadistica(int id, Estadistica estadistica)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != arma.armaId)
+            if (id != estadistica.estadisticaId)
             {
                 return BadRequest();
             }
 
-            db.Entry(arma).State = EntityState.Modified;
+            db.Entry(estadistica).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Roll_the_Dice_Service.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ArmaExists(id))
+                if (!EstadisticaExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace Roll_the_Dice_Service.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Armas
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult PostArma(Arma arma)
+        // POST: api/Estadisticas
+        [ResponseType(typeof(Estadistica))]
+        public IHttpActionResult PostEstadistica(Estadistica estadistica)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Arma.Add(arma);
+            db.Estadistica.Add(estadistica);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = arma.armaId }, arma);
+            return CreatedAtRoute("DefaultApi", new { id = estadistica.estadisticaId }, estadistica);
         }
 
-        // DELETE: api/Armas/5
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult DeleteArma(int id)
+        // DELETE: api/Estadisticas/5
+        [ResponseType(typeof(Estadistica))]
+        public IHttpActionResult DeleteEstadistica(int id)
         {
-            Arma arma = db.Arma.Find(id);
-            if (arma == null)
+            Estadistica estadistica = db.Estadistica.Find(id);
+            if (estadistica == null)
             {
                 return NotFound();
             }
 
-            db.Arma.Remove(arma);
+            db.Estadistica.Remove(estadistica);
             db.SaveChanges();
 
-            return Ok(arma);
+            return Ok(estadistica);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace Roll_the_Dice_Service.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ArmaExists(int id)
+        private bool EstadisticaExists(int id)
         {
-            return db.Arma.Count(e => e.armaId == id) > 0;
+            return db.Estadistica.Count(e => e.estadisticaId == id) > 0;
         }
     }
 }

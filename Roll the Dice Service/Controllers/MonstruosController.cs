@@ -12,44 +12,44 @@ using Roll_the_Dice_Service.Models;
 
 namespace Roll_the_Dice_Service.Controllers
 {
-    public class ArmasController : ApiController
+    public class MonstruosController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
-        // GET: api/Armas
-        public IQueryable<Arma> GetArma()
+        // GET: api/Monstruos
+        public IQueryable<Monstruo> GetMonstruo()
         {
-            return db.Arma;
+            return db.Monstruo;
         }
 
-        // GET: api/Armas/5
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult GetArma(int id)
+        // GET: api/Monstruos/5
+        [ResponseType(typeof(Monstruo))]
+        public IHttpActionResult GetMonstruo(int id)
         {
-            Arma arma = db.Arma.Find(id);
-            if (arma == null)
+            Monstruo monstruo = db.Monstruo.Find(id);
+            if (monstruo == null)
             {
                 return NotFound();
             }
 
-            return Ok(arma);
+            return Ok(monstruo);
         }
 
-        // PUT: api/Armas/5
+        // PUT: api/Monstruos/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutArma(int id, Arma arma)
+        public IHttpActionResult PutMonstruo(int id, Monstruo monstruo)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != arma.armaId)
+            if (id != monstruo.monstruoId)
             {
                 return BadRequest();
             }
 
-            db.Entry(arma).State = EntityState.Modified;
+            db.Entry(monstruo).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Roll_the_Dice_Service.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ArmaExists(id))
+                if (!MonstruoExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace Roll_the_Dice_Service.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Armas
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult PostArma(Arma arma)
+        // POST: api/Monstruos
+        [ResponseType(typeof(Monstruo))]
+        public IHttpActionResult PostMonstruo(Monstruo monstruo)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Arma.Add(arma);
+            db.Monstruo.Add(monstruo);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = arma.armaId }, arma);
+            return CreatedAtRoute("DefaultApi", new { id = monstruo.monstruoId }, monstruo);
         }
 
-        // DELETE: api/Armas/5
-        [ResponseType(typeof(Arma))]
-        public IHttpActionResult DeleteArma(int id)
+        // DELETE: api/Monstruos/5
+        [ResponseType(typeof(Monstruo))]
+        public IHttpActionResult DeleteMonstruo(int id)
         {
-            Arma arma = db.Arma.Find(id);
-            if (arma == null)
+            Monstruo monstruo = db.Monstruo.Find(id);
+            if (monstruo == null)
             {
                 return NotFound();
             }
 
-            db.Arma.Remove(arma);
+            db.Monstruo.Remove(monstruo);
             db.SaveChanges();
 
-            return Ok(arma);
+            return Ok(monstruo);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace Roll_the_Dice_Service.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ArmaExists(int id)
+        private bool MonstruoExists(int id)
         {
-            return db.Arma.Count(e => e.armaId == id) > 0;
+            return db.Monstruo.Count(e => e.monstruoId == id) > 0;
         }
     }
 }
