@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,12 +23,14 @@ namespace Roll_the_Dice.Views
         TicketCharacter perso = new TicketCharacter();
         Inventario inv = new Inventario();
         int diceNum { get; set; } = 6;
+        
 
         public MenuPlayer()
         {
             InitializeComponent();
             //passworw.Background = Brushes.White;
             //passworw.Foreground = Brushes.Black;
+            frameMap.Content = new Mapa();
         }
 
         private void Ataq_Click(object sender, RoutedEventArgs e)
@@ -61,13 +64,52 @@ namespace Roll_the_Dice.Views
 
         private void Dice_Click(object sender, RoutedEventArgs e)
         {
-            switch (diceNum)
-            {
-                case 1: 
-            }
+            diceChange();
+            Number.Text = randomDice();
 
         }
+        private string randomDice()
+        {
+            
+            string s="";
+            int max = diceNum + 1;
+            Random random = new Random();
+            s+= random.Next(1, max);
+            return s;
+        }
 
+        public void diceChange()
+        {
+            //Cuando el game master cambie el dice llama a esto en todos los jugadores
+            switch (diceNum)
+            {
+                case 6:
+                    dice.Kind = PackIconKind.Dice6;
+                    break;
+
+                case 12:
+                    dice.Kind = PackIconKind.DiceD12;
+                    break;
+                case 10:
+                    dice.Kind = PackIconKind.DiceD10;
+                    break;
+                case 3:
+                    dice.Kind = PackIconKind.Dice3;
+                    break;
+                case 20:
+                    dice.Kind = PackIconKind.DiceD20;
+                    break;
+                case 8:
+                    dice.Kind = PackIconKind.DiceD8;
+                    break;
+                case 4:
+                    dice.Kind = PackIconKind.Dice4;
+                    break;
+                case 5:
+                    dice.Kind = PackIconKind.Dice5;
+                    break;
+            }
+        }
  
 
         /*private void FixPass_Click(object sender, RoutedEventArgs e)

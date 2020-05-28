@@ -96,6 +96,9 @@
     <Compile Include="Views\CharacterSheet.xaml.cs">
       <DependentUpon>CharacterSheet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Mapa.xaml.cs">
+      <DependentUpon>Mapa.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MenuPlayer.xaml.cs">
       <DependentUpon>MenuPlayer.xaml</DependentUpon>
     </Compile>
@@ -161,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CharacterSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Mapa.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -296,6 +303,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\MenuPlayer3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\camino.jpg" />
+    <Resource Include="Images\casa.jpg" />
+    <Resource Include="Images\cueva.jpeg" />
+    <Resource Include="Images\punte.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.3.1.2\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.3.1.2\build\MaterialDesignThemes.targets')" />
