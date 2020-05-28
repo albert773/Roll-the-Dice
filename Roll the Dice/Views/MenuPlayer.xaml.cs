@@ -21,6 +21,7 @@ namespace Roll_the_Dice.Views
     {
         TicketCharacter perso = new TicketCharacter();
         Inventario inv = new Inventario();
+        int diceNum { get; set; } = 6;
 
         public MenuPlayer()
         {
@@ -45,7 +46,7 @@ namespace Roll_the_Dice.Views
             }
             this.perso = new TicketCharacter();
             perso.Show();
-          
+           
         }
 
         private void Invetario_Click(object sender, RoutedEventArgs e)
@@ -60,9 +61,14 @@ namespace Roll_the_Dice.Views
 
         private void Dice_Click(object sender, RoutedEventArgs e)
         {
-            dice.Foreground = new SolidColorBrush(Colors.White);
+            switch (diceNum)
+            {
+                case 1: 
+            }
 
         }
+
+ 
 
         /*private void FixPass_Click(object sender, RoutedEventArgs e)
         {
