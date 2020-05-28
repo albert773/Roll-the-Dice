@@ -8,9 +8,6 @@
         mc:Ignorable="d"
         Title="CreateJoin" Height="auto" Width="auto"  MinWidth="1280" MinHeight="720" d:DesignWidth="850" d:DesignHeight="450">
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Roll the Dice;component/Images/Irithyl.jpg"/>
-        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="2*"  />
@@ -19,19 +16,28 @@
             <ColumnDefinition Width="5*"  />
             <ColumnDefinition Width="25*"  />
             <ColumnDefinition Width="7*"  />
+            <ColumnDefinition Width="2*"  />
             <ColumnDefinition Width="50*"  />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="10*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="25*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="20*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="40*" />
+            <RowDefinition Height="10*" />
             <RowDefinition Height="35*" />
             <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
         </Grid.RowDefinitions>
-        <Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="6" Grid.RowSpan="5" BorderBrush="Black" BorderThickness="1" CornerRadius="25">
+        <Border Grid.ColumnSpan="7" Grid.Column="1" Grid.Row="1" BorderThickness="1" CornerRadius="25" Grid.RowSpan="12" RenderTransformOrigin="0.5,0.5" BorderBrush="Black">
             <Border.Background>
                 <ImageBrush ImageSource="/Roll the Dice;component/Images/blackPaper324.png"/>
             </Border.Background>
@@ -39,13 +45,13 @@
                 <DropShadowEffect/>
             </Border.Effect>
         </Border>
-        <Viewbox Grid.Column="2" Grid.Row="2">
+        <Viewbox Grid.Column="2" Grid.Row="1">
             <Button Height="55" Width="50" Background="DarkGray" Click="Login_Clicked">
                 <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White"/>
             </Button>
         </Viewbox>
-        <Border x:Name="borderCreate" Grid.Row="3" Grid.RowSpan="2" Grid.Column="3" Background="GreenYellow" CornerRadius="15"/>
-        <Viewbox Grid.Row="3" Grid.RowSpan="2" Grid.Column="3">
+        <Border x:Name="borderCreate" Grid.Row="2" Grid.RowSpan="6" Grid.Column="3" Background="GreenYellow" CornerRadius="15"/>
+        <Viewbox Grid.Row="2" Grid.RowSpan="6" Grid.Column="3">
             <Button Height="Auto" Width="Auto" Click="Create_Clicked">
                 <Button.Template>
                     <ControlTemplate>
@@ -54,8 +60,8 @@
                 </Button.Template>
             </Button>
         </Viewbox>
-        <Border  Grid.Row="3" Grid.RowSpan="2" Grid.Column="5" Background="OrangeRed" CornerRadius="15"/>
-        <Viewbox  Grid.Row="3" Grid.RowSpan="2" Grid.Column="5">
+        <Border  Grid.Row="2" Grid.RowSpan="6" Grid.Column="5" Background="OrangeRed" CornerRadius="15"/>
+        <Viewbox  Grid.Row="2" Grid.RowSpan="6" Grid.Column="5">
             <Button Height="Auto" Width="Auto" Click="Join_Clicked">
                 <Button.Template>
                     <ControlTemplate>
@@ -64,15 +70,11 @@
                 </Button.Template>
             </Button>
         </Viewbox>
-        <Viewbox Grid.Row="5" Grid.Column="3">
+        <Viewbox Grid.Row="10" Grid.Column="3">
             <Label Content="CREATE" FontFamily="Greorgia" FontWeight="Bold" Foreground="White" />
         </Viewbox>
-        <Viewbox Grid.Row="5" Grid.Column="5">
+        <Viewbox Grid.Row="10" Grid.Column="5">
             <Label Content="JOIN" FontFamily="Greorgia" FontWeight="Bold" Foreground="White"/>
-        </Viewbox>
-        <Image Height="auto" Grid.ColumnSpan="6" Grid.RowSpan="2" Width="auto"  Source="/Roll the Dice;component/Images/blackPaper3.png" Grid.Column="1"/>
-        <Viewbox Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="5">
-            <Label Content=" Roll The Dice" FontFamily="SimSun-ExtB" FontWeight="Bold" FontStyle="Italic" Width="96" Foreground="#FFF" FontSize="10"/>
         </Viewbox>
     </Grid>
 </Page>

@@ -99,9 +99,6 @@
     <Compile Include="Views\MenuPlayer.xaml.cs">
       <DependentUpon>MenuPlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Registrarse.xaml.cs">
       <DependentUpon>Registrarse.xaml</DependentUpon>
     </Compile>
@@ -168,10 +165,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MenuPlayer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Page1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

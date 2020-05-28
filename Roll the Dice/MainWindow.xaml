@@ -7,12 +7,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="850" MinHeight="720" MinWidth="1280" WindowState="Maximized" ResizeMode="CanResizeWithGrip">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/Irithyl.jpg"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="10*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="90*"/>
         </Grid.RowDefinitions>
-        <Frame x:Name="Main" Width="auto" Height="auto"/>
+        <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Roll the Dice;component/Images/blackPaper3.png"/>
+        <Viewbox Grid.Row="0">
+            <Label Content="Roll The Dice" Foreground="#FFF" FontSize="4" FontFamily="Frank Ruehl CLM MediumOblique"/>
+        </Viewbox>
+        <Frame x:Name="Main" Width="auto" Height="auto" Grid.Row="1">
+            
+        </Frame>
     </Grid>
 </Window>
