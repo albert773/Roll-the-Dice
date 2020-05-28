@@ -71,10 +71,10 @@
             </Button>
         </Viewbox>
         <Viewbox Grid.Row="10" Grid.Column="3">
-            <Label Content="CREATE" FontFamily="Greorgia" FontWeight="Bold" Foreground="White" />
+            <Label Content="CREAR" FontFamily="Greorgia" FontWeight="Bold" Foreground="White" />
         </Viewbox>
         <Viewbox Grid.Row="10" Grid.Column="5">
-            <Label Content="JOIN" FontFamily="Greorgia" FontWeight="Bold" Foreground="White"/>
+            <Label Content="UNIRSE" FontFamily="Greorgia" FontWeight="Bold" Foreground="White"/>
         </Viewbox>
     </Grid>
 </Page>

@@ -55,7 +55,7 @@
             </Button>
         </Viewbox>
         <Viewbox Grid.Column="5" Grid.Row="11">
-            <Button Content="Return" FontSize="18" Background="DimGray" BorderBrush="AliceBlue " Height="39" FontFamily="Georgia" Click="Return_Click">
+            <Button Content="Volver" FontSize="18" Background="DimGray" BorderBrush="AliceBlue " Height="39" FontFamily="Georgia" Click="Return_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -67,7 +67,7 @@
             <TextBox   Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="IP" Width="247" Height="53" Foreground="White"/>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="3">
-            <PasswordBox Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Password" Width="223" Height="47" Foreground="White"/>
+            <PasswordBox Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Contraseña" Width="223" Height="47" Foreground="White"/>
         </Viewbox>
         <Viewbox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3">
             <Label Content="SALA" FontFamily="Georgia" FontSize="72" FontWeight="Bold" Foreground="White"/>
