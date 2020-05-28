@@ -75,6 +75,9 @@
     <Compile Include="Views\CreacionNPC.xaml.cs">
       <DependentUpon>CreacionNPC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CrearSala.xaml.cs">
+      <DependentUpon>CrearSala.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateJoin.cs">
       <DependentUpon>CreateJoin.xaml</DependentUpon>
     </Compile>
@@ -98,6 +101,9 @@
     </Compile>
     <Compile Include="Views\Mapa.xaml.cs">
       <DependentUpon>Mapa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuGM.xaml.cs">
+      <DependentUpon>MenuGM.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MenuPlayer.xaml.cs">
       <DependentUpon>MenuPlayer.xaml</DependentUpon>
@@ -139,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\CrearSala.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CreateJoin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Mapa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MenuGM.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

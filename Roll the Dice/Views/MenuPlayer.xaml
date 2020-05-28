@@ -84,7 +84,7 @@
             </Viewbox.OpacityMask>-->
             <TextBlock x:Name="Ip" Text="192.168.X.X" FontSize="18" Width="auto"   TextAlignment="Center" Foreground="White" Background="#FF575757" />
         </Viewbox>
-        <Grid x:Name="gridDefEsq" Grid.Row="3" Grid.Column="10" Grid.ColumnSpan="2" Visibility="Visible">
+        <Grid x:Name="gridDefEsq" Grid.Row="3" Grid.Column="10" Grid.ColumnSpan="2" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />

@@ -1,0 +1,172 @@
+﻿<Window x:Class="Roll_the_Dice.Views.MenuGM"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Roll_the_Dice.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MenuPlayer" Height="450" Width="800" MinHeight="720" MinWidth="1280" WindowState="Maximized" ResizeMode="CanResizeWithGrip">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Roll the Dice;component/Images/MenuPlayer.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="62*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="0*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="5*" />
+        </Grid.RowDefinitions>
+
+        <Border Background="BlueViolet" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="15" Grid.RowSpan="3"/>
+        <Border Background="Purple" Grid.Column="14" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="16"/>
+        <Border Background="White" Grid.Column="14" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="5"/>
+
+        <Viewbox Grid.Column="14" Grid.Row="5" Grid.ColumnSpan="1">
+            <materialDesign:PackIcon x:Name="sword" Kind="Sword" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="Coral"/>
+        </Viewbox>
+        <Viewbox Grid.Column="14" Grid.Row="1" Grid.RowSpan="3">
+            <materialDesign:PackIcon x:Name="person" Kind="Person" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="Coral"/>
+        </Viewbox>
+        <Viewbox Grid.Column="14" Grid.Row="7">
+            <materialDesign:PackIcon x:Name="moviment" Kind="ArrowAll" Width="Auto" Height="Auto" VerticalAlignment="Center" Foreground="Coral"/>
+        </Viewbox>
+
+        <Viewbox Grid.Column="14" Grid.Row="11" Grid.ColumnSpan="1">
+            <materialDesign:PackIcon x:Name="create" Kind="AddBox" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="Coral"/>
+        </Viewbox>
+        <Viewbox Grid.Column="14" Grid.Row="13">
+            <materialDesign:PackIcon x:Name="edit" Kind="Edit" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="Coral"/>
+        </Viewbox>
+        <Viewbox Grid.Column="14" Grid.Row="9">
+            <materialDesign:PackIcon x:Name="eliminate" Kind="Delete" Width="Auto" Height="Auto" VerticalAlignment="Center" Foreground="Coral"/>
+        </Viewbox>
+
+        <ComboBox  Grid.Row="1" Grid.Column="10" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Dados" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20"    >
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+        </ComboBox>
+        
+        <ComboBox  Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Mapa" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20"    >
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+        </ComboBox>
+
+        <ComboBox  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="En Partida" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20"    >
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+        </ComboBox>
+        
+        <ComboBox  Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Creados" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20"    >
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+        </ComboBox>
+
+        <Frame x:Name="frameMap" BorderBrush="Black" Grid.Column="1" Grid.Row="5" Grid.RowSpan="7" Grid.ColumnSpan="12" BorderThickness="1"  Background="White"/>
+        <Viewbox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="6">
+            <TextBlock x:Name="ip" Text="192.168.X.X" FontSize="18" Width="auto"   TextAlignment="Center" Foreground="White" Background="#FF575757" />
+        </Viewbox>
+        <Viewbox Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="6">
+            <TextBlock x:Name="contraseña" Text="Contraseña" FontSize="18" Width="auto"   TextAlignment="Center" Foreground="White" Background="#FF575757" />
+        </Viewbox>
+
+        <Grid>
+            
+        </Grid>
+        
+        <Grid x:Name="skills" Grid.Column="2" Grid.Row="13" Grid.ColumnSpan="8" Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="10*" />
+
+            </Grid.ColumnDefinitions>
+            <Border Background="Purple"  Grid.ColumnSpan="7" CornerRadius="10"/>
+            <ComboBox  Grid.ColumnSpan="1" Grid.Column="1"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Habilidad" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20"    >
+                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            </ComboBox>
+            <Viewbox Grid.Column="2"  Grid.ColumnSpan="4">
+                <TextBox Style="{StaticResource MaterialDesignComboBoxEditableTextBox }"  TextWrapping="Wrap" Text="Havel era amigo de Gwyn y uno de los soldados del ejército del Gran Señor. Era un hombre resistente y fuerte, que animaba a sus hombres a lograr grandes cosas. Tanto él como sus hombres crearon armaduras talladas de piedra maciza y llevaban anillos que les permitían transportar una carga más pesada"  Width="4607" Height="724" Foreground="Black" FontFamily="Georgia"  TextAlignment="Left" FontSize="150" IsReadOnly = "True" />
+            </Viewbox>
+            <Viewbox Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="1">
+                <materialDesign:PackIcon x:Name="d" Kind="Wand" Width="Auto" Height="auto" VerticalAlignment="Center"  Foreground="Coral"/>
+            </Viewbox>
+        </Grid>
+
+        <Viewbox Grid.Column="11" Grid.Row="13" Grid.ColumnSpan="1">
+            <materialDesign:PackIcon x:Name="dadoGm" Kind="Dice6" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="Coral"/>
+        </Viewbox>
+        <Viewbox Grid.Column="14" Grid.Row="13">
+            <TextBlock x:Name="Number" Foreground="White"/>
+        </Viewbox>
+        
+
+        <Viewbox Grid.Column="1" Grid.Row="3" Visibility="Hidden">
+            <materialDesign:PackIcon Kind="Run" Foreground="SandyBrown" />
+        </Viewbox>
+    </Grid>
+</Window>
