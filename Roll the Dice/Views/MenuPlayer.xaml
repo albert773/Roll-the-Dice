@@ -111,14 +111,13 @@
             </Grid.ColumnDefinitions>
             <Border Background="#323232"  Grid.ColumnSpan="8" CornerRadius="10" Margin="-38,0,0,0"/>
             <ComboBox  Grid.ColumnSpan="1" Grid.Column="1"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Habilidad" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Margin="0,17,0,0" VerticalAlignment="Top"    >
-                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+                <ListBoxItem Content="Bola de fuego"></ListBoxItem>
+                <ListBoxItem Content="Sol prohibido"></ListBoxItem>
+                <ListBoxItem Content="Ventisca mañanera"></ListBoxItem>
+                <ListBoxItem Content="Grieta interminable"></ListBoxItem>
+                <ListBoxItem Content="Armadura solar"></ListBoxItem>
+                <ListBoxItem Content="Juramento sagrado"></ListBoxItem>
+                <ListBoxItem Content="Veneno empalagoso"></ListBoxItem>
             </ComboBox>
             <Viewbox Grid.Column="2"  Grid.ColumnSpan="4">
                 <TextBox Style="{StaticResource MaterialDesignComboBoxEditableTextBox }"  TextWrapping="Wrap" Text="Havel era amigo de Gwyn y uno de los soldados del ejército del Gran Señor. Era un hombre resistente y fuerte, que animaba a sus hombres a lograr grandes cosas. Tanto él como sus hombres crearon armaduras talladas de piedra maciza y llevaban anillos que les permitían transportar una carga más pesada"  Width="4607" Height="724"  FontFamily="Georgia"  TextAlignment="Left" FontSize="150" IsReadOnly = "True" Foreground="WHite" />

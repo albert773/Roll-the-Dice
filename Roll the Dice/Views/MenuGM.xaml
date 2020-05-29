@@ -71,41 +71,38 @@
             <materialDesign:PackIcon x:Name="eliminate" Kind="Delete" Width="Auto" Height="Auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="Eliminar_Click"/>
         </Viewbox>
 
-        <ComboBox  Grid.Row="1" Grid.Column="10" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Dados" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"    >
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+        <ComboBox  Grid.Row="1" Grid.Column="10" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Dados" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"     >
+            <ComboBoxItem Content="3"></ComboBoxItem>
+            <ComboBoxItem Content="6"></ComboBoxItem>
+            <ComboBoxItem Content="8"></ComboBoxItem>
+            <ComboBoxItem Content="10"></ComboBoxItem>
+            <ComboBoxItem Content="12"></ComboBoxItem>
+            <ComboBoxItem Content="20"></ComboBoxItem>
+            <ComboBoxItem Content="4"></ComboBoxItem>
+            <ComboBoxItem Content="5"></ComboBoxItem>
         </ComboBox>
 
         <ComboBox  Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Mapa" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"    >
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Casa"></ComboBoxItem>
+            <ComboBoxItem Content="Camino"></ComboBoxItem>
+            <ComboBoxItem Content="Puente"></ComboBoxItem>
+            
         </ComboBox>
 
         <ComboBox  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="En Partida" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"    >
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Golbin1"></ComboBoxItem>
+            <ComboBoxItem Content="Golbin2"></ComboBoxItem>
+            <ComboBoxItem Content="Hombre Lobo1"></ComboBoxItem>
+            <ComboBoxItem Content="Peter el Picsero1"></ComboBoxItem>
+
         </ComboBox>
 
         <ComboBox x:Name="listCreados"  Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Creados" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"    >
-            <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+            <ComboBoxItem Content="Goblin"></ComboBoxItem>
+            <ComboBoxItem Content="Hombre Lobo"></ComboBoxItem>
+            <ComboBoxItem Content="Peter el Picsero"></ComboBoxItem>
+            <ComboBoxItem Content="Aldeano"></ComboBoxItem>
+            <ComboBoxItem Content="Ogro"></ComboBoxItem>
         </ComboBox>
 
         <Frame x:Name="frameMap" BorderBrush="Black" Grid.Column="1" Grid.Row="5" Grid.RowSpan="7" Grid.ColumnSpan="12" BorderThickness="1"  Background="White"/>
@@ -130,14 +127,13 @@
             </Grid.ColumnDefinitions>
             <Border Background="#323232"  Grid.ColumnSpan="7" CornerRadius="10"/>
             <ComboBox  Grid.ColumnSpan="1" Grid.Column="1"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Habilidad" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"    >
-                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
-                <ComboBoxItem Content="Rayo Violador de La Justicia"></ComboBoxItem>
+                <ListBoxItem Content="Bola de fuego"></ListBoxItem>
+                <ListBoxItem Content="Sol prohibido"></ListBoxItem>
+                <ListBoxItem Content="Ventisca mañanera"></ListBoxItem>
+                <ListBoxItem Content="Grieta interminable"></ListBoxItem>
+                <ListBoxItem Content="Armadura solar"></ListBoxItem>
+                <ListBoxItem Content="Juramento sagrado"></ListBoxItem>
+                <ListBoxItem Content="Veneno empalagoso"></ListBoxItem>
             </ComboBox>
             <Viewbox Grid.Column="2"  Grid.ColumnSpan="4">
                 <TextBox Style="{StaticResource MaterialDesignComboBoxEditableTextBox }"  TextWrapping="Wrap" Text="Havel era amigo de Gwyn y uno de los soldados del ejército del Gran Señor. Era un hombre resistente y fuerte, que animaba a sus hombres a lograr grandes cosas. Tanto él como sus hombres crearon armaduras talladas de piedra maciza y llevaban anillos que les permitían transportar una carga más pesada"  Width="4607" Height="724" Foreground="White" FontFamily="Georgia"  TextAlignment="Left" FontSize="150" IsReadOnly = "True" />
