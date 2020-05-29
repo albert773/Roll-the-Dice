@@ -32,6 +32,7 @@ namespace Roll_the_Dice.Views
         {
             InitializeComponent();
             //reloadListCrear();
+            frameMap.Content = new Mapa();
         }
         private void Create_Click(object sender, RoutedEventArgs e)
         {
