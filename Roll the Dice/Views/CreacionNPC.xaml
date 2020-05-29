@@ -184,8 +184,8 @@
         <Viewbox Grid.Column="6" Grid.Row="10" Grid.ColumnSpan="2" Grid.RowSpan="4"  Height="auto"  Width="auto">
             <TextBox  Height="124"  Grid.Row="5" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="239" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" TextAlignment="Center"/>
         </Viewbox>
-
-
-
+        <Viewbox Grid.Row="16" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="2">
+            <Button Height="Auto" Width="Auto" Content="Crear" Background="#343434"/>
+        </Viewbox>
     </Grid>
 </Page>

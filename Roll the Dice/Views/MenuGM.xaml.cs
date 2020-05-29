@@ -20,6 +20,7 @@ namespace Roll_the_Dice.Views
     /// </summary>
     public partial class MenuGM : Window
     {
+        MainWindow main = new MainWindow();
         CreacionDeCosas crea= new CreacionDeCosas();
         EliminarCosas eliminar = new EliminarCosas();
 
@@ -135,6 +136,13 @@ namespace Roll_the_Dice.Views
 
         private void selectDice_Unselected(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void cerrarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            main.Show();
 
         }
     }

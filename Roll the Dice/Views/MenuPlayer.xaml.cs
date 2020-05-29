@@ -20,6 +20,7 @@ namespace Roll_the_Dice.Views
     /// </summary>
     public partial class MenuPlayer : Window
     {
+        MainWindow main = new MainWindow();
         TicketCharacter perso = new TicketCharacter();
         Inventario inv = new Inventario();
         int diceNum { get; set; } = 10;
@@ -112,10 +113,11 @@ namespace Roll_the_Dice.Views
         }
  
 
-        /*private void FixPass_Click(object sender, RoutedEventArgs e)
+        private void cerrarSesion_Click(object sender, RoutedEventArgs e)
         {
-            passworw.IsReadOnly = true;
+            this.Close();
+            main.Show();
 
-        }*/
+        }
     }
 }
