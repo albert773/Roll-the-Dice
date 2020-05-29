@@ -55,7 +55,7 @@
             <materialDesign:PackIcon x:Name="sword" Kind="Sword" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="1" Grid.RowSpan="3">
-            <materialDesign:PackIcon x:Name="person" Kind="Person" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+            <materialDesign:PackIcon x:Name="person" Kind="Person" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="Perso_Click"/>
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="7">
             <materialDesign:PackIcon x:Name="moviment" Kind="ArrowAll" Width="Auto" Height="Auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
@@ -71,7 +71,7 @@
             <materialDesign:PackIcon x:Name="eliminate" Kind="Delete" Width="Auto" Height="Auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="Eliminar_Click"/>
         </Viewbox>
 
-        <ComboBox  Grid.Row="1" Grid.Column="10" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Dados" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"     >
+        <ComboBox  x:Name="selectDice" Selected="selectDice_Selected" Unselected="selectDice_Unselected" Grid.Row="1" Grid.Column="10" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Dados" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"     >
             <ComboBoxItem Content="3"></ComboBoxItem>
             <ComboBoxItem Content="6"></ComboBoxItem>
             <ComboBoxItem Content="8"></ComboBoxItem>
@@ -89,7 +89,7 @@
             
         </ComboBox>
 
-        <ComboBox  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="En Partida" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"    >
+        <ComboBox   Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="En Partida" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"    >
             <ComboBoxItem Content="Golbin1"></ComboBoxItem>
             <ComboBoxItem Content="Golbin2"></ComboBoxItem>
             <ComboBoxItem Content="Hombre Lobo1"></ComboBoxItem>
@@ -144,7 +144,7 @@
         </Grid>
 
         <Viewbox Grid.Column="11" Grid.Row="13" Grid.ColumnSpan="1">
-            <materialDesign:PackIcon x:Name="dadoGm" Kind="Dice6" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+            <materialDesign:PackIcon x:Name="dice" Kind="Dice6" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue" MouseDown="Dice_Click"/>
         </Viewbox>
         <Viewbox Grid.Column="12" Grid.Row="13">
             <TextBlock x:Name="Number" Foreground="DodgerBlue"/>

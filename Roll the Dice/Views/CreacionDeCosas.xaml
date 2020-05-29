@@ -8,29 +8,37 @@
         mc:Ignorable="d"
         Title="CreacionDeCosas"  Height="450" Width="800" MinHeight="720" MinWidth="1280" WindowState="Maximized" ResizeMode="CanResizeWithGrip">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Roll the Dice;component/Images/MenuPlayer3.jpg"/>
+        </Grid.Background>
 
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="5*" />
             <RowDefinition Height="50*" />
 
         </Grid.RowDefinitions>
-        <Grid>
-            <Grid.Background>
-                <ImageBrush ImageSource="/Roll the Dice;component/Images/finger-of-god-heavens-banner.jpg"/>
-            </Grid.Background>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <RadioButton  Width="auto" Height="auto" Content="ARMA" FontSize="40" />
-            <RadioButton Grid.Column="1" Width="auto" Height="auto" Content="ARMADURA" FontSize="40" />
-            <RadioButton Grid.Column="2" Width="auto" Height="auto" Content="NPC" FontSize="40" />
-            <RadioButton Grid.Column="3" Width="auto" Height="auto" Content="MONSTRUO" FontSize="40" />
-        </Grid>
-        <Frame x:Name="creationFrame"  Height="auto" Width="auto" Grid.Row="2"/>
-    
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="38*"/>
+            <ColumnDefinition Width="309*"/>
+            <ColumnDefinition Width="309*"/>
+            <ColumnDefinition Width="309*"/>
+            <ColumnDefinition Width="309*"/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle  Grid.Row="1" Grid.Column="1" Width="auto" Height="auto" Fill="#FF58777E"></Rectangle>
+        <Rectangle  Grid.Row="1" Grid.Column="2" Width="auto" Height="auto" Fill="#FF58777E"></Rectangle>
+        <Rectangle  Grid.Row="1" Grid.Column="3" Width="auto" Height="auto" Fill="#FF58777E"></Rectangle>
+        <Rectangle  Grid.Row="1" Grid.Column="4" Width="auto" Height="auto" Fill="#FF58777E"></Rectangle>
+        <RadioButton Checked="arma_Checked" GroupName="crear" x:Name="arma" Grid.Row="1"  Width="auto" Height="auto" Content="ARMA" FontSize="40" Grid.Column="1"   />
+        <RadioButton Checked="armadura_Checked" GroupName="crear" x:Name="armadura" Grid.Row="1" Grid.Column="2" Width="auto" Height="auto" Content="ARMADURA" FontSize="40" />
+        <RadioButton Checked="npc_Checked" GroupName="crear" x:Name="npc" Grid.Row="1" Grid.Column="3" Width="auto" Height="auto" Content="NPC" FontSize="40" />
+        <RadioButton Checked="monstruo_Checked" GroupName="crear" x:Name="monstruo" Grid.Row="1" Grid.Column="4" Width="auto" Height="auto" Content="MONSTRUO" FontSize="40" Grid.ColumnSpan="2" />
+        
+
+        <Frame x:Name="creationFrame"  Height="auto" Width="auto" Grid.Row="3" Grid.ColumnSpan="6"/>
+
     </Grid>
 </Window>
