@@ -71,7 +71,7 @@
             <materialDesign:PackIcon x:Name="eliminate" Kind="Delete" Width="Auto" Height="Auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="Eliminar_Click"/>
         </Viewbox>
 
-        <ComboBox  x:Name="selectDice" Selected="selectDice_Selected" Unselected="selectDice_Unselected" Grid.Row="1" Grid.Column="10" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Dados" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"     >
+        <ComboBox  x:Name="selectDice"  Grid.Row="1" Grid.Column="10" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Dados" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"     >
             <ComboBoxItem Content="3"></ComboBoxItem>
             <ComboBoxItem Content="6"></ComboBoxItem>
             <ComboBoxItem Content="8"></ComboBoxItem>
