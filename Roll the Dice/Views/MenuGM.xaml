@@ -144,7 +144,7 @@
         </Grid>
 
         <Viewbox Grid.Column="11" Grid.Row="13" Grid.ColumnSpan="1">
-            <materialDesign:PackIcon x:Name="dadoGm" Kind="Dice6" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+            <materialDesign:PackIcon x:Name="dice" Kind="Dice6" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
         </Viewbox>
         <Viewbox Grid.Column="12" Grid.Row="13">
             <TextBlock x:Name="Number" Foreground="DodgerBlue"/>

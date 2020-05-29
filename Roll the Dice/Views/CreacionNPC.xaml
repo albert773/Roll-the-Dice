@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-      Title="CREACION DE NPC" Height="auto" Width="auto"  MinWidth="1280" MinHeight="720" d:DesignWidth="850" d:DesignHeight="450">
+      Title="CREACION DE NPC" Height="auto" Width="auto" d:DesignWidth="850" d:DesignHeight="450">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Roll the Dice;component/Images/background.jpg"/>
@@ -77,7 +77,7 @@
         <Viewbox Grid.Column="2" Grid.Row="7"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Habilidades:"  Width="745" Height="186" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" />
         </Viewbox>
-        <ListBox Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="1"  Width="auto" Height="auto"  Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" SelectionMode="Multiple" >
+        <ListBox Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="1"  Width="auto" Height="auto"  Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="12" SelectionMode="Multiple" >
             <ListBoxItem Content="Bola de fuego"></ListBoxItem>
             <ListBoxItem Content="Sol prohibido"></ListBoxItem>
             <ListBoxItem Content="Ventisca mañanera"></ListBoxItem>
