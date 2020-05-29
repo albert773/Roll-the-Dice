@@ -23,5 +23,12 @@ namespace Roll_the_Dice.Views
         {
             InitializeComponent();
         }
+
+        private void CrearArma_CLick(Object sender, EventArgs e) {
+            //Acabar de mirar
+            MenuGM.armas.Add(nombreArma.Text);
+            //MenuGM menu = new MenuGM();
+            //menu.reloadListCrear();
+        }
     }
 }

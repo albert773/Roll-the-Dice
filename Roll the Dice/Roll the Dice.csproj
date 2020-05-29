@@ -84,6 +84,9 @@
     <Compile Include="Views\CreateJoin.cs">
       <DependentUpon>CreateJoin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EliminarCosas.xaml.cs">
+      <DependentUpon>EliminarCosas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ForgotPassword.xaml.cs">
       <DependentUpon>ForgotPassword.xaml</DependentUpon>
     </Compile>
@@ -151,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CreateJoin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EliminarCosas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -20,9 +20,18 @@ namespace Roll_the_Dice.Views
     public partial class MenuGM : Window
     {
         CreacionDeCosas crea= new CreacionDeCosas();
+        EliminarCosas eliminar = new EliminarCosas();
+
+        public static List<string> armas = new List<string>();
+        static List<Object> armaduras = new List<object>();
+        static List<Object> items = new List<object>();
+        static List<Object> npcMonstruos = new List<Object>();
+        static List<Object> players = new List<object>();
+
         public MenuGM()
         {
             InitializeComponent();
+            //reloadListCrear();
         }
         private void Create_Click(object sender, RoutedEventArgs e)
         {
@@ -32,6 +41,23 @@ namespace Roll_the_Dice.Views
             }
             this.crea = new CreacionDeCosas();
             crea.Show();
+        }
+
+        private void Eliminar_Click(object sender, RoutedEventArgs e)
+        {
+            if (eliminar.ShowActivated)
+            {
+                eliminar.Close();
+            }
+            this.eliminar = new EliminarCosas();
+            eliminar.Show();
+        }
+
+        public void reloadListCrear() {
+            foreach (Object obj in armas)
+            {
+                listCreados.Items.Add(obj);
+            }
         }
     }
 }
