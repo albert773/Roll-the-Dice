@@ -9,17 +9,27 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Roll_the_Dice_Service.Models;
+using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/monstruos")]
     public class MonstruosController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
+        private static UnitOfWork uw = new UnitOfWork();
+        private GenericRepository<Monstruo> MonstruoDTO = uw.RepositoryClient<Monstruo>();
+
         // GET: api/Monstruos
-        public IQueryable<Monstruo> GetMonstruo()
+        public IEnumerable<Monstruo> GetAllMonstruos()
         {
-            return db.Monstruo;
+            IEnumerable<Monstruo> monstruos = MonstruoDTO.GetAll();
+            if (monstruos.Count() > 0)
+            {
+                return monstruos.ToList();
+            }
+            return monstruos;
         }
 
         // GET: api/Monstruos/5

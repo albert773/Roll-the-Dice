@@ -9,12 +9,16 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Roll_the_Dice_Service.Models;
+using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
     public class EstadosController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
+
+        private static UnitOfWork uw = new UnitOfWork();
+        private GenericRepository<Armadura> ArmaduraDTO = uw.RepositoryClient<Armadura>();
 
         // GET: api/Estados
         public IQueryable<Estado> GetEstado()

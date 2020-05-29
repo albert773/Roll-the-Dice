@@ -32,7 +32,7 @@ namespace Roll_the_Dice_Service.Controllers
             }
             catch (Exception)
             {
-                return Content(HttpStatusCode.BadRequest, "No existe ningun usuario con ese Email");
+                return BadRequest("No existe ningun usuario con ese Email");
             }
             bool isCredentialValid = (loginData.Password == u.password);
             if (isCredentialValid)
@@ -42,7 +42,7 @@ namespace Roll_the_Dice_Service.Controllers
             }
             else
             {
-                return Content(HttpStatusCode.Unauthorized, "Contraseña Incorrecta");
+                return BadRequest("Contraseña Incorrecta");
             }
         }
 

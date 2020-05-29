@@ -9,24 +9,36 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Roll_the_Dice_Service.Models;
+using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/armaduras")]
     public class ArmadurasController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
+        private static UnitOfWork uw = new UnitOfWork();
+        private GenericRepository<Armadura> ArmaduraDTO = uw.RepositoryClient<Armadura>();
 
         // GET: api/Armaduras
-        public IQueryable<Armadura> GetArmadura()
+        [HttpGet]
+        [Route("")]
+        public IEnumerable<Armadura> GetAllArmaduras()
         {
-            return db.Armadura;
+            IEnumerable<Armadura> armaduras = ArmaduraDTO.GetAll();
+            if (armaduras.Count() > 0)
+            {
+                return armaduras.ToList();
+            }
+            return armaduras;
         }
 
         // GET: api/Armaduras/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Armadura))]
         public IHttpActionResult GetArmadura(int id)
         {
-            Armadura armadura = db.Armadura.Find(id);
+            Armadura armadura = ArmaduraDTO.GetByID(id);
             if (armadura == null)
             {
                 return NotFound();
@@ -36,6 +48,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // PUT: api/Armaduras/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutArmadura(int id, Armadura armadura)
         {
@@ -49,11 +63,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(armadura).State = EntityState.Modified;
+            ArmaduraDTO.Update(armadura);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -67,10 +81,12 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("La armadura se ha modificado correctamente");
         }
 
         // POST: api/Armaduras
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Armadura))]
         public IHttpActionResult PostArmadura(Armadura armadura)
         {
@@ -79,40 +95,42 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Armadura.Add(armadura);
-            db.SaveChanges();
+            ArmaduraDTO.Insert(armadura);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = armadura.armaduraId }, armadura);
+            return Ok();
         }
 
         // DELETE: api/Armaduras/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(Armadura))]
         public IHttpActionResult DeleteArmadura(int id)
         {
-            Armadura armadura = db.Armadura.Find(id);
+            Armadura armadura = ArmaduraDTO.GetByID(id);
             if (armadura == null)
             {
                 return NotFound();
             }
 
-            db.Armadura.Remove(armadura);
-            db.SaveChanges();
+            ArmaduraDTO.Delete(armadura);
+            uw.SaveChanges();
 
-            return Ok(armadura);
+            return Ok("Se ha eliminado correctamente");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool ArmaduraExists(int id)
         {
-            return db.Armadura.Count(e => e.armaduraId == id) > 0;
+            return ArmaduraDTO.getDbSet().Count(e => e.armaduraId == id) > 0;
         }
     }
 }

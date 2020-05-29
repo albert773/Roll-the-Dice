@@ -90,7 +90,7 @@ namespace Roll_the_Dice_Service.Utils
                     outputLines.Add(string.Format("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage));
                 }
             }
-            System.IO.File.AppendAllLines(@"C:\errors.txt", outputLines);
+            //System.IO.File.AppendAllLines(@"C:\errors.txt", outputLines);
 
             throw e;
         }
@@ -114,7 +114,7 @@ namespace Roll_the_Dice_Service.Utils
                 if (disposing)
                 {
                     Debug.WriteLine("UnitOfWork is being disposed");
-                    rolltheDiceEntities.Dispose();
+                    //rolltheDiceEntities.Dispose();
                 }
             }
             this.disposed = true;

@@ -9,17 +9,27 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Roll_the_Dice_Service.Models;
+using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/posiciones")]
     public class PosicionesController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
+        private static UnitOfWork uw = new UnitOfWork();
+        private GenericRepository<Posicion> PosicionDTO = uw.RepositoryClient<Posicion>();
+
         // GET: api/Posiciones
-        public IQueryable<Posicion> GetPosicion()
+        public IEnumerable<Posicion> GetAllPosiciones()
         {
-            return db.Posicion;
+            IEnumerable<Posicion> posiciones = PosicionDTO.GetAll();
+            if (posiciones.Count() > 0)
+            {
+                return posiciones.ToList();
+            }
+            return posiciones;
         }
 
         // GET: api/Posiciones/5

@@ -9,33 +9,46 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Roll_the_Dice_Service.Models;
+using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/armas")]
     public class ArmasController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
+        private static UnitOfWork uw = new UnitOfWork();
+        private GenericRepository<Arma> ArmaDTO = uw.RepositoryClient<Arma>();
 
         // GET: api/Armas
-        public IQueryable<Arma> GetArma()
+        [HttpGet]
+        [Route("")]
+        public IEnumerable<Arma> GetArma()
         {
-            return db.Arma;
+            IEnumerable<Arma> armas = ArmaDTO.GetAll();
+            if (armas.Count() > 0)
+            {
+                return armas.ToList();
+            }
+            return armas;
         }
 
         // GET: api/Armas/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Arma))]
         public IHttpActionResult GetArma(int id)
         {
-            Arma arma = db.Arma.Find(id);
+            Arma arma = ArmaDTO.GetByID(id);
             if (arma == null)
             {
                 return NotFound();
             }
-
             return Ok(arma);
         }
 
         // PUT: api/Armas/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutArma(int id, Arma arma)
         {
@@ -49,11 +62,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(arma).State = EntityState.Modified;
+            ArmaDTO.Update(arma);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -67,10 +80,12 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("El arma se ha modificado correctamente");
         }
 
         // POST: api/Armas
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Arma))]
         public IHttpActionResult PostArma(Arma arma)
         {
@@ -79,40 +94,40 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Arma.Add(arma);
-            db.SaveChanges();
+            ArmaDTO.Insert(arma);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = arma.armaId }, arma);
+            return Ok();
         }
 
         // DELETE: api/Armas/5
         [ResponseType(typeof(Arma))]
         public IHttpActionResult DeleteArma(int id)
         {
-            Arma arma = db.Arma.Find(id);
+            Arma arma = ArmaDTO.GetByID(id);
             if (arma == null)
             {
                 return NotFound();
             }
 
-            db.Arma.Remove(arma);
-            db.SaveChanges();
+            ArmaDTO.Delete(arma);
+            uw.SaveChanges();
 
-            return Ok(arma);
+            return Ok("Se ha eliminado correctamente");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool ArmaExists(int id)
         {
-            return db.Arma.Count(e => e.armaId == id) > 0;
+            return ArmaDTO.getDbSet().Count(e => e.armaId == id) > 0;
         }
     }
 }

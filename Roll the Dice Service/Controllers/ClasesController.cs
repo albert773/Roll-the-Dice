@@ -9,33 +9,46 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Roll_the_Dice_Service.Models;
+using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/clases")]
     public class ClasesController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
+        private static UnitOfWork uw = new UnitOfWork();
+        private GenericRepository<Clase> ClaseDTO = uw.RepositoryClient<Clase>();
 
         // GET: api/Clases
-        public IQueryable<Clase> GetClase()
+        [HttpGet]
+        [Route("")]
+        public IEnumerable<Clase> GetClase()
         {
-            return db.Clase;
+            IEnumerable<Clase> clases = ClaseDTO.GetAll();
+            if (clases.Count() > 0)
+            {
+                return clases.ToList();
+            }
+            return clases;
         }
 
         // GET: api/Clases/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Clase))]
         public IHttpActionResult GetClase(int id)
         {
-            Clase clase = db.Clase.Find(id);
+            Clase clase = ClaseDTO.GetByID(id);
             if (clase == null)
             {
                 return NotFound();
             }
-
             return Ok(clase);
         }
 
         // PUT: api/Clases/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutClase(int id, Clase clase)
         {
@@ -49,11 +62,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(clase).State = EntityState.Modified;
+            ClaseDTO.Update(clase);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -67,10 +80,12 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("La clase se ha modificado correctamente");
         }
 
         // POST: api/Clases
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Clase))]
         public IHttpActionResult PostClase(Clase clase)
         {
@@ -79,24 +94,26 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Clase.Add(clase);
-            db.SaveChanges();
+            ClaseDTO.Insert(clase);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = clase.claseId }, clase);
+            return Ok();
         }
 
         // DELETE: api/Clases/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(Clase))]
         public IHttpActionResult DeleteClase(int id)
         {
-            Clase clase = db.Clase.Find(id);
+            Clase clase = ClaseDTO.GetByID(id);
             if (clase == null)
             {
                 return NotFound();
             }
 
-            db.Clase.Remove(clase);
-            db.SaveChanges();
+            ClaseDTO.Delete(clase);
+            uw.SaveChanges();
 
             return Ok(clase);
         }
@@ -105,14 +122,14 @@ namespace Roll_the_Dice_Service.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool ClaseExists(int id)
         {
-            return db.Clase.Count(e => e.claseId == id) > 0;
+            return ClaseDTO.getDbSet().Count(e => e.claseId == id) > 0;
         }
     }
 }

@@ -9,33 +9,46 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Roll_the_Dice_Service.Models;
+using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/estadisticas")]
     public class EstadisticasController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
+        private static UnitOfWork uw = new UnitOfWork();
+        private GenericRepository<Estadistica> EstadisticaDTO = uw.RepositoryClient<Estadistica>();
 
         // GET: api/Estadisticas
-        public IQueryable<Estadistica> GetEstadistica()
+        [HttpGet]
+        [Route("")]
+        public IEnumerable<Estadistica> GetEstadistica()
         {
-            return db.Estadistica;
+            IEnumerable<Estadistica> estadisticas = EstadisticaDTO.GetAll();
+            if (estadisticas.Count() > 0)
+            {
+                return estadisticas.ToList();
+            }
+            return estadisticas;
         }
 
         // GET: api/Estadisticas/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Estadistica))]
         public IHttpActionResult GetEstadistica(int id)
         {
-            Estadistica estadistica = db.Estadistica.Find(id);
+            Estadistica estadistica = EstadisticaDTO.GetByID(id);
             if (estadistica == null)
             {
                 return NotFound();
             }
-
             return Ok(estadistica);
         }
 
         // PUT: api/Estadisticas/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutEstadistica(int id, Estadistica estadistica)
         {
@@ -49,11 +62,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(estadistica).State = EntityState.Modified;
+            EstadisticaDTO.Update(estadistica);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -67,10 +80,12 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("La estadistica se ha modificado correctamente");
         }
 
         // POST: api/Estadisticas
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Estadistica))]
         public IHttpActionResult PostEstadistica(Estadistica estadistica)
         {
@@ -79,24 +94,26 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Estadistica.Add(estadistica);
-            db.SaveChanges();
+            EstadisticaDTO.Insert(estadistica);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = estadistica.estadisticaId }, estadistica);
+            return Ok();
         }
 
         // DELETE: api/Estadisticas/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(Estadistica))]
         public IHttpActionResult DeleteEstadistica(int id)
         {
-            Estadistica estadistica = db.Estadistica.Find(id);
+            Estadistica estadistica = EstadisticaDTO.GetByID(id);
             if (estadistica == null)
             {
                 return NotFound();
             }
 
-            db.Estadistica.Remove(estadistica);
-            db.SaveChanges();
+            EstadisticaDTO.Delete(estadistica);
+            uw.SaveChanges();
 
             return Ok(estadistica);
         }
@@ -105,14 +122,14 @@ namespace Roll_the_Dice_Service.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool EstadisticaExists(int id)
         {
-            return db.Estadistica.Count(e => e.estadisticaId == id) > 0;
+            return EstadisticaDTO.getDbSet().Count(e => e.estadisticaId == id) > 0;
         }
     }
 }

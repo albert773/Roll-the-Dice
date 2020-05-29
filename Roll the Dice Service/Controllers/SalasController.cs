@@ -9,17 +9,27 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Roll_the_Dice_Service.Models;
+using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/salas")]
     public class SalasController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
+        private static UnitOfWork uw = new UnitOfWork();
+        private GenericRepository<Sala> SalaDTO = uw.RepositoryClient<Sala>();
+
         // GET: api/Salas
-        public IQueryable<Sala> GetSala()
+        public IEnumerable<Sala> GetAllUsuarios()
         {
-            return db.Sala;
+            IEnumerable<Sala> salas = SalaDTO.GetAll();
+            if (salas.Count() > 0)
+            {
+                return salas.ToList();
+            }
+            return salas;
         }
 
         // GET: api/Salas/5

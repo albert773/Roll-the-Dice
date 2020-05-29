@@ -9,17 +9,27 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Roll_the_Dice_Service.Models;
+using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/razas")]
     public class RazasController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
+        private static UnitOfWork uw = new UnitOfWork();
+        private GenericRepository<Raza> RazaDTO = uw.RepositoryClient<Raza>();
+
         // GET: api/Razas
-        public IQueryable<Raza> GetRaza()
+        public IEnumerable<Raza> GetAllRazas()
         {
-            return db.Raza;
+            IEnumerable<Raza> razas = RazaDTO.GetAll();
+            if (razas.Count() > 0)
+            {
+                return razas.ToList();
+            }
+            return razas;
         }
 
         // GET: api/Razas/5

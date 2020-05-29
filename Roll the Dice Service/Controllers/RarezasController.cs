@@ -9,17 +9,27 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Roll_the_Dice_Service.Models;
+using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/rarezas")]
     public class RarezasController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
+        private static UnitOfWork uw = new UnitOfWork();
+        private GenericRepository<Rareza> RarezaDTO = uw.RepositoryClient<Rareza>();
+
         // GET: api/Rarezas
-        public IQueryable<Rareza> GetRareza()
+        public IEnumerable<Rareza> GetAllRarezas()
         {
-            return db.Rareza;
+            IEnumerable<Rareza> rarezas = RarezaDTO.GetAll();
+            if (rarezas.Count() > 0)
+            {
+                return rarezas.ToList();
+            }
+            return rarezas;
         }
 
         // GET: api/Rarezas/5

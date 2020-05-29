@@ -9,17 +9,27 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Roll_the_Dice_Service.Models;
+using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/mapas")]
     public class MapasController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
+        private static UnitOfWork uw = new UnitOfWork();
+        private GenericRepository<Mapa> MapaDTO = uw.RepositoryClient<Mapa>();
+
         // GET: api/Mapas
-        public IQueryable<Mapa> GetMapa()
+        public IEnumerable<Mapa> GetAllMapas()
         {
-            return db.Mapa;
+            IEnumerable<Mapa> mapas = MapaDTO.GetAll();
+            if (mapas.Count() > 0)
+            {
+                return mapas.ToList();
+            }
+            return mapas;
         }
 
         // GET: api/Mapas/5

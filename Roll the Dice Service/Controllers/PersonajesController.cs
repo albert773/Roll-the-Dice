@@ -9,17 +9,27 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Roll_the_Dice_Service.Models;
+using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/personajes")]
     public class PersonajesController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
+        private static UnitOfWork uw = new UnitOfWork();
+        private GenericRepository<Personaje> PersonajeDTO = uw.RepositoryClient<Personaje>();
+
         // GET: api/Personajes
-        public IQueryable<Personaje> GetPersonaje()
+        public IEnumerable<Personaje> GetAllPersonajes()
         {
-            return db.Personaje;
+            IEnumerable<Personaje> personajes = PersonajeDTO.GetAll();
+            if (personajes.Count() > 0)
+            {
+                return personajes.ToList();
+            }
+            return personajes;
         }
 
         // GET: api/Personajes/5

@@ -9,17 +9,27 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Roll_the_Dice_Service.Models;
+using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/nombreArmas")]
     public class NombreArmasController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
+        private static UnitOfWork uw = new UnitOfWork();
+        private GenericRepository<NombreArma> NombreArmaDTO = uw.RepositoryClient<NombreArma>();
+
         // GET: api/NombreArmas
-        public IQueryable<NombreArma> GetNombreArma()
+        public IEnumerable<NombreArma> GetAllNombreArmas()
         {
-            return db.NombreArma;
+            IEnumerable<NombreArma> nombreArmas = NombreArmaDTO.GetAll();
+            if (nombreArmas.Count() > 0)
+            {
+                return nombreArmas.ToList();
+            }
+            return nombreArmas;
         }
 
         // GET: api/NombreArmas/5

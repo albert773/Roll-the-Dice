@@ -9,17 +9,27 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Roll_the_Dice_Service.Models;
+using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/NPCs")]
     public class NPCsController : ApiController
     {
         private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
 
+        private static UnitOfWork uw = new UnitOfWork();
+        private GenericRepository<NPC> NPCDTO = uw.RepositoryClient<NPC>();
+
         // GET: api/NPCs
-        public IQueryable<NPC> GetNPC()
+        public IEnumerable<NPC> GetAllNPCs()
         {
-            return db.NPC;
+            IEnumerable<NPC> NPCs = NPCDTO.GetAll();
+            if (NPCs.Count() > 0)
+            {
+                return NPCs.ToList();
+            }
+            return NPCs;
         }
 
         // GET: api/NPCs/5
