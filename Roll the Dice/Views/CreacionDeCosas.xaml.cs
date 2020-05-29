@@ -15,23 +15,14 @@ using System.Windows.Shapes;
 namespace Roll_the_Dice.Views
 {
     /// <summary>
-    /// Lógica de interacción para MenuGM.xaml
+    /// Lógica de interacción para CreacionDeCosas.xaml
     /// </summary>
-    public partial class MenuGM : Window
+    public partial class CreacionDeCosas : Window
     {
-        CreacionDeCosas crea= new CreacionDeCosas();
-        public MenuGM()
+        public CreacionDeCosas()
         {
             InitializeComponent();
-        }
-        private void Create_Click(object sender, RoutedEventArgs e)
-        {
-            if (crea.ShowActivated)
-            {
-                crea.Close();
-            }
-            this.crea = new CreacionDeCosas();
-            crea.Show();
+            creationFrame.Content = new CreacionArma();
         }
     }
 }

@@ -62,7 +62,7 @@
         </Viewbox>
 
         <Viewbox Grid.Column="14" Grid.Row="11" Grid.ColumnSpan="1">
-            <materialDesign:PackIcon x:Name="create" Kind="AddBox" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+            <materialDesign:PackIcon x:Name="create" Kind="AddBox" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"  Mouse.MouseDown="Create_Click"/>
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="13">
             <materialDesign:PackIcon x:Name="edit" Kind="Edit" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
