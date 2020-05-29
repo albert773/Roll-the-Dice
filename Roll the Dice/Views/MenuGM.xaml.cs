@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace Roll_the_Dice.Views
     /// </summary>
     public partial class MenuGM : Window
     {
+        MainWindow main = new MainWindow();
         CreacionDeCosas crea= new CreacionDeCosas();
         EliminarCosas eliminar = new EliminarCosas();
 
@@ -27,6 +29,8 @@ namespace Roll_the_Dice.Views
         static List<Object> items = new List<object>();
         static List<Object> npcMonstruos = new List<Object>();
         static List<Object> players = new List<object>();
+        TicketCharacter perso = new TicketCharacter();
+        private int DiceNum { get; set; }=6;
 
         public MenuGM()
         {
@@ -59,6 +63,74 @@ namespace Roll_the_Dice.Views
             {
                 listCreados.Items.Add(obj);
             }
+        }
+        private void Perso_Click(object sender, RoutedEventArgs e)
+        {
+            if (perso.ShowActivated)
+            {
+                perso.Close();
+            }
+            this.perso = new TicketCharacter();
+            perso.Show();
+
+        }
+        private void Dice_Click(object sender, RoutedEventArgs e)
+        {
+            diceChange();
+            Random random = new Random();
+         
+                Number.Text = randomDice();
+            
+           
+
+        }
+        private string randomDice()
+        {
+
+            string s = "";
+            int max = DiceNum + 1;
+            Random random = new Random();
+            s += random.Next(1, max);
+            return s;
+        }
+        public void diceChange()
+        {
+            //Cuando el game master cambie el dice llama a esto en todos los jugadores
+            switch (DiceNum)
+            {
+                case 6:
+                    dice.Kind = PackIconKind.Dice6;
+                    break;
+
+                case 12:
+                    dice.Kind = PackIconKind.DiceD12;
+                    break;
+                case 10:
+                    dice.Kind = PackIconKind.DiceD10;
+                    break;
+                case 3:
+                    dice.Kind = PackIconKind.Dice3;
+                    break;
+                case 20:
+                    dice.Kind = PackIconKind.DiceD20;
+                    break;
+                case 8:
+                    dice.Kind = PackIconKind.DiceD8;
+                    break;
+                case 4:
+                    dice.Kind = PackIconKind.Dice4;
+                    break;
+                case 5:
+                    dice.Kind = PackIconKind.Dice5;
+                    break;
+            }
+        }
+
+        private void cerrarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            main.Show();
+
         }
     }
 }

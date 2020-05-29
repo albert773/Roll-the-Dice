@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="EliminarCosas" Height="450" Width="800">
+         Title="EliminarCosas" Width="370" Height="420" MinWidth="370" MinHeight="420" MaxWidth="370"  MaxHeight="420" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Roll the Dice;component/Images/background.jpg"/>
+            <ImageBrush ImageSource="/Images/paper.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
@@ -19,8 +19,19 @@
             <ColumnDefinition Width="50*"  />
             <ColumnDefinition Width="50*"  />
             <ColumnDefinition Width="50*"  />
+            <ColumnDefinition Width="50*"  />
+
+
+
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
@@ -40,19 +51,16 @@
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
         </Grid.RowDefinitions>
-        <Border Grid.Column="1" Height="auto" Grid.Row="4" Grid.RowSpan="10" Grid.ColumnSpan="6"  Width="auto" Background="#FFA0A0A0" CornerRadius="25"/>
-        <Rectangle Grid.Column="1" Height="auto" Grid.Row="4" Grid.RowSpan="10" Grid.ColumnSpan="6" Stroke="Black"  Width="auto" Opacity="0.6" Margin="0,0,0,0">
-            <Rectangle.Fill>
-                <ImageBrush ImageSource="/Roll the Dice;component/Images/dif-fondo.jpg"/>
-            </Rectangle.Fill>
-        </Rectangle>
         <!--<StackPanel Grid.Row="5" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="4" x:Name="st1">
             
         </StackPanel>-->
+        <Viewbox Grid.Row="19" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="3">
+            <Button Height="Auto" Width="Auto" Content="Eliminar" Background="#343434" Click="EliminarItems_Click"/>
+        </Viewbox>
         <ListBox x:Name="st1"
                  Foreground="Black"
-                 Grid.Row="5" Grid.RowSpan="8"
-                 Grid.Column="1" Grid.ColumnSpan="6"
+                 Grid.Row="2" Grid.RowSpan="16"
+                 Grid.Column="1" Grid.ColumnSpan="7"
                  ItemsSource="{Binding Items}"
                  SelectionMode="Multiple">
             <ListBox.Resources >
