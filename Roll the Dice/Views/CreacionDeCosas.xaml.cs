@@ -15,20 +15,14 @@ using System.Windows.Shapes;
 namespace Roll_the_Dice.Views
 {
     /// <summary>
-    /// Lógica de interacción para CreacionArma.xaml
+    /// Lógica de interacción para CreacionDeCosas.xaml
     /// </summary>
-    public partial class CreacionArma : Page
+    public partial class CreacionDeCosas : Window
     {
-        public CreacionArma()
+        public CreacionDeCosas()
         {
             InitializeComponent();
-        }
-
-        private void CrearArma_CLick(Object sender, EventArgs e) {
-            //Acabar de mirar
-            MenuGM.armas.Add(nombreArma.Text);
-            //MenuGM menu = new MenuGM();
-            //menu.reloadListCrear();
+            creationFrame.Content = new CreacionArma();
         }
     }
 }

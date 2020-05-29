@@ -78,17 +78,13 @@
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Habilidades:"  Width="745" Height="186" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" />
         </Viewbox>
         <ListBox Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="1"  Width="auto" Height="auto"  Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" SelectionMode="Multiple" >
-            <ListBoxItem Content="Sexo Anal"></ListBoxItem>
-            <ListBoxItem Content="Sexo Anal"></ListBoxItem>
-            <ListBoxItem Content="Sexo Anal"></ListBoxItem>
-            <ListBoxItem Content="Sexo Anal"></ListBoxItem>
-            <ListBoxItem Content="Sexo Anal"></ListBoxItem>
-            <ListBoxItem Content="Sexo Anal"></ListBoxItem>
-            <ListBoxItem Content="Sexo Anal"></ListBoxItem>
-            <ListBoxItem Content="Sexo Anal"></ListBoxItem>
-            <ListBoxItem Content="Sexo Anal"></ListBoxItem>
-            <ListBoxItem Content="Sexo Anal"></ListBoxItem>
-            <ListBoxItem Content="Sexo Anal"></ListBoxItem>
+            <ListBoxItem Content="Bola de fuego"></ListBoxItem>
+            <ListBoxItem Content="Sol prohibido"></ListBoxItem>
+            <ListBoxItem Content="Ventisca mañanera"></ListBoxItem>
+            <ListBoxItem Content="Grieta interminable"></ListBoxItem>
+            <ListBoxItem Content="Armadura solar"></ListBoxItem>
+            <ListBoxItem Content="Juramento sagrado"></ListBoxItem>
+            <ListBoxItem Content="Veneno empalagoso"></ListBoxItem>
         </ListBox>
         <Viewbox Grid.Column="4" Grid.Row="7"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text=" Sexo:"  Width="745" Height="186" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" />

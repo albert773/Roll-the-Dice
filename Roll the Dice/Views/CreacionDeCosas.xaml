@@ -1,0 +1,36 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Roll_the_Dice.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Roll_the_Dice.Views.CreacionDeCosas"
+        mc:Ignorable="d"
+        Title="CreacionDeCosas"  Height="450" Width="800" MinHeight="720" MinWidth="1280" WindowState="Maximized" ResizeMode="CanResizeWithGrip">
+    <Grid>
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="50*" />
+
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/Roll the Dice;component/Images/finger-of-god-heavens-banner.jpg"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <RadioButton  Width="auto" Height="auto" Content="ARMA" FontSize="40" />
+            <RadioButton Grid.Column="1" Width="auto" Height="auto" Content="ARMADURA" FontSize="40" />
+            <RadioButton Grid.Column="2" Width="auto" Height="auto" Content="NPC" FontSize="40" />
+            <RadioButton Grid.Column="3" Width="auto" Height="auto" Content="MONSTRUO" FontSize="40" />
+        </Grid>
+        <Frame x:Name="creationFrame"  Height="auto" Width="auto" Grid.Row="2"/>
+    
+    </Grid>
+</Window>

@@ -69,20 +69,26 @@
     <Compile Include="Views\CreacionArmaduras.xaml.cs">
       <DependentUpon>CreacionArmaduras.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CreacionDeCosas.xaml.cs">
+      <DependentUpon>CreacionDeCosas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreacionMonstruo.xaml.cs">
       <DependentUpon>CreacionMonstruo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CreacionNPC.xaml.cs">
       <DependentUpon>CreacionNPC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CrearSala.xaml.cs">
+      <DependentUpon>CrearSala.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateJoin.cs">
       <DependentUpon>CreateJoin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EliminarCosas.xaml.cs">
+      <DependentUpon>EliminarCosas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ForgotPassword.xaml.cs">
       <DependentUpon>ForgotPassword.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\GMviewPlayer.xaml.cs">
-      <DependentUpon>GMviewPlayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Inventario.xaml.cs">
       <DependentUpon>Inventario.xaml</DependentUpon>
@@ -96,6 +102,12 @@
     <Compile Include="Views\CharacterSheet.xaml.cs">
       <DependentUpon>CharacterSheet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Mapa.xaml.cs">
+      <DependentUpon>Mapa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuGM.xaml.cs">
+      <DependentUpon>MenuGM.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MenuPlayer.xaml.cs">
       <DependentUpon>MenuPlayer.xaml</DependentUpon>
     </Compile>
@@ -104,9 +116,6 @@
     </Compile>
     <Compile Include="Views\TicketCharacter.xaml.cs">
       <DependentUpon>TicketCharacter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UsuarioModelo.xaml.cs">
-      <DependentUpon>UsuarioModelo.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -128,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\CreacionDeCosas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CreacionMonstruo.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -136,15 +149,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\CrearSala.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CreateJoin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ForgotPassword.xaml">
+    <Page Include="Views\EliminarCosas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\GMviewPlayer.xaml">
+    <Page Include="Views\ForgotPassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,6 +181,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Mapa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MenuGM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MenuPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -173,10 +198,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TicketCharacter.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UsuarioModelo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -296,6 +317,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\MenuPlayer3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\camino.jpg" />
+    <Resource Include="Images\casa.jpg" />
+    <Resource Include="Images\cueva.jpeg" />
+    <Resource Include="Images\punte.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\finger-of-god-heavens-banner.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.3.1.2\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.3.1.2\build\MaterialDesignThemes.targets')" />

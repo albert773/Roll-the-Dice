@@ -10,25 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Roll_the_Dice.Views
 {
     /// <summary>
-    /// Lógica de interacción para CreacionArma.xaml
+    /// Lógica de interacción para Mapa.xaml
     /// </summary>
-    public partial class CreacionArma : Page
+    public partial class Mapa : Page
     {
-        public CreacionArma()
+        public Mapa()
         {
             InitializeComponent();
-        }
-
-        private void CrearArma_CLick(Object sender, EventArgs e) {
-            //Acabar de mirar
-            MenuGM.armas.Add(nombreArma.Text);
-            //MenuGM menu = new MenuGM();
-            //menu.reloadListCrear();
         }
     }
 }

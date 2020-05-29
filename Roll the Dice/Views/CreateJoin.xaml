@@ -15,7 +15,7 @@
             <ColumnDefinition Width="25*"  />
             <ColumnDefinition Width="5*"  />
             <ColumnDefinition Width="25*"  />
-            <ColumnDefinition Width="7*"  />
+            <ColumnDefinition Width="5*"  />
             <ColumnDefinition Width="2*"  />
             <ColumnDefinition Width="50*"  />
         </Grid.ColumnDefinitions>
@@ -50,7 +50,7 @@
                 <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White"/>
             </Button>
         </Viewbox>
-        <Border x:Name="borderCreate" Grid.Row="2" Grid.RowSpan="6" Grid.Column="3" Background="GreenYellow" CornerRadius="15"/>
+        <Border x:Name="borderCreate" Grid.Row="2" Grid.RowSpan="6" Grid.Column="3" Background="#FF4C7195" CornerRadius="15"/>
         <Viewbox Grid.Row="2" Grid.RowSpan="6" Grid.Column="3">
             <Button Height="Auto" Width="Auto" Click="Create_Clicked">
                 <Button.Template>
@@ -60,7 +60,7 @@
                 </Button.Template>
             </Button>
         </Viewbox>
-        <Border  Grid.Row="2" Grid.RowSpan="6" Grid.Column="5" Background="OrangeRed" CornerRadius="15"/>
+        <Border  Grid.Row="2" Grid.RowSpan="6" Grid.Column="5" Background="#FF4C7195" CornerRadius="15"/>
         <Viewbox  Grid.Row="2" Grid.RowSpan="6" Grid.Column="5">
             <Button Height="Auto" Width="Auto" Click="Join_Clicked">
                 <Button.Template>
@@ -71,10 +71,10 @@
             </Button>
         </Viewbox>
         <Viewbox Grid.Row="10" Grid.Column="3">
-            <Label Content="CREATE" FontFamily="Greorgia" FontWeight="Bold" Foreground="White" />
+            <Label Content="CREAR" FontFamily="Greorgia" FontWeight="Bold" Foreground="White" />
         </Viewbox>
         <Viewbox Grid.Row="10" Grid.Column="5">
-            <Label Content="JOIN" FontFamily="Greorgia" FontWeight="Bold" Foreground="White"/>
+            <Label Content="UNIRSE" FontFamily="Greorgia" FontWeight="Bold" Foreground="White"/>
         </Viewbox>
     </Grid>
 </Page>

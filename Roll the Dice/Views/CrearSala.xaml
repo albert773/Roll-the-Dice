@@ -1,12 +1,14 @@
-﻿<Page x:Class="Roll_the_Dice.Views.ForgotPassword"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:local="clr-namespace:Roll_the_Dice.Views"
-        mc:Ignorable="d"
-        Title="ForgotPassword" Height="auto" Width="auto"  MinWidth="1280" MinHeight="720" d:DesignWidth="850" d:DesignHeight="450">
+﻿<Page x:Class="Roll_the_Dice.Views.CrearSala"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:Roll_the_Dice.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CrearSala">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
@@ -22,11 +24,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20*" />
             <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
             <RowDefinition Height="10*" />
+            <RowDefinition Height="25*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="25*" />
-            <RowDefinition Height="25*" />
+            <RowDefinition Height="50*" />
             <RowDefinition Height="10*" />
             <RowDefinition Height="25*" />
             <RowDefinition Height="10*" />
@@ -46,7 +48,7 @@
             </Border.Effect>
         </Border>
         <Viewbox Grid.Column="3" Grid.Row="11">
-            <Button Content="Enviar" FontSize="18" Background="DimGray" BorderBrush="AliceBlue" Height="33" FontFamily="Georgia" Width="154" Click="EnviarEmail_Clicked">
+            <Button Content="OK" FontSize="18" Background="DimGray" BorderBrush="AliceBlue " Height="Auto" FontFamily="Georgia" Click="Unirse_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -55,7 +57,7 @@
             </Button>
         </Viewbox>
         <Viewbox Grid.Column="5" Grid.Row="11">
-            <Button Content="Iniciar Sesión" FontSize="18" Background="DimGray" BorderBrush="AliceBlue" Height="33" FontFamily="Georgia" Click="LogIn_Clicked">
+            <Button Content="Volver" FontSize="18" Background="DimGray" BorderBrush="AliceBlue " Height="39" FontFamily="Georgia" Click="Volver_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -63,11 +65,14 @@
                 </Button.Resources>
             </Button>
         </Viewbox>
-        <Viewbox Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3" Grid.RowSpan="2">
-            <TextBox   Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Correo Electrónico" Width="247" Height="53" RenderTransformOrigin="0.504,0.696" FontFamily="Georigia" Foreground="White"/>
+        <Viewbox Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3">
+            <TextBox   Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="IP" Width="247" Height="53" Foreground="White"/>
+        </Viewbox>
+        <Viewbox Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="3">
+            <PasswordBox Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Contraseña" Width="223" Height="47" Foreground="White"/>
         </Viewbox>
         <Viewbox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3">
-            <Label Content="¿Has olvidado tu contraseña?" FontFamily="Georgia" FontWeight="Bold" Foreground="White"/>
+            <Label Content="CREAR UNA SALA" FontFamily="Georgia" FontSize="72" FontWeight="Bold" Foreground="White"/>
         </Viewbox>
     </Grid>
 </Page>

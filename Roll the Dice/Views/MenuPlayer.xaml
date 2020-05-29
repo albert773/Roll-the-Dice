@@ -12,22 +12,22 @@
             <ImageBrush ImageSource="/Roll the Dice;component/Images/MenuPlayer.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*" />
-            <ColumnDefinition Width="10*" />
-            <ColumnDefinition Width="10*" />
-            <ColumnDefinition Width="10*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="5*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="10*" />
-            <ColumnDefinition Width="10*" />
-            <ColumnDefinition Width="10*" />
-            <ColumnDefinition Width="10*" />
-            <ColumnDefinition Width="10*" />
-            <ColumnDefinition Width="5*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="62*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="13*" />
+            <ColumnDefinition Width="62*" />
+            <ColumnDefinition Width="12*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="125*" />
+            <ColumnDefinition Width="62*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="59*" />
+            <ColumnDefinition Width="0*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -46,22 +46,30 @@
             <RowDefinition Height="15*" />
             <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
-        <Border Grid.Column="0" Grid.ColumnSpan="15" Grid.Row="0" Grid.RowSpan="3" Background="#f67280"/>
-        <Border Background="Purple" Grid.Column="13" Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="15"/>
-        <Viewbox Grid.Column="14" Grid.Row="5">
-            <materialDesign:PackIcon x:Name="sword" Kind="Sword" Width="Auto" Height="Auto" VerticalAlignment="Center" Mouse.MouseDown="Ataq_Click" Foreground="Coral"/>
+
+        <Border Background="#323232" Grid.Column="13" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="15"/>
+        <Border Background="White" Grid.Column="13" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="4"/>
+
+        <Viewbox Grid.Column="13" Grid.Row="5" Grid.ColumnSpan="2">
+            <materialDesign:PackIcon x:Name="sword" Kind="Sword" Width="Auto" Height="auto" VerticalAlignment="Center" Mouse.MouseDown="Ataq_Click" Foreground="DodgerBlue"/>
         </Viewbox>
-        <Viewbox Grid.Column="14" Grid.Row="7">
-            <materialDesign:PackIcon x:Name="shield" Kind="Person" Width="Auto" Height="Auto" VerticalAlignment="Center" Mouse.MouseDown="Def_Click" Foreground="Coral"/>
+        <Viewbox Grid.Column="14" Grid.Row="3">
+            <materialDesign:PackIcon x:Name="person" Kind="Person" Width="Auto" Height="auto" VerticalAlignment="Center" Mouse.MouseDown="Perso_Click" Foreground="DodgerBlue"/>
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="9">
-            <materialDesign:PackIcon x:Name="book" Kind="BookOpen" Width="Auto" Height="Auto" VerticalAlignment="Center" Mouse.MouseDown="Hability_Click" Foreground="Coral"/>
+            <materialDesign:PackIcon x:Name="book" Kind="BookOpen" Width="Auto" Height="Auto" VerticalAlignment="Center" Mouse.MouseDown="Invetario_Click" Foreground="DodgerBlue"/>
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="11">
-            <materialDesign:PackIcon x:Name="dice" Kind="Dice6" Width="Auto" Height="Auto" VerticalAlignment="Center" Mouse.MouseDown="Dice_Click" Foreground="Coral"/>
+            <materialDesign:PackIcon x:Name="dice" Kind="Dice6" Width="Auto" Height="auto" VerticalAlignment="Center" Mouse.MouseDown="Dice_Click" Foreground="DodgerBlue"/>
         </Viewbox>
-        <Border Background="White" Grid.Column="13" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="4"/>
-        <Border BorderBrush="Black" Grid.Column="1" Grid.Row="5" Grid.RowSpan="7" Grid.ColumnSpan="11" BorderThickness="1" CornerRadius="20" Background="White"/>
+        <Viewbox Grid.Column="14" Grid.Row="13">
+            <TextBlock x:Name="Number" Foreground="DodgerBlue"></TextBlock>
+        </Viewbox>
+        <Viewbox Grid.Column="14" Grid.Row="7">
+            <materialDesign:PackIcon x:Name="Moverse" Kind="ArrowAll" Width="Auto" Height="auto" VerticalAlignment="Center" Mouse.MouseDown="Dice_Click" Foreground="DodgerBlue"/>
+        </Viewbox>
+
+        <Frame x:Name="frameMap" BorderBrush="Black" Grid.Column="1" Grid.Row="5" Grid.RowSpan="7" Grid.ColumnSpan="11" BorderThickness="1"  Background="White"/>
         <!--<Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" OpacityMask="White">
             <TextBox x:Name="passworw" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Password" Foreground="White" FontSize="20" Width="262"/>
         </Viewbox>-->
@@ -74,23 +82,68 @@
             <!--<Viewbox.OpacityMask>
                 <ImageBrush/>
             </Viewbox.OpacityMask>-->
-            <Label Content="192.168.X.X" FontSize="10"/>
+            <TextBlock x:Name="Ip" Text="192.168.X.X" FontSize="18" Width="auto"   TextAlignment="Center" Foreground="White" Background="#FF575757" />
         </Viewbox>
+        <Grid x:Name="gridDefEsq" Grid.Row="3" Grid.Column="10" Grid.ColumnSpan="2" Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border Background="#323232" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" CornerRadius="10"/>
+            <Viewbox Grid.Row="0" Grid.Column="0">
+                <materialDesign:PackIcon x:Name="Defensa" Kind="Shield" Width="Auto" Height="auto" VerticalAlignment="Center" Mouse.MouseDown="Dice_Click" Foreground="DodgerBlue"/>
+            </Viewbox>
+            <Viewbox Grid.Row="0" Grid.Column="1">
+                <materialDesign:PackIcon x:Name="Esquivar" Kind="RunFast" Width="Auto" Height="auto" VerticalAlignment="Center" Mouse.MouseDown="Dice_Click" Foreground="DodgerBlue"/>
+            </Viewbox>
+        </Grid>
+        <Grid x:Name="skills" Grid.Column="2" Grid.Row="13" Grid.ColumnSpan="9" Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="10*" />
 
-        <Viewbox Grid.Column="1" Grid.Row="13" Visibility="Hidden">
+            </Grid.ColumnDefinitions>
+            <Border Background="#323232"  Grid.ColumnSpan="8" CornerRadius="10" Margin="-38,0,0,0"/>
+            <ComboBox  Grid.ColumnSpan="1" Grid.Column="1"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Habilidad" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Margin="0,17,0,0" VerticalAlignment="Top"    >
+                <ListBoxItem Content="Bola de fuego"></ListBoxItem>
+                <ListBoxItem Content="Sol prohibido"></ListBoxItem>
+                <ListBoxItem Content="Ventisca mañanera"></ListBoxItem>
+                <ListBoxItem Content="Grieta interminable"></ListBoxItem>
+                <ListBoxItem Content="Armadura solar"></ListBoxItem>
+                <ListBoxItem Content="Juramento sagrado"></ListBoxItem>
+                <ListBoxItem Content="Veneno empalagoso"></ListBoxItem>
+            </ComboBox>
+            <Viewbox Grid.Column="2"  Grid.ColumnSpan="4">
+                <TextBox Style="{StaticResource MaterialDesignComboBoxEditableTextBox }"  TextWrapping="Wrap" Text="Havel era amigo de Gwyn y uno de los soldados del ejército del Gran Señor. Era un hombre resistente y fuerte, que animaba a sus hombres a lograr grandes cosas. Tanto él como sus hombres crearon armaduras talladas de piedra maciza y llevaban anillos que les permitían transportar una carga más pesada"  Width="4607" Height="724"  FontFamily="Georgia"  TextAlignment="Left" FontSize="150" IsReadOnly = "True" Foreground="WHite" />
+            </Viewbox>
+            <Viewbox Grid.Column="10" Grid.Row="3" Grid.ColumnSpan="1">
+                <materialDesign:PackIcon x:Name="d" Kind="Wand" Width="Auto" Height="auto" VerticalAlignment="Center"  Foreground="DodgerBlue"/>
+            </Viewbox>
+
+        </Grid>
+
+        <Viewbox Grid.Column="1" Grid.Row="3" Visibility="Hidden">
             <materialDesign:PackIcon Kind="Flame" Foreground="Firebrick" RenderTransformOrigin="-94721.858,-0.087"/>
         </Viewbox>
-        <Viewbox Grid.Column="1" Grid.Row="13" Visibility="Hidden">
+        <Viewbox Grid.Column="1" Grid.Row="3" Visibility="Hidden">
             <materialDesign:PackIcon Kind="Electricity" Foreground="Yellow"/>
         </Viewbox>
-        <Viewbox Grid.Column="1" Grid.Row="13" Visibility="Hidden">
+        <Viewbox Grid.Column="1" Grid.Row="3" Visibility="Hidden">
             <materialDesign:PackIcon Kind="FreezeAdvisory" Foreground="LightBlue"/>
         </Viewbox>
-        <Viewbox Grid.Column="1" Grid.Row="13" Visibility="Hidden">
+        <Viewbox Grid.Column="1" Grid.Row="3" Visibility="Hidden">
             <materialDesign:PackIcon Kind="Poison" Foreground="ForestGreen"/>
         </Viewbox>
-        <Viewbox Grid.Column="1" Grid.Row="13" Visibility="Hidden">
+        <Viewbox Grid.Column="1" Grid.Row="3" Visibility="Hidden">
             <materialDesign:PackIcon Kind="Run" Foreground="SandyBrown" />
         </Viewbox>
+
+
     </Grid>
 </Window>

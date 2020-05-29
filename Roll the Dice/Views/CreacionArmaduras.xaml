@@ -107,7 +107,7 @@
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text=" Bonus:"  Width="711" Height="172" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"/>
         </Viewbox>
         <Viewbox Grid.Column="2" Grid.Row="12"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text=" Descripción:"  Width="690" Height="165" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"/>
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Descripción:"  Width="690" Height="165" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"/>
         </Viewbox>
         <Viewbox Grid.Column="2" Grid.Row="12"  Height="auto"  Width="auto"/>
         <Viewbox Grid.Column="3" Grid.Row="12" Grid.ColumnSpan="3" Grid.RowSpan="2"  Height="auto"  Width="auto">

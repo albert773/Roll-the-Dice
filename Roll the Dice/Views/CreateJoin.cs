@@ -28,7 +28,7 @@ namespace Roll_the_Dice.Views
 
         private void Create_Clicked(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new MenuGM());
+            NavigationService.Navigate(new CrearSala());
         }
     }
 }
