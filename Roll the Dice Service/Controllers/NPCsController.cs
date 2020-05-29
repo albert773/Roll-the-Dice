@@ -16,12 +16,12 @@ namespace Roll_the_Dice_Service.Controllers
     [RoutePrefix("api/NPCs")]
     public class NPCsController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
-
         private static UnitOfWork uw = new UnitOfWork();
         private GenericRepository<NPC> NPCDTO = uw.RepositoryClient<NPC>();
 
         // GET: api/NPCs
+        [HttpGet]
+        [Route("")]
         public IEnumerable<NPC> GetAllNPCs()
         {
             IEnumerable<NPC> NPCs = NPCDTO.GetAll();
@@ -33,37 +33,41 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // GET: api/NPCs/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(NPC))]
         public IHttpActionResult GetNPC(int id)
         {
-            NPC nPC = db.NPC.Find(id);
-            if (nPC == null)
+            NPC npc = NPCDTO.GetByID(id);
+            if (npc == null)
             {
                 return NotFound();
             }
 
-            return Ok(nPC);
+            return Ok(npc);
         }
 
         // PUT: api/NPCs/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutNPC(int id, NPC nPC)
+        public IHttpActionResult PutNPC(int id, NPC npc)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != nPC.NPCId)
+            if (id != npc.NPCId)
             {
                 return BadRequest();
             }
 
-            db.Entry(nPC).State = EntityState.Modified;
+            NPCDTO.Update(npc);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -77,52 +81,56 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("El usuario se ha modificado correctamente");
         }
 
         // POST: api/NPCs
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(NPC))]
-        public IHttpActionResult PostNPC(NPC nPC)
+        public IHttpActionResult PostNPC(NPC npc)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.NPC.Add(nPC);
-            db.SaveChanges();
+            NPCDTO.Insert(npc);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = nPC.NPCId }, nPC);
+            return Ok();
         }
 
         // DELETE: api/NPCs/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(NPC))]
         public IHttpActionResult DeleteNPC(int id)
         {
-            NPC nPC = db.NPC.Find(id);
-            if (nPC == null)
+            NPC npc = NPCDTO.GetByID(id);
+            if (npc == null)
             {
                 return NotFound();
             }
 
-            db.NPC.Remove(nPC);
-            db.SaveChanges();
+            NPCDTO.Delete(npc);
+            uw.SaveChanges();
 
-            return Ok(nPC);
+            return Ok("Se ha eliminado correctamente");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool NPCExists(int id)
         {
-            return db.NPC.Count(e => e.NPCId == id) > 0;
+            return NPCDTO.getDbSet().Count(e => e.NPCId == id) > 0;
         }
     }
 }

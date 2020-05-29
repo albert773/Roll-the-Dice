@@ -13,24 +13,32 @@ using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/inventarios")]
     public class InventariosController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
-
         private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Armadura> ArmaduraDTO = uw.RepositoryClient<Armadura>();
+        private GenericRepository<Inventario> InventarioDTO = uw.RepositoryClient<Inventario>();
 
         // GET: api/Inventarios
-        public IQueryable<Inventario> GetInventario()
+        [HttpGet]
+        [Route("")]
+        public IEnumerable<Inventario> GetInventario()
         {
-            return db.Inventario;
+            IEnumerable<Inventario> inventarios = InventarioDTO.GetAll();
+            if (inventarios.Count() > 0)
+            {
+                return inventarios.ToList();
+            }
+            return inventarios;
         }
 
         // GET: api/Inventarios/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Inventario))]
         public IHttpActionResult GetInventario(int id)
         {
-            Inventario inventario = db.Inventario.Find(id);
+            Inventario inventario = InventarioDTO.GetByID(id);
             if (inventario == null)
             {
                 return NotFound();
@@ -40,6 +48,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // PUT: api/Inventarios/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutInventario(int id, Inventario inventario)
         {
@@ -53,11 +63,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(inventario).State = EntityState.Modified;
+            InventarioDTO.Update(inventario);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -71,10 +81,12 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("El inventario se ha modificado correctamente");
         }
 
         // POST: api/Inventarios
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Inventario))]
         public IHttpActionResult PostInventario(Inventario inventario)
         {
@@ -83,55 +95,42 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Inventario.Add(inventario);
+            InventarioDTO.Insert(inventario);
+            uw.SaveChanges();
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (InventarioExists(inventario.inventarioId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtRoute("DefaultApi", new { id = inventario.inventarioId }, inventario);
+            return Ok();
         }
 
         // DELETE: api/Inventarios/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(Inventario))]
         public IHttpActionResult DeleteInventario(int id)
         {
-            Inventario inventario = db.Inventario.Find(id);
+            Inventario inventario = InventarioDTO.GetByID(id);
             if (inventario == null)
             {
                 return NotFound();
             }
 
-            db.Inventario.Remove(inventario);
-            db.SaveChanges();
+            InventarioDTO.Delete(inventario);
+            uw.SaveChanges();
 
-            return Ok(inventario);
+            return Ok("Se ha eliminado correctamente");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool InventarioExists(int id)
         {
-            return db.Inventario.Count(e => e.inventarioId == id) > 0;
+            return InventarioDTO.getDbSet().Count(e => e.inventarioId == id) > 0;
         }
     }
 }

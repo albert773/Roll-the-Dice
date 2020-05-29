@@ -16,12 +16,12 @@ namespace Roll_the_Dice_Service.Controllers
     [RoutePrefix("api/posiciones")]
     public class PosicionesController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
-
         private static UnitOfWork uw = new UnitOfWork();
         private GenericRepository<Posicion> PosicionDTO = uw.RepositoryClient<Posicion>();
 
         // GET: api/Posiciones
+        [HttpGet]
+        [Route("")]
         public IEnumerable<Posicion> GetAllPosiciones()
         {
             IEnumerable<Posicion> posiciones = PosicionDTO.GetAll();
@@ -33,10 +33,12 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // GET: api/Posiciones/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Posicion))]
         public IHttpActionResult GetPosicion(int id)
         {
-            Posicion posicion = db.Posicion.Find(id);
+            Posicion posicion = PosicionDTO.GetByID(id);
             if (posicion == null)
             {
                 return NotFound();
@@ -46,6 +48,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // PUT: api/Posiciones/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPosicion(int id, Posicion posicion)
         {
@@ -59,11 +63,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(posicion).State = EntityState.Modified;
+            PosicionDTO.Update(posicion);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -81,6 +85,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // POST: api/Posiciones
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Posicion))]
         public IHttpActionResult PostPosicion(Posicion posicion)
         {
@@ -89,40 +95,42 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Posicion.Add(posicion);
-            db.SaveChanges();
+            PosicionDTO.Insert(posicion);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = posicion.posicionId }, posicion);
+            return Ok();
         }
 
         // DELETE: api/Posiciones/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(Posicion))]
         public IHttpActionResult DeletePosicion(int id)
         {
-            Posicion posicion = db.Posicion.Find(id);
+            Posicion posicion = PosicionDTO.GetByID(id);
             if (posicion == null)
             {
                 return NotFound();
             }
 
-            db.Posicion.Remove(posicion);
-            db.SaveChanges();
+            PosicionDTO.Delete(posicion);
+            uw.SaveChanges();
 
-            return Ok(posicion);
+            return Ok("Se ha eliminado correctamente");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool PosicionExists(int id)
         {
-            return db.Posicion.Count(e => e.posicionId == id) > 0;
+            return PosicionDTO.getDbSet().Count(e => e.posicionId == id) > 0;
         }
     }
 }

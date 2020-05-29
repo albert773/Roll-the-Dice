@@ -16,12 +16,12 @@ namespace Roll_the_Dice_Service.Controllers
     [RoutePrefix("api/monstruos")]
     public class MonstruosController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
-
         private static UnitOfWork uw = new UnitOfWork();
         private GenericRepository<Monstruo> MonstruoDTO = uw.RepositoryClient<Monstruo>();
 
         // GET: api/Monstruos
+        [HttpGet]
+        [Route("")]
         public IEnumerable<Monstruo> GetAllMonstruos()
         {
             IEnumerable<Monstruo> monstruos = MonstruoDTO.GetAll();
@@ -33,10 +33,12 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // GET: api/Monstruos/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Monstruo))]
         public IHttpActionResult GetMonstruo(int id)
         {
-            Monstruo monstruo = db.Monstruo.Find(id);
+            Monstruo monstruo = MonstruoDTO.GetByID(id);
             if (monstruo == null)
             {
                 return NotFound();
@@ -46,6 +48,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // PUT: api/Monstruos/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutMonstruo(int id, Monstruo monstruo)
         {
@@ -59,11 +63,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(monstruo).State = EntityState.Modified;
+            MonstruoDTO.Update(monstruo);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -77,10 +81,12 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("El monstruo se ha modificado correctamente");
         }
 
         // POST: api/Monstruos
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Monstruo))]
         public IHttpActionResult PostMonstruo(Monstruo monstruo)
         {
@@ -89,40 +95,40 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Monstruo.Add(monstruo);
-            db.SaveChanges();
+            MonstruoDTO.Insert(monstruo);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = monstruo.monstruoId }, monstruo);
+            return Ok();
         }
 
         // DELETE: api/Monstruos/5
         [ResponseType(typeof(Monstruo))]
         public IHttpActionResult DeleteMonstruo(int id)
         {
-            Monstruo monstruo = db.Monstruo.Find(id);
+            Monstruo monstruo = MonstruoDTO.GetByID(id);
             if (monstruo == null)
             {
                 return NotFound();
             }
 
-            db.Monstruo.Remove(monstruo);
-            db.SaveChanges();
+            MonstruoDTO.Delete(monstruo);
+            uw.SaveChanges();
 
-            return Ok(monstruo);
+            return Ok("Se ha eliminado correctamente");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool MonstruoExists(int id)
         {
-            return db.Monstruo.Count(e => e.monstruoId == id) > 0;
+            return MonstruoDTO.getDbSet().Count(e => e.monstruoId == id) > 0;
         }
     }
 }

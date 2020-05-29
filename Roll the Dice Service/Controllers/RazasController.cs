@@ -16,12 +16,12 @@ namespace Roll_the_Dice_Service.Controllers
     [RoutePrefix("api/razas")]
     public class RazasController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
-
         private static UnitOfWork uw = new UnitOfWork();
         private GenericRepository<Raza> RazaDTO = uw.RepositoryClient<Raza>();
 
         // GET: api/Razas
+        [HttpGet]
+        [Route("")]
         public IEnumerable<Raza> GetAllRazas()
         {
             IEnumerable<Raza> razas = RazaDTO.GetAll();
@@ -33,10 +33,12 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // GET: api/Razas/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Raza))]
         public IHttpActionResult GetRaza(int id)
         {
-            Raza raza = db.Raza.Find(id);
+            Raza raza = RazaDTO.GetByID(id);
             if (raza == null)
             {
                 return NotFound();
@@ -46,6 +48,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // PUT: api/Razas/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutRaza(int id, Raza raza)
         {
@@ -59,11 +63,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(raza).State = EntityState.Modified;
+            RazaDTO.Update(raza);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -77,10 +81,12 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("La raza se ha modificado correctamente");
         }
 
         // POST: api/Razas
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Raza))]
         public IHttpActionResult PostRaza(Raza raza)
         {
@@ -89,40 +95,42 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Raza.Add(raza);
-            db.SaveChanges();
+            RazaDTO.Insert(raza);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = raza.razaId }, raza);
+            return Ok();
         }
 
         // DELETE: api/Razas/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(Raza))]
         public IHttpActionResult DeleteRaza(int id)
         {
-            Raza raza = db.Raza.Find(id);
+            Raza raza = RazaDTO.GetByID(id);
             if (raza == null)
             {
                 return NotFound();
             }
 
-            db.Raza.Remove(raza);
-            db.SaveChanges();
+            RazaDTO.Delete(raza);
+            uw.SaveChanges();
 
-            return Ok(raza);
+            return Ok("Se ha eliminado correctamente");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool RazaExists(int id)
         {
-            return db.Raza.Count(e => e.razaId == id) > 0;
+            return RazaDTO.getDbSet().Count(e => e.razaId == id) > 0;
         }
     }
 }

@@ -16,12 +16,12 @@ namespace Roll_the_Dice_Service.Controllers
     [RoutePrefix("api/personajes")]
     public class PersonajesController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
-
         private static UnitOfWork uw = new UnitOfWork();
         private GenericRepository<Personaje> PersonajeDTO = uw.RepositoryClient<Personaje>();
 
         // GET: api/Personajes
+        [HttpGet]
+        [Route("")]
         public IEnumerable<Personaje> GetAllPersonajes()
         {
             IEnumerable<Personaje> personajes = PersonajeDTO.GetAll();
@@ -36,7 +36,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Personaje))]
         public IHttpActionResult GetPersonaje(int id)
         {
-            Personaje personaje = db.Personaje.Find(id);
+            Personaje personaje = PersonajeDTO.GetByID(id);
             if (personaje == null)
             {
                 return NotFound();
@@ -46,6 +46,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // PUT: api/Personajes/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPersonaje(int id, Personaje personaje)
         {
@@ -59,11 +61,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(personaje).State = EntityState.Modified;
+            PersonajeDTO.Update(personaje);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -77,10 +79,12 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("El personaje se ha modificado correctamente");
         }
 
         // POST: api/Personajes
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Personaje))]
         public IHttpActionResult PostPersonaje(Personaje personaje)
         {
@@ -89,40 +93,42 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Personaje.Add(personaje);
-            db.SaveChanges();
+            PersonajeDTO.Insert(personaje);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = personaje.personajeId }, personaje);
+            return Ok();
         }
 
         // DELETE: api/Personajes/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(Personaje))]
         public IHttpActionResult DeletePersonaje(int id)
         {
-            Personaje personaje = db.Personaje.Find(id);
+            Personaje personaje = PersonajeDTO.GetByID(id);
             if (personaje == null)
             {
                 return NotFound();
             }
 
-            db.Personaje.Remove(personaje);
-            db.SaveChanges();
+            PersonajeDTO.Delete(personaje);
+            uw.SaveChanges();
 
-            return Ok(personaje);
+            return Ok("Se ha eliminado correctamente");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool PersonajeExists(int id)
         {
-            return db.Personaje.Count(e => e.personajeId == id) > 0;
+            return PersonajeDTO.getDbSet().Count(e => e.personajeId == id) > 0;
         }
     }
 }

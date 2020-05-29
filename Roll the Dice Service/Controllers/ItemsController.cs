@@ -13,24 +13,32 @@ using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/items")]
     public class ItemsController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
-
         private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Armadura> ArmaduraDTO = uw.RepositoryClient<Armadura>();
+        private GenericRepository<Item> ItemDTO = uw.RepositoryClient<Item>();
 
         // GET: api/Items
-        public IQueryable<Item> GetItem()
+        [HttpGet]
+        [Route("")]
+        public IEnumerable<Item> GetAllItems()
         {
-            return db.Item;
+            IEnumerable<Item> items = ItemDTO.GetAll();
+            if (items.Count() > 0)
+            {
+                return items.ToList();
+            }
+            return items;
         }
 
         // GET: api/Items/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Item))]
         public IHttpActionResult GetItem(int id)
         {
-            Item item = db.Item.Find(id);
+            Item item = ItemDTO.GetByID(id);
             if (item == null)
             {
                 return NotFound();
@@ -40,6 +48,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // PUT: api/Items/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutItem(int id, Item item)
         {
@@ -53,11 +63,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(item).State = EntityState.Modified;
+            ItemDTO.Update(item);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -71,10 +81,12 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("El item se ha modificado correctamente");
         }
 
         // POST: api/Items
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Item))]
         public IHttpActionResult PostItem(Item item)
         {
@@ -83,40 +95,42 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Item.Add(item);
-            db.SaveChanges();
+            ItemDTO.Insert(item);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = item.itemId }, item);
+            return Ok();
         }
 
         // DELETE: api/Items/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(Item))]
         public IHttpActionResult DeleteItem(int id)
         {
-            Item item = db.Item.Find(id);
+            Item item = ItemDTO.GetByID(id);
             if (item == null)
             {
                 return NotFound();
             }
 
-            db.Item.Remove(item);
-            db.SaveChanges();
+            ItemDTO.Delete(item);
+            uw.SaveChanges();
 
-            return Ok(item);
+            return Ok("Se ha eliminado correctamente");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool ItemExists(int id)
         {
-            return db.Item.Count(e => e.itemId == id) > 0;
+            return ItemDTO.getDbSet().Count(e => e.itemId == id) > 0;
         }
     }
 }

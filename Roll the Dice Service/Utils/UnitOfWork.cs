@@ -68,7 +68,7 @@ namespace Roll_the_Dice_Service.Utils
             {
                 DbEntityValidationHandler(e);
             }
-            catch (DbUpdateException ue)
+            catch (DbUpdateException)
             {
                 
             }

@@ -16,12 +16,12 @@ namespace Roll_the_Dice_Service.Controllers
     [RoutePrefix("api/rarezas")]
     public class RarezasController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
-
         private static UnitOfWork uw = new UnitOfWork();
         private GenericRepository<Rareza> RarezaDTO = uw.RepositoryClient<Rareza>();
 
         // GET: api/Rarezas
+        [HttpGet]
+        [Route("")]
         public IEnumerable<Rareza> GetAllRarezas()
         {
             IEnumerable<Rareza> rarezas = RarezaDTO.GetAll();
@@ -33,10 +33,12 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // GET: api/Rarezas/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Rareza))]
         public IHttpActionResult GetRareza(int id)
         {
-            Rareza rareza = db.Rareza.Find(id);
+            Rareza rareza = RarezaDTO.GetByID(id);
             if (rareza == null)
             {
                 return NotFound();
@@ -46,6 +48,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // PUT: api/Rarezas/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutRareza(int id, Rareza rareza)
         {
@@ -59,11 +63,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(rareza).State = EntityState.Modified;
+            RarezaDTO.Update(rareza);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -77,10 +81,12 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("La rareza se ha modificado correctamente");
         }
 
         // POST: api/Rarezas
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Rareza))]
         public IHttpActionResult PostRareza(Rareza rareza)
         {
@@ -89,40 +95,42 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Rareza.Add(rareza);
-            db.SaveChanges();
+            RarezaDTO.Insert(rareza);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = rareza.rarezaId }, rareza);
+            return Ok();
         }
 
         // DELETE: api/Rarezas/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(Rareza))]
         public IHttpActionResult DeleteRareza(int id)
         {
-            Rareza rareza = db.Rareza.Find(id);
+            Rareza rareza = RarezaDTO.GetByID(id);
             if (rareza == null)
             {
                 return NotFound();
             }
 
-            db.Rareza.Remove(rareza);
-            db.SaveChanges();
+            RarezaDTO.Delete(rareza);
+            uw.SaveChanges();
 
-            return Ok(rareza);
+            return Ok("Se ha eliminado correctamente");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool RarezaExists(int id)
         {
-            return db.Rareza.Count(e => e.rarezaId == id) > 0;
+            return RarezaDTO.getDbSet().Count(e => e.rarezaId == id) > 0;
         }
     }
 }

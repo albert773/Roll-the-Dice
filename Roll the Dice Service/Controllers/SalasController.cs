@@ -16,12 +16,12 @@ namespace Roll_the_Dice_Service.Controllers
     [RoutePrefix("api/salas")]
     public class SalasController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
-
         private static UnitOfWork uw = new UnitOfWork();
         private GenericRepository<Sala> SalaDTO = uw.RepositoryClient<Sala>();
 
         // GET: api/Salas
+        [HttpGet]
+        [Route("")]
         public IEnumerable<Sala> GetAllUsuarios()
         {
             IEnumerable<Sala> salas = SalaDTO.GetAll();
@@ -33,10 +33,12 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // GET: api/Salas/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Sala))]
         public IHttpActionResult GetSala(int id)
         {
-            Sala sala = db.Sala.Find(id);
+            Sala sala = SalaDTO.GetByID(id);
             if (sala == null)
             {
                 return NotFound();
@@ -46,6 +48,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // PUT: api/Salas/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutSala(int id, Sala sala)
         {
@@ -59,11 +63,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(sala).State = EntityState.Modified;
+            SalaDTO.Update(sala);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -77,10 +81,12 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("La sala se ha modificado correctamente");
         }
 
         // POST: api/Salas
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Sala))]
         public IHttpActionResult PostSala(Sala sala)
         {
@@ -89,40 +95,42 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Sala.Add(sala);
-            db.SaveChanges();
+            SalaDTO.Insert(sala);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = sala.salaId }, sala);
+            return Ok();
         }
 
         // DELETE: api/Salas/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(Sala))]
         public IHttpActionResult DeleteSala(int id)
         {
-            Sala sala = db.Sala.Find(id);
+            Sala sala = SalaDTO.GetByID(id);
             if (sala == null)
             {
                 return NotFound();
             }
 
-            db.Sala.Remove(sala);
-            db.SaveChanges();
+            SalaDTO.Delete(sala);
+            uw.SaveChanges();
 
-            return Ok(sala);
+            return Ok("Se ha eliminado correctamente");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool SalaExists(int id)
         {
-            return db.Sala.Count(e => e.salaId == id) > 0;
+            return SalaDTO.getDbSet().Count(e => e.salaId == id) > 0;
         }
     }
 }

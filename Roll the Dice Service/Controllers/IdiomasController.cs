@@ -13,24 +13,32 @@ using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/idiomas")]
     public class IdiomasController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
-
         private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Armadura> ArmaduraDTO = uw.RepositoryClient<Armadura>();
+        private GenericRepository<Idioma> IdiomaDTO = uw.RepositoryClient<Idioma>();
 
         // GET: api/Idiomas
-        public IQueryable<Idioma> GetIdioma()
+        [HttpGet]
+        [Route("")]
+        public IEnumerable<Idioma> GetIdioma()
         {
-            return db.Idioma;
+            IEnumerable<Idioma> idiomas = IdiomaDTO.GetAll();
+            if (idiomas.Count() > 0)
+            {
+                return idiomas.ToList();
+            }
+            return idiomas;
         }
 
         // GET: api/Idiomas/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Idioma))]
         public IHttpActionResult GetIdioma(int id)
         {
-            Idioma idioma = db.Idioma.Find(id);
+            Idioma idioma = IdiomaDTO.GetByID(id);
             if (idioma == null)
             {
                 return NotFound();
@@ -40,6 +48,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // PUT: api/Idiomas/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutIdioma(int id, Idioma idioma)
         {
@@ -53,11 +63,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(idioma).State = EntityState.Modified;
+            IdiomaDTO.Update(idioma);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -71,10 +81,12 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("El idioma se ha modificado correctamente");
         }
 
         // POST: api/Idiomas
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Idioma))]
         public IHttpActionResult PostIdioma(Idioma idioma)
         {
@@ -83,40 +95,42 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Idioma.Add(idioma);
-            db.SaveChanges();
+            IdiomaDTO.Insert(idioma);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = idioma.idiomaId }, idioma);
+            return Ok();
         }
 
         // DELETE: api/Idiomas/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(Idioma))]
         public IHttpActionResult DeleteIdioma(int id)
         {
-            Idioma idioma = db.Idioma.Find(id);
+            Idioma idioma = IdiomaDTO.GetByID(id);
             if (idioma == null)
             {
                 return NotFound();
             }
 
-            db.Idioma.Remove(idioma);
-            db.SaveChanges();
+            IdiomaDTO.Delete(idioma);
+            uw.SaveChanges();
 
-            return Ok(idioma);
+            return Ok("Se ha eliminado correctamente");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool IdiomaExists(int id)
         {
-            return db.Idioma.Count(e => e.idiomaId == id) > 0;
+            return IdiomaDTO.getDbSet().Count(e => e.idiomaId == id) > 0;
         }
     }
 }

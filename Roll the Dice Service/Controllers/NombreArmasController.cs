@@ -16,12 +16,12 @@ namespace Roll_the_Dice_Service.Controllers
     [RoutePrefix("api/nombreArmas")]
     public class NombreArmasController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
-
         private static UnitOfWork uw = new UnitOfWork();
         private GenericRepository<NombreArma> NombreArmaDTO = uw.RepositoryClient<NombreArma>();
 
         // GET: api/NombreArmas
+        [HttpGet]
+        [Route("")]
         public IEnumerable<NombreArma> GetAllNombreArmas()
         {
             IEnumerable<NombreArma> nombreArmas = NombreArmaDTO.GetAll();
@@ -33,10 +33,12 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // GET: api/NombreArmas/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(NombreArma))]
         public IHttpActionResult GetNombreArma(int id)
         {
-            NombreArma nombreArma = db.NombreArma.Find(id);
+            NombreArma nombreArma = NombreArmaDTO.GetByID(id);
             if (nombreArma == null)
             {
                 return NotFound();
@@ -46,6 +48,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // PUT: api/NombreArmas/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutNombreArma(int id, NombreArma nombreArma)
         {
@@ -59,11 +63,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(nombreArma).State = EntityState.Modified;
+            NombreArmaDTO.Update(nombreArma);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -77,10 +81,12 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("El nombreArma se ha modificado correctamente");
         }
 
         // POST: api/NombreArmas
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(NombreArma))]
         public IHttpActionResult PostNombreArma(NombreArma nombreArma)
         {
@@ -89,40 +95,42 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.NombreArma.Add(nombreArma);
-            db.SaveChanges();
+            NombreArmaDTO.Insert(nombreArma);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = nombreArma.nombreArmaId }, nombreArma);
+            return Ok();
         }
 
         // DELETE: api/NombreArmas/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(NombreArma))]
         public IHttpActionResult DeleteNombreArma(int id)
         {
-            NombreArma nombreArma = db.NombreArma.Find(id);
+            NombreArma nombreArma = NombreArmaDTO.GetByID(id);
             if (nombreArma == null)
             {
                 return NotFound();
             }
 
-            db.NombreArma.Remove(nombreArma);
-            db.SaveChanges();
+            NombreArmaDTO.Delete(nombreArma);
+            uw.SaveChanges();
 
-            return Ok(nombreArma);
+            return Ok("Se ha eliminado correctamente");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool NombreArmaExists(int id)
         {
-            return db.NombreArma.Count(e => e.nombreArmaId == id) > 0;
+            return NombreArmaDTO.getDbSet().Count(e => e.nombreArmaId == id) > 0;
         }
     }
 }

@@ -16,12 +16,12 @@ namespace Roll_the_Dice_Service.Controllers
     [RoutePrefix("api/mapas")]
     public class MapasController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
-
         private static UnitOfWork uw = new UnitOfWork();
         private GenericRepository<Mapa> MapaDTO = uw.RepositoryClient<Mapa>();
 
         // GET: api/Mapas
+        [HttpGet]
+        [Route("")]
         public IEnumerable<Mapa> GetAllMapas()
         {
             IEnumerable<Mapa> mapas = MapaDTO.GetAll();
@@ -33,10 +33,12 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // GET: api/Mapas/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Mapa))]
         public IHttpActionResult GetMapa(int id)
         {
-            Mapa mapa = db.Mapa.Find(id);
+            Mapa mapa = MapaDTO.GetByID(id);
             if (mapa == null)
             {
                 return NotFound();
@@ -46,6 +48,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // PUT: api/Mapas/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutMapa(int id, Mapa mapa)
         {
@@ -59,11 +63,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(mapa).State = EntityState.Modified;
+            MapaDTO.Update(mapa);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -77,10 +81,12 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("El mapa se ha modificado correctamente");
         }
 
         // POST: api/Mapas
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Mapa))]
         public IHttpActionResult PostMapa(Mapa mapa)
         {
@@ -89,40 +95,42 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Mapa.Add(mapa);
-            db.SaveChanges();
+            MapaDTO.Insert(mapa);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = mapa.mapaId }, mapa);
+            return Ok();
         }
 
         // DELETE: api/Mapas/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(Mapa))]
         public IHttpActionResult DeleteMapa(int id)
         {
-            Mapa mapa = db.Mapa.Find(id);
+            Mapa mapa = MapaDTO.GetByID(id);
             if (mapa == null)
             {
                 return NotFound();
             }
 
-            db.Mapa.Remove(mapa);
-            db.SaveChanges();
+            MapaDTO.Delete(mapa);
+            uw.SaveChanges();
 
-            return Ok(mapa);
+            return Ok("Se ha eliminado correctamente");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool MapaExists(int id)
         {
-            return db.Mapa.Count(e => e.mapaId == id) > 0;
+            return MapaDTO.getDbSet().Count(e => e.mapaId == id) > 0;
         }
     }
 }

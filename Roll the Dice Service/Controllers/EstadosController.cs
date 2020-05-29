@@ -13,24 +13,28 @@ using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/estados")]
     public class EstadosController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
-
         private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Armadura> ArmaduraDTO = uw.RepositoryClient<Armadura>();
+        private GenericRepository<Estado> EstadoDTO = uw.RepositoryClient<Estado>();
 
         // GET: api/Estados
-        public IQueryable<Estado> GetEstado()
+        public IEnumerable<Estado> GetEstado()
         {
-            return db.Estado;
+            IEnumerable<Estado> estados = EstadoDTO.GetAll();
+            if (estados.Count() > 0)
+            {
+                return estados.ToList();
+            }
+            return estados;
         }
 
         // GET: api/Estados/5
         [ResponseType(typeof(Estado))]
         public IHttpActionResult GetEstado(int id)
         {
-            Estado estado = db.Estado.Find(id);
+            Estado estado = EstadoDTO.GetByID(id);
             if (estado == null)
             {
                 return NotFound();
@@ -40,6 +44,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // PUT: api/Estados/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutEstado(int id, Estado estado)
         {
@@ -53,11 +59,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(estado).State = EntityState.Modified;
+            EstadoDTO.Update(estado);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -71,10 +77,12 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("El estado se ha modificado correctamente");
         }
 
         // POST: api/Estados
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Estado))]
         public IHttpActionResult PostEstado(Estado estado)
         {
@@ -83,40 +91,40 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Estado.Add(estado);
-            db.SaveChanges();
+            EstadoDTO.Insert(estado);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = estado.estadoId }, estado);
+            return Ok();
         }
 
         // DELETE: api/Estados/5
         [ResponseType(typeof(Estado))]
         public IHttpActionResult DeleteEstado(int id)
         {
-            Estado estado = db.Estado.Find(id);
+            Estado estado = EstadoDTO.GetByID(id);
             if (estado == null)
             {
                 return NotFound();
             }
 
-            db.Estado.Remove(estado);
-            db.SaveChanges();
+            EstadoDTO.Delete(estado);
+            uw.SaveChanges();
 
-            return Ok(estado);
+            return Ok("Se ha eliminado correctamente");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool EstadoExists(int id)
         {
-            return db.Estado.Count(e => e.estadoId == id) > 0;
+            return EstadoDTO.getDbSet().Count(e => e.estadoId == id) > 0;
         }
     }
 }

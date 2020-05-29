@@ -13,24 +13,32 @@ using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [RoutePrefix("api/habilidades")]
     public class HabilidadesController : ApiController
     {
-        private RolltheDiceDBEntities db = new RolltheDiceDBEntities();
-
         private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Armadura> ArmaduraDTO = uw.RepositoryClient<Armadura>();
+        private GenericRepository<Habilidad> HabilidadDTO = uw.RepositoryClient<Habilidad>();
 
         // GET: api/Habilidades
-        public IQueryable<Habilidad> GetHabilidad()
+        [HttpGet]
+        [Route("")]
+        public IEnumerable<Habilidad> GetAllHabilidades()
         {
-            return db.Habilidad;
+            IEnumerable<Habilidad> habilidad = HabilidadDTO.GetAll();
+            if (habilidad.Count() > 0)
+            {
+                return habilidad.ToList();
+            }
+            return habilidad;
         }
 
         // GET: api/Habilidades/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Habilidad))]
         public IHttpActionResult GetHabilidad(int id)
         {
-            Habilidad habilidad = db.Habilidad.Find(id);
+            Habilidad habilidad = HabilidadDTO.GetByID(id);
             if (habilidad == null)
             {
                 return NotFound();
@@ -40,6 +48,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // PUT: api/Habilidades/5
+        [HttpPut]
+        [Route("{id:int}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutHabilidad(int id, Habilidad habilidad)
         {
@@ -53,11 +63,11 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            db.Entry(habilidad).State = EntityState.Modified;
+            HabilidadDTO.Update(habilidad);
 
             try
             {
-                db.SaveChanges();
+                uw.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -71,10 +81,12 @@ namespace Roll_the_Dice_Service.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok("la habilidad se ha modificado correctamente");
         }
 
         // POST: api/Habilidades
+        [HttpPost]
+        [Route("")]
         [ResponseType(typeof(Habilidad))]
         public IHttpActionResult PostHabilidad(Habilidad habilidad)
         {
@@ -83,24 +95,26 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Habilidad.Add(habilidad);
-            db.SaveChanges();
+            HabilidadDTO.Insert(habilidad);
+            uw.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = habilidad.habilidadId }, habilidad);
+            return Ok();
         }
 
         // DELETE: api/Habilidades/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(Habilidad))]
         public IHttpActionResult DeleteHabilidad(int id)
         {
-            Habilidad habilidad = db.Habilidad.Find(id);
+            Habilidad habilidad = HabilidadDTO.GetByID(id);
             if (habilidad == null)
             {
                 return NotFound();
             }
 
-            db.Habilidad.Remove(habilidad);
-            db.SaveChanges();
+            HabilidadDTO.Delete(habilidad);
+            uw.SaveChanges();
 
             return Ok(habilidad);
         }
@@ -109,14 +123,14 @@ namespace Roll_the_Dice_Service.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                uw.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool HabilidadExists(int id)
         {
-            return db.Habilidad.Count(e => e.habilidadId == id) > 0;
+            return HabilidadDTO.getDbSet().Count(e => e.habilidadId == id) > 0;
         }
     }
 }
