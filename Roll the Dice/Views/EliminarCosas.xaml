@@ -55,7 +55,7 @@
             
         </StackPanel>-->
         <Viewbox Grid.Row="19" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="3">
-            <Button Height="Auto" Width="Auto" Content="Eliminar" Background="#343434" Click="EliminarItems_Click"/>
+            <Button Height="Auto" Width="Auto" Content="Eliminar" Background="DimGray" BorderBrush="AliceBlue" Click="EliminarItems_Click"/>
         </Viewbox>
         <ListBox x:Name="st1"
                  Foreground="Black"
