@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Threading;
 using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Utils;
+using Roll_the_Dice_Service.Service.Interface;
 
 namespace Roll_the_Dice_Service.Controllers
 {
@@ -14,8 +15,12 @@ namespace Roll_the_Dice_Service.Controllers
     [RoutePrefix("api/auth")]
     public class AuthController : ApiController
     {
-        private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Usuario> UsuarioDTO = uw.RepositoryClient<Usuario>();
+        private IAuthService AuthServ;
+
+        public AuthController(IAuthService AuthServ)
+        {
+            this.AuthServ = AuthServ;
+        }
 
         [HttpPost]
         [Route("login")]
@@ -24,17 +29,8 @@ namespace Roll_the_Dice_Service.Controllers
             if (loginData == null)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            Usuario u = null;
-            //Hacer peticion que me compruebe si existe el usuario con email X
-            try
-            {
-                u = UsuarioDTO.GetSingle(q => q.email == loginData.Email);
-            }
-            catch (Exception)
-            {
-                return BadRequest("No existe ningun usuario con ese Email");
-            }
-            bool isCredentialValid = (loginData.Password == u.password);
+            AuthServ.Login(loginData);
+            bool isCredentialValid = AuthServ.Login(loginData);
             if (isCredentialValid)
             {
                 var token = TokenGenerator.GenerateTokenJwt(loginData.Email);
@@ -50,14 +46,9 @@ namespace Roll_the_Dice_Service.Controllers
         [Route("register")]
         public IHttpActionResult Register(RegisterRequest registerData)
         {
-            if (registerData != null) { 
-                Usuario usuario = new Usuario();
-                usuario.email = registerData.Email;
-                usuario.nickname = registerData.Nickname;
-                usuario.password = registerData.Password;
-                uw.RepositoryClient<Usuario>().Insert(usuario);
-                uw.SaveChanges();
-                return Ok(usuario);
+            if (registerData != null) {
+                Usuario u = AuthServ.Register(registerData);
+                return Ok(u);
             }
             else
             {

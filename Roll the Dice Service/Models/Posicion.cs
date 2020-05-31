@@ -26,9 +26,8 @@ namespace Roll_the_Dice_Service.Models
         public int x { get; set; }
         public int y { get; set; }
         public bool bloqueado { get; set; }
-        public Nullable<int> mapa { get; set; }
     
-        public virtual Mapa Mapa1 { get; set; }
+        public virtual Mapa Mapa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Monstruo> Monstruo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

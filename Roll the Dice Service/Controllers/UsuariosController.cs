@@ -22,7 +22,8 @@ namespace Roll_the_Dice_Service.Controllers
         [Route("")]
         public IEnumerable<Usuario> GetAllUsuarios()
         {
-            IEnumerable<Usuario> usuarios = UsuarioDTO.GetAll();
+            //IEnumerable<Usuario> usuarios = UsuarioDTO.GetAll();
+            IQueryable<Usuario> usuarios = UsuarioDTO.GetWithInclude("Personaje", "Sala");
             if (usuarios.Count() > 0)
             {
                 return usuarios.ToList();
@@ -36,12 +37,16 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Usuario))]
         public IHttpActionResult GetUsuario(int id)
         {
-            Usuario usuario = UsuarioDTO.GetByID(id);
-            if (usuario == null)
+            IQueryable<Usuario> usuarios = UsuarioDTO.GetWithInclude("Personaje", "Sala").Where(q => q.usuarioId == id);
+            if(usuarios.Count() > 0)
             {
-                return NotFound();
+                Usuario usuario = usuarios.First();
+                return Ok(usuario);
             }
-            return Ok(usuario);
+            else
+            {
+                return BadRequest("No existe ningun usuario que corresponda con ese id");
+            }
         }
 
         // GET: api/Usuarios/ejemplo@ejemplo.com
@@ -50,16 +55,13 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Usuario))]
         public IHttpActionResult GetUsuarioByEmail(string email)
         {
-            if (email == null)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
-
-            Usuario u = null;
-            try
+            IQueryable<Usuario> usuarios = UsuarioDTO.GetWithInclude("Personaje", "Sala").Where(q => q.email == email);
+            if (usuarios.Count() > 0)
             {
-                u = UsuarioDTO.GetFirst(q => q.email == email);
-                return Ok(u);
+                Usuario usuario = usuarios.First();
+                return Ok(usuario);
             }
-            catch (Exception)
+            else
             {
                 return BadRequest("No existe ningun usuario con ese Email");
             }
@@ -116,7 +118,7 @@ namespace Roll_the_Dice_Service.Controllers
             UsuarioDTO.Insert(usuario);
             uw.SaveChanges();
 
-            return Ok();
+            return Ok(usuario);
         }
 
         // DELETE: api/Usuarios/5

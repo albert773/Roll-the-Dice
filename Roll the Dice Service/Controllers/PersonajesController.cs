@@ -9,22 +9,28 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Roll_the_Dice_Service.Models;
+using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/personajes")]
     public class PersonajesController : ApiController
     {
-        private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Personaje> PersonajeDTO = uw.RepositoryClient<Personaje>();
+        private IPersonajeService PersonajeServ;
+
+        public PersonajesController(IPersonajeService PersonajeServ)
+        {
+            this.PersonajeServ = PersonajeServ;
+        }
 
         // GET: api/Personajes
         [HttpGet]
         [Route("")]
         public IEnumerable<Personaje> GetAllPersonajes()
         {
-            IEnumerable<Personaje> personajes = PersonajeDTO.GetAll();
+            IEnumerable<Personaje> personajes = this.PersonajeServ.GetAllPersonajes();
             if (personajes.Count() > 0)
             {
                 return personajes.ToList();
@@ -32,7 +38,21 @@ namespace Roll_the_Dice_Service.Controllers
             return personajes;
         }
 
+        /*[HttpGet]
+        [Route("{id:int}")]
+        public IHttpActionResult GetElemento(int id)
+        {
+            Elemento elemento = this.PersonajeServ.GetElemento(id);
+            //if (elemento.Count() > 0)
+            //{
+            //    return elemento.ToList();
+            //}
+            return Ok(elemento);
+        }
+
         // GET: api/Personajes/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Personaje))]
         public IHttpActionResult GetPersonaje(int id)
         {
@@ -45,7 +65,20 @@ namespace Roll_the_Dice_Service.Controllers
             return Ok(personaje);
         }
 
-        // PUT: api/Personajes/5
+        // GET: api/Personajes/sala/{id}
+        [HttpGet]
+        [Route("sala/{salaId:int}")]
+        public IEnumerable<Personaje> GetAllPersonajesBySala(int salaId)
+        {
+            IEnumerable<Personaje> personajes = PersonajeDTO.GetAll();
+            if (personajes.Count() > 0)
+            {
+                return personajes.ToList();
+            }
+            return personajes;
+        }
+
+        */// PUT: api/Personajes/5
         [HttpPut]
         [Route("{id:int}")]
         [ResponseType(typeof(void))]
@@ -56,33 +89,28 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != personaje.personajeId)
-            {
-                return BadRequest();
-            }
+            Personaje p = PersonajeServ.PutPersonaje(id, personaje);
 
-            PersonajeDTO.Update(personaje);
-
-            try
-            {
-                uw.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PersonajeExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            //try
+            //{
+            //    uw.SaveChanges();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!PersonajeExists(id))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
 
             return Ok("El personaje se ha modificado correctamente");
         }
 
-        // POST: api/Personajes
+        /*// POST: api/Personajes
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(Personaje))]
@@ -111,7 +139,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return NotFound();
             }
 
-            PersonajeDTO.Delete(personaje);
+            PersonajeDTO.Delete(id);
             uw.SaveChanges();
 
             return Ok("Se ha eliminado correctamente");
@@ -129,6 +157,6 @@ namespace Roll_the_Dice_Service.Controllers
         private bool PersonajeExists(int id)
         {
             return PersonajeDTO.getDbSet().Count(e => e.personajeId == id) > 0;
-        }
+        }*/
     }
 }

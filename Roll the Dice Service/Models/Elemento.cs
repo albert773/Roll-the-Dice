@@ -19,7 +19,6 @@ namespace Roll_the_Dice_Service.Models
         {
             this.Arma = new HashSet<Arma>();
             this.Armadura = new HashSet<Armadura>();
-            this.Elemento1 = new HashSet<Elemento>();
             this.Habilidad = new HashSet<Habilidad>();
         }
     
@@ -28,16 +27,14 @@ namespace Roll_the_Dice_Service.Models
         public int rango { get; set; }
         public int daño { get; set; }
         public int debufo { get; set; }
-        public int debilidad { get; set; }
         public string descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Arma> Arma { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Armadura> Armadura { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Elemento> Elemento1 { get; set; }
-        public virtual Elemento Elemento2 { get; set; }
+        public virtual Elemento Fortaleza { get; set; }
+        public virtual Elemento Debilidad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Habilidad> Habilidad { get; set; }
     }

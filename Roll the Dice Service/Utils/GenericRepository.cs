@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using static Roll_the_Dice_Service.IoC.InjectableAttribute;
 
 namespace Roll_the_Dice_Service.Utils
 {
@@ -9,6 +10,7 @@ namespace Roll_the_Dice_Service.Utils
     /// Generic Repository class for Entity Operations
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
+    [InjectableAttributeTransient]
     public class GenericRepository<TEntity> : IGenericRepository where TEntity : class
     {
         #region Private member variables...

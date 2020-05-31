@@ -25,12 +25,10 @@ namespace Roll_the_Dice_Service.Models
         public string nombre { get; set; }
         public decimal altura { get; set; }
         public int peso { get; set; }
-        public Nullable<int> idioma { get; set; }
-        public int estadistica { get; set; }
         public int bonus { get; set; }
     
-        public virtual Estadistica Estadistica1 { get; set; }
-        public virtual Idioma Idioma1 { get; set; }
+        public virtual Estadistica Estadistica { get; set; }
+        public virtual Idioma Idioma { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NPC> NPC { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -18,27 +18,24 @@ namespace Roll_the_Dice_Service.Models
         public Monstruo()
         {
             this.Estadistica = new HashSet<Estadistica>();
-            this.Inventario = new HashSet<Inventario>();
+            this.Habilidad = new HashSet<Habilidad>();
         }
     
         public int monstruoId { get; set; }
         public string nombre { get; set; }
         public int vida { get; set; }
         public int turnos { get; set; }
-        public int estadosAlterados { get; set; }
         public int nivel { get; set; }
         public int oro { get; set; }
         public int plata { get; set; }
         public int cobre { get; set; }
-        public int sala { get; set; }
-        public Nullable<int> posicion { get; set; }
     
         public virtual Estado Estado { get; set; }
-        public virtual Posicion Posicion1 { get; set; }
-        public virtual Sala Sala1 { get; set; }
+        public virtual Posicion Posicion { get; set; }
+        public virtual Sala Sala { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Estadistica> Estadistica { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Inventario> Inventario { get; set; }
+        public virtual ICollection<Habilidad> Habilidad { get; set; }
     }
 }

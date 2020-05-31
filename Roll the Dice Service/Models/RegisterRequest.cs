@@ -1,4 +1,4 @@
-﻿namespace Roll_the_Dice_Service.Controllers
+﻿namespace Roll_the_Dice_Service.Models
 {
     public class RegisterRequest
     {

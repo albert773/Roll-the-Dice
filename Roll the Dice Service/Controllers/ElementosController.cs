@@ -24,7 +24,20 @@ namespace Roll_the_Dice_Service.Controllers
         [Route("")]
         public IEnumerable<Elemento> GetAllElementos()
         {
-            IEnumerable<Elemento> elementos = ElementoDTO.GetAll();
+            IEnumerable<Elemento> elementos = ElementoDTO.GetAll().Select(e => {
+                //e.Elemento2.Elemento1 = null;
+                //e.Elemento2.Elemento2 = null;
+                //e.Elemento2.Arma = null;
+                //e.Elemento2.Armadura = null;
+                //e.Elemento2.Habilidad = null;
+
+                //e.Elemento1.Elemento1 = null;
+                //e.Elemento1.Elemento2 = null;
+                //e.Elemento1.Arma = null;
+                //e.Elemento1.Armadura = null;
+                //e.Elemento1.Habilidad = null;
+                return e;
+            });
             if (elementos.Count() > 0)
             {
                 return elementos.ToList();
@@ -38,12 +51,13 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Elemento))]
         public IHttpActionResult GetElemento(int id)
         {
-            Elemento elemento = ElementoDTO.GetByID(id);
-            if (elemento == null)
-            {
-                return NotFound();
-            }
-            return Ok(elemento);
+            //Elemento elemento = ElementoDTO.GetWithInclude("Elemento");
+            //if (elemento == null)
+            //{
+            //    return NotFound();
+            //}
+            //
+            return Ok();
         }
 
         // PUT: api/Elementos/5
