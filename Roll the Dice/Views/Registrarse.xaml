@@ -78,5 +78,62 @@
                 </Button.Resources>
             </Button>
         </Viewbox>
+        <Grid Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="65*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Viewbox Grid.Column="0" Grid.Row="0">
+                <materialDesign:PackIcon x:Name="errorMail" Kind="Error" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="Salmon" Visibility="Hidden"/>
+            </Viewbox>
+            <Border x:Name="borderMessageCorreo" Grid.Row="0" Grid.Column="2" Background="White" CornerRadius="15" Visibility="Hidden"/>
+            <Viewbox Grid.Column="2" Grid.Row="0">
+                <TextBlock x:Name="correoMessageError" Text="Error, correo no valido" FontSize="8" FontFamily="Gregotian" Visibility="Hidden"/>
+            </Viewbox>
+        </Grid>
+        <Grid Grid.Row="6" Grid.Column="6" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="65*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Viewbox Grid.Column="0" Grid.Row="0">
+                <materialDesign:PackIcon x:Name="errorPass" Kind="Error" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="Salmon" Visibility="Hidden"/>
+            </Viewbox>
+            <Border x:Name="borderMessagePass" Grid.Row="0" Grid.Column="2" Background="White" CornerRadius="15" Visibility="Hidden"/>
+            <Viewbox Grid.Column="2" Grid.Row="0">
+                <TextBlock x:Name="textErrorPass" Text="Error, contraseña no valida" FontSize="8" Visibility="Hidden"/>
+            </Viewbox>
+        </Grid>
+        <Grid Grid.Row="8" Grid.Column="6" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="65*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Viewbox Grid.Column="0" Grid.Row="0">
+                <materialDesign:PackIcon x:Name="errorIconValidatePass" Kind="Error" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="Salmon" Visibility="Visible" Mouse.MouseMove="VisibleErrorValidate_Click"/>
+            </Viewbox>
+            <Border x:Name="borderValidatePass" Grid.Row="0" Grid.Column="2" Background="White" CornerRadius="15" Visibility="Hidden"/>
+            <Viewbox Grid.Column="2" Grid.Row="0">
+                <TextBlock x:Name="textValidatePass" Text="Error, la contraseña no coincide con la anterior" FontSize="5" Visibility="Hidden"/>
+            </Viewbox>
+        </Grid>
     </Grid>
 </Page>
