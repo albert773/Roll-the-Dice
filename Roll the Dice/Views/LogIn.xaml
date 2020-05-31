@@ -72,10 +72,48 @@
             <TextBlock Text="¿Has olvidado la contraseña?" Foreground="AliceBlue" TextDecorations="Underline" FontFamily="Georgia" FontSize="4" Mouse.MouseDown="Contraseña_Clicked"/>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="3">
-            <TextBox   Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Usuario" Width="247" Height="53" Foreground="White"/>
+            <TextBox x:Name="correoText"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Correo" Width="247" Height="53" Foreground="White"/>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3">
-            <PasswordBox Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Contraseña" Width="223" Height="47" Foreground="White"/>
+            <PasswordBox x:Name="passText" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Contraseña" Width="223" Height="47" Foreground="White"/>
         </Viewbox>
+        <Grid Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="65*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Viewbox Grid.Column="0" Grid.Row="0">
+                <materialDesign:PackIcon x:Name="errorMail" Kind="Error" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="Salmon" Visibility="Hidden"/>
+            </Viewbox>
+            <Border x:Name="borderMessageCorreo" Grid.Row="0" Grid.Column="2" Background="White" CornerRadius="15" Visibility="Hidden"/>
+            <Viewbox Grid.Column="2" Grid.Row="0">
+                <TextBlock x:Name="correoMessageError" Text="Error, correo no valido" FontSize="8" FontFamily="Gregotian" Visibility="Hidden"/>
+            </Viewbox>
+        </Grid>
+        <Grid Grid.Row="4" Grid.Column="6" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="65*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Viewbox Grid.Column="0" Grid.Row="0">
+                <materialDesign:PackIcon x:Name="errorPass" Kind="Error" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="Salmon" Visibility="Hidden"/>
+            </Viewbox>
+            <Border x:Name="borderMessagePass" Grid.Row="0" Grid.Column="2" Background="White" CornerRadius="15" Visibility="Hidden"/>
+            <Viewbox Grid.Column="2" Grid.Row="0">
+                <TextBlock x:Name="textErrorPass" Text="Error, contraseña no valida" FontSize="8" Visibility="Hidden"/>
+            </Viewbox>
+        </Grid>
     </Grid>
 </Page>

@@ -23,5 +23,11 @@ namespace Roll_the_Dice.Views
             //NavigationService.Navigate(new MenuPlayer());
         }
 
+        private void VisibleErrorValidate_Click(object sender, RoutedEventArgs e)
+        {
+            borderValidatePass.Visibility = Visibility.Visible;
+            textValidatePass.Visibility = Visibility.Visible;
+        }
+
     }
 }
