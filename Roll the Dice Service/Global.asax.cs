@@ -1,3 +1,4 @@
+using Roll_the_Dice_Service.IoC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace Roll_the_Dice_Service
             config.Formatters.JsonFormatter
                         .SerializerSettings
                         .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            AutofacDependencyBuilder.DependencyBuilder();
         }
     }
 }

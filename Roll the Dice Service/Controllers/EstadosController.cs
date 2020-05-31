@@ -20,6 +20,8 @@ namespace Roll_the_Dice_Service.Controllers
         private GenericRepository<Estado> EstadoDTO = uw.RepositoryClient<Estado>();
 
         // GET: api/Estados
+        [HttpGet]
+        [Route("")]
         public IEnumerable<Estado> GetEstado()
         {
             IEnumerable<Estado> estados = EstadoDTO.GetAll();
@@ -31,6 +33,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // GET: api/Estados/5
+        [HttpGet]
+        [Route("{id:int}")]
         [ResponseType(typeof(Estado))]
         public IHttpActionResult GetEstado(int id)
         {
@@ -98,6 +102,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // DELETE: api/Estados/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(Estado))]
         public IHttpActionResult DeleteEstado(int id)
         {

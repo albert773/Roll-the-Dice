@@ -101,6 +101,8 @@ namespace Roll_the_Dice_Service.Controllers
         }
 
         // DELETE: api/Armas/5
+        [HttpDelete]
+        [Route("{id:int}")]
         [ResponseType(typeof(Arma))]
         public IHttpActionResult DeleteArma(int id)
         {

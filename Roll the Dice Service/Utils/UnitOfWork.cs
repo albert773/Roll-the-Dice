@@ -6,6 +6,7 @@ using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using static Roll_the_Dice_Service.IoC.InjectableAttribute;
 
 namespace Roll_the_Dice_Service.Utils
 {
@@ -13,6 +14,7 @@ namespace Roll_the_Dice_Service.Utils
     /// <summary>
     /// Unit of Work class responsible for DB transactions
     /// </summary>
+    [InjectableAttributeTransient]
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         #region Private member variables...
@@ -70,7 +72,7 @@ namespace Roll_the_Dice_Service.Utils
             }
             catch (DbUpdateException)
             {
-                
+                //TODO - agregar catch para controlar excepcion de delete sin cascade
             }
             catch (Exception ex)
             {
@@ -114,7 +116,7 @@ namespace Roll_the_Dice_Service.Utils
                 if (disposing)
                 {
                     Debug.WriteLine("UnitOfWork is being disposed");
-                    //rolltheDiceEntities.Dispose();
+                    rolltheDiceEntities.Dispose();
                 }
             }
             this.disposed = true;

@@ -22,9 +22,9 @@ namespace Roll_the_Dice_Service.Models
     
         public int mapaId { get; set; }
         public int tamaño { get; set; }
-        public int sala { get; set; }
+        public byte[] imagen { get; set; }
     
-        public virtual Sala Sala1 { get; set; }
+        public virtual Sala Sala { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Posicion> Posicion { get; set; }
     }

@@ -19,9 +19,6 @@ namespace Roll_the_Dice_Service.Models
         {
             this.Arma = new HashSet<Arma>();
             this.Armadura = new HashSet<Armadura>();
-            this.Monstruo = new HashSet<Monstruo>();
-            this.NPC = new HashSet<NPC>();
-            this.Personaje1 = new HashSet<Personaje>();
             this.Item = new HashSet<Item>();
         }
     
@@ -33,12 +30,6 @@ namespace Roll_the_Dice_Service.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Armadura> Armadura { get; set; }
         public virtual Personaje Personaje { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Monstruo> Monstruo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NPC> NPC { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Personaje> Personaje1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Item { get; set; }
     }

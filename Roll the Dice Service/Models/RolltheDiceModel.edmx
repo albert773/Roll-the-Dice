@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RolltheDiceDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RolltheDiceDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Accion">
           <Key>
             <PropertyRef Name="accionId" />
@@ -113,6 +113,7 @@
             <PropertyRef Name="inventarioId" />
           </Key>
           <Property Name="inventarioId" Type="int" Nullable="false" />
+          <Property Name="propietario" Type="int" />
           <Property Name="capacidad" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Item">
@@ -134,6 +135,7 @@
           <Property Name="mapaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tamaño" Type="int" Nullable="false" />
           <Property Name="sala" Type="int" Nullable="false" />
+          <Property Name="imagen" Type="image" />
         </EntityType>
         <EntityType Name="Monstruo">
           <Key>
@@ -143,7 +145,7 @@
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="vida" Type="int" Nullable="false" />
           <Property Name="turnos" Type="int" Nullable="false" />
-          <Property Name="estadosAlterados" Type="int" Nullable="false" />
+          <Property Name="estadosAlterados" Type="int" />
           <Property Name="nivel" Type="int" Nullable="false" />
           <Property Name="oro" Type="int" Nullable="false" />
           <Property Name="plata" Type="int" Nullable="false" />
@@ -178,7 +180,7 @@
           <Property Name="vida" Type="int" Nullable="false" />
           <Property Name="turnos" Type="int" Nullable="false" />
           <Property Name="cansancio" Type="int" Nullable="false" />
-          <Property Name="estadosAlterados" Type="int" Nullable="false" />
+          <Property Name="estadosAlterados" Type="int" />
           <Property Name="misionOculta" Type="varchar" MaxLength="250" />
           <Property Name="nivel" Type="int" Nullable="false" />
           <Property Name="experiencia" Type="int" Nullable="false" />
@@ -201,7 +203,7 @@
           <Property Name="vida" Type="int" Nullable="false" />
           <Property Name="turnos" Type="int" Nullable="false" />
           <Property Name="cansancio" Type="int" Nullable="false" />
-          <Property Name="estadosAlterados" Type="int" Nullable="false" />
+          <Property Name="estadosAlterados" Type="int" />
           <Property Name="misionOculta" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="nivel" Type="int" Nullable="false" />
           <Property Name="experiencia" Type="int" Nullable="false" />
@@ -353,7 +355,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Arma__nombre__73BA3083">
-          <End Role="NombreArma" Type="Self.NombreArma" Multiplicity="1" />
+          <End Role="NombreArma" Type="Self.NombreArma" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Arma" Type="Self.Arma" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NombreArma">
@@ -413,7 +417,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Armadura__nombre__7C4F7684">
-          <End Role="NombreArmadura" Type="Self.NombreArmadura" Multiplicity="1" />
+          <End Role="NombreArmadura" Type="Self.NombreArmadura" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Armadura" Type="Self.Armadura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NombreArmadura">
@@ -472,15 +478,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Inventari__inven__6EF57B66">
-          <End Role="Personaje" Type="Self.Personaje" Multiplicity="1" />
-          <End Role="Inventario" Type="Self.Inventario" Multiplicity="0..1" />
+        <Association Name="FK__Inventari__propi__6EF57B66">
+          <End Role="Personaje" Type="Self.Personaje" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Personaje">
               <PropertyRef Name="personajeId" />
             </Principal>
             <Dependent Role="Inventario">
-              <PropertyRef Name="inventarioId" />
+              <PropertyRef Name="propietario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -497,7 +505,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Mapa__sala__5629CD9C">
-          <End Role="Sala" Type="Self.Sala" Multiplicity="1" />
+          <End Role="Sala" Type="Self.Sala" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Mapa" Type="Self.Mapa" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sala">
@@ -509,7 +519,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Monstruo__estado__5BE2A6F2">
-          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
           <End Role="Monstruo" Type="Self.Monstruo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estado">
@@ -557,7 +567,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__NPC__estadosAlte__628FA481">
-          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
           <End Role="NPC" Type="Self.NPC" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estado">
@@ -617,7 +627,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Personaje__estad__693CA210">
-          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
           <End Role="Personaje" Type="Self.Personaje" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estado">
@@ -677,7 +687,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Posicion__mapa__59063A47">
-          <End Role="Mapa" Type="Self.Mapa" Multiplicity="0..1" />
+          <End Role="Mapa" Type="Self.Mapa" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Posicion" Type="Self.Posicion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mapa">
@@ -713,7 +725,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Sala__propietari__46E78A0C">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Sala" Type="Self.Sala" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
@@ -797,11 +811,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__UnionHabi__habil__06CD04F7">
-          <End Role="Inventario" Type="Self.Inventario" Multiplicity="1" />
+          <End Role="Habilidad" Type="Self.Habilidad" Multiplicity="1" />
           <End Role="UnionHabilPerso" Type="Self.UnionHabilPerso" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Inventario">
-              <PropertyRef Name="inventarioId" />
+            <Principal Role="Habilidad">
+              <PropertyRef Name="habilidadId" />
             </Principal>
             <Dependent Role="UnionHabilPerso">
               <PropertyRef Name="habilidadId" />
@@ -809,11 +823,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__UnionHabi__habil__0A9D95DB">
-          <End Role="Inventario" Type="Self.Inventario" Multiplicity="1" />
+          <End Role="Habilidad" Type="Self.Habilidad" Multiplicity="1" />
           <End Role="UnionHabilMonst" Type="Self.UnionHabilMonst" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Inventario">
-              <PropertyRef Name="inventarioId" />
+            <Principal Role="Habilidad">
+              <PropertyRef Name="habilidadId" />
             </Principal>
             <Dependent Role="UnionHabilMonst">
               <PropertyRef Name="habilidadId" />
@@ -821,11 +835,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__UnionHabi__habil__0E6E26BF">
-          <End Role="Inventario" Type="Self.Inventario" Multiplicity="1" />
+          <End Role="Habilidad" Type="Self.Habilidad" Multiplicity="1" />
           <End Role="UnionHabilNPC" Type="Self.UnionHabilNPC" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Inventario">
-              <PropertyRef Name="inventarioId" />
+            <Principal Role="Habilidad">
+              <PropertyRef Name="habilidadId" />
             </Principal>
             <Dependent Role="UnionHabilNPC">
               <PropertyRef Name="habilidadId" />
@@ -869,7 +883,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__UnionInvI__inven__02FC7413">
-          <End Role="Inventario" Type="Self.Inventario" Multiplicity="1" />
+          <End Role="Inventario" Type="Self.Inventario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="UnionInvItem" Type="Self.UnionInvItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventario">
@@ -881,7 +897,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__UnionInvI__itemI__03F0984C">
-          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="UnionInvItem" Type="Self.UnionInvItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Item">
@@ -974,7 +992,7 @@
             <End Role="Estadistica" EntitySet="Estadistica" />
             <End Role="Habilidad" EntitySet="Habilidad" />
           </AssociationSet>
-          <AssociationSet Name="FK__Inventari__inven__6EF57B66" Association="Self.FK__Inventari__inven__6EF57B66">
+          <AssociationSet Name="FK__Inventari__propi__6EF57B66" Association="Self.FK__Inventari__propi__6EF57B66">
             <End Role="Personaje" EntitySet="Personaje" />
             <End Role="Inventario" EntitySet="Inventario" />
           </AssociationSet>
@@ -1083,15 +1101,15 @@
             <End Role="UnionEstatPerso" EntitySet="UnionEstatPerso" />
           </AssociationSet>
           <AssociationSet Name="FK__UnionHabi__habil__06CD04F7" Association="Self.FK__UnionHabi__habil__06CD04F7">
-            <End Role="Inventario" EntitySet="Inventario" />
+            <End Role="Habilidad" EntitySet="Habilidad" />
             <End Role="UnionHabilPerso" EntitySet="UnionHabilPerso" />
           </AssociationSet>
           <AssociationSet Name="FK__UnionHabi__habil__0A9D95DB" Association="Self.FK__UnionHabi__habil__0A9D95DB">
-            <End Role="Inventario" EntitySet="Inventario" />
+            <End Role="Habilidad" EntitySet="Habilidad" />
             <End Role="UnionHabilMonst" EntitySet="UnionHabilMonst" />
           </AssociationSet>
           <AssociationSet Name="FK__UnionHabi__habil__0E6E26BF" Association="Self.FK__UnionHabi__habil__0E6E26BF">
-            <End Role="Inventario" EntitySet="Inventario" />
+            <End Role="Habilidad" EntitySet="Habilidad" />
             <End Role="UnionHabilNPC" EntitySet="UnionHabilNPC" />
           </AssociationSet>
           <AssociationSet Name="FK__UnionHabi__monst__0B91BA14" Association="Self.FK__UnionHabi__monst__0B91BA14">
@@ -1115,8 +1133,7 @@
             <End Role="UnionInvItem" EntitySet="UnionInvItem" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RolltheDiceDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1133,51 +1150,41 @@
             <PropertyRef Name="armaId" />
           </Key>
           <Property Name="armaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="Int32" Nullable="false" />
-          <Property Name="rareza" Type="Int32" Nullable="false" />
           <Property Name="daño" Type="Int32" Nullable="false" />
           <Property Name="esquiva" Type="Int32" Nullable="false" />
           <Property Name="defensa" Type="Int32" Nullable="false" />
           <Property Name="alcance" Type="Int32" Nullable="false" />
-          <Property Name="estadistica" Type="Int32" Nullable="false" />
           <Property Name="bonus" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="elemento" Type="Int32" />
           <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="equipado" Type="Boolean" Nullable="false" />
           <Property Name="peso" Type="Int32" />
           <Property Name="durabilidad" Type="Int32" />
-          <Property Name="inventario" Type="Int32" />
-          <NavigationProperty Name="Elemento1" Relationship="Self.FK__Arma__elemento__76969D2E" FromRole="Arma" ToRole="Elemento" />
-          <NavigationProperty Name="Estadistica1" Relationship="Self.FK__Arma__estadistic__75A278F5" FromRole="Arma" ToRole="Estadistica" />
-          <NavigationProperty Name="Inventario1" Relationship="Self.FK__Arma__inventario__778AC167" FromRole="Arma" ToRole="Inventario" />
+          <NavigationProperty Name="Elemento" Relationship="Self.FK__Arma__elemento__76969D2E" FromRole="Arma" ToRole="Elemento" />
+          <NavigationProperty Name="Estadistica" Relationship="Self.FK__Arma__estadistic__75A278F5" FromRole="Arma" ToRole="Estadistica" />
+          <NavigationProperty Name="Inventario" Relationship="Self.FK__Arma__inventario__778AC167" FromRole="Arma" ToRole="Inventario" />
           <NavigationProperty Name="NombreArma" Relationship="Self.FK__Arma__nombre__73BA3083" FromRole="Arma" ToRole="NombreArma" />
-          <NavigationProperty Name="Rareza1" Relationship="Self.FK__Arma__rareza__74AE54BC" FromRole="Arma" ToRole="Rareza" />
+          <NavigationProperty Name="Rareza" Relationship="Self.FK__Arma__rareza__74AE54BC" FromRole="Arma" ToRole="Rareza" />
         </EntityType>
         <EntityType Name="Armadura">
           <Key>
             <PropertyRef Name="armaduraId" />
           </Key>
           <Property Name="armaduraId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="Int32" Nullable="false" />
-          <Property Name="rareza" Type="Int32" Nullable="false" />
           <Property Name="corte" Type="Int32" Nullable="false" />
           <Property Name="defMagica" Type="Int32" Nullable="false" />
           <Property Name="defFisica" Type="Int32" Nullable="false" />
           <Property Name="penetracion" Type="Int32" Nullable="false" />
           <Property Name="contundente" Type="Int32" Nullable="false" />
-          <Property Name="estadistica" Type="Int32" Nullable="false" />
           <Property Name="bonus" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="elemento" Type="Int32" />
           <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="equipado" Type="Boolean" Nullable="false" />
           <Property Name="peso" Type="Int32" />
           <Property Name="durabilidad" Type="Int32" />
-          <Property Name="inventario" Type="Int32" />
-          <NavigationProperty Name="Elemento1" Relationship="Self.FK__Armadura__elemen__7F2BE32F" FromRole="Armadura" ToRole="Elemento" />
-          <NavigationProperty Name="Estadistica1" Relationship="Self.FK__Armadura__estadi__7E37BEF6" FromRole="Armadura" ToRole="Estadistica" />
-          <NavigationProperty Name="Inventario1" Relationship="Self.FK__Armadura__invent__00200768" FromRole="Armadura" ToRole="Inventario" />
+          <NavigationProperty Name="Elemento" Relationship="Self.FK__Armadura__elemen__7F2BE32F" FromRole="Armadura" ToRole="Elemento" />
+          <NavigationProperty Name="Estadistica" Relationship="Self.FK__Armadura__estadi__7E37BEF6" FromRole="Armadura" ToRole="Estadistica" />
+          <NavigationProperty Name="Inventario" Relationship="Self.FK__Armadura__invent__00200768" FromRole="Armadura" ToRole="Inventario" />
           <NavigationProperty Name="NombreArmadura" Relationship="Self.FK__Armadura__nombre__7C4F7684" FromRole="Armadura" ToRole="NombreArmadura" />
-          <NavigationProperty Name="Rareza1" Relationship="Self.FK__Armadura__rareza__7D439ABD" FromRole="Armadura" ToRole="Rareza" />
+          <NavigationProperty Name="Rareza" Relationship="Self.FK__Armadura__rareza__7D439ABD" FromRole="Armadura" ToRole="Rareza" />
         </EntityType>
         <EntityType Name="Clase">
           <Key>
@@ -1198,12 +1205,11 @@
           <Property Name="rango" Type="Int32" Nullable="false" />
           <Property Name="daño" Type="Int32" Nullable="false" />
           <Property Name="debufo" Type="Int32" Nullable="false" />
-          <Property Name="debilidad" Type="Int32" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Arma" Relationship="Self.FK__Arma__elemento__76969D2E" FromRole="Elemento" ToRole="Arma" />
           <NavigationProperty Name="Armadura" Relationship="Self.FK__Armadura__elemen__7F2BE32F" FromRole="Elemento" ToRole="Armadura" />
-          <NavigationProperty Name="Elemento1" Relationship="Self.FK__Elemento__debili__3D5E1FD2" FromRole="Elemento" ToRole="Elemento1" />
-          <NavigationProperty Name="Elemento2" Relationship="Self.FK__Elemento__debili__3D5E1FD2" FromRole="Elemento1" ToRole="Elemento" />
+          <NavigationProperty Name="Fortaleza" Relationship="Self.FK__Elemento__debili__3D5E1FD2" FromRole="Elemento" ToRole="Elemento1" />
+          <NavigationProperty Name="Debilidad" Relationship="Self.FK__Elemento__debili__3D5E1FD2" FromRole="Elemento1" ToRole="Elemento" />
           <NavigationProperty Name="Habilidad" Relationship="Self.FK__Habilidad__eleme__440B1D61" FromRole="Elemento" ToRole="Habilidad" />
         </EntityType>
         <EntityType Name="Estadistica">
@@ -1239,11 +1245,12 @@
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="coste" Type="Int32" Nullable="false" />
           <Property Name="nivel" Type="Int32" Nullable="false" />
-          <Property Name="estadistica" Type="Int32" Nullable="false" />
           <Property Name="bonus" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="elemento" Type="Int32" />
-          <NavigationProperty Name="Elemento1" Relationship="Self.FK__Habilidad__eleme__440B1D61" FromRole="Habilidad" ToRole="Elemento" />
-          <NavigationProperty Name="Estadistica1" Relationship="Self.FK__Habilidad__estad__4316F928" FromRole="Habilidad" ToRole="Estadistica" />
+          <NavigationProperty Name="Elemento" Relationship="Self.FK__Habilidad__eleme__440B1D61" FromRole="Habilidad" ToRole="Elemento" />
+          <NavigationProperty Name="Estadistica" Relationship="Self.FK__Habilidad__estad__4316F928" FromRole="Habilidad" ToRole="Estadistica" />
+          <NavigationProperty Name="Monstruo" Relationship="Self.UnionHabilMonst" FromRole="Habilidad" ToRole="Monstruo" />
+          <NavigationProperty Name="NPC" Relationship="Self.UnionHabilNPC" FromRole="Habilidad" ToRole="NPC" />
+          <NavigationProperty Name="Personaje" Relationship="Self.UnionHabilPerso" FromRole="Habilidad" ToRole="Personaje" />
         </EntityType>
         <EntityType Name="Idioma">
           <Key>
@@ -1261,10 +1268,7 @@
           <Property Name="capacidad" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Arma" Relationship="Self.FK__Arma__inventario__778AC167" FromRole="Inventario" ToRole="Arma" />
           <NavigationProperty Name="Armadura" Relationship="Self.FK__Armadura__invent__00200768" FromRole="Inventario" ToRole="Armadura" />
-          <NavigationProperty Name="Personaje" Relationship="Self.FK__Inventari__inven__6EF57B66" FromRole="Inventario" ToRole="Personaje" />
-          <NavigationProperty Name="Monstruo" Relationship="Self.UnionHabilMonst" FromRole="Inventario" ToRole="Monstruo" />
-          <NavigationProperty Name="NPC" Relationship="Self.UnionHabilNPC" FromRole="Inventario" ToRole="NPC" />
-          <NavigationProperty Name="Personaje1" Relationship="Self.UnionHabilPerso" FromRole="Inventario" ToRole="Personaje" />
+          <NavigationProperty Name="Personaje" Relationship="Self.FK__Inventari__propi__6EF57B66" FromRole="Inventario" ToRole="Personaje" />
           <NavigationProperty Name="Item" Relationship="Self.UnionInvItem" FromRole="Inventario" ToRole="Item" />
         </EntityType>
         <EntityType Name="Item">
@@ -1273,12 +1277,11 @@
           </Key>
           <Property Name="itemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="rareza" Type="Int32" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="equipar" Type="Boolean" Nullable="false" />
           <Property Name="peso" Type="Int32" />
           <Property Name="durabilidad" Type="Int32" />
-          <NavigationProperty Name="Rareza1" Relationship="Self.FK__Item__rareza__5165187F" FromRole="Item" ToRole="Rareza" />
+          <NavigationProperty Name="Rareza" Relationship="Self.FK__Item__rareza__5165187F" FromRole="Item" ToRole="Rareza" />
           <NavigationProperty Name="Inventario" Relationship="Self.UnionInvItem" FromRole="Item" ToRole="Inventario" />
         </EntityType>
         <EntityType Name="Mapa">
@@ -1287,8 +1290,8 @@
           </Key>
           <Property Name="mapaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tamaño" Type="Int32" Nullable="false" />
-          <Property Name="sala" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Sala1" Relationship="Self.FK__Mapa__sala__5629CD9C" FromRole="Mapa" ToRole="Sala" />
+          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Sala" Relationship="Self.FK__Mapa__sala__5629CD9C" FromRole="Mapa" ToRole="Sala" />
           <NavigationProperty Name="Posicion" Relationship="Self.FK__Posicion__mapa__59063A47" FromRole="Mapa" ToRole="Posicion" />
         </EntityType>
         <EntityType Name="Monstruo">
@@ -1299,18 +1302,15 @@
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="vida" Type="Int32" Nullable="false" />
           <Property Name="turnos" Type="Int32" Nullable="false" />
-          <Property Name="estadosAlterados" Type="Int32" Nullable="false" />
           <Property Name="nivel" Type="Int32" Nullable="false" />
           <Property Name="oro" Type="Int32" Nullable="false" />
           <Property Name="plata" Type="Int32" Nullable="false" />
           <Property Name="cobre" Type="Int32" Nullable="false" />
-          <Property Name="sala" Type="Int32" Nullable="false" />
-          <Property Name="posicion" Type="Int32" />
           <NavigationProperty Name="Estado" Relationship="Self.FK__Monstruo__estado__5BE2A6F2" FromRole="Monstruo" ToRole="Estado" />
-          <NavigationProperty Name="Posicion1" Relationship="Self.FK__Monstruo__posici__5DCAEF64" FromRole="Monstruo" ToRole="Posicion" />
-          <NavigationProperty Name="Sala1" Relationship="Self.FK__Monstruo__sala__5CD6CB2B" FromRole="Monstruo" ToRole="Sala" />
+          <NavigationProperty Name="Posicion" Relationship="Self.FK__Monstruo__posici__5DCAEF64" FromRole="Monstruo" ToRole="Posicion" />
+          <NavigationProperty Name="Sala" Relationship="Self.FK__Monstruo__sala__5CD6CB2B" FromRole="Monstruo" ToRole="Sala" />
           <NavigationProperty Name="Estadistica" Relationship="Self.UnionEstatMonst" FromRole="Monstruo" ToRole="Estadistica" />
-          <NavigationProperty Name="Inventario" Relationship="Self.UnionHabilMonst" FromRole="Monstruo" ToRole="Inventario" />
+          <NavigationProperty Name="Habilidad" Relationship="Self.UnionHabilMonst" FromRole="Monstruo" ToRole="Habilidad" />
         </EntityType>
         <EntityType Name="NombreArma">
           <Key>
@@ -1334,29 +1334,24 @@
           </Key>
           <Property Name="NPCId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="clase" Type="Int32" Nullable="false" />
-          <Property Name="raza" Type="Int32" Nullable="false" />
           <Property Name="sexo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="edad" Type="Int32" Nullable="false" />
           <Property Name="vida" Type="Int32" Nullable="false" />
           <Property Name="turnos" Type="Int32" Nullable="false" />
           <Property Name="cansancio" Type="Int32" Nullable="false" />
-          <Property Name="estadosAlterados" Type="Int32" Nullable="false" />
           <Property Name="misionOculta" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="nivel" Type="Int32" Nullable="false" />
           <Property Name="experiencia" Type="Int32" Nullable="false" />
           <Property Name="oro" Type="Int32" Nullable="false" />
           <Property Name="plata" Type="Int32" Nullable="false" />
           <Property Name="cobre" Type="Int32" Nullable="false" />
-          <Property Name="sala" Type="Int32" Nullable="false" />
-          <Property Name="posicion" Type="Int32" />
-          <NavigationProperty Name="Clase1" Relationship="Self.FK__NPC__clase__60A75C0F" FromRole="NPC" ToRole="Clase" />
+          <NavigationProperty Name="Clase" Relationship="Self.FK__NPC__clase__60A75C0F" FromRole="NPC" ToRole="Clase" />
           <NavigationProperty Name="Estado" Relationship="Self.FK__NPC__estadosAlte__628FA481" FromRole="NPC" ToRole="Estado" />
-          <NavigationProperty Name="Posicion1" Relationship="Self.FK__NPC__posicion__6477ECF3" FromRole="NPC" ToRole="Posicion" />
-          <NavigationProperty Name="Raza1" Relationship="Self.FK__NPC__raza__619B8048" FromRole="NPC" ToRole="Raza" />
-          <NavigationProperty Name="Sala1" Relationship="Self.FK__NPC__sala__6383C8BA" FromRole="NPC" ToRole="Sala" />
+          <NavigationProperty Name="Posicion" Relationship="Self.FK__NPC__posicion__6477ECF3" FromRole="NPC" ToRole="Posicion" />
+          <NavigationProperty Name="Raza" Relationship="Self.FK__NPC__raza__619B8048" FromRole="NPC" ToRole="Raza" />
+          <NavigationProperty Name="Sala" Relationship="Self.FK__NPC__sala__6383C8BA" FromRole="NPC" ToRole="Sala" />
           <NavigationProperty Name="Estadistica" Relationship="Self.UnionEstatNPC" FromRole="NPC" ToRole="Estadistica" />
-          <NavigationProperty Name="Inventario" Relationship="Self.UnionHabilNPC" FromRole="NPC" ToRole="Inventario" />
+          <NavigationProperty Name="Habilidad" Relationship="Self.UnionHabilNPC" FromRole="NPC" ToRole="Habilidad" />
         </EntityType>
         <EntityType Name="Personaje">
           <Key>
@@ -1364,32 +1359,26 @@
           </Key>
           <Property Name="personajeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="clase" Type="Int32" Nullable="false" />
-          <Property Name="raza" Type="Int32" Nullable="false" />
           <Property Name="sexo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="edad" Type="Int32" Nullable="false" />
           <Property Name="vida" Type="Int32" Nullable="false" />
           <Property Name="turnos" Type="Int32" Nullable="false" />
           <Property Name="cansancio" Type="Int32" Nullable="false" />
-          <Property Name="estadosAlterados" Type="Int32" Nullable="false" />
           <Property Name="misionOculta" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nivel" Type="Int32" Nullable="false" />
           <Property Name="experiencia" Type="Int32" Nullable="false" />
           <Property Name="oro" Type="Int32" Nullable="false" />
           <Property Name="plata" Type="Int32" Nullable="false" />
           <Property Name="cobre" Type="Int32" Nullable="false" />
-          <Property Name="sala" Type="Int32" Nullable="false" />
-          <Property Name="usuario" Type="Int32" Nullable="false" />
-          <Property Name="posicion" Type="Int32" />
-          <NavigationProperty Name="Clase1" Relationship="Self.FK__Personaje__clase__6754599E" FromRole="Personaje" ToRole="Clase" />
+          <NavigationProperty Name="Clase" Relationship="Self.FK__Personaje__clase__6754599E" FromRole="Personaje" ToRole="Clase" />
           <NavigationProperty Name="Estado" Relationship="Self.FK__Personaje__estad__693CA210" FromRole="Personaje" ToRole="Estado" />
-          <NavigationProperty Name="Inventario" Relationship="Self.FK__Inventari__inven__6EF57B66" FromRole="Personaje" ToRole="Inventario" />
-          <NavigationProperty Name="Posicion1" Relationship="Self.FK__Personaje__posic__6C190EBB" FromRole="Personaje" ToRole="Posicion" />
-          <NavigationProperty Name="Raza1" Relationship="Self.FK__Personaje__raza__68487DD7" FromRole="Personaje" ToRole="Raza" />
-          <NavigationProperty Name="Sala1" Relationship="Self.FK__Personaje__sala__6A30C649" FromRole="Personaje" ToRole="Sala" />
-          <NavigationProperty Name="Usuario1" Relationship="Self.FK__Personaje__usuar__6B24EA82" FromRole="Personaje" ToRole="Usuario" />
+          <NavigationProperty Name="Inventario" Relationship="Self.FK__Inventari__propi__6EF57B66" FromRole="Personaje" ToRole="Inventario" />
+          <NavigationProperty Name="Posicion" Relationship="Self.FK__Personaje__posic__6C190EBB" FromRole="Personaje" ToRole="Posicion" />
+          <NavigationProperty Name="Raza" Relationship="Self.FK__Personaje__raza__68487DD7" FromRole="Personaje" ToRole="Raza" />
+          <NavigationProperty Name="Sala" Relationship="Self.FK__Personaje__sala__6A30C649" FromRole="Personaje" ToRole="Sala" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Personaje__usuar__6B24EA82" FromRole="Personaje" ToRole="Usuario" />
           <NavigationProperty Name="Estadistica" Relationship="Self.UnionEstatPerso" FromRole="Personaje" ToRole="Estadistica" />
-          <NavigationProperty Name="Inventario1" Relationship="Self.UnionHabilPerso" FromRole="Personaje" ToRole="Inventario" />
+          <NavigationProperty Name="Habilidad" Relationship="Self.UnionHabilPerso" FromRole="Personaje" ToRole="Habilidad" />
         </EntityType>
         <EntityType Name="Posicion">
           <Key>
@@ -1399,8 +1388,7 @@
           <Property Name="x" Type="Int32" Nullable="false" />
           <Property Name="y" Type="Int32" Nullable="false" />
           <Property Name="bloqueado" Type="Boolean" Nullable="false" />
-          <Property Name="mapa" Type="Int32" />
-          <NavigationProperty Name="Mapa1" Relationship="Self.FK__Posicion__mapa__59063A47" FromRole="Posicion" ToRole="Mapa" />
+          <NavigationProperty Name="Mapa" Relationship="Self.FK__Posicion__mapa__59063A47" FromRole="Posicion" ToRole="Mapa" />
           <NavigationProperty Name="Monstruo" Relationship="Self.FK__Monstruo__posici__5DCAEF64" FromRole="Posicion" ToRole="Monstruo" />
           <NavigationProperty Name="NPC" Relationship="Self.FK__NPC__posicion__6477ECF3" FromRole="Posicion" ToRole="NPC" />
           <NavigationProperty Name="Personaje" Relationship="Self.FK__Personaje__posic__6C190EBB" FromRole="Posicion" ToRole="Personaje" />
@@ -1424,11 +1412,9 @@
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="altura" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="peso" Type="Int32" Nullable="false" />
-          <Property Name="idioma" Type="Int32" />
-          <Property Name="estadistica" Type="Int32" Nullable="false" />
           <Property Name="bonus" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Estadistica1" Relationship="Self.FK__Raza__estadistic__4CA06362" FromRole="Raza" ToRole="Estadistica" />
-          <NavigationProperty Name="Idioma1" Relationship="Self.FK__Raza__idioma__4BAC3F29" FromRole="Raza" ToRole="Idioma" />
+          <NavigationProperty Name="Estadistica" Relationship="Self.FK__Raza__estadistic__4CA06362" FromRole="Raza" ToRole="Estadistica" />
+          <NavigationProperty Name="Idioma" Relationship="Self.FK__Raza__idioma__4BAC3F29" FromRole="Raza" ToRole="Idioma" />
           <NavigationProperty Name="NPC" Relationship="Self.FK__NPC__raza__619B8048" FromRole="Raza" ToRole="NPC" />
           <NavigationProperty Name="Personaje" Relationship="Self.FK__Personaje__raza__68487DD7" FromRole="Raza" ToRole="Personaje" />
         </EntityType>
@@ -1438,7 +1424,6 @@
           </Key>
           <Property Name="salaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="propietario" Type="Int32" />
           <Property Name="password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Mapa" Relationship="Self.FK__Mapa__sala__5629CD9C" FromRole="Sala" ToRole="Mapa" />
           <NavigationProperty Name="Monstruo" Relationship="Self.FK__Monstruo__sala__5CD6CB2B" FromRole="Sala" ToRole="Monstruo" />
@@ -1460,410 +1445,150 @@
         <Association Name="FK__Arma__elemento__76969D2E">
           <End Role="Elemento" Type="Self.Elemento" Multiplicity="0..1" />
           <End Role="Arma" Type="Self.Arma" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Elemento">
-              <PropertyRef Name="elementoId" />
-            </Principal>
-            <Dependent Role="Arma">
-              <PropertyRef Name="elemento" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Arma__estadistic__75A278F5">
           <End Role="Estadistica" Type="Self.Estadistica" Multiplicity="1" />
           <End Role="Arma" Type="Self.Arma" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estadistica">
-              <PropertyRef Name="estadisticaId" />
-            </Principal>
-            <Dependent Role="Arma">
-              <PropertyRef Name="estadistica" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Arma__inventario__778AC167">
           <End Role="Inventario" Type="Self.Inventario" Multiplicity="0..1" />
           <End Role="Arma" Type="Self.Arma" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Inventario">
-              <PropertyRef Name="inventarioId" />
-            </Principal>
-            <Dependent Role="Arma">
-              <PropertyRef Name="inventario" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Arma__nombre__73BA3083">
-          <End Role="NombreArma" Type="Self.NombreArma" Multiplicity="1" />
+          <End Role="NombreArma" Type="Self.NombreArma" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Arma" Type="Self.Arma" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NombreArma">
-              <PropertyRef Name="nombreArmaId" />
-            </Principal>
-            <Dependent Role="Arma">
-              <PropertyRef Name="nombre" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Arma__rareza__74AE54BC">
           <End Role="Rareza" Type="Self.Rareza" Multiplicity="1" />
           <End Role="Arma" Type="Self.Arma" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rareza">
-              <PropertyRef Name="rarezaId" />
-            </Principal>
-            <Dependent Role="Arma">
-              <PropertyRef Name="rareza" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Armadura__elemen__7F2BE32F">
           <End Role="Elemento" Type="Self.Elemento" Multiplicity="0..1" />
           <End Role="Armadura" Type="Self.Armadura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Elemento">
-              <PropertyRef Name="elementoId" />
-            </Principal>
-            <Dependent Role="Armadura">
-              <PropertyRef Name="elemento" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Armadura__estadi__7E37BEF6">
           <End Role="Estadistica" Type="Self.Estadistica" Multiplicity="1" />
           <End Role="Armadura" Type="Self.Armadura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estadistica">
-              <PropertyRef Name="estadisticaId" />
-            </Principal>
-            <Dependent Role="Armadura">
-              <PropertyRef Name="estadistica" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Armadura__invent__00200768">
           <End Role="Inventario" Type="Self.Inventario" Multiplicity="0..1" />
           <End Role="Armadura" Type="Self.Armadura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Inventario">
-              <PropertyRef Name="inventarioId" />
-            </Principal>
-            <Dependent Role="Armadura">
-              <PropertyRef Name="inventario" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Armadura__nombre__7C4F7684">
-          <End Role="NombreArmadura" Type="Self.NombreArmadura" Multiplicity="1" />
+          <End Role="NombreArmadura" Type="Self.NombreArmadura" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Armadura" Type="Self.Armadura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NombreArmadura">
-              <PropertyRef Name="nombreArmaduraId" />
-            </Principal>
-            <Dependent Role="Armadura">
-              <PropertyRef Name="nombre" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Armadura__rareza__7D439ABD">
           <End Role="Rareza" Type="Self.Rareza" Multiplicity="1" />
           <End Role="Armadura" Type="Self.Armadura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rareza">
-              <PropertyRef Name="rarezaId" />
-            </Principal>
-            <Dependent Role="Armadura">
-              <PropertyRef Name="rareza" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__NPC__clase__60A75C0F">
           <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
           <End Role="NPC" Type="Self.NPC" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clase">
-              <PropertyRef Name="claseId" />
-            </Principal>
-            <Dependent Role="NPC">
-              <PropertyRef Name="clase" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Personaje__clase__6754599E">
           <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
           <End Role="Personaje" Type="Self.Personaje" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clase">
-              <PropertyRef Name="claseId" />
-            </Principal>
-            <Dependent Role="Personaje">
-              <PropertyRef Name="clase" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Elemento__debili__3D5E1FD2">
           <End Role="Elemento" Type="Self.Elemento" Multiplicity="1" />
-          <End Role="Elemento1" Type="Self.Elemento" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Elemento">
-              <PropertyRef Name="elementoId" />
-            </Principal>
-            <Dependent Role="Elemento1">
-              <PropertyRef Name="debilidad" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Role="Elemento1" Type="Self.Elemento" Multiplicity="1" />
         </Association>
         <Association Name="FK__Habilidad__eleme__440B1D61">
           <End Role="Elemento" Type="Self.Elemento" Multiplicity="0..1" />
           <End Role="Habilidad" Type="Self.Habilidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Elemento">
-              <PropertyRef Name="elementoId" />
-            </Principal>
-            <Dependent Role="Habilidad">
-              <PropertyRef Name="elemento" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Habilidad__estad__4316F928">
           <End Role="Estadistica" Type="Self.Estadistica" Multiplicity="1" />
           <End Role="Habilidad" Type="Self.Habilidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estadistica">
-              <PropertyRef Name="estadisticaId" />
-            </Principal>
-            <Dependent Role="Habilidad">
-              <PropertyRef Name="estadistica" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Raza__estadistic__4CA06362">
           <End Role="Estadistica" Type="Self.Estadistica" Multiplicity="1" />
           <End Role="Raza" Type="Self.Raza" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estadistica">
-              <PropertyRef Name="estadisticaId" />
-            </Principal>
-            <Dependent Role="Raza">
-              <PropertyRef Name="estadistica" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Monstruo__estado__5BE2A6F2">
-          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
           <End Role="Monstruo" Type="Self.Monstruo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estado">
-              <PropertyRef Name="estadoId" />
-            </Principal>
-            <Dependent Role="Monstruo">
-              <PropertyRef Name="estadosAlterados" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__NPC__estadosAlte__628FA481">
-          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
           <End Role="NPC" Type="Self.NPC" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estado">
-              <PropertyRef Name="estadoId" />
-            </Principal>
-            <Dependent Role="NPC">
-              <PropertyRef Name="estadosAlterados" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Personaje__estad__693CA210">
-          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
           <End Role="Personaje" Type="Self.Personaje" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estado">
-              <PropertyRef Name="estadoId" />
-            </Principal>
-            <Dependent Role="Personaje">
-              <PropertyRef Name="estadosAlterados" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Raza__idioma__4BAC3F29">
           <End Role="Idioma" Type="Self.Idioma" Multiplicity="0..1" />
           <End Role="Raza" Type="Self.Raza" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Idioma">
-              <PropertyRef Name="idiomaId" />
-            </Principal>
-            <Dependent Role="Raza">
-              <PropertyRef Name="idioma" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Inventari__inven__6EF57B66">
-          <End Role="Personaje" Type="Self.Personaje" Multiplicity="1" />
-          <End Role="Inventario" Type="Self.Inventario" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Personaje">
-              <PropertyRef Name="personajeId" />
-            </Principal>
-            <Dependent Role="Inventario">
-              <PropertyRef Name="inventarioId" />
-            </Dependent>
-          </ReferentialConstraint>
+        <Association Name="FK__Inventari__propi__6EF57B66">
+          <End Role="Personaje" Type="Self.Personaje" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
         </Association>
         <Association Name="FK__Item__rareza__5165187F">
           <End Role="Rareza" Type="Self.Rareza" Multiplicity="1" />
           <End Role="Item" Type="Self.Item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rareza">
-              <PropertyRef Name="rarezaId" />
-            </Principal>
-            <Dependent Role="Item">
-              <PropertyRef Name="rareza" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Mapa__sala__5629CD9C">
-          <End Role="Sala" Type="Self.Sala" Multiplicity="1" />
+          <End Role="Sala" Type="Self.Sala" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Mapa" Type="Self.Mapa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sala">
-              <PropertyRef Name="salaId" />
-            </Principal>
-            <Dependent Role="Mapa">
-              <PropertyRef Name="sala" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Posicion__mapa__59063A47">
-          <End Role="Mapa" Type="Self.Mapa" Multiplicity="0..1" />
+          <End Role="Mapa" Type="Self.Mapa" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Posicion" Type="Self.Posicion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mapa">
-              <PropertyRef Name="mapaId" />
-            </Principal>
-            <Dependent Role="Posicion">
-              <PropertyRef Name="mapa" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Monstruo__posici__5DCAEF64">
           <End Role="Posicion" Type="Self.Posicion" Multiplicity="0..1" />
           <End Role="Monstruo" Type="Self.Monstruo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Posicion">
-              <PropertyRef Name="posicionId" />
-            </Principal>
-            <Dependent Role="Monstruo">
-              <PropertyRef Name="posicion" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Monstruo__sala__5CD6CB2B">
           <End Role="Sala" Type="Self.Sala" Multiplicity="1" />
           <End Role="Monstruo" Type="Self.Monstruo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sala">
-              <PropertyRef Name="salaId" />
-            </Principal>
-            <Dependent Role="Monstruo">
-              <PropertyRef Name="sala" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__NPC__posicion__6477ECF3">
           <End Role="Posicion" Type="Self.Posicion" Multiplicity="0..1" />
           <End Role="NPC" Type="Self.NPC" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Posicion">
-              <PropertyRef Name="posicionId" />
-            </Principal>
-            <Dependent Role="NPC">
-              <PropertyRef Name="posicion" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__NPC__raza__619B8048">
           <End Role="Raza" Type="Self.Raza" Multiplicity="1" />
           <End Role="NPC" Type="Self.NPC" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Raza">
-              <PropertyRef Name="razaId" />
-            </Principal>
-            <Dependent Role="NPC">
-              <PropertyRef Name="raza" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__NPC__sala__6383C8BA">
           <End Role="Sala" Type="Self.Sala" Multiplicity="1" />
           <End Role="NPC" Type="Self.NPC" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sala">
-              <PropertyRef Name="salaId" />
-            </Principal>
-            <Dependent Role="NPC">
-              <PropertyRef Name="sala" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Personaje__posic__6C190EBB">
           <End Role="Posicion" Type="Self.Posicion" Multiplicity="0..1" />
           <End Role="Personaje" Type="Self.Personaje" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Posicion">
-              <PropertyRef Name="posicionId" />
-            </Principal>
-            <Dependent Role="Personaje">
-              <PropertyRef Name="posicion" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Personaje__raza__68487DD7">
           <End Role="Raza" Type="Self.Raza" Multiplicity="1" />
           <End Role="Personaje" Type="Self.Personaje" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Raza">
-              <PropertyRef Name="razaId" />
-            </Principal>
-            <Dependent Role="Personaje">
-              <PropertyRef Name="raza" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Personaje__sala__6A30C649">
           <End Role="Sala" Type="Self.Sala" Multiplicity="1" />
           <End Role="Personaje" Type="Self.Personaje" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sala">
-              <PropertyRef Name="salaId" />
-            </Principal>
-            <Dependent Role="Personaje">
-              <PropertyRef Name="sala" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Personaje__usuar__6B24EA82">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Personaje" Type="Self.Personaje" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="usuarioId" />
-            </Principal>
-            <Dependent Role="Personaje">
-              <PropertyRef Name="usuario" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK__Sala__propietari__46E78A0C">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Sala" Type="Self.Sala" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="usuarioId" />
-            </Principal>
-            <Dependent Role="Sala">
-              <PropertyRef Name="propietario" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="UnionEstatMonst">
           <End Role="Estadistica" Type="Self.Estadistica" Multiplicity="*" />
@@ -1878,15 +1603,15 @@
           <End Role="Personaje" Type="Self.Personaje" Multiplicity="*" />
         </Association>
         <Association Name="UnionHabilMonst">
-          <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
+          <End Role="Habilidad" Type="Self.Habilidad" Multiplicity="*" />
           <End Role="Monstruo" Type="Self.Monstruo" Multiplicity="*" />
         </Association>
         <Association Name="UnionHabilNPC">
-          <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
+          <End Role="Habilidad" Type="Self.Habilidad" Multiplicity="*" />
           <End Role="NPC" Type="Self.NPC" Multiplicity="*" />
         </Association>
         <Association Name="UnionHabilPerso">
-          <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
+          <End Role="Habilidad" Type="Self.Habilidad" Multiplicity="*" />
           <End Role="Personaje" Type="Self.Personaje" Multiplicity="*" />
         </Association>
         <Association Name="UnionInvItem">
@@ -1996,7 +1721,7 @@
             <End Role="Idioma" EntitySet="Idioma" />
             <End Role="Raza" EntitySet="Raza" />
           </AssociationSet>
-          <AssociationSet Name="FK__Inventari__inven__6EF57B66" Association="Self.FK__Inventari__inven__6EF57B66">
+          <AssociationSet Name="FK__Inventari__propi__6EF57B66" Association="Self.FK__Inventari__propi__6EF57B66">
             <End Role="Personaje" EntitySet="Personaje" />
             <End Role="Inventario" EntitySet="Inventario" />
           </AssociationSet>
@@ -2065,15 +1790,15 @@
             <End Role="Personaje" EntitySet="Personaje" />
           </AssociationSet>
           <AssociationSet Name="UnionHabilMonst" Association="Self.UnionHabilMonst">
-            <End Role="Inventario" EntitySet="Inventario" />
+            <End Role="Habilidad" EntitySet="Habilidad" />
             <End Role="Monstruo" EntitySet="Monstruo" />
           </AssociationSet>
           <AssociationSet Name="UnionHabilNPC" Association="Self.UnionHabilNPC">
-            <End Role="Inventario" EntitySet="Inventario" />
+            <End Role="Habilidad" EntitySet="Habilidad" />
             <End Role="NPC" EntitySet="NPC" />
           </AssociationSet>
           <AssociationSet Name="UnionHabilPerso" Association="Self.UnionHabilPerso">
-            <End Role="Inventario" EntitySet="Inventario" />
+            <End Role="Habilidad" EntitySet="Habilidad" />
             <End Role="Personaje" EntitySet="Personaje" />
           </AssociationSet>
           <AssociationSet Name="UnionInvItem" Association="Self.UnionInvItem">
@@ -2100,20 +1825,15 @@
             <EntityTypeMapping TypeName="RolltheDiceDBModel.Arma">
               <MappingFragment StoreEntitySet="Arma">
                 <ScalarProperty Name="armaId" ColumnName="armaId" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="rareza" ColumnName="rareza" />
                 <ScalarProperty Name="daño" ColumnName="daño" />
                 <ScalarProperty Name="esquiva" ColumnName="esquiva" />
                 <ScalarProperty Name="defensa" ColumnName="defensa" />
                 <ScalarProperty Name="alcance" ColumnName="alcance" />
-                <ScalarProperty Name="estadistica" ColumnName="estadistica" />
                 <ScalarProperty Name="bonus" ColumnName="bonus" />
-                <ScalarProperty Name="elemento" ColumnName="elemento" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="equipado" ColumnName="equipado" />
                 <ScalarProperty Name="peso" ColumnName="peso" />
                 <ScalarProperty Name="durabilidad" ColumnName="durabilidad" />
-                <ScalarProperty Name="inventario" ColumnName="inventario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2121,21 +1841,16 @@
             <EntityTypeMapping TypeName="RolltheDiceDBModel.Armadura">
               <MappingFragment StoreEntitySet="Armadura">
                 <ScalarProperty Name="armaduraId" ColumnName="armaduraId" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="rareza" ColumnName="rareza" />
                 <ScalarProperty Name="corte" ColumnName="corte" />
                 <ScalarProperty Name="defMagica" ColumnName="defMagica" />
                 <ScalarProperty Name="defFisica" ColumnName="defFisica" />
                 <ScalarProperty Name="penetracion" ColumnName="penetracion" />
                 <ScalarProperty Name="contundente" ColumnName="contundente" />
-                <ScalarProperty Name="estadistica" ColumnName="estadistica" />
                 <ScalarProperty Name="bonus" ColumnName="bonus" />
-                <ScalarProperty Name="elemento" ColumnName="elemento" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="equipado" ColumnName="equipado" />
                 <ScalarProperty Name="peso" ColumnName="peso" />
                 <ScalarProperty Name="durabilidad" ColumnName="durabilidad" />
-                <ScalarProperty Name="inventario" ColumnName="inventario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2156,7 +1871,6 @@
                 <ScalarProperty Name="rango" ColumnName="rango" />
                 <ScalarProperty Name="daño" ColumnName="daño" />
                 <ScalarProperty Name="debufo" ColumnName="debufo" />
-                <ScalarProperty Name="debilidad" ColumnName="debilidad" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2185,9 +1899,7 @@
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="coste" ColumnName="coste" />
                 <ScalarProperty Name="nivel" ColumnName="nivel" />
-                <ScalarProperty Name="estadistica" ColumnName="estadistica" />
                 <ScalarProperty Name="bonus" ColumnName="bonus" />
-                <ScalarProperty Name="elemento" ColumnName="elemento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2212,7 +1924,6 @@
               <MappingFragment StoreEntitySet="Item">
                 <ScalarProperty Name="itemId" ColumnName="itemId" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="rareza" ColumnName="rareza" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="equipar" ColumnName="equipar" />
                 <ScalarProperty Name="peso" ColumnName="peso" />
@@ -2225,7 +1936,7 @@
               <MappingFragment StoreEntitySet="Mapa">
                 <ScalarProperty Name="mapaId" ColumnName="mapaId" />
                 <ScalarProperty Name="tamaño" ColumnName="tamaño" />
-                <ScalarProperty Name="sala" ColumnName="sala" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2236,13 +1947,10 @@
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="vida" ColumnName="vida" />
                 <ScalarProperty Name="turnos" ColumnName="turnos" />
-                <ScalarProperty Name="estadosAlterados" ColumnName="estadosAlterados" />
                 <ScalarProperty Name="nivel" ColumnName="nivel" />
                 <ScalarProperty Name="oro" ColumnName="oro" />
                 <ScalarProperty Name="plata" ColumnName="plata" />
                 <ScalarProperty Name="cobre" ColumnName="cobre" />
-                <ScalarProperty Name="sala" ColumnName="sala" />
-                <ScalarProperty Name="posicion" ColumnName="posicion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2267,22 +1975,17 @@
               <MappingFragment StoreEntitySet="NPC">
                 <ScalarProperty Name="NPCId" ColumnName="NPCId" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="clase" ColumnName="clase" />
-                <ScalarProperty Name="raza" ColumnName="raza" />
                 <ScalarProperty Name="sexo" ColumnName="sexo" />
                 <ScalarProperty Name="edad" ColumnName="edad" />
                 <ScalarProperty Name="vida" ColumnName="vida" />
                 <ScalarProperty Name="turnos" ColumnName="turnos" />
                 <ScalarProperty Name="cansancio" ColumnName="cansancio" />
-                <ScalarProperty Name="estadosAlterados" ColumnName="estadosAlterados" />
                 <ScalarProperty Name="misionOculta" ColumnName="misionOculta" />
                 <ScalarProperty Name="nivel" ColumnName="nivel" />
                 <ScalarProperty Name="experiencia" ColumnName="experiencia" />
                 <ScalarProperty Name="oro" ColumnName="oro" />
                 <ScalarProperty Name="plata" ColumnName="plata" />
                 <ScalarProperty Name="cobre" ColumnName="cobre" />
-                <ScalarProperty Name="sala" ColumnName="sala" />
-                <ScalarProperty Name="posicion" ColumnName="posicion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2291,23 +1994,17 @@
               <MappingFragment StoreEntitySet="Personaje">
                 <ScalarProperty Name="personajeId" ColumnName="personajeId" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="clase" ColumnName="clase" />
-                <ScalarProperty Name="raza" ColumnName="raza" />
                 <ScalarProperty Name="sexo" ColumnName="sexo" />
                 <ScalarProperty Name="edad" ColumnName="edad" />
                 <ScalarProperty Name="vida" ColumnName="vida" />
                 <ScalarProperty Name="turnos" ColumnName="turnos" />
                 <ScalarProperty Name="cansancio" ColumnName="cansancio" />
-                <ScalarProperty Name="estadosAlterados" ColumnName="estadosAlterados" />
                 <ScalarProperty Name="misionOculta" ColumnName="misionOculta" />
                 <ScalarProperty Name="nivel" ColumnName="nivel" />
                 <ScalarProperty Name="experiencia" ColumnName="experiencia" />
                 <ScalarProperty Name="oro" ColumnName="oro" />
                 <ScalarProperty Name="plata" ColumnName="plata" />
                 <ScalarProperty Name="cobre" ColumnName="cobre" />
-                <ScalarProperty Name="sala" ColumnName="sala" />
-                <ScalarProperty Name="usuario" ColumnName="usuario" />
-                <ScalarProperty Name="posicion" ColumnName="posicion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2318,7 +2015,6 @@
                 <ScalarProperty Name="x" ColumnName="x" />
                 <ScalarProperty Name="y" ColumnName="y" />
                 <ScalarProperty Name="bloqueado" ColumnName="bloqueado" />
-                <ScalarProperty Name="mapa" ColumnName="mapa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2338,8 +2034,6 @@
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="altura" ColumnName="altura" />
                 <ScalarProperty Name="peso" ColumnName="peso" />
-                <ScalarProperty Name="idioma" ColumnName="idioma" />
-                <ScalarProperty Name="estadistica" ColumnName="estadistica" />
                 <ScalarProperty Name="bonus" ColumnName="bonus" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2349,7 +2043,6 @@
               <MappingFragment StoreEntitySet="Sala">
                 <ScalarProperty Name="salaId" ColumnName="salaId" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="propietario" ColumnName="propietario" />
                 <ScalarProperty Name="password" ColumnName="password" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2364,6 +2057,293 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="FK__Arma__elemento__76969D2E" TypeName="RolltheDiceDBModel.FK__Arma__elemento__76969D2E" StoreEntitySet="Arma">
+            <EndProperty Name="Elemento">
+              <ScalarProperty Name="elementoId" ColumnName="elemento" />
+            </EndProperty>
+            <EndProperty Name="Arma">
+              <ScalarProperty Name="armaId" ColumnName="armaId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="elemento" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Arma__estadistic__75A278F5" TypeName="RolltheDiceDBModel.FK__Arma__estadistic__75A278F5" StoreEntitySet="Arma">
+            <EndProperty Name="Estadistica">
+              <ScalarProperty Name="estadisticaId" ColumnName="estadistica" />
+            </EndProperty>
+            <EndProperty Name="Arma">
+              <ScalarProperty Name="armaId" ColumnName="armaId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Arma__inventario__778AC167" TypeName="RolltheDiceDBModel.FK__Arma__inventario__778AC167" StoreEntitySet="Arma">
+            <EndProperty Name="Inventario">
+              <ScalarProperty Name="inventarioId" ColumnName="inventario" />
+            </EndProperty>
+            <EndProperty Name="Arma">
+              <ScalarProperty Name="armaId" ColumnName="armaId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="inventario" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Arma__nombre__73BA3083" TypeName="RolltheDiceDBModel.FK__Arma__nombre__73BA3083" StoreEntitySet="Arma">
+            <EndProperty Name="NombreArma">
+              <ScalarProperty Name="nombreArmaId" ColumnName="nombre" />
+            </EndProperty>
+            <EndProperty Name="Arma">
+              <ScalarProperty Name="armaId" ColumnName="armaId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Arma__rareza__74AE54BC" TypeName="RolltheDiceDBModel.FK__Arma__rareza__74AE54BC" StoreEntitySet="Arma">
+            <EndProperty Name="Rareza">
+              <ScalarProperty Name="rarezaId" ColumnName="rareza" />
+            </EndProperty>
+            <EndProperty Name="Arma">
+              <ScalarProperty Name="armaId" ColumnName="armaId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Armadura__elemen__7F2BE32F" TypeName="RolltheDiceDBModel.FK__Armadura__elemen__7F2BE32F" StoreEntitySet="Armadura">
+            <EndProperty Name="Elemento">
+              <ScalarProperty Name="elementoId" ColumnName="elemento" />
+            </EndProperty>
+            <EndProperty Name="Armadura">
+              <ScalarProperty Name="armaduraId" ColumnName="armaduraId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="elemento" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Armadura__estadi__7E37BEF6" TypeName="RolltheDiceDBModel.FK__Armadura__estadi__7E37BEF6" StoreEntitySet="Armadura">
+            <EndProperty Name="Estadistica">
+              <ScalarProperty Name="estadisticaId" ColumnName="estadistica" />
+            </EndProperty>
+            <EndProperty Name="Armadura">
+              <ScalarProperty Name="armaduraId" ColumnName="armaduraId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Armadura__invent__00200768" TypeName="RolltheDiceDBModel.FK__Armadura__invent__00200768" StoreEntitySet="Armadura">
+            <EndProperty Name="Inventario">
+              <ScalarProperty Name="inventarioId" ColumnName="inventario" />
+            </EndProperty>
+            <EndProperty Name="Armadura">
+              <ScalarProperty Name="armaduraId" ColumnName="armaduraId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="inventario" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Armadura__nombre__7C4F7684" TypeName="RolltheDiceDBModel.FK__Armadura__nombre__7C4F7684" StoreEntitySet="Armadura">
+            <EndProperty Name="NombreArmadura">
+              <ScalarProperty Name="nombreArmaduraId" ColumnName="nombre" />
+            </EndProperty>
+            <EndProperty Name="Armadura">
+              <ScalarProperty Name="armaduraId" ColumnName="armaduraId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Armadura__rareza__7D439ABD" TypeName="RolltheDiceDBModel.FK__Armadura__rareza__7D439ABD" StoreEntitySet="Armadura">
+            <EndProperty Name="Rareza">
+              <ScalarProperty Name="rarezaId" ColumnName="rareza" />
+            </EndProperty>
+            <EndProperty Name="Armadura">
+              <ScalarProperty Name="armaduraId" ColumnName="armaduraId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__NPC__clase__60A75C0F" TypeName="RolltheDiceDBModel.FK__NPC__clase__60A75C0F" StoreEntitySet="NPC">
+            <EndProperty Name="Clase">
+              <ScalarProperty Name="claseId" ColumnName="clase" />
+            </EndProperty>
+            <EndProperty Name="NPC">
+              <ScalarProperty Name="NPCId" ColumnName="NPCId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Personaje__clase__6754599E" TypeName="RolltheDiceDBModel.FK__Personaje__clase__6754599E" StoreEntitySet="Personaje">
+            <EndProperty Name="Clase">
+              <ScalarProperty Name="claseId" ColumnName="clase" />
+            </EndProperty>
+            <EndProperty Name="Personaje">
+              <ScalarProperty Name="personajeId" ColumnName="personajeId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Elemento__debili__3D5E1FD2" TypeName="RolltheDiceDBModel.FK__Elemento__debili__3D5E1FD2" StoreEntitySet="Elemento">
+            <EndProperty Name="Elemento">
+              <ScalarProperty Name="elementoId" ColumnName="debilidad" />
+            </EndProperty>
+            <EndProperty Name="Elemento1">
+              <ScalarProperty Name="elementoId" ColumnName="elementoId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Habilidad__eleme__440B1D61" TypeName="RolltheDiceDBModel.FK__Habilidad__eleme__440B1D61" StoreEntitySet="Habilidad">
+            <EndProperty Name="Elemento">
+              <ScalarProperty Name="elementoId" ColumnName="elemento" />
+            </EndProperty>
+            <EndProperty Name="Habilidad">
+              <ScalarProperty Name="habilidadId" ColumnName="habilidadId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="elemento" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Habilidad__estad__4316F928" TypeName="RolltheDiceDBModel.FK__Habilidad__estad__4316F928" StoreEntitySet="Habilidad">
+            <EndProperty Name="Estadistica">
+              <ScalarProperty Name="estadisticaId" ColumnName="estadistica" />
+            </EndProperty>
+            <EndProperty Name="Habilidad">
+              <ScalarProperty Name="habilidadId" ColumnName="habilidadId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Raza__estadistic__4CA06362" TypeName="RolltheDiceDBModel.FK__Raza__estadistic__4CA06362" StoreEntitySet="Raza">
+            <EndProperty Name="Estadistica">
+              <ScalarProperty Name="estadisticaId" ColumnName="estadistica" />
+            </EndProperty>
+            <EndProperty Name="Raza">
+              <ScalarProperty Name="razaId" ColumnName="razaId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Monstruo__estado__5BE2A6F2" TypeName="RolltheDiceDBModel.FK__Monstruo__estado__5BE2A6F2" StoreEntitySet="Monstruo">
+            <EndProperty Name="Estado">
+              <ScalarProperty Name="estadoId" ColumnName="estadosAlterados" />
+            </EndProperty>
+            <EndProperty Name="Monstruo">
+              <ScalarProperty Name="monstruoId" ColumnName="monstruoId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="estadosAlterados" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__NPC__estadosAlte__628FA481" TypeName="RolltheDiceDBModel.FK__NPC__estadosAlte__628FA481" StoreEntitySet="NPC">
+            <EndProperty Name="Estado">
+              <ScalarProperty Name="estadoId" ColumnName="estadosAlterados" />
+            </EndProperty>
+            <EndProperty Name="NPC">
+              <ScalarProperty Name="NPCId" ColumnName="NPCId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="estadosAlterados" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Personaje__estad__693CA210" TypeName="RolltheDiceDBModel.FK__Personaje__estad__693CA210" StoreEntitySet="Personaje">
+            <EndProperty Name="Estado">
+              <ScalarProperty Name="estadoId" ColumnName="estadosAlterados" />
+            </EndProperty>
+            <EndProperty Name="Personaje">
+              <ScalarProperty Name="personajeId" ColumnName="personajeId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="estadosAlterados" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Raza__idioma__4BAC3F29" TypeName="RolltheDiceDBModel.FK__Raza__idioma__4BAC3F29" StoreEntitySet="Raza">
+            <EndProperty Name="Idioma">
+              <ScalarProperty Name="idiomaId" ColumnName="idioma" />
+            </EndProperty>
+            <EndProperty Name="Raza">
+              <ScalarProperty Name="razaId" ColumnName="razaId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="idioma" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Inventari__propi__6EF57B66" TypeName="RolltheDiceDBModel.FK__Inventari__propi__6EF57B66" StoreEntitySet="Inventario">
+            <EndProperty Name="Personaje">
+              <ScalarProperty Name="personajeId" ColumnName="propietario" />
+            </EndProperty>
+            <EndProperty Name="Inventario">
+              <ScalarProperty Name="inventarioId" ColumnName="inventarioId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="propietario" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Item__rareza__5165187F" TypeName="RolltheDiceDBModel.FK__Item__rareza__5165187F" StoreEntitySet="Item">
+            <EndProperty Name="Rareza">
+              <ScalarProperty Name="rarezaId" ColumnName="rareza" />
+            </EndProperty>
+            <EndProperty Name="Item">
+              <ScalarProperty Name="itemId" ColumnName="itemId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Mapa__sala__5629CD9C" TypeName="RolltheDiceDBModel.FK__Mapa__sala__5629CD9C" StoreEntitySet="Mapa">
+            <EndProperty Name="Sala">
+              <ScalarProperty Name="salaId" ColumnName="sala" />
+            </EndProperty>
+            <EndProperty Name="Mapa">
+              <ScalarProperty Name="mapaId" ColumnName="mapaId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Posicion__mapa__59063A47" TypeName="RolltheDiceDBModel.FK__Posicion__mapa__59063A47" StoreEntitySet="Posicion">
+            <EndProperty Name="Mapa">
+              <ScalarProperty Name="mapaId" ColumnName="mapa" />
+            </EndProperty>
+            <EndProperty Name="Posicion">
+              <ScalarProperty Name="posicionId" ColumnName="posicionId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="mapa" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Monstruo__posici__5DCAEF64" TypeName="RolltheDiceDBModel.FK__Monstruo__posici__5DCAEF64" StoreEntitySet="Monstruo">
+            <EndProperty Name="Posicion">
+              <ScalarProperty Name="posicionId" ColumnName="posicion" />
+            </EndProperty>
+            <EndProperty Name="Monstruo">
+              <ScalarProperty Name="monstruoId" ColumnName="monstruoId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="posicion" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Monstruo__sala__5CD6CB2B" TypeName="RolltheDiceDBModel.FK__Monstruo__sala__5CD6CB2B" StoreEntitySet="Monstruo">
+            <EndProperty Name="Sala">
+              <ScalarProperty Name="salaId" ColumnName="sala" />
+            </EndProperty>
+            <EndProperty Name="Monstruo">
+              <ScalarProperty Name="monstruoId" ColumnName="monstruoId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__NPC__posicion__6477ECF3" TypeName="RolltheDiceDBModel.FK__NPC__posicion__6477ECF3" StoreEntitySet="NPC">
+            <EndProperty Name="Posicion">
+              <ScalarProperty Name="posicionId" ColumnName="posicion" />
+            </EndProperty>
+            <EndProperty Name="NPC">
+              <ScalarProperty Name="NPCId" ColumnName="NPCId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="posicion" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__NPC__raza__619B8048" TypeName="RolltheDiceDBModel.FK__NPC__raza__619B8048" StoreEntitySet="NPC">
+            <EndProperty Name="Raza">
+              <ScalarProperty Name="razaId" ColumnName="raza" />
+            </EndProperty>
+            <EndProperty Name="NPC">
+              <ScalarProperty Name="NPCId" ColumnName="NPCId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__NPC__sala__6383C8BA" TypeName="RolltheDiceDBModel.FK__NPC__sala__6383C8BA" StoreEntitySet="NPC">
+            <EndProperty Name="Sala">
+              <ScalarProperty Name="salaId" ColumnName="sala" />
+            </EndProperty>
+            <EndProperty Name="NPC">
+              <ScalarProperty Name="NPCId" ColumnName="NPCId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Personaje__posic__6C190EBB" TypeName="RolltheDiceDBModel.FK__Personaje__posic__6C190EBB" StoreEntitySet="Personaje">
+            <EndProperty Name="Posicion">
+              <ScalarProperty Name="posicionId" ColumnName="posicion" />
+            </EndProperty>
+            <EndProperty Name="Personaje">
+              <ScalarProperty Name="personajeId" ColumnName="personajeId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="posicion" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Personaje__raza__68487DD7" TypeName="RolltheDiceDBModel.FK__Personaje__raza__68487DD7" StoreEntitySet="Personaje">
+            <EndProperty Name="Raza">
+              <ScalarProperty Name="razaId" ColumnName="raza" />
+            </EndProperty>
+            <EndProperty Name="Personaje">
+              <ScalarProperty Name="personajeId" ColumnName="personajeId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Personaje__sala__6A30C649" TypeName="RolltheDiceDBModel.FK__Personaje__sala__6A30C649" StoreEntitySet="Personaje">
+            <EndProperty Name="Sala">
+              <ScalarProperty Name="salaId" ColumnName="sala" />
+            </EndProperty>
+            <EndProperty Name="Personaje">
+              <ScalarProperty Name="personajeId" ColumnName="personajeId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Personaje__usuar__6B24EA82" TypeName="RolltheDiceDBModel.FK__Personaje__usuar__6B24EA82" StoreEntitySet="Personaje">
+            <EndProperty Name="Usuario">
+              <ScalarProperty Name="usuarioId" ColumnName="usuario" />
+            </EndProperty>
+            <EndProperty Name="Personaje">
+              <ScalarProperty Name="personajeId" ColumnName="personajeId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Sala__propietari__46E78A0C" TypeName="RolltheDiceDBModel.FK__Sala__propietari__46E78A0C" StoreEntitySet="Sala">
+            <EndProperty Name="Usuario">
+              <ScalarProperty Name="usuarioId" ColumnName="propietario" />
+            </EndProperty>
+            <EndProperty Name="Sala">
+              <ScalarProperty Name="salaId" ColumnName="salaId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="propietario" />
+          </AssociationSetMapping>
           <AssociationSetMapping Name="UnionEstatMonst" TypeName="RolltheDiceDBModel.UnionEstatMonst" StoreEntitySet="UnionEstatMonst">
             <EndProperty Name="Estadistica">
               <ScalarProperty Name="estadisticaId" ColumnName="estadisticaId" />
@@ -2389,24 +2369,24 @@
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="UnionHabilMonst" TypeName="RolltheDiceDBModel.UnionHabilMonst" StoreEntitySet="UnionHabilMonst">
-            <EndProperty Name="Inventario">
-              <ScalarProperty Name="inventarioId" ColumnName="habilidadId" />
+            <EndProperty Name="Habilidad">
+              <ScalarProperty Name="habilidadId" ColumnName="habilidadId" />
             </EndProperty>
             <EndProperty Name="Monstruo">
               <ScalarProperty Name="monstruoId" ColumnName="monstruoId" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="UnionHabilNPC" TypeName="RolltheDiceDBModel.UnionHabilNPC" StoreEntitySet="UnionHabilNPC">
-            <EndProperty Name="Inventario">
-              <ScalarProperty Name="inventarioId" ColumnName="habilidadId" />
+            <EndProperty Name="Habilidad">
+              <ScalarProperty Name="habilidadId" ColumnName="habilidadId" />
             </EndProperty>
             <EndProperty Name="NPC">
               <ScalarProperty Name="NPCId" ColumnName="NPCId" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="UnionHabilPerso" TypeName="RolltheDiceDBModel.UnionHabilPerso" StoreEntitySet="UnionHabilPerso">
-            <EndProperty Name="Inventario">
-              <ScalarProperty Name="inventarioId" ColumnName="habilidadId" />
+            <EndProperty Name="Habilidad">
+              <ScalarProperty Name="habilidadId" ColumnName="habilidadId" />
             </EndProperty>
             <EndProperty Name="Personaje">
               <ScalarProperty Name="personajeId" ColumnName="personajeId" />
@@ -2435,7 +2415,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>

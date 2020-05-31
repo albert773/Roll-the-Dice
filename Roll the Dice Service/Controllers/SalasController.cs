@@ -97,7 +97,7 @@ namespace Roll_the_Dice_Service.Controllers
 
             SalaDTO.Insert(sala);
             uw.SaveChanges();
-
+             
             return Ok();
         }
 
