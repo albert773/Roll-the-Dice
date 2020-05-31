@@ -1,5 +1,5 @@
 ﻿using Roll_the_Dice_Service.Models;
-using Roll_the_Dice_Service.Utils;
+using Roll_the_Dice_Service.Service.Interface;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -8,12 +8,16 @@ using System.Web.Http.Description;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/estados")]
     public class EstadosController : ApiController
     {
-        private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Estado> EstadoDTO = uw.RepositoryClient<Estado>();
+        private IEstadoService EstadoServ;
 
+        public EstadosController(IEstadoService EstadoServ)
+        {
+            this.EstadoServ = EstadoServ;
+        }
         // GET: api/Estados
         [HttpGet]
         [Route("")]

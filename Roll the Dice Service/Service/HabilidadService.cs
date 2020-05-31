@@ -43,6 +43,7 @@ namespace Roll_the_Dice_Service.Service
         public void DeleteHabilidad(int id)
         {
             uow.RepositoryClient<Habilidad>().Delete(id);
+            uow.SaveChanges();
         }
     }
 }

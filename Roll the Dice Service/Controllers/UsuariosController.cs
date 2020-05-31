@@ -1,5 +1,5 @@
 ﻿using Roll_the_Dice_Service.Models;
-using Roll_the_Dice_Service.Utils;
+using Roll_the_Dice_Service.Service.Interface;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -8,19 +8,23 @@ using System.Web.Http.Description;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/usuarios")]
     public class UsuariosController : ApiController
     {
-        private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Usuario> UsuarioDTO = uw.RepositoryClient<Usuario>();
+        private IUsuarioService UsuarioServ;
+
+        public UsuariosController(IUsuarioService UsuarioServ)
+        {
+            this.UsuarioServ = UsuarioServ;
+        }
 
         // GET: api/Usuarios
         [HttpGet]
         [Route("")]
         public IEnumerable<Usuario> GetAllUsuarios()
         {
-            //IEnumerable<Usuario> usuarios = UsuarioDTO.GetAll();
-            IQueryable<Usuario> usuarios = UsuarioDTO.GetWithInclude("Personaje", "Sala");
+            IEnumerable<Usuario> usuarios = UsuarioServ.GetAllUsuarios();
             if (usuarios.Count() > 0)
             {
                 return usuarios.ToList();
@@ -34,10 +38,10 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Usuario))]
         public IHttpActionResult GetUsuario(int id)
         {
-            IQueryable<Usuario> usuarios = UsuarioDTO.GetWithInclude("Personaje", "Sala").Where(q => q.usuarioId == id);
-            if(usuarios.Count() > 0)
+            Usuario usuario = UsuarioServ.GetUsuarioById(id);
+
+            if (usuario != null)
             {
-                Usuario usuario = usuarios.First();
                 return Ok(usuario);
             }
             else
@@ -52,10 +56,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Usuario))]
         public IHttpActionResult GetUsuarioByEmail(string email)
         {
-            IQueryable<Usuario> usuarios = UsuarioDTO.GetWithInclude("Personaje", "Sala").Where(q => q.email == email);
-            if (usuarios.Count() > 0)
+            Usuario usuario = UsuarioServ.GetUsuarioByEmail(email);
+            if (usuario != null)
             {
-                Usuario usuario = usuarios.First();
                 return Ok(usuario);
             }
             else
@@ -80,22 +83,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            UsuarioDTO.Update(usuario);
-
             try
             {
-                uw.SaveChanges();
+                UsuarioServ.PutUsuario(id, usuario);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsuarioExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("El usuario se ha modificado correctamente");
@@ -112,8 +106,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            UsuarioDTO.Insert(usuario);
-            uw.SaveChanges();
+            UsuarioServ.PostUsuario(usuario);
 
             return Ok(usuario);
         }
@@ -124,30 +117,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Usuario))]
         public IHttpActionResult DeleteUsuario(int id)
         {
-            Usuario usuario = UsuarioDTO.GetByID(id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-
-            UsuarioDTO.Delete(usuario);
-            uw.SaveChanges();
+            UsuarioServ.DeleteUsuario(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool UsuarioExists(int id)
-        {
-            return UsuarioDTO.getDbSet().Count(e => e.usuarioId == id) > 0;
         }
     }
 }

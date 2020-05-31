@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Roll_the_Dice_Service.Service.Interface
 {
-    interface IArmaService
+    public interface IArmaService
     {
         IEnumerable<Arma> GetAllArmas();
         IEnumerable<Arma> GetAllArmasByPersonaje(int id);

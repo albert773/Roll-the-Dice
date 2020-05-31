@@ -44,6 +44,7 @@ namespace Roll_the_Dice_Service.Service
         public void DeleteNombreArma(int id)
         {
             uow.RepositoryClient<NombreArma>().Delete(id);
+            uow.SaveChanges();
         }
     }
 }

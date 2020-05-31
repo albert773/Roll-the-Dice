@@ -1,5 +1,5 @@
 ﻿using Roll_the_Dice_Service.Models;
-using Roll_the_Dice_Service.Utils;
+using Roll_the_Dice_Service.Service.Interface;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Infrastructure;
@@ -9,18 +9,24 @@ using System.Web.Http.Description;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/elementos")]
     public class ElementosController : ApiController
     {
-        private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Elemento> ElementoDTO = uw.RepositoryClient<Elemento>();
+        private IElementoService ElementoServ;
+
+        public ElementosController(IElementoService ElementoServ)
+        {
+            this.ElementoServ = ElementoServ;
+        }
 
         // GET: api/Elementos
         [HttpGet]
         [Route("")]
         public IEnumerable<Elemento> GetAllElementos()
         {
-            IEnumerable<Elemento> elementos = ElementoDTO.GetAll().Select(e => {
+            IEnumerable<Elemento> elementos = ElementoDTO.GetAll().Select(e =>
+            {
                 //e.Elemento2.Elemento1 = null;
                 //e.Elemento2.Elemento2 = null;
                 //e.Elemento2.Arma = null;

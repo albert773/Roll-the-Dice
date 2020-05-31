@@ -1,5 +1,5 @@
 ﻿using Roll_the_Dice_Service.Models;
-using Roll_the_Dice_Service.Utils;
+using Roll_the_Dice_Service.Service.Interface;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -8,11 +8,16 @@ using System.Web.Http.Description;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/clases")]
     public class ClasesController : ApiController
     {
-        private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Clase> ClaseDTO = uw.RepositoryClient<Clase>();
+        private IClaseService ClaseServ;
+
+        public ClasesController(IClaseService ClaseServ)
+        {
+            this.ClaseServ = ClaseServ;
+        }
 
         // GET: api/Clases
         [HttpGet]

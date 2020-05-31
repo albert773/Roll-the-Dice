@@ -46,6 +46,7 @@ namespace Roll_the_Dice_Service.Service
         public void DeleteNPC(int id)
         {
             uow.RepositoryClient<NPC>().Delete(id);
+            uow.SaveChanges();
         }
     }
 }

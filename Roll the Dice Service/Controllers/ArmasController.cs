@@ -1,5 +1,5 @@
 ﻿using Roll_the_Dice_Service.Models;
-using Roll_the_Dice_Service.Utils;
+using Roll_the_Dice_Service.Service.Interface;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -8,11 +8,16 @@ using System.Web.Http.Description;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/armas")]
     public class ArmasController : ApiController
     {
-        private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Arma> ArmaDTO = uw.RepositoryClient<Arma>();
+        private IArmaService ArmaServ;
+
+        public ArmasController(IArmaService ArmaServ)
+        {
+            this.ArmaServ = ArmaServ;
+        }
 
         // GET: api/Armas
         [HttpGet]

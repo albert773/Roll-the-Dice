@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Roll_the_Dice_Service.Service.Interface
 {
-    interface IIdiomaService
+    public interface IIdiomaService
     {
         IEnumerable<Idioma> GetAllIdiomas();
         Idioma GetIdiomaById(int id);

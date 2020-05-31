@@ -53,6 +53,7 @@ namespace Roll_the_Dice_Service.Service
         public void DeletePersonaje(int id)
         {
             uow.RepositoryClient<Personaje>().Delete(id);
+            uow.SaveChanges();
         }
     }
 }

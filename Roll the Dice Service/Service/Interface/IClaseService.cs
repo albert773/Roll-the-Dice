@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Roll_the_Dice_Service.Service.Interface
 {
-    interface IClaseService
+    public interface IClaseService
     {
         IEnumerable<Clase> GetAllClases();
         Clase GetClaseById(int id);

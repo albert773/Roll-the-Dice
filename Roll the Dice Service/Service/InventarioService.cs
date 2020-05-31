@@ -48,6 +48,7 @@ namespace Roll_the_Dice_Service.Service
         public void DeleteInventario(int id)
         {
             uow.RepositoryClient<Inventario>().Delete(id);
+            uow.SaveChanges();
         }
     }
 }

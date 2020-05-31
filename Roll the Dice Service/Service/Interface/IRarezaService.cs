@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Roll_the_Dice_Service.Service.Interface
 {
-    interface IRarezaService
+    public interface IRarezaService
     {
         IEnumerable<Rareza> GetAllRarezas();
         Rareza GetRarezaById(int id);

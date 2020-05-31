@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Roll_the_Dice_Service.Service.Interface
 {
-    interface ISalaService
+    public interface ISalaService
     {
         IEnumerable<Sala> GetAllSalas();
         IEnumerable<Sala> GetAllSalasByUsuario(int id);

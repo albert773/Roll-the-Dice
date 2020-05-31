@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Roll_the_Dice_Service.Service.Interface
 {
-    interface IInventarioService
+    public interface IInventarioService
     {
         IEnumerable<Inventario> GetAllInventarios();
         Inventario GetInventarioById(int id);

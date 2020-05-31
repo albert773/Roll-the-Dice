@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Roll_the_Dice_Service.Service.Interface
 {
-    interface IEstadoService
+    public interface IEstadoService
     {
         IEnumerable<Estado> GetAllEstados();
         Estado GetEstadoById(int id);

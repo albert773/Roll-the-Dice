@@ -1,5 +1,5 @@
 ﻿using Roll_the_Dice_Service.Models;
-using Roll_the_Dice_Service.Utils;
+using Roll_the_Dice_Service.Service.Interface;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -9,12 +9,16 @@ using System.Web.Http.Description;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/posiciones")]
     public class PosicionesController : ApiController
     {
-        private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Posicion> PosicionDTO = uw.RepositoryClient<Posicion>();
+        private IPosicionService PosicionServ;
 
+        public PosicionesController(IPosicionService PosicionServ)
+        {
+            this.PosicionServ = PosicionServ;
+        }
         // GET: api/Posiciones
         [HttpGet]
         [Route("")]

@@ -49,6 +49,7 @@ namespace Roll_the_Dice_Service.Service
         public void DeleteEstadistica(int id)
         {
             uow.RepositoryClient<Estadistica>().Delete(id);
+            uow.SaveChanges();
         }
     }
 }

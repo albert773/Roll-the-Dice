@@ -1,5 +1,5 @@
 ﻿using Roll_the_Dice_Service.Models;
-using Roll_the_Dice_Service.Utils;
+using Roll_the_Dice_Service.Service.Interface;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -8,12 +8,16 @@ using System.Web.Http.Description;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/NPCs")]
     public class NPCsController : ApiController
     {
-        private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<NPC> NPCDTO = uw.RepositoryClient<NPC>();
+        private INPCService NPCServ;
 
+        public NPCsController(INPCService NPCServ)
+        {
+            this.NPCServ = NPCServ;
+        }
         // GET: api/NPCs
         [HttpGet]
         [Route("")]

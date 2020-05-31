@@ -48,6 +48,7 @@ namespace Roll_the_Dice_Service.Service
         public void DeleteMonstruo(int id)
         {
             uow.RepositoryClient<Monstruo>().Delete(id);
+            uow.SaveChanges();
         }
     }
 }

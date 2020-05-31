@@ -43,6 +43,7 @@ namespace Roll_the_Dice_Service.Service
         public void DeleteClase(int id)
         {
             uow.RepositoryClient<Clase>().Delete(id);
+            uow.SaveChanges();
         }
     }
 }

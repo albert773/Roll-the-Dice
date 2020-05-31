@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Roll_the_Dice_Service.Service.Interface
 {
-    interface INPCService
+    public interface INPCService
     {
         IEnumerable<NPC> GetAllNPCs();
         IEnumerable<NPC> GetAllNPCsBySala(int id);

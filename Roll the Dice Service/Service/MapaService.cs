@@ -48,6 +48,7 @@ namespace Roll_the_Dice_Service.Service
         public void DeleteMapa(int id)
         {
             uow.RepositoryClient<Mapa>().Delete(id);
+            uow.SaveChanges();
         }
     }
 }

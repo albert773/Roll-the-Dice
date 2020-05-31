@@ -227,8 +227,8 @@
       <DependentUpon>RolltheDiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RegisterRequest.cs" />
-    <Compile Include="Controllers\TokenGenerator.cs" />
-    <Compile Include="Controllers\TokenValidationHandler.cs" />
+    <Compile Include="Utils\TokenGenerator.cs" />
+    <Compile Include="Utils\TokenValidationHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

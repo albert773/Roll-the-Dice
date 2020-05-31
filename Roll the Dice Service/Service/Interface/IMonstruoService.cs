@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Roll_the_Dice_Service.Service.Interface
 {
-    interface IMonstruoService
+    public interface IMonstruoService
     {
         IEnumerable<Monstruo> GetAllMonstruos();
         IEnumerable<Monstruo> GetAllMonstruosBySala(int id);

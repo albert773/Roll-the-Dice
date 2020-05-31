@@ -43,6 +43,7 @@ namespace Roll_the_Dice_Service.Service
         public void DeleteRareza(int id)
         {
             uow.RepositoryClient<Rareza>().Delete(id);
+            uow.SaveChanges();
         }
     }
 }

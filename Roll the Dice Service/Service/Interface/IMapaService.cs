@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Roll_the_Dice_Service.Service.Interface
 {
-    interface IMapaService
+    public interface IMapaService
     {
         IEnumerable<Mapa> GetAllMapas();
         Mapa GetMapaById(int id);

@@ -41,6 +41,7 @@ namespace Roll_the_Dice_Service.Service
         public void DeleteElemento(int id)
         {
             uow.RepositoryClient<Elemento>().Delete(id);
+            uow.SaveChanges();
         }
     }
 }

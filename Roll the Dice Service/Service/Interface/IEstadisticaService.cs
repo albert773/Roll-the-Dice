@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Roll_the_Dice_Service.Service.Interface
 {
-    interface IEstadisticaService
+    public interface IEstadisticaService
     {
         IEnumerable<Estadistica> GetAllEstadisticas();
         IEnumerable<Estadistica> GetAllEstadisticasByPersonaje(int id);

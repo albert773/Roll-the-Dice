@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Roll_the_Dice_Service.Service.Interface
 {
-    interface IElementoService
+    public interface IElementoService
     {
         IEnumerable<Elemento> GetAllElementos();
         Elemento GetElementoById(int id);

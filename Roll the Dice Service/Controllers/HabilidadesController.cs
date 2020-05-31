@@ -1,5 +1,5 @@
 ﻿using Roll_the_Dice_Service.Models;
-using Roll_the_Dice_Service.Utils;
+using Roll_the_Dice_Service.Service.Interface;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -8,12 +8,16 @@ using System.Web.Http.Description;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/habilidades")]
     public class HabilidadesController : ApiController
     {
-        private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Habilidad> HabilidadDTO = uw.RepositoryClient<Habilidad>();
+        private IHabilidadService HabilidadServ;
 
+        public HabilidadesController(IHabilidadService HabilidadServ)
+        {
+            this.HabilidadServ = HabilidadServ;
+        }
         // GET: api/Habilidades
         [HttpGet]
         [Route("")]

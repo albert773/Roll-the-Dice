@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Roll_the_Dice_Service.Service.Interface
 {
-    interface IUsuarioService
+    public interface IUsuarioService
     {
         IEnumerable<Usuario> GetAllUsuarios();
         Usuario GetUsuarioById(int id);

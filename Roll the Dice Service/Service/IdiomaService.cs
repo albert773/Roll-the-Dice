@@ -43,6 +43,7 @@ namespace Roll_the_Dice_Service.Service
         public void DeleteIdioma(int id)
         {
             uow.RepositoryClient<Idioma>().Delete(id);
+            uow.SaveChanges();
         }
     }
 }

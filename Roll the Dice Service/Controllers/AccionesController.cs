@@ -1,5 +1,5 @@
 ﻿using Roll_the_Dice_Service.Models;
-using Roll_the_Dice_Service.Utils;
+using Roll_the_Dice_Service.Service.Interface;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -12,18 +12,22 @@ namespace Roll_the_Dice_Service.Controllers
     [RoutePrefix("api/acciones")]
     public class AccionesController : ApiController
     {
-        private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Accion> AccionDTO = uw.RepositoryClient<Accion>();
+        private IAccionService AccionServ;
+
+        public AccionesController(IAccionService AccionServ)
+        {
+            this.AccionServ = AccionServ;
+        }
 
         // GET: api/Acciones
         [HttpGet]
         [Route("")]
         public IHttpActionResult GetAllAcciones()
         {
-            IEnumerable<Accion> a = AccionDTO.GetAll();
-            if (a.Count() > 0)
+            IEnumerable<Accion> acciones = AccionServ.GetAllAcciones();
+            if (acciones.Count() > 0)
             {
-                return Ok(a.ToList());
+                return Ok(acciones.ToList());
             }
             else
             {
@@ -37,7 +41,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Accion))]
         public IHttpActionResult GetAccion(int id)
         {
-            Accion accion = accion = AccionDTO.GetByID(id);
+            Accion accion = accion = AccionServ.GetAccionById(id);
             if (accion == null)
             {
                 return BadRequest("No se ha encontrado la accion con id: " + id);
@@ -56,22 +60,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            AccionDTO.Update(accion);
-
             try
             {
-                uw.SaveChanges();
+                AccionServ.PutAccion(id, accion);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AccionExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("La acción se ha modificado correctamente");
@@ -88,8 +83,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            AccionDTO.Insert(accion);
-            uw.SaveChanges();
+            AccionServ.PostAccion(accion);
 
             return Ok(accion);
         }
@@ -100,30 +94,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Accion))]
         public IHttpActionResult DeleteAccion(int id)
         {
-            Accion accion = AccionDTO.GetByID(id);
-            if (accion == null)
-            {
-                return NotFound();
-            }
-
-            AccionDTO.Delete(accion);
-            uw.SaveChanges();
+            AccionServ.DeleteAccion(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool AccionExists(int id)
-        {
-            return AccionDTO.getDbSet().Count(e => e.accionId == id) > 0;
         }
     }
 }

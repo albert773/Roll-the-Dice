@@ -1,5 +1,6 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
+using Roll_the_Dice_Service.Utils;
 using System.Net;
 using System.Web.Http;
 
@@ -23,7 +24,6 @@ namespace Roll_the_Dice_Service.Controllers
             if (loginData == null)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            AuthServ.Login(loginData);
             bool isCredentialValid = AuthServ.Login(loginData);
             if (isCredentialValid)
             {
@@ -40,7 +40,8 @@ namespace Roll_the_Dice_Service.Controllers
         [Route("register")]
         public IHttpActionResult Register(RegisterRequest registerData)
         {
-            if (registerData != null) {
+            if (registerData != null)
+            {
                 Usuario u = AuthServ.Register(registerData);
                 return Ok(u);
             }
@@ -48,7 +49,7 @@ namespace Roll_the_Dice_Service.Controllers
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
-            
+
         }
     }
 }

@@ -43,6 +43,7 @@ namespace Roll_the_Dice_Service.Service
         public void DeleteArmadura(int id)
         {
             uow.RepositoryClient<Armadura>().Delete(id);
+            uow.SaveChanges();
         }
     }
 }

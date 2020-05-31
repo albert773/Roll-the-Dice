@@ -1,5 +1,5 @@
 ﻿using Roll_the_Dice_Service.Models;
-using Roll_the_Dice_Service.Utils;
+using Roll_the_Dice_Service.Service.Interface;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -8,12 +8,16 @@ using System.Web.Http.Description;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/mapas")]
     public class MapasController : ApiController
     {
-        private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Mapa> MapaDTO = uw.RepositoryClient<Mapa>();
+        private IMapaService MapaServ;
 
+        public MapasController(IMapaService MapaServ)
+        {
+            this.MapaServ = MapaServ;
+        }
         // GET: api/Mapas
         [HttpGet]
         [Route("")]

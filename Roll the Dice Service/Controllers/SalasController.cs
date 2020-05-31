@@ -1,5 +1,5 @@
 ﻿using Roll_the_Dice_Service.Models;
-using Roll_the_Dice_Service.Utils;
+using Roll_the_Dice_Service.Service.Interface;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -8,23 +8,27 @@ using System.Web.Http.Description;
 
 namespace Roll_the_Dice_Service.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/salas")]
     public class SalasController : ApiController
     {
-        private static UnitOfWork uw = new UnitOfWork();
-        private GenericRepository<Sala> SalaDTO = uw.RepositoryClient<Sala>();
+        private ISalaService SalaServ;
 
+        public SalasController(ISalaService SalaServ)
+        {
+            this.SalaServ = SalaServ;
+        }
         // GET: api/Salas
         [HttpGet]
         [Route("")]
-        public IEnumerable<Sala> GetAllUsuarios()
+        public IHttpActionResult GetAllSalas()
         {
-            IEnumerable<Sala> salas = SalaDTO.GetAll();
+            IEnumerable<Sala> salas = SalaServ.GetAllSalas();
             if (salas.Count() > 0)
             {
-                return salas.ToList();
+                return Ok(salas);
             }
-            return salas;
+            return BadRequest("No existe ninguna sala");
         }
 
         // GET: api/Salas/5
@@ -92,7 +96,7 @@ namespace Roll_the_Dice_Service.Controllers
 
             SalaDTO.Insert(sala);
             uw.SaveChanges();
-             
+
             return Ok();
         }
 
@@ -116,11 +120,7 @@ namespace Roll_the_Dice_Service.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
+            base.Dispose(false);
         }
 
         private bool SalaExists(int id)

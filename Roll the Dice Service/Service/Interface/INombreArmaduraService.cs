@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Roll_the_Dice_Service.Service.Interface
 {
-    interface INombreArmaduraService
+    public interface INombreArmaduraService
     {
         IEnumerable<NombreArmadura> GetAllNombreArmaduras();
         NombreArmadura GetNombreArmaduraById(int id);
