@@ -1,13 +1,12 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using static Roll_the_Dice_Service.IoC.InjectableAttribute;
 
 namespace Roll_the_Dice_Service.Service
 {
+    [InjectableAttributeTransient]
     public class MonstruoService : IService, IMonstruoService
     {
         private IUnitOfWork uow;
@@ -19,32 +18,36 @@ namespace Roll_the_Dice_Service.Service
 
         public IEnumerable<Monstruo> GetAllMonstruos()
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Monstruo>().GetAll();
         }
 
         public IEnumerable<Monstruo> GetAllMonstruosBySala(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Monstruo>().GetMany(q => q.Sala.salaId == id);
         }
 
         public Monstruo GetMonstruoById(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Monstruo>().GetByID(id);
         }
 
         public Monstruo PostMonstruo(Monstruo monstruo)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Monstruo>().Insert(monstruo);
+            uow.SaveChanges();
+            return GetMonstruoById(monstruo.monstruoId);
         }
 
         public Monstruo PutMonstruo(int id, Monstruo monstruo)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Monstruo>().Update(monstruo);
+            uow.SaveChanges();
+            return GetMonstruoById(id);
         }
 
         public void DeleteMonstruo(int id)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Monstruo>().Delete(id);
         }
     }
 }

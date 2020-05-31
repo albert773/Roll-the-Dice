@@ -1,13 +1,12 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using static Roll_the_Dice_Service.IoC.InjectableAttribute;
 
 namespace Roll_the_Dice_Service.Service
 {
+    [InjectableAttributeTransient]
     public class IdiomaService : IService, IIdiomaService
     {
         private IUnitOfWork uow;
@@ -19,27 +18,31 @@ namespace Roll_the_Dice_Service.Service
 
         public IEnumerable<Idioma> GetAllIdiomas()
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Idioma>().GetAll();
         }
 
         public Idioma GetIdiomaById(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Idioma>().GetByID(id);
         }
 
         public Idioma PostIdioma(Idioma idioma)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Idioma>().Insert(idioma);
+            uow.SaveChanges();
+            return GetIdiomaById(idioma.idiomaId);
         }
 
         public Idioma PutIdioma(int id, Idioma idioma)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Idioma>().Update(idioma);
+            uow.SaveChanges();
+            return GetIdiomaById(id);
         }
 
         public void DeleteIdioma(int id)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Idioma>().Delete(id);
         }
     }
 }

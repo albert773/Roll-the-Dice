@@ -1,13 +1,12 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using static Roll_the_Dice_Service.IoC.InjectableAttribute;
 
 namespace Roll_the_Dice_Service.Service
 {
+    [InjectableAttributeTransient]
     public class MapaService : IService, IMapaService
     {
         private IUnitOfWork uow;
@@ -19,32 +18,36 @@ namespace Roll_the_Dice_Service.Service
 
         public IEnumerable<Mapa> GetAllMapas()
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Mapa>().GetAll();
         }
 
         public Mapa GetMapaById(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Mapa>().GetByID(id);
         }
 
         public Mapa GetMapaBySala(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Mapa>().GetSingle(q => q.Sala.salaId == id);
         }
 
         public Mapa PostMapa(Mapa mapa)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Mapa>().Insert(mapa);
+            uow.SaveChanges();
+            return GetMapaById(mapa.mapaId);
         }
 
         public Mapa PutMapa(int id, Mapa mapa)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Mapa>().Update(mapa);
+            uow.SaveChanges();
+            return GetMapaById(id);
         }
 
         public void DeleteMapa(int id)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Mapa>().Delete(id);
         }
     }
 }

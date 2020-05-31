@@ -1,13 +1,12 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using static Roll_the_Dice_Service.IoC.InjectableAttribute;
 
 namespace Roll_the_Dice_Service.Service
 {
+    [InjectableAttributeTransient]
     public class EstadisticaService : IService, IEstadisticaService
     {
         private IUnitOfWork uow;
@@ -19,32 +18,37 @@ namespace Roll_the_Dice_Service.Service
 
         public IEnumerable<Estadistica> GetAllEstadisticas()
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Estadistica>().GetAll();
         }
 
         public IEnumerable<Estadistica> GetAllEstadisticasByPersonaje(int id)
         {
-            throw new NotImplementedException();
+            //TODO - MtM Acabar llamada para que devuelva todas las estadisticas de un Personaje
+            return uow.RepositoryClient<Estadistica>().GetAll();
         }
 
         public Estadistica GetEstadisticaById(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Estadistica>().GetByID(id);
         }
 
-        public Estadistica PostEstadistica(Estadistica accion)
+        public Estadistica PostEstadistica(Estadistica estadistica)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Estadistica>().Insert(estadistica);
+            uow.SaveChanges();
+            return GetEstadisticaById(estadistica.estadisticaId);
         }
 
-        public Estadistica PutEstadistica(int id, Estadistica accion)
+        public Estadistica PutEstadistica(int id, Estadistica estadistica)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Estadistica>().Update(estadistica);
+            uow.SaveChanges();
+            return GetEstadisticaById(id);
         }
 
         public void DeleteEstadistica(int id)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Estadistica>().Delete(id);
         }
     }
 }

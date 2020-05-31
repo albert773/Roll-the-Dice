@@ -1,11 +1,7 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
 using static Roll_the_Dice_Service.IoC.InjectableAttribute;
 
 namespace Roll_the_Dice_Service.Service
@@ -27,34 +23,36 @@ namespace Roll_the_Dice_Service.Service
 
         public IEnumerable<Personaje> GetAllPersonajesBySala(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Personaje>().GetMany(q => q.Sala.salaId == id);
         }
 
         public IEnumerable<Personaje> GetAllPersonajesByUsuario(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Personaje>().GetMany(q => q.Usuario.usuarioId == id);
         }
 
         public Personaje GetPersonajeById(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Personaje>().GetByID(id);
         }
 
         public Personaje PostPersonaje(Personaje personaje)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Personaje>().Insert(personaje);
+            uow.SaveChanges();
+            return GetPersonajeById(personaje.personajeId);
         }
 
         public Personaje PutPersonaje(int id, Personaje personaje)
         {
             uow.RepositoryClient<Personaje>().Update(personaje);
             uow.SaveChanges();
-            return uow.RepositoryClient<Personaje>().GetSingle(q => q.personajeId == id);
+            return GetPersonajeById(id);
         }
 
         public void DeletePersonaje(int id)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Personaje>().Delete(id);
         }
     }
 }

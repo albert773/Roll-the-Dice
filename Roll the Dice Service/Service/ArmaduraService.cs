@@ -1,14 +1,12 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
+using static Roll_the_Dice_Service.IoC.InjectableAttribute;
 
 namespace Roll_the_Dice_Service.Service
 {
+    [InjectableAttributeTransient]
     public class ArmaduraService : IService, IArmaduraService
     {
         private IUnitOfWork uow;
@@ -20,27 +18,31 @@ namespace Roll_the_Dice_Service.Service
 
         public IEnumerable<Armadura> GetAllArmaduras()
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Armadura>().GetAll();
         }
 
         public Armadura GetArmaduraById(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Armadura>().GetByID(id);
         }
 
         public Armadura PostArmadura(Armadura armadura)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Armadura>().Insert(armadura);
+            uow.SaveChanges();
+            return GetArmaduraById(armadura.armaduraId);
         }
 
         public Armadura PutArmadura(int id, Armadura armadura)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Armadura>().Update(armadura);
+            uow.SaveChanges();
+            return GetArmaduraById(id);
         }
 
         public void DeleteArmadura(int id)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Armadura>().Delete(id);
         }
     }
 }

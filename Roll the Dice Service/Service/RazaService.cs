@@ -1,13 +1,12 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using static Roll_the_Dice_Service.IoC.InjectableAttribute;
 
 namespace Roll_the_Dice_Service.Service
 {
+    [InjectableAttributeTransient]
     public class RazaService : IService, IRazaService
     {
         private IUnitOfWork uow;
@@ -19,27 +18,31 @@ namespace Roll_the_Dice_Service.Service
 
         public IEnumerable<Raza> GetAllRazas()
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Raza>().GetAll();
         }
 
         public Raza GetRazaById(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Raza>().GetByID(id);
         }
 
         public Raza PostRaza(Raza raza)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Raza>().Insert(raza);
+            uow.SaveChanges();
+            return GetRazaById(raza.razaId);
         }
 
         public Raza PutRaza(int id, Raza raza)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Raza>().Update(raza);
+            uow.SaveChanges();
+            return GetRazaById(id);
         }
 
         public void DeleteRaza(int id)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Raza>().Delete(id);
         }
     }
 }

@@ -1,14 +1,12 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
+using static Roll_the_Dice_Service.IoC.InjectableAttribute;
 
 namespace Roll_the_Dice_Service.Service
 {
+    [InjectableAttributeTransient]
     public class ClaseService : IService, IClaseService
     {
         private IUnitOfWork uow;
@@ -20,27 +18,31 @@ namespace Roll_the_Dice_Service.Service
 
         public IEnumerable<Clase> GetAllClases()
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Clase>().GetAll();
         }
 
         public Clase GetClaseById(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Clase>().GetByID(id);
         }
 
         public Clase PostClase(Clase clase)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Clase>().Insert(clase);
+            uow.SaveChanges();
+            return GetClaseById(clase.claseId);
         }
 
         public Clase PutClase(int id, Clase clase)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Clase>().Update(clase);
+            uow.SaveChanges();
+            return GetClaseById(id);
         }
 
         public void DeleteClase(int id)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Clase>().Delete(id);
         }
     }
 }

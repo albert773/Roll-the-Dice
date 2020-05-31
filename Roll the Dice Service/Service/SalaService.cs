@@ -1,13 +1,12 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using static Roll_the_Dice_Service.IoC.InjectableAttribute;
 
 namespace Roll_the_Dice_Service.Service
 {
+    [InjectableAttributeTransient]
     public class SalaService : IService, ISalaService
     {
         private IUnitOfWork uow;
@@ -19,31 +18,35 @@ namespace Roll_the_Dice_Service.Service
 
         public IEnumerable<Sala> GetAllSalas()
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Sala>().GetAll();
         }
 
         public IEnumerable<Sala> GetAllSalasByUsuario(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Sala>().GetMany(q => q.Usuario.usuarioId == id);
         }
 
         public Sala GetSalaById(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Sala>().GetByID(id);
         }
 
         public Sala PostSala(Sala sala)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Sala>().Insert(sala);
+            uow.SaveChanges();
+            return GetSalaById(sala.salaId);
         }
 
         public Sala PutSala(int id, Sala sala)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Sala>().Update(sala);
+            uow.SaveChanges();
+            return GetSalaById(id);
         }
         public void DeleteSala(int id)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Sala>().Delete(id);
         }
     }
 }

@@ -1,13 +1,12 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using static Roll_the_Dice_Service.IoC.InjectableAttribute;
 
 namespace Roll_the_Dice_Service.Service
 {
+    [InjectableAttributeTransient]
     public class InventarioService : IService, IInventarioService
     {
         private IUnitOfWork uow;
@@ -19,32 +18,36 @@ namespace Roll_the_Dice_Service.Service
 
         public IEnumerable<Inventario> GetAllInventarios()
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Inventario>().GetAll();
         }
 
         public Inventario GetInventarioById(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Inventario>().GetByID(id);
         }
 
         public Inventario GetInventarioByPersonaje(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Inventario>().GetFirst(q => q.Personaje.personajeId == id);
         }
 
         public Inventario PostInventario(Inventario inventario)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Inventario>().Insert(inventario);
+            uow.SaveChanges();
+            return GetInventarioById(inventario.inventarioId);
         }
 
         public Inventario PutInventario(int id, Inventario inventario)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Inventario>().Update(inventario);
+            uow.SaveChanges();
+            return GetInventarioById(id);
         }
 
         public void DeleteInventario(int id)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Inventario>().Delete(id);
         }
     }
 }

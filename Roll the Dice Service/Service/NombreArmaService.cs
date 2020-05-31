@@ -1,15 +1,15 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using static Roll_the_Dice_Service.IoC.InjectableAttribute;
 
 namespace Roll_the_Dice_Service.Service
 {
+    [InjectableAttributeTransient]
     public class NombreArmaService : IService, INombreArmaService
     {
+
         private IUnitOfWork uow;
 
         public NombreArmaService(IUnitOfWork uow)
@@ -19,27 +19,31 @@ namespace Roll_the_Dice_Service.Service
 
         public IEnumerable<NombreArma> GetAllNombreArmas()
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<NombreArma>().GetAll();
         }
 
         public NombreArma GetNombreArmaById(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<NombreArma>().GetByID(id);
         }
 
-        public NombreArma PostNombreArma(NombreArma nombreArma)
+        public NombreArma PostNombreArma(NombreArma NombreArma)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<NombreArma>().Insert(NombreArma);
+            uow.SaveChanges();
+            return GetNombreArmaById(NombreArma.nombreArmaId);
         }
 
-        public NombreArma PutNombreArma(int id, NombreArma nombreArma)
+        public NombreArma PutNombreArma(int id, NombreArma NombreArma)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<NombreArma>().Update(NombreArma);
+            uow.SaveChanges();
+            return GetNombreArmaById(id);
         }
 
         public void DeleteNombreArma(int id)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<NombreArma>().Delete(id);
         }
     }
 }

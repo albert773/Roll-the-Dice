@@ -1,10 +1,7 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Roll_the_Dice_Service.Service
 {
@@ -19,32 +16,36 @@ namespace Roll_the_Dice_Service.Service
 
         public IEnumerable<NPC> GetAllNPCs()
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<NPC>().GetAll();
         }
 
         public IEnumerable<NPC> GetAllNPCsBySala(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<NPC>().GetMany(q => q.Sala.salaId == id);
         }
 
         public NPC GetNPCById(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<NPC>().GetByID(id);
         }
 
         public NPC PostNPC(NPC npc)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<NPC>().Insert(npc);
+            uow.SaveChanges();
+            return GetNPCById(npc.NPCId);
         }
 
         public NPC PutNPC(int id, NPC npc)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<NPC>().Update(npc);
+            uow.SaveChanges();
+            return GetNPCById(id);
         }
 
         public void DeleteNPC(int id)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<NPC>().Delete(id);
         }
     }
 }

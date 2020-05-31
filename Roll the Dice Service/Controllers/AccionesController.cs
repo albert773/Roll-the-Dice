@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Roll_the_Dice_Service.Models;
+using Roll_the_Dice_Service.Utils;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Roll_the_Dice_Service.Models;
-using Roll_the_Dice_Service.Utils;
 
 namespace Roll_the_Dice_Service.Controllers
 {

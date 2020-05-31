@@ -9,10 +9,9 @@
 
 namespace Roll_the_Dice_Service.Models
 {
-    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class RolltheDiceDBEntities : DbContext
     {
         public RolltheDiceDBEntities()

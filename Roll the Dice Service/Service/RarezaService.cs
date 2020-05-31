@@ -1,13 +1,12 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using static Roll_the_Dice_Service.IoC.InjectableAttribute;
 
 namespace Roll_the_Dice_Service.Service
 {
+    [InjectableAttributeTransient]
     public class RarezaService : IService, IRarezaService
     {
         private IUnitOfWork uow;
@@ -19,27 +18,31 @@ namespace Roll_the_Dice_Service.Service
 
         public IEnumerable<Rareza> GetAllRarezas()
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Rareza>().GetAll();
         }
 
         public Rareza GetRarezaById(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Rareza>().GetByID(id);
         }
 
         public Rareza PostRareza(Rareza rareza)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Rareza>().Insert(rareza);
+            uow.SaveChanges();
+            return GetRarezaById(rareza.rarezaId);
         }
 
         public Rareza PutRareza(int id, Rareza rareza)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Rareza>().Update(rareza);
+            uow.SaveChanges();
+            return GetRarezaById(id);
         }
 
         public void DeleteRareza(int id)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Rareza>().Delete(id);
         }
     }
 }

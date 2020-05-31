@@ -1,13 +1,12 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using static Roll_the_Dice_Service.IoC.InjectableAttribute;
 
 namespace Roll_the_Dice_Service.Service
 {
+    [InjectableAttributeTransient]
     public class ItemService : IService, IItemService
     {
         private IUnitOfWork uow;
@@ -19,37 +18,37 @@ namespace Roll_the_Dice_Service.Service
 
         public IEnumerable<Item> GetAllItems()
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Item>().GetAll();
         }
 
-        public IEnumerable<Item> GetAllItemsByPersonajes(int id)
+        public IEnumerable<Item> GetAllItemsByPersonaje(int id)
         {
-            throw new NotImplementedException();
+            //TODO - Llamada Many to Many
+            return null;
         }
 
         public Item GetItemById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Item GetItemByPersonaje(int id)
-        {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Item>().GetByID(id);
         }
 
         public Item PostItem(Item item)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Item>().Insert(item);
+            uow.SaveChanges();
+            return GetItemById(item.itemId);
         }
 
         public Item PutItem(int id, Item item)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Item>().Update(item);
+            uow.SaveChanges();
+            return GetItemById(id);
         }
 
         public void DeleteItem(int id)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Item>().Delete(id);
         }
     }
 }

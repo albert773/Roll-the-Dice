@@ -1,11 +1,8 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Http;
 
 namespace Roll_the_Dice_Service.Service
 {
@@ -20,7 +17,7 @@ namespace Roll_the_Dice_Service.Service
 
         public IEnumerable<Elemento> GetAllElementos()
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Elemento>().GetWithInclude("Debilidad").ToList();
         }
 
         public Elemento GetElementoById(int id)
@@ -30,16 +27,20 @@ namespace Roll_the_Dice_Service.Service
 
         public Elemento PostElemento(Elemento elemento)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Elemento>().Insert(elemento);
+            uow.SaveChanges();
+            return GetElementoById(elemento.elementoId);
         }
 
         public Elemento PutElemento(int id, Elemento elemento)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Elemento>().Insert(elemento);
+            uow.SaveChanges();
+            return GetElementoById(id);
         }
         public void DeleteElemento(int id)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Elemento>().Delete(id);
         }
     }
 }

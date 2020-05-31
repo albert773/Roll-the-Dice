@@ -1,10 +1,5 @@
 ﻿using Roll_the_Dice_Service.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
 
 namespace Roll_the_Dice_Service.Service.Interface
 {
@@ -13,8 +8,8 @@ namespace Roll_the_Dice_Service.Service.Interface
         IEnumerable<Estadistica> GetAllEstadisticas();
         IEnumerable<Estadistica> GetAllEstadisticasByPersonaje(int id);
         Estadistica GetEstadisticaById(int id);
-        Estadistica PostEstadistica(Estadistica accion);
-        Estadistica PutEstadistica(int id, Estadistica accion);
+        Estadistica PostEstadistica(Estadistica estadistica);
+        Estadistica PutEstadistica(int id, Estadistica estadistica);
         void DeleteEstadistica(int id);
     }
 }

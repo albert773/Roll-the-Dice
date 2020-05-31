@@ -1,13 +1,12 @@
 ﻿using Roll_the_Dice_Service.Models;
 using Roll_the_Dice_Service.Service.Interface;
 using Roll_the_Dice_Service.Utils;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using static Roll_the_Dice_Service.IoC.InjectableAttribute;
 
 namespace Roll_the_Dice_Service.Service
 {
+    [InjectableAttributeTransient]
     public class EstadoService : IService, IEstadoService
     {
         private IUnitOfWork uow;
@@ -19,27 +18,31 @@ namespace Roll_the_Dice_Service.Service
 
         public IEnumerable<Estado> GetAllEstados()
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Estado>().GetAll();
         }
 
         public Estado GetEstadoById(int id)
         {
-            throw new NotImplementedException();
+            return uow.RepositoryClient<Estado>().GetByID(id);
         }
 
         public Estado PostEstado(Estado estado)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Estado>().Insert(estado);
+            uow.SaveChanges();
+            return GetEstadoById(estado.estadoId);
         }
 
         public Estado PutEstado(int id, Estado estado)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Estado>().Update(estado);
+            uow.SaveChanges();
+            return GetEstadoById(id);
         }
 
         public void DeleteEstado(int id)
         {
-            throw new NotImplementedException();
+            uow.RepositoryClient<Estado>().Delete(id);
         }
     }
 }
