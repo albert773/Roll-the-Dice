@@ -18,17 +18,18 @@ namespace Roll_the_Dice_Service.Controllers
         {
             this.EstadoServ = EstadoServ;
         }
+
         // GET: api/Estados
         [HttpGet]
         [Route("")]
-        public IEnumerable<Estado> GetEstado()
+        public IHttpActionResult GetEstado()
         {
-            IEnumerable<Estado> estados = EstadoDTO.GetAll();
+            IEnumerable<Estado> estados = EstadoServ.GetAllEstados();
             if (estados.Count() > 0)
             {
-                return estados.ToList();
+                return Ok(estados);
             }
-            return estados;
+            return BadRequest("No se ha encontrado ningun estado");
         }
 
         // GET: api/Estados/5
@@ -37,7 +38,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Estado))]
         public IHttpActionResult GetEstado(int id)
         {
-            Estado estado = EstadoDTO.GetByID(id);
+            Estado estado = EstadoServ.GetEstadoById(id);
             if (estado == null)
             {
                 return NotFound();
@@ -62,22 +63,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            EstadoDTO.Update(estado);
-
             try
             {
-                uw.SaveChanges();
+                EstadoServ.PutEstado(id, estado);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EstadoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("El estado se ha modificado correctamente");
@@ -94,8 +86,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            EstadoDTO.Insert(estado);
-            uw.SaveChanges();
+            EstadoServ.PostEstado(estado);
 
             return Ok();
         }
@@ -106,30 +97,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Estado))]
         public IHttpActionResult DeleteEstado(int id)
         {
-            Estado estado = EstadoDTO.GetByID(id);
-            if (estado == null)
-            {
-                return NotFound();
-            }
-
-            EstadoDTO.Delete(estado);
-            uw.SaveChanges();
+            EstadoServ.DeleteEstado(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool EstadoExists(int id)
-        {
-            return EstadoDTO.getDbSet().Count(e => e.estadoId == id) > 0;
         }
     }
 }

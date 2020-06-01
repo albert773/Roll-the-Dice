@@ -21,14 +21,14 @@ namespace Roll_the_Dice_Service.Controllers
         // GET: api/Razas
         [HttpGet]
         [Route("")]
-        public IEnumerable<Raza> GetAllRazas()
+        public IHttpActionResult GetAllRazas()
         {
-            IEnumerable<Raza> razas = RazaDTO.GetAll();
+            IEnumerable<Raza> razas = RazaServ.GetAllRazas();
             if (razas.Count() > 0)
             {
-                return razas.ToList();
+                return Ok(razas);
             }
-            return razas;
+            return BadRequest("No se ha encontrado ninguna raza");
         }
 
         // GET: api/Razas/5
@@ -37,7 +37,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Raza))]
         public IHttpActionResult GetRaza(int id)
         {
-            Raza raza = RazaDTO.GetByID(id);
+            Raza raza = RazaServ.GetRazaById(id);
             if (raza == null)
             {
                 return NotFound();
@@ -62,22 +62,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            RazaDTO.Update(raza);
-
             try
             {
-                uw.SaveChanges();
+                RazaServ.PutRaza(id, raza);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RazaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("La raza se ha modificado correctamente");
@@ -94,8 +85,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            RazaDTO.Insert(raza);
-            uw.SaveChanges();
+            RazaServ.PostRaza(raza);
 
             return Ok();
         }
@@ -106,30 +96,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Raza))]
         public IHttpActionResult DeleteRaza(int id)
         {
-            Raza raza = RazaDTO.GetByID(id);
-            if (raza == null)
-            {
-                return NotFound();
-            }
-
-            RazaDTO.Delete(raza);
-            uw.SaveChanges();
+            RazaServ.DeleteRaza(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool RazaExists(int id)
-        {
-            return RazaDTO.getDbSet().Count(e => e.razaId == id) > 0;
         }
     }
 }

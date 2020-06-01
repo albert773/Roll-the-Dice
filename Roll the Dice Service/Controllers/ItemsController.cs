@@ -18,17 +18,18 @@ namespace Roll_the_Dice_Service.Controllers
         {
             this.ItemServ = ItemServ;
         }
+
         // GET: api/Items
         [HttpGet]
         [Route("")]
-        public IEnumerable<Item> GetAllItems()
+        public IHttpActionResult GetAllItems()
         {
-            IEnumerable<Item> items = ItemDTO.GetAll();
+            IEnumerable<Item> items = ItemServ.GetAllItems();
             if (items.Count() > 0)
             {
-                return items.ToList();
+                return Ok(items);
             }
-            return items;
+            return BadRequest("No se ha encontrado ningun item");
         }
 
         // GET: api/Items/5
@@ -37,7 +38,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Item))]
         public IHttpActionResult GetItem(int id)
         {
-            Item item = ItemDTO.GetByID(id);
+            Item item = ItemServ.GetItemById(id);
             if (item == null)
             {
                 return NotFound();
@@ -62,22 +63,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            ItemDTO.Update(item);
-
             try
             {
-                uw.SaveChanges();
+                ItemServ.PutItem(id, item);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ItemExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("El item se ha modificado correctamente");
@@ -94,8 +86,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            ItemDTO.Insert(item);
-            uw.SaveChanges();
+            ItemServ.PostItem(item);
 
             return Ok();
         }
@@ -106,30 +97,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Item))]
         public IHttpActionResult DeleteItem(int id)
         {
-            Item item = ItemDTO.GetByID(id);
-            if (item == null)
-            {
-                return NotFound();
-            }
-
-            ItemDTO.Delete(item);
-            uw.SaveChanges();
+            ItemServ.DeleteItem(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool ItemExists(int id)
-        {
-            return ItemDTO.getDbSet().Count(e => e.itemId == id) > 0;
         }
     }
 }

@@ -21,14 +21,14 @@ namespace Roll_the_Dice_Service.Controllers
         // GET: api/NPCs
         [HttpGet]
         [Route("")]
-        public IEnumerable<NPC> GetAllNPCs()
+        public IHttpActionResult GetAllNPCs()
         {
-            IEnumerable<NPC> NPCs = NPCDTO.GetAll();
+            IEnumerable<NPC> NPCs = NPCServ.GetAllNPCs();
             if (NPCs.Count() > 0)
             {
-                return NPCs.ToList();
+                return Ok(NPCs);
             }
-            return NPCs;
+            return BadRequest("No se ha encontrado ningun NPC");
         }
 
         // GET: api/NPCs/5
@@ -37,7 +37,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(NPC))]
         public IHttpActionResult GetNPC(int id)
         {
-            NPC npc = NPCDTO.GetByID(id);
+            NPC npc = NPCServ.GetNPCById(id);
             if (npc == null)
             {
                 return NotFound();
@@ -62,22 +62,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            NPCDTO.Update(npc);
-
             try
             {
-                uw.SaveChanges();
+                NPCServ.PutNPC(id, npc);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!NPCExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("El usuario se ha modificado correctamente");
@@ -94,8 +85,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            NPCDTO.Insert(npc);
-            uw.SaveChanges();
+            NPCServ.PostNPC(npc);
 
             return Ok();
         }
@@ -106,30 +96,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(NPC))]
         public IHttpActionResult DeleteNPC(int id)
         {
-            NPC npc = NPCDTO.GetByID(id);
-            if (npc == null)
-            {
-                return NotFound();
-            }
-
-            NPCDTO.Delete(npc);
-            uw.SaveChanges();
+            NPCServ.DeleteNPC(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool NPCExists(int id)
-        {
-            return NPCDTO.getDbSet().Count(e => e.NPCId == id) > 0;
         }
     }
 }

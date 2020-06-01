@@ -21,14 +21,14 @@ namespace Roll_the_Dice_Service.Controllers
         // GET: api/Rarezas
         [HttpGet]
         [Route("")]
-        public IEnumerable<Rareza> GetAllRarezas()
+        public IHttpActionResult GetAllRarezas()
         {
-            IEnumerable<Rareza> rarezas = RarezaDTO.GetAll();
+            IEnumerable<Rareza> rarezas = RarezaServ.GetAllRarezas();
             if (rarezas.Count() > 0)
             {
-                return rarezas.ToList();
+                return Ok(rarezas);
             }
-            return rarezas;
+            return BadRequest("No se ha podido encontrar ninguna rareza");
         }
 
         // GET: api/Rarezas/5
@@ -37,7 +37,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Rareza))]
         public IHttpActionResult GetRareza(int id)
         {
-            Rareza rareza = RarezaDTO.GetByID(id);
+            Rareza rareza = RarezaServ.GetRarezaById(id);
             if (rareza == null)
             {
                 return NotFound();
@@ -62,22 +62,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            RarezaDTO.Update(rareza);
-
             try
             {
-                uw.SaveChanges();
+                RarezaServ.PutRareza(id, rareza);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RarezaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("La rareza se ha modificado correctamente");
@@ -94,8 +85,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            RarezaDTO.Insert(rareza);
-            uw.SaveChanges();
+            RarezaServ.PostRareza(rareza);
 
             return Ok();
         }
@@ -106,30 +96,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Rareza))]
         public IHttpActionResult DeleteRareza(int id)
         {
-            Rareza rareza = RarezaDTO.GetByID(id);
-            if (rareza == null)
-            {
-                return NotFound();
-            }
-
-            RarezaDTO.Delete(rareza);
-            uw.SaveChanges();
+            RarezaServ.DeleteRareza(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool RarezaExists(int id)
-        {
-            return RarezaDTO.getDbSet().Count(e => e.rarezaId == id) > 0;
         }
     }
 }

@@ -18,17 +18,18 @@ namespace Roll_the_Dice_Service.Controllers
         {
             this.HabilidadServ = HabilidadServ;
         }
+
         // GET: api/Habilidades
         [HttpGet]
         [Route("")]
-        public IEnumerable<Habilidad> GetAllHabilidades()
+        public IHttpActionResult GetAllHabilidades()
         {
-            IEnumerable<Habilidad> habilidad = HabilidadDTO.GetAll();
+            IEnumerable<Habilidad> habilidad = HabilidadServ.GetAllHabilidades();
             if (habilidad.Count() > 0)
             {
-                return habilidad.ToList();
+                return Ok(habilidad);
             }
-            return habilidad;
+            return BadRequest("No se ha encontrado ninguna habilidad");
         }
 
         // GET: api/Habilidades/5
@@ -37,7 +38,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Habilidad))]
         public IHttpActionResult GetHabilidad(int id)
         {
-            Habilidad habilidad = HabilidadDTO.GetByID(id);
+            Habilidad habilidad = HabilidadServ.GetHabilidadById(id);
             if (habilidad == null)
             {
                 return NotFound();
@@ -62,25 +63,16 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            HabilidadDTO.Update(habilidad);
-
             try
             {
-                uw.SaveChanges();
+                HabilidadServ.PutHabilidad(id, habilidad);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!HabilidadExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
-            return Ok("la habilidad se ha modificado correctamente");
+            return Ok("La habilidad se ha modificado correctamente");
         }
 
         // POST: api/Habilidades
@@ -94,8 +86,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            HabilidadDTO.Insert(habilidad);
-            uw.SaveChanges();
+            HabilidadServ.PostHabilidad(habilidad);
 
             return Ok();
         }
@@ -106,30 +97,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Habilidad))]
         public IHttpActionResult DeleteHabilidad(int id)
         {
-            Habilidad habilidad = HabilidadDTO.GetByID(id);
-            if (habilidad == null)
-            {
-                return NotFound();
-            }
+            HabilidadServ.DeleteHabilidad(id);
 
-            HabilidadDTO.Delete(habilidad);
-            uw.SaveChanges();
-
-            return Ok(habilidad);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool HabilidadExists(int id)
-        {
-            return HabilidadDTO.getDbSet().Count(e => e.habilidadId == id) > 0;
+            return Ok("Se ha eliminado correctamente");
         }
     }
 }

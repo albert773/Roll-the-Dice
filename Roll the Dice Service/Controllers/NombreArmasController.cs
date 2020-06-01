@@ -18,17 +18,18 @@ namespace Roll_the_Dice_Service.Controllers
         {
             this.NombreArmaServ = NombreArmaServ;
         }
+
         // GET: api/NombreArmas
         [HttpGet]
         [Route("")]
-        public IEnumerable<NombreArma> GetAllNombreArmas()
+        public IHttpActionResult GetAllNombreArmas()
         {
-            IEnumerable<NombreArma> nombreArmas = NombreArmaDTO.GetAll();
+            IEnumerable<NombreArma> nombreArmas = NombreArmaServ.GetAllNombreArmas();
             if (nombreArmas.Count() > 0)
             {
-                return nombreArmas.ToList();
+                return Ok(nombreArmas);
             }
-            return nombreArmas;
+            return BadRequest("No se ha encontrado ningun nombreArma");
         }
 
         // GET: api/NombreArmas/5
@@ -37,7 +38,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(NombreArma))]
         public IHttpActionResult GetNombreArma(int id)
         {
-            NombreArma nombreArma = NombreArmaDTO.GetByID(id);
+            NombreArma nombreArma = NombreArmaServ.GetNombreArmaById(id);
             if (nombreArma == null)
             {
                 return NotFound();
@@ -62,22 +63,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            NombreArmaDTO.Update(nombreArma);
-
             try
             {
-                uw.SaveChanges();
+                NombreArmaServ.PutNombreArma(id, nombreArma);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!NombreArmaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("El nombreArma se ha modificado correctamente");
@@ -94,8 +86,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            NombreArmaDTO.Insert(nombreArma);
-            uw.SaveChanges();
+            NombreArmaServ.PostNombreArma(nombreArma);
 
             return Ok();
         }
@@ -106,30 +97,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(NombreArma))]
         public IHttpActionResult DeleteNombreArma(int id)
         {
-            NombreArma nombreArma = NombreArmaDTO.GetByID(id);
-            if (nombreArma == null)
-            {
-                return NotFound();
-            }
-
-            NombreArmaDTO.Delete(nombreArma);
-            uw.SaveChanges();
+            NombreArmaServ.DeleteNombreArma(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool NombreArmaExists(int id)
-        {
-            return NombreArmaDTO.getDbSet().Count(e => e.nombreArmaId == id) > 0;
         }
     }
 }

@@ -21,14 +21,14 @@ namespace Roll_the_Dice_Service.Controllers
         // GET: api/NombreArmaduras
         [HttpGet]
         [Route("")]
-        public IEnumerable<NombreArmadura> GetAllNombreArmaduras()
+        public IHttpActionResult GetAllNombreArmaduras()
         {
-            IEnumerable<NombreArmadura> nombreArmaduras = NombreArmaduraDTO.GetAll();
+            IEnumerable<NombreArmadura> nombreArmaduras = NombreArmaduraServ.GetAllNombreArmaduras();
             if (nombreArmaduras.Count() > 0)
             {
-                return nombreArmaduras.ToList();
+                return Ok(nombreArmaduras);
             }
-            return nombreArmaduras;
+            return BadRequest("No se ha encontrado ningun nombreArmaduras");
         }
 
         // GET: api/NombreArmaduras/5
@@ -37,7 +37,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(NombreArmadura))]
         public IHttpActionResult GetNombreArmadura(int id)
         {
-            NombreArmadura nombreArmadura = NombreArmaduraDTO.GetByID(id);
+            NombreArmadura nombreArmadura = NombreArmaduraServ.GetNombreArmaduraById(id);
             if (nombreArmadura == null)
             {
                 return NotFound();
@@ -59,23 +59,14 @@ namespace Roll_the_Dice_Service.Controllers
             {
                 return BadRequest();
             }
-
-            NombreArmaduraDTO.Update(nombreArmadura);
-
+            
             try
             {
-                uw.SaveChanges();
+                NombreArmaduraServ.PutNombreArmadura(id, nombreArmadura);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!NombreArmaduraExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("El nombreArmadura se ha modificado correctamente");
@@ -92,8 +83,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            NombreArmaduraDTO.Insert(nombreArmadura);
-            uw.SaveChanges();
+            NombreArmaduraServ.PostNombreArmadura(nombreArmadura);
 
             return Ok();
         }
@@ -104,30 +94,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(NombreArmadura))]
         public IHttpActionResult DeleteNombreArmadura(int id)
         {
-            NombreArmadura nombreArmadura = NombreArmaduraDTO.GetByID(id);
-            if (nombreArmadura == null)
-            {
-                return NotFound();
-            }
-
-            NombreArmaduraDTO.Delete(nombreArmadura);
-            uw.SaveChanges();
+            NombreArmaduraServ.DeleteNombreArmadura(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool NombreArmaduraExists(int id)
-        {
-            return NombreArmaduraDTO.getDbSet().Count(e => e.nombreArmaduraId == id) > 0;
         }
     }
 }

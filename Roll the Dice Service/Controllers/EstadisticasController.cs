@@ -18,17 +18,18 @@ namespace Roll_the_Dice_Service.Controllers
         {
             this.EstadisticaServ = EstadisticaServ;
         }
+
         // GET: api/Estadisticas
         [HttpGet]
         [Route("")]
-        public IEnumerable<Estadistica> GetEstadistica()
+        public IHttpActionResult GetEstadistica()
         {
-            IEnumerable<Estadistica> estadisticas = EstadisticaDTO.GetAll();
+            IEnumerable<Estadistica> estadisticas = EstadisticaServ.GetAllEstadisticas();
             if (estadisticas.Count() > 0)
             {
-                return estadisticas.ToList();
+                return Ok(estadisticas);
             }
-            return estadisticas;
+            return BadRequest("No se ha encontrado ninguna estadistica");
         }
 
         // GET: api/Estadisticas/5
@@ -37,7 +38,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Estadistica))]
         public IHttpActionResult GetEstadistica(int id)
         {
-            Estadistica estadistica = EstadisticaDTO.GetByID(id);
+            Estadistica estadistica = EstadisticaServ.GetEstadisticaById(id);
             if (estadistica == null)
             {
                 return NotFound();
@@ -61,22 +62,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            EstadisticaDTO.Update(estadistica);
-
             try
             {
-                uw.SaveChanges();
+                EstadisticaServ.PutEstadistica(id, estadistica);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EstadisticaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                  throw;
             }
 
             return Ok("La estadistica se ha modificado correctamente");
@@ -93,8 +85,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            EstadisticaDTO.Insert(estadistica);
-            uw.SaveChanges();
+            EstadisticaServ.PostEstadistica(estadistica);
 
             return Ok();
         }
@@ -105,30 +96,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Estadistica))]
         public IHttpActionResult DeleteEstadistica(int id)
         {
-            Estadistica estadistica = EstadisticaDTO.GetByID(id);
-            if (estadistica == null)
-            {
-                return NotFound();
-            }
+            EstadisticaServ.DeleteEstadistica(id);
 
-            EstadisticaDTO.Delete(estadistica);
-            uw.SaveChanges();
-
-            return Ok(estadistica);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool EstadisticaExists(int id)
-        {
-            return EstadisticaDTO.getDbSet().Count(e => e.estadisticaId == id) > 0;
+            return Ok("Se ha eliminado correctamente");
         }
     }
 }

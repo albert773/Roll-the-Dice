@@ -21,14 +21,14 @@ namespace Roll_the_Dice_Service.Controllers
         // GET: api/Idiomas
         [HttpGet]
         [Route("")]
-        public IEnumerable<Idioma> GetIdioma()
+        public IHttpActionResult GetIdioma()
         {
-            IEnumerable<Idioma> idiomas = IdiomaDTO.GetAll();
+            IEnumerable<Idioma> idiomas = IdiomaServ.GetAllIdiomas();
             if (idiomas.Count() > 0)
             {
-                return idiomas.ToList();
+                return Ok(idiomas);
             }
-            return idiomas;
+            return BadRequest("No se ha encontrado ningun idioma");
         }
 
         // GET: api/Idiomas/5
@@ -37,7 +37,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Idioma))]
         public IHttpActionResult GetIdioma(int id)
         {
-            Idioma idioma = IdiomaDTO.GetByID(id);
+            Idioma idioma = IdiomaServ.GetIdiomaById(id);
             if (idioma == null)
             {
                 return NotFound();
@@ -62,22 +62,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            IdiomaDTO.Update(idioma);
-
             try
             {
-                uw.SaveChanges();
+                IdiomaServ.PutIdioma(id, idioma);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!IdiomaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("El idioma se ha modificado correctamente");
@@ -94,8 +85,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdiomaDTO.Insert(idioma);
-            uw.SaveChanges();
+            IdiomaServ.PostIdioma(idioma);
 
             return Ok();
         }
@@ -106,30 +96,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Idioma))]
         public IHttpActionResult DeleteIdioma(int id)
         {
-            Idioma idioma = IdiomaDTO.GetByID(id);
-            if (idioma == null)
-            {
-                return NotFound();
-            }
-
-            IdiomaDTO.Delete(idioma);
-            uw.SaveChanges();
+            IdiomaServ.DeleteIdioma(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool IdiomaExists(int id)
-        {
-            return IdiomaDTO.getDbSet().Count(e => e.idiomaId == id) > 0;
         }
     }
 }

@@ -22,14 +22,15 @@ namespace Roll_the_Dice_Service.Controllers
         // GET: api/Armas
         [HttpGet]
         [Route("")]
-        public IEnumerable<Arma> GetArma()
+        public IHttpActionResult GetArma()
         {
-            IEnumerable<Arma> armas = ArmaDTO.GetAll();
+            IEnumerable<Arma> armas = ArmaServ.GetAllArmas();
             if (armas.Count() > 0)
             {
-                return armas.ToList();
+                return Ok(armas);
             }
-            return armas;
+
+            return BadRequest("No se ha encontrado ningun arma");
         }
 
         // GET: api/Armas/5
@@ -38,12 +39,13 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Arma))]
         public IHttpActionResult GetArma(int id)
         {
-            Arma arma = ArmaDTO.GetByID(id);
+            Arma arma = ArmaServ.GetArmaById(id);
             if (arma == null)
             {
-                return NotFound();
+                return Ok(arma);
             }
-            return Ok(arma);
+
+            return BadRequest("No se ha encontrado el arma con id: " + id);
         }
 
         // PUT: api/Armas/5
@@ -62,22 +64,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            ArmaDTO.Update(arma);
-
             try
             {
-                uw.SaveChanges();
+                ArmaServ.PutArma(id, arma);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ArmaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("El arma se ha modificado correctamente");
@@ -94,8 +87,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            ArmaDTO.Insert(arma);
-            uw.SaveChanges();
+            ArmaServ.PostArma(arma);
 
             return Ok();
         }
@@ -106,30 +98,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Arma))]
         public IHttpActionResult DeleteArma(int id)
         {
-            Arma arma = ArmaDTO.GetByID(id);
-            if (arma == null)
-            {
-                return NotFound();
-            }
-
-            ArmaDTO.Delete(arma);
-            uw.SaveChanges();
+            ArmaServ.DeleteArma(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool ArmaExists(int id)
-        {
-            return ArmaDTO.getDbSet().Count(e => e.armaId == id) > 0;
         }
     }
 }

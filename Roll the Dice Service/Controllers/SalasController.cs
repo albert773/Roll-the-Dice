@@ -37,7 +37,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Sala))]
         public IHttpActionResult GetSala(int id)
         {
-            Sala sala = SalaDTO.GetByID(id);
+            Sala sala = SalaServ.GetSalaById(id);
             if (sala == null)
             {
                 return NotFound();
@@ -62,22 +62,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            SalaDTO.Update(sala);
-
             try
             {
-                uw.SaveChanges();
+                SalaServ.PutSala(id, sala);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SalaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("La sala se ha modificado correctamente");
@@ -94,8 +85,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            SalaDTO.Insert(sala);
-            uw.SaveChanges();
+            SalaServ.PostSala(sala);
 
             return Ok();
         }
@@ -106,26 +96,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Sala))]
         public IHttpActionResult DeleteSala(int id)
         {
-            Sala sala = SalaDTO.GetByID(id);
-            if (sala == null)
-            {
-                return NotFound();
-            }
-
-            SalaDTO.Delete(sala);
-            uw.SaveChanges();
+            SalaServ.DeleteSala(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(false);
-        }
-
-        private bool SalaExists(int id)
-        {
-            return SalaDTO.getDbSet().Count(e => e.salaId == id) > 0;
         }
     }
 }

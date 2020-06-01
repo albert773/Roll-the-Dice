@@ -22,14 +22,14 @@ namespace Roll_the_Dice_Service.Controllers
         // GET: api/Usuarios
         [HttpGet]
         [Route("")]
-        public IEnumerable<Usuario> GetAllUsuarios()
+        public IHttpActionResult GetAllUsuarios()
         {
             IEnumerable<Usuario> usuarios = UsuarioServ.GetAllUsuarios();
             if (usuarios.Count() > 0)
             {
-                return usuarios.ToList();
+                return Ok(usuarios);
             }
-            return usuarios;
+            return BadRequest("No se ha encontrado ningun usuario");
         }
 
         // GET: api/Usuarios/5

@@ -18,17 +18,18 @@ namespace Roll_the_Dice_Service.Controllers
         {
             this.MonstruoServ = MonstruoServ;
         }
+
         // GET: api/Monstruos
         [HttpGet]
         [Route("")]
-        public IEnumerable<Monstruo> GetAllMonstruos()
+        public IHttpActionResult GetAllMonstruos()
         {
-            IEnumerable<Monstruo> monstruos = MonstruoDTO.GetAll();
+            IEnumerable<Monstruo> monstruos = MonstruoServ.GetAllMonstruos();
             if (monstruos.Count() > 0)
             {
-                return monstruos.ToList();
+                return Ok(monstruos);
             }
-            return monstruos;
+            return BadRequest("");
         }
 
         // GET: api/Monstruos/5
@@ -37,7 +38,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Monstruo))]
         public IHttpActionResult GetMonstruo(int id)
         {
-            Monstruo monstruo = MonstruoDTO.GetByID(id);
+            Monstruo monstruo = MonstruoServ.GetMonstruoById(id);
             if (monstruo == null)
             {
                 return NotFound();
@@ -62,22 +63,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            MonstruoDTO.Update(monstruo);
-
             try
             {
-                uw.SaveChanges();
+                MonstruoServ.PutMonstruo(id, monstruo);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MonstruoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("El monstruo se ha modificado correctamente");
@@ -94,8 +86,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            MonstruoDTO.Insert(monstruo);
-            uw.SaveChanges();
+            MonstruoServ.PostMonstruo(monstruo);
 
             return Ok();
         }
@@ -104,30 +95,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Monstruo))]
         public IHttpActionResult DeleteMonstruo(int id)
         {
-            Monstruo monstruo = MonstruoDTO.GetByID(id);
-            if (monstruo == null)
-            {
-                return NotFound();
-            }
-
-            MonstruoDTO.Delete(monstruo);
-            uw.SaveChanges();
+            MonstruoServ.DeleteMonstruo(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool MonstruoExists(int id)
-        {
-            return MonstruoDTO.getDbSet().Count(e => e.monstruoId == id) > 0;
         }
     }
 }

@@ -27,11 +27,11 @@ namespace Roll_the_Dice_Service.Controllers
             IEnumerable<Accion> acciones = AccionServ.GetAllAcciones();
             if (acciones.Count() > 0)
             {
-                return Ok(acciones.ToList());
+                return Ok(acciones);
             }
             else
             {
-                return BadRequest("Solicitud Incorrecta");
+                return BadRequest("No se ha encontrado ninguna accion");
             }
         }
 

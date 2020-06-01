@@ -22,14 +22,14 @@ namespace Roll_the_Dice_Service.Controllers
         // GET: api/Posiciones
         [HttpGet]
         [Route("")]
-        public IEnumerable<Posicion> GetAllPosiciones()
+        public IHttpActionResult GetAllPosiciones()
         {
-            IEnumerable<Posicion> posiciones = PosicionDTO.GetAll();
+            IEnumerable<Posicion> posiciones = PosicionServ.GetAllPosiciones();
             if (posiciones.Count() > 0)
             {
-                return posiciones.ToList();
+                return Ok(posiciones);
             }
-            return posiciones;
+            return BadRequest("No se ha encontrado ninguna posicion");
         }
 
         // GET: api/Posiciones/5
@@ -38,7 +38,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Posicion))]
         public IHttpActionResult GetPosicion(int id)
         {
-            Posicion posicion = PosicionDTO.GetByID(id);
+            Posicion posicion = PosicionServ.GetPosicionById(id);
             if (posicion == null)
             {
                 return NotFound();
@@ -63,22 +63,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            PosicionDTO.Update(posicion);
-
             try
             {
-                uw.SaveChanges();
+                PosicionServ.PutPosicion(id, posicion);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PosicionExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -95,8 +86,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            PosicionDTO.Insert(posicion);
-            uw.SaveChanges();
+            PosicionServ.PostPosicion(posicion);
 
             return Ok();
         }
@@ -107,30 +97,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Posicion))]
         public IHttpActionResult DeletePosicion(int id)
         {
-            Posicion posicion = PosicionDTO.GetByID(id);
-            if (posicion == null)
-            {
-                return NotFound();
-            }
-
-            PosicionDTO.Delete(posicion);
-            uw.SaveChanges();
+            PosicionServ.DeletePosicion(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool PosicionExists(int id)
-        {
-            return PosicionDTO.getDbSet().Count(e => e.posicionId == id) > 0;
         }
     }
 }

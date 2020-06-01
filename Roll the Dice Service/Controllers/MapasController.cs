@@ -18,17 +18,18 @@ namespace Roll_the_Dice_Service.Controllers
         {
             this.MapaServ = MapaServ;
         }
+
         // GET: api/Mapas
         [HttpGet]
         [Route("")]
-        public IEnumerable<Mapa> GetAllMapas()
+        public IHttpActionResult GetAllMapas()
         {
-            IEnumerable<Mapa> mapas = MapaDTO.GetAll();
+            IEnumerable<Mapa> mapas = MapaServ.GetAllMapas();
             if (mapas.Count() > 0)
             {
-                return mapas.ToList();
+                return Ok(mapas);
             }
-            return mapas;
+            return BadRequest("No se ha encontrado ningun mapa");
         }
 
         // GET: api/Mapas/5
@@ -37,7 +38,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Mapa))]
         public IHttpActionResult GetMapa(int id)
         {
-            Mapa mapa = MapaDTO.GetByID(id);
+            Mapa mapa = MapaServ.GetMapaById(id);
             if (mapa == null)
             {
                 return NotFound();
@@ -62,22 +63,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            MapaDTO.Update(mapa);
-
             try
             {
-                uw.SaveChanges();
+                MapaServ.PutMapa(id, mapa);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MapaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("El mapa se ha modificado correctamente");
@@ -94,8 +86,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            MapaDTO.Insert(mapa);
-            uw.SaveChanges();
+            MapaServ.PostMapa(mapa);
 
             return Ok();
         }
@@ -106,30 +97,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Mapa))]
         public IHttpActionResult DeleteMapa(int id)
         {
-            Mapa mapa = MapaDTO.GetByID(id);
-            if (mapa == null)
-            {
-                return NotFound();
-            }
-
-            MapaDTO.Delete(mapa);
-            uw.SaveChanges();
+            MapaServ.DeleteMapa(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool MapaExists(int id)
-        {
-            return MapaDTO.getDbSet().Count(e => e.mapaId == id) > 0;
         }
     }
 }

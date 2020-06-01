@@ -23,28 +23,14 @@ namespace Roll_the_Dice_Service.Controllers
         // GET: api/Elementos
         [HttpGet]
         [Route("")]
-        public IEnumerable<Elemento> GetAllElementos()
+        public IHttpActionResult GetAllElementos()
         {
-            IEnumerable<Elemento> elementos = ElementoDTO.GetAll().Select(e =>
-            {
-                //e.Elemento2.Elemento1 = null;
-                //e.Elemento2.Elemento2 = null;
-                //e.Elemento2.Arma = null;
-                //e.Elemento2.Armadura = null;
-                //e.Elemento2.Habilidad = null;
-
-                //e.Elemento1.Elemento1 = null;
-                //e.Elemento1.Elemento2 = null;
-                //e.Elemento1.Arma = null;
-                //e.Elemento1.Armadura = null;
-                //e.Elemento1.Habilidad = null;
-                return e;
-            });
+            IEnumerable<Elemento> elementos = ElementoServ.GetAllElementos();
             if (elementos.Count() > 0)
             {
-                return elementos.ToList();
+                return Ok(elementos);
             }
-            return elementos;
+            return BadRequest("No se ha encontrado ningun elemento");
         }
 
         // GET: api/Elementos/5
@@ -53,13 +39,13 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Elemento))]
         public IHttpActionResult GetElemento(int id)
         {
-            //Elemento elemento = ElementoDTO.GetWithInclude("Elemento");
-            //if (elemento == null)
-            //{
-            //    return NotFound();
-            //}
-            //
-            return Ok();
+            Elemento elemento = ElementoServ.GetElementoById(id);
+            if (elemento == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(elemento);
         }
 
         // PUT: api/Elementos/5
@@ -78,22 +64,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            ElementoDTO.Update(elemento);
-
             try
             {
-                uw.SaveChanges();
+                ElementoServ.PutElemento(id, elemento);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ElementoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("El elemento se ha modificado correctamente");
@@ -110,8 +87,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            ElementoDTO.Insert(elemento);
-            uw.SaveChanges();
+            ElementoServ.PostElemento(elemento);
 
             return Ok();
         }
@@ -122,30 +98,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Elemento))]
         public IHttpActionResult DeleteElemento(int id)
         {
-            Elemento elemento = ElementoDTO.GetByID(id);
-            if (elemento == null)
-            {
-                return NotFound();
-            }
-
-            ElementoDTO.Delete(elemento);
-            uw.SaveChanges();
+            ElementoServ.DeleteElemento(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool ElementoExists(int id)
-        {
-            return ElementoDTO.getDbSet().Count(e => e.elementoId == id) > 0;
         }
     }
 }

@@ -21,14 +21,15 @@ namespace Roll_the_Dice_Service.Controllers
         // GET: api/Inventarios
         [HttpGet]
         [Route("")]
-        public IEnumerable<Inventario> GetInventario()
+        public IHttpActionResult GetInventario()
         {
-            IEnumerable<Inventario> inventarios = InventarioDTO.GetAll();
+            IEnumerable<Inventario> inventarios = InventarioServ.GetAllInventarios();
             if (inventarios.Count() > 0)
             {
-                return inventarios.ToList();
+                return Ok(inventarios);
             }
-            return inventarios;
+
+            return BadRequest("No se ha encontrado ningun inventario");
         }
 
         // GET: api/Inventarios/5
@@ -37,7 +38,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Inventario))]
         public IHttpActionResult GetInventario(int id)
         {
-            Inventario inventario = InventarioDTO.GetByID(id);
+            Inventario inventario = InventarioServ.GetInventarioById(id);
             if (inventario == null)
             {
                 return NotFound();
@@ -62,22 +63,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            InventarioDTO.Update(inventario);
-
             try
             {
-                uw.SaveChanges();
+                InventarioServ.PutInventario(id, inventario);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!InventarioExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("El inventario se ha modificado correctamente");
@@ -94,8 +86,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            InventarioDTO.Insert(inventario);
-            uw.SaveChanges();
+            InventarioServ.PostInventario(inventario);
 
             return Ok();
         }
@@ -106,30 +97,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Inventario))]
         public IHttpActionResult DeleteInventario(int id)
         {
-            Inventario inventario = InventarioDTO.GetByID(id);
-            if (inventario == null)
-            {
-                return NotFound();
-            }
-
-            InventarioDTO.Delete(inventario);
-            uw.SaveChanges();
+            InventarioServ.DeleteInventario(id);
 
             return Ok("Se ha eliminado correctamente");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool InventarioExists(int id)
-        {
-            return InventarioDTO.getDbSet().Count(e => e.inventarioId == id) > 0;
         }
     }
 }

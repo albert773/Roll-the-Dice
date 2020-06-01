@@ -22,14 +22,15 @@ namespace Roll_the_Dice_Service.Controllers
         // GET: api/Clases
         [HttpGet]
         [Route("")]
-        public IEnumerable<Clase> GetClase()
+        public IHttpActionResult GetClase()
         {
-            IEnumerable<Clase> clases = ClaseDTO.GetAll();
+            IEnumerable<Clase> clases = ClaseServ.GetAllClases();
             if (clases.Count() > 0)
             {
-                return clases.ToList();
+                return Ok(clases);
             }
-            return clases;
+
+            return BadRequest("No se ha encontrado ninguna clase");
         }
 
         // GET: api/Clases/5
@@ -38,7 +39,7 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Clase))]
         public IHttpActionResult GetClase(int id)
         {
-            Clase clase = ClaseDTO.GetByID(id);
+            Clase clase = ClaseServ.GetClaseById(id);
             if (clase == null)
             {
                 return NotFound();
@@ -62,22 +63,13 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest();
             }
 
-            ClaseDTO.Update(clase);
-
             try
             {
-                uw.SaveChanges();
+                ClaseServ.PutClase(id, clase);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ClaseExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok("La clase se ha modificado correctamente");
@@ -94,8 +86,7 @@ namespace Roll_the_Dice_Service.Controllers
                 return BadRequest(ModelState);
             }
 
-            ClaseDTO.Insert(clase);
-            uw.SaveChanges();
+            ClaseServ.PostClase(clase);
 
             return Ok();
         }
@@ -106,30 +97,9 @@ namespace Roll_the_Dice_Service.Controllers
         [ResponseType(typeof(Clase))]
         public IHttpActionResult DeleteClase(int id)
         {
-            Clase clase = ClaseDTO.GetByID(id);
-            if (clase == null)
-            {
-                return NotFound();
-            }
+            ClaseServ.DeleteClase(id);
 
-            ClaseDTO.Delete(clase);
-            uw.SaveChanges();
-
-            return Ok(clase);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                uw.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool ClaseExists(int id)
-        {
-            return ClaseDTO.getDbSet().Count(e => e.claseId == id) > 0;
+            return Ok("Se ha eliminado correctamente");
         }
     }
 }
