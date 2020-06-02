@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6edf01e3fb814dcd9606802af37a5b0c" Name="Diagram1">
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Accion" Width="1.5" PointX="4.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Arma" Width="1.5" PointX="3" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Armadura" Width="1.5" PointX="6" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Clase" Width="1.5" PointX="6" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Elemento" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Estadistica" Width="1.5" PointX="0.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Estado" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Habilidad" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Idioma" Width="1.5" PointX="0.75" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Inventario" Width="1.5" PointX="13.5" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Item" Width="1.5" PointX="15.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Mapa" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Monstruo" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.NombreArma" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.NombreArmadura" Width="1.5" PointX="3.75" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.NPC" Width="1.5" PointX="8.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Personaje" Width="1.5" PointX="11.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Posicion" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Rareza" Width="1.5" PointX="13.5" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Raza" Width="1.5" PointX="3" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Sala" Width="1.5" PointX="1.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.UnionEstatMonst" Width="1.5" PointX="7.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.UnionEstatNPC" Width="1.5" PointX="13.5" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.UnionEstatPerso" Width="1.5" PointX="13.5" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Usuario" Width="1.5" PointX="1.5" PointY="26.375" IsExpanded="true" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Arma__elemento__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Arma__estadistic__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Arma__inventario__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Arma__nombre__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Arma__rareza__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Armadura__elemen__7F2BE32F" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Armadura__estadi__7E37BEF6" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Armadura__invent__00200768" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Armadura__nombre__7C4F7684" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Armadura__rareza__7D439ABD" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__NPC__clase__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Personaje__clase__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Elemento__debili__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Habilidad__eleme__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Habilidad__estad__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Raza__estadistic__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__UnionEsta__estad__123EB7A3" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__UnionEsta__estad__160F4887" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__UnionEsta__estad__19DFD96B" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Monstruo__estado__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__NPC__estadosAlte__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Personaje__estad__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Raza__idioma__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Inventari__propi__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Item__rareza__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Mapa__sala__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Posicion__mapa__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Monstruo__posici__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Monstruo__sala__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__UnionEsta__monst__17036CC0" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__NPC__posicion__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__NPC__raza__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__NPC__sala__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__UnionEsta__NPCId__1AD3FDA4" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Personaje__posic__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Personaje__raza__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Personaje__sala__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Personaje__usuar__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__UnionEsta__perso__1332DBDC" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.FK__Sala__propietari__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.UnionHabilMonst" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.UnionHabilNPC" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.UnionHabilPerso" ManuallyRouted="false" />
+        <AssociationConnector Association="RolltheDiceDBModel.UnionInvItem" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
