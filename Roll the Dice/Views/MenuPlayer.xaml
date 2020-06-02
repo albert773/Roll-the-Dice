@@ -56,12 +56,10 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Border Background="Gray" Grid.Column="1" CornerRadius="2"/>
+            <Border Background="#323232" Grid.Column="1" CornerRadius="2"/>
             <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Foreground="DodgerBlue" Grid.Column="1" Grid.RowSpan="1">
                 <StackPanel Grid.Column="1" Grid.Row="1">
                     <Button x:Name="cerrarSesion" Content="Cerrar Sesion" Click="cerrarSesion_Click"/>
-                    <Separator></Separator>
-                    <Button Content="Guardar"/>
                 </StackPanel>
             </materialDesign:PopupBox>
         </Grid>
