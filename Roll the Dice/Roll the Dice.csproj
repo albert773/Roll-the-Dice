@@ -117,6 +117,9 @@
     <Compile Include="Views\TicketCharacter.xaml.cs">
       <DependentUpon>TicketCharacter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TurnosGM.xaml.cs">
+      <DependentUpon>TurnosGM.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -198,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TicketCharacter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TurnosGM.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

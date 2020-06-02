@@ -146,7 +146,6 @@
             </Viewbox>
 
         </Grid>
-
         <Viewbox Grid.Column="1" Grid.Row="3" Visibility="Hidden">
             <materialDesign:PackIcon Kind="Flame" Foreground="Firebrick" RenderTransformOrigin="-94721.858,-0.087"/>
         </Viewbox>
@@ -162,7 +161,5 @@
         <Viewbox Grid.Column="1" Grid.Row="3" Visibility="Hidden">
             <materialDesign:PackIcon Kind="Run" Foreground="SandyBrown" />
         </Viewbox>
-
-
     </Grid>
 </Window>
