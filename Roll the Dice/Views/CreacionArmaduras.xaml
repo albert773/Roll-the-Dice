@@ -7,9 +7,7 @@
         mc:Ignorable="d"
         Title="CreacionArmaduras" Height="auto" Width="auto"  d:DesignWidth="850" d:DesignHeight="450">
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Roll the Dice;component/Images/background.jpg"/>
-        </Grid.Background>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="50*" />
@@ -25,10 +23,10 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
@@ -51,7 +49,7 @@
                 <ImageBrush ImageSource="/Roll the Dice;component/Images/dif-fondo.jpg"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Image Height="auto" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="4" Width="auto"  Source="/Roll the Dice;component/Images/logo.png"  />
+        <Image Height="auto" Grid.ColumnSpan="3" Grid.Row="4" Grid.RowSpan="5" Width="auto"  Source="/Roll the Dice;component/Images/logo.png" Margin="0,0.4,106.2,31.6"  />
         <Image Height="auto" Grid.ColumnSpan="1" Grid.Row="5" Grid.RowSpan="4" Width="auto"  Source="/Roll the Dice;component/Images/armadura.png" Grid.Column="5"  />
         <Viewbox Grid.Column="2" Grid.Row="5"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Nombre:"  Width="726" Height="175" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"  />

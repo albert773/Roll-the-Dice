@@ -7,9 +7,7 @@
         mc:Ignorable="d"
   Title="CREACION DE MONSTRUOS" Height="auto" Width="auto"  d:DesignWidth="850" d:DesignHeight="450">
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Roll the Dice;component/Images/background.jpg"/>
-        </Grid.Background>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="50*" />
@@ -27,10 +25,10 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
@@ -54,7 +52,7 @@
                 <ImageBrush ImageSource="/Roll the Dice;component/Images/dif-fondo.jpg"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Image Height="auto" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="4" Width="auto"  Source="/Roll the Dice;component/Images/logo.png"  />
+        <Image Height="auto" Grid.ColumnSpan="3" Grid.Row="4" Grid.RowSpan="5" Width="auto"  Source="/Roll the Dice;component/Images/logo.png" Margin="0,0.2,94.2,23.8"  />
 
         <Image Height="auto" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="4" Width="auto"  Source="/Roll the Dice;component/Images/victor-removebg-preview.png" Grid.Column="5"  />
         <Viewbox Grid.Column="2" Grid.Row="5"  Height="auto"  Width="auto">
