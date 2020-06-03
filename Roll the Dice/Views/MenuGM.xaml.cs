@@ -34,10 +34,13 @@ namespace Roll_the_Dice.Views
 
         public MenuGM()
         {
-            InitializeComponent();
-            //reloadListCrear();
             TurnosGM turnos = new TurnosGM();
             turnos.Show();
+            turnos.Activate();
+            turnos.Focus();
+            turnos.Topmost = true;
+            InitializeComponent();
+            //reloadListCrear();
             frameMap.Content = new Mapa();
         }
         private void Create_Click(object sender, RoutedEventArgs e)

@@ -27,14 +27,37 @@
             <RowDefinition Height="20*" />
             <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
-        <ListView x:Name="turnosList" BorderThickness="0" ItemsSource="{Binding}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <ListBox x:Name="turnosList"
+                 Foreground="Black"
+                 Grid.Row="0" Grid.RowSpan="4"
+                 Grid.Column="1" Grid.ColumnSpan="4"
+                 ItemsSource="{Binding Items}"
+                 SelectionMode="Multiple">
+            <!--<ListBox.Resources >
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="OverridesDefaultStyle" Value="true" />
+                    <Setter Property="SnapsToDevicePixels" Value="true" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ComboBoxItem">
+                                <ComboBox ItemsSource="{Binding cbItems}" Foreground="White">
+                                    <ComboBoxItem Content="Player1"></ComboBoxItem>
+                                    <ComboBoxItem Content="Player2"></ComboBoxItem>
+                                    <ComboBoxItem Content="Player3"></ComboBoxItem>
+                                    <ComboBoxItem Content="Daga"></ComboBoxItem>
+                                    <ContentPresenter />
+                                </ComboBox>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.Resources>-->
+        </ListBox>
+        <Viewbox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2">
+            <Button Content="Actualizar" Height="Auto" Width="Auto" Background="DimGray" BorderBrush="AliceBlue" Padding="3"/>
+        </Viewbox>
+        <Viewbox Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2">
+            <Button Content="Confirmar" Height="Auto" Width="Auto" Background="DimGray" BorderBrush="AliceBlue" Padding="3"/>
+        </Viewbox>
     </Grid>
 </Window>
