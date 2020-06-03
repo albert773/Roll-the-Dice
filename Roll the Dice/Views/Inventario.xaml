@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="Inventario" Width="370" Height="420" MinWidth="370" MinHeight="420" MaxWidth="370"  MaxHeight="420" WindowStartupLocation="CenterScreen">
+        Title="Inventario" Width="370" Height="420" MinWidth="370" MinHeight="20" MaxWidth="370"  MaxHeight="420" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Images/paper.jpg"/>
@@ -50,6 +51,9 @@
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
         </Grid.RowDefinitions>
         <Image Grid.ColumnSpan="4"  Grid.RowSpan="12" Width="auto" Height="auto"  Source="/Roll the Dice;component/Images/inventario.png" Margin="0,0,0,0">
         </Image>
@@ -60,19 +64,56 @@
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Arma:"  Width="3155" Height="538" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Left"  FontSize="350" />
         </Viewbox>
         <Viewbox Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Espada= Rareza: Unica/ Daño: 100/ Esquiva: 40/"  Width="3155" Height="538" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Left"  FontSize="200" />
+            <ComboBox  Width="203" Height="auto" materialDesign:HintAssist.Hint="Arma" materialDesign:HintAssist.HintOpacity=".65" IsEditable="True" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20">
+                <ComboBoxItem Content="Daga"></ComboBoxItem>
+                <ComboBoxItem Content="Arco"></ComboBoxItem>
+            </ComboBox>
         </Viewbox>
         <Viewbox Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Armadura:"  Width="3155" Height="538" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Left"  FontSize="350" />
         </Viewbox>
         <Viewbox Grid.Column="4" Grid.Row="9" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Espada= Rareza: Unica/ Daño: 100/ Esquiva: 40/"  Width="3155" Height="538" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Left"  FontSize="200" />
+            <ComboBox  Width="203" Height="auto" materialDesign:HintAssist.Hint="Armadura" materialDesign:HintAssist.HintOpacity=".65" IsEditable="True" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20">
+                <ComboBoxItem Content="Aramdura de tela"></ComboBoxItem>
+                <ComboBoxItem Content="Armadura pesada"></ComboBoxItem>
+            </ComboBox>
         </Viewbox>
         <Viewbox Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="INVENTARIO"  Width="3155" Height="538" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center"  FontSize="350" />
         </Viewbox>
-        <Viewbox  Grid.ColumnSpan="15" Grid.RowSpan="20" Grid.Row="12"  Height="auto"  Width="auto">
-            <TextBox Style="{StaticResource MaterialDesignComboBoxEditableTextBox }"  TextWrapping="Wrap" Text="Pocion de vida// Pedrenal// 10 Raciones// El chupo// Un paquete de Condones// El Ak-47 de staxx// Cajitas del counter"  Width="4449" Height="2370" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Left" FontSize="150" IsReadOnly = "True" />
+        <Label Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Rareza:"/>
+        <Label Grid.Row="13" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Daño:"/>
+        <Label Grid.Row="13" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Defensa:"/>
+        <Label Grid.Row="13" Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Esquiva:"/>
+        <Viewbox  Grid.ColumnSpan="1" Grid.RowSpan="2" Grid.Column="1" Grid.Row="15"  Height="auto"  Width="auto">
+            <TextBlock x:Name="Rareza" Text="-" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
+        </Viewbox>
+        <Viewbox  Grid.ColumnSpan="1" Grid.RowSpan="2" Grid.Column="3" Grid.Row="15"  Height="auto"  Width="auto">
+            <TextBlock x:Name="Daño" Text="0" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
+        </Viewbox>
+        <Viewbox  Grid.ColumnSpan="1" Grid.RowSpan="2" Grid.Column="5" Grid.Row="15"  Height="auto"  Width="auto">
+            <TextBlock x:Name="Defensa" Text="0" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
+        </Viewbox>
+        <Viewbox  Grid.ColumnSpan="1" Grid.RowSpan="2" Grid.Column="7" Grid.Row="15"  Height="auto"  Width="auto">
+            <TextBlock x:Name="Esquiva"  Text="0" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
+            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Items:"  Width="3561" Height="538" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Left"  FontSize="350" />
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="20" Grid.ColumnSpan="7" Grid.RowSpan="2"   Height="auto"  Width="auto">
+            <ComboBox  Width="331" Height="auto" materialDesign:HintAssist.Hint="Items" materialDesign:HintAssist.HintOpacity=".65" IsEditable="True" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20">
+                <ComboBoxItem Content="Aramdura de tela"></ComboBoxItem>
+                <ComboBoxItem Content="Armadura pesada"></ComboBoxItem>
+            </ComboBox>
+        </Viewbox>
+        <Viewbox Grid.Row="23" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <Button Height="Auto" Width="Auto" Content="Soltar" Background="DimGray" BorderBrush="AliceBlue"/>
+        </Viewbox>
+        <Viewbox Grid.Row="23" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="2">
+            <Button Height="Auto" Width="Auto" Content="Usar" Background="DimGray" BorderBrush="AliceBlue"/>
+        </Viewbox>
+        <Viewbox Grid.Row="23" Grid.Column="6" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <Button Height="Auto" Width="Auto" Content="Equipar" Background="DimGray" BorderBrush="AliceBlue"/>
         </Viewbox>
     </Grid>
 </Window>
