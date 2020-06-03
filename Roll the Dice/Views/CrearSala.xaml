@@ -66,7 +66,7 @@
             </Button>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3">
-            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="IP" Width="247" Height="53" Foreground="White"/>
+            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nombre" Width="247" Height="53" Foreground="White"/>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="3">
             <PasswordBox Name="MyPasswordBox" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"  materialDesign:HintAssist.Hint="Contraseña" Width="223" Height="47" Foreground="White"/>
