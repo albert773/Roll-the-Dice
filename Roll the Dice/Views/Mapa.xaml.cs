@@ -25,6 +25,9 @@ namespace Roll_the_Dice.Views
         List<Button> buttonList = new List<Button>();
         List<Rectangle> rectangleList = new List<Rectangle>();
         const int X = 15;
+        int posX { get; set; }=8;
+        int posY { get; set; }=5;
+        int range = 1;
         public Mapa()
         {
             InitializeComponent();
@@ -43,20 +46,8 @@ namespace Roll_the_Dice.Views
             {
                 for (int y = 0; y < X; y++)
                 {
-                    Button but = new Button();
-                    but.Name = "b"+x+"b"+y;
-                    but.Background = null;
-                    but.Height = Double.NaN;
-                    but.Width = Double.NaN;
-                    but.Click += textSwap;
-                    buttonList.Add(but);
-                    Rectangle rec = new Rectangle();
-                    rec.Name = "r" + x + "r" + y;
-                    rec.Opacity = 0.3;
-                    rec.Fill = Brushes.Red;
-                    rec.Height = Double.NaN;
-                    rec.Width = Double.NaN;
-                    rectangleList.Add(rec);
+                    rectangleCreate(x, y);
+                    buttonCreate(x, y);  
                 }
             }
             int buttonPos = 0;
@@ -79,12 +70,72 @@ namespace Roll_the_Dice.Views
                 mapa.Children.Add(rectangleList[i]);
                 mapa.Children.Add(buttonList[i]);
             }
+            rangePerso();
 
+        }
+        public void buttonCreate(int x, int y)
+        {
+            Button but = new Button();
+            but.Name = "b" + x + "b" + y;
+            but.Background = null;
+            but.Height = Double.NaN;
+            but.Width = Double.NaN;
+           
+            buttonList.Add(but);
+        }
+        public void rectangleCreate(int x, int y)
+        {
+            Rectangle rec = new Rectangle();
+            rec.Name = "r" + x + "r" + y;
+            rec.Opacity = 0.3;
+            rec.Fill = null;
+            rec.Height = Double.NaN;
+            rec.Width = Double.NaN;
+            rectangleList.Add(rec);
         }
         public void textSwap(object sender, RoutedEventArgs e)
         {
             var but = (Button)sender;
             but.Content = but.Name;
         }
+        public void rangePerso()
+        {
+            int ubi = indexGetter(posX, posY);
+            paintSquareYellow(ubi);
+            for(int i=1; i<range+1; i++)
+            {
+                int p1, p2, p3, p4, p5, p6, p7, p8;
+                p1=indexGetter(posX - i, posY);
+                p2=indexGetter(posX, posY - i);
+                p3=indexGetter(posX + i, posY);
+                p4=indexGetter(posX, posY + i);
+                p5=indexGetter(posX + i, posY + i);
+                p6=indexGetter(posX - i, posY - i);
+                p7= indexGetter(posX - i, posY + i);
+                p8= indexGetter(posX + i, posY - i);
+                int[] pList = { p1, p2, p3, p4, p5, p6, p7, p8 };
+                for(int j = 0; j < pList.Length; j++)
+                {
+                    if (!(pList[j] < 0))
+                    {
+                        paintSquareRed(pList[j]);
+                    }
+                }
+            }
+        }
+        public int indexGetter(int x, int y)
+        {
+            return ((y * 15) + x);
+
+        }
+        public void paintSquareYellow(int i)
+        {
+            rectangleList[i].Fill = Brushes.Yellow;
+        }
+        public void paintSquareRed(int i)
+        {
+            rectangleList[i].Fill = Brushes.Red;
+        }
+
     }
 }
