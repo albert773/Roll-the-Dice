@@ -145,6 +145,8 @@
     <Compile Include="Controllers\EstadPersoController.cs" />
     <Compile Include="Controllers\HabilidadesController.cs" />
     <Compile Include="Controllers\IdiomasController.cs" />
+    <Compile Include="Controllers\SingletonController.cs" />
+    <Compile Include="Models\Singleton.cs" />
     <Compile Include="Service\EstadMonstService.cs" />
     <Compile Include="Service\EstadNPCService.cs" />
     <Compile Include="Service\EstadPersoService.cs" />
@@ -339,6 +341,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharedSingleton\SharedSingleton.csproj">
+      <Project>{1f2da40a-e612-4c05-88a1-a4cfdb7d2b18}</Project>
+      <Name>SharedSingleton</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
