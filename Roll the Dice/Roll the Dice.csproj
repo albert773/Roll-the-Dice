@@ -91,8 +91,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Accion.cs" />
+    <Compile Include="Models\Arma.cs" />
+    <Compile Include="Models\Armadura.cs" />
+    <Compile Include="Models\Clase.cs" />
+    <Compile Include="Models\Elemento.cs" />
+    <Compile Include="Models\Estadistica.cs" />
+    <Compile Include="Models\Estado.cs" />
+    <Compile Include="Models\Habilidad.cs" />
+    <Compile Include="Models\Idioma.cs" />
+    <Compile Include="Models\Inventario.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\LoginRequest.cs" />
+    <Compile Include="Models\Mapa.cs" />
+    <Compile Include="Models\Monstruo.cs" />
+    <Compile Include="Models\NombreArma.cs" />
+    <Compile Include="Models\NombreArmadura.cs" />
+    <Compile Include="Models\NPC.cs" />
+    <Compile Include="Models\Personaje.cs" />
+    <Compile Include="Models\Posicion.cs" />
+    <Compile Include="Models\Rareza.cs" />
+    <Compile Include="Models\Raza.cs" />
     <Compile Include="Models\RegisterRequest.cs" />
+    <Compile Include="Models\Sala.cs" />
+    <Compile Include="Models\UnionEstatMonst.cs" />
+    <Compile Include="Models\UnionEstatNPC.cs" />
+    <Compile Include="Models\UnionEstatPerso.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Utils\Constants.cs" />
     <Compile Include="Utils\Validations.cs" />
