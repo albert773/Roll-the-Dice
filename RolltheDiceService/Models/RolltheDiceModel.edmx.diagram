@@ -4,32 +4,32 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6edf01e3fb814dcd9606802af37a5b0c" Name="Diagram1">
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Accion" Width="1.5" PointX="4.75" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Arma" Width="1.5" PointX="3" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Armadura" Width="1.5" PointX="6" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Clase" Width="1.5" PointX="6" PointY="22.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Elemento" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Estadistica" Width="1.5" PointX="0.75" PointY="17.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Estado" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Habilidad" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Idioma" Width="1.5" PointX="0.75" PointY="23.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Inventario" Width="1.5" PointX="13.5" PointY="17.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Item" Width="1.5" PointX="15.75" PointY="17.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Mapa" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Monstruo" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.NombreArma" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.NombreArmadura" Width="1.5" PointX="3.75" PointY="27.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.NPC" Width="1.5" PointX="8.25" PointY="16.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Personaje" Width="1.5" PointX="11.25" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Posicion" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Rareza" Width="1.5" PointX="13.5" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Raza" Width="1.5" PointX="3" PointY="22.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Sala" Width="1.5" PointX="1.5" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.UnionEstatMonst" Width="1.5" PointX="7.5" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.UnionEstatNPC" Width="1.5" PointX="13.5" PointY="20.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.UnionEstatPerso" Width="1.5" PointX="13.5" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RolltheDiceDBModel.Usuario" Width="1.5" PointX="1.5" PointY="26.375" IsExpanded="true" />
+      <Diagram DiagramId="6edf01e3fb814dcd9606802af37a5b0c" Name="Diagram1" ZoomLevel="111">
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Accion" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Arma" Width="1.5" PointX="3" PointY="4.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Armadura" Width="1.5" PointX="3" PointY="2.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Clase" Width="1.5" PointX="6" PointY="2" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Elemento" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Estadistica" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Estado" Width="1.5" PointX="6" PointY="3.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Habilidad" Width="1.5" PointX="3" PointY="6.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Idioma" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Inventario" Width="1.5" PointX="10.5" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Item" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Mapa" Width="1.5" PointX="3.75" PointY="10.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Monstruo" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.NombreArma" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.NombreArmadura" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.NPC" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Personaje" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Posicion" Width="1.5" PointX="6" PointY="10.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Rareza" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Raza" Width="1.5" PointX="6" PointY="4.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Sala" Width="1.5" PointX="1.5" PointY="10.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.UnionEstatMonst" Width="1.5" PointX="7.5" PointY="7.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.UnionEstatNPC" Width="1.5" PointX="10.5" PointY="7.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.UnionEstatPerso" Width="1.5" PointX="10.5" PointY="5.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="RolltheDiceDBModel.Usuario" Width="1.5" PointX="1.5" PointY="8.375" IsExpanded="false" />
         <AssociationConnector Association="RolltheDiceDBModel.FK__Arma__elemento__76969D2E" ManuallyRouted="false" />
         <AssociationConnector Association="RolltheDiceDBModel.FK__Arma__estadistic__75A278F5" ManuallyRouted="false" />
         <AssociationConnector Association="RolltheDiceDBModel.FK__Arma__inventario__778AC167" ManuallyRouted="false" />
