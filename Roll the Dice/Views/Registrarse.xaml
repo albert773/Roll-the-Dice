@@ -48,11 +48,11 @@
         <Viewbox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="4">
             <Label Content="Registrarse" FontFamily="Georgia" FontSize="72" FontWeight="Bold" Foreground="White"/>
         </Viewbox>
-        <Viewbox Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3">
-            <TextBox Foreground="White" Name="Nickname" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nickname" Width="247" Height="53" RenderTransformOrigin="0.499,0.609" FontFamily="Georigia"/>
-        </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="3">
             <TextBox Foreground="White" Name="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Correo Electrónico" Width="247" Height="53" RenderTransformOrigin="0.504,0.696" FontFamily="Georigia" />
+        </Viewbox>
+        <Viewbox Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3">
+            <TextBox Foreground="White" Name="Nickname" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Nickname" Width="247" Height="53" RenderTransformOrigin="0.499,0.609" FontFamily="Georigia"/>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="3">
             <PasswordBox Foreground="White" Name="Contraseña" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Contraseña" Width="223" Height="47"/>

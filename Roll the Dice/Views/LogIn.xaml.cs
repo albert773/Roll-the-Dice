@@ -45,23 +45,25 @@ namespace Roll_the_Dice.Views
                 return;
             }
 
-            LoginRequest login = new LoginRequest();
-            login.Email = Email.Text;
-            login.Password = Contraseña.Password;
-
-            var request = new RestRequest("auth/login", Method.POST);
-            request.AddParameter("Email", Email.Text);
-            request.AddParameter("Password", Contraseña.Password);
-
-            var response = client.Execute(request);
-
-            if (response.StatusCode != HttpStatusCode.OK)
+            if(Contraseña.Password == null || Contraseña.Password == "")
             {
-                //TODO - No se ha encontrado el usuario
+                //TODO - Debes introducir una contraseña
                 return;
             }
 
-            MessageBox.Show(response.Content);
+            var request = new RestRequest("auth/login", Method.POST);
+            request.AddHeader("Content-type", "application/json");
+
+            var param = new RegisterRequest { Email = Email.Text, Password = Encryption.EncodePasswordToBase64(Contraseña.Password) };
+            request.AddJsonBody(param);
+
+            var response = client.ExecuteAsync(request);
+
+            if (response.IsFaulted)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
 
             NavigationService.Navigate(new CreateJoin());
         }

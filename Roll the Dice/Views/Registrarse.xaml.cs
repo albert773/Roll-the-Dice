@@ -1,6 +1,7 @@
 ﻿using RestSharp;
 using Roll_the_Dice.Models;
 using Roll_the_Dice.Utils;
+using System;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -31,7 +32,7 @@ namespace Roll_the_Dice.Views
         {
             if (!Validations.IsValidEmail(Email.Text))
             {
-                //RODO - El Email no es valido
+                //TODO - El Email no es valido
                 return;
             }
 
@@ -59,19 +60,20 @@ namespace Roll_the_Dice.Views
             register.Password = Contraseña.Password;
 
             var request = new RestRequest("auth/register", Method.POST);
-            request.AddParameter("Email", Email.Text);
-            request.AddParameter("Nickname", Nickname.Text);
-            request.AddParameter("Password", Contraseña.Password);
+            request.AddHeader("Content-type", "application/json");
 
-            var response = client.Execute(request);
+            var param = new RegisterRequest { Email = Email.Text, Nickname = Nickname.Text, Password = Encryption.EncodePasswordToBase64(Contraseña.Password) };
+            request.AddJsonBody(param);
+            
+            var response = client.ExecuteAsync(request);
 
-            if (response.StatusCode != HttpStatusCode.OK)
+            if (!response.IsCompleted)
             {
                 //TODO - No se ha podido insertar el usuario
-                return;
+                
             }
-
-            MessageBox.Show(response.Content);
+            
+            NavigationService.Navigate(new CreateJoin());
         }
 
         private void VisibleErrorValidate_Click(object sender, RoutedEventArgs e)
