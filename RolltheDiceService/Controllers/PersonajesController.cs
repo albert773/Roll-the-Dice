@@ -50,14 +50,27 @@ namespace RolltheDiceService.Controllers
         // GET: api/Personajes/sala/{id}
         [HttpGet]
         [Route("sala/{salaId:int}")]
-        public IEnumerable<Personaje> GetAllPersonajesBySala(int salaId)
+        public IHttpActionResult GetAllPersonajesBySala(int salaId)
         {
             IEnumerable<Personaje> personajes = PersonajeServ.GetAllPersonajesBySala(salaId);
             if (personajes.Count() > 0)
             {
-                return personajes.ToList();
+                return Ok(personajes);
             }
-            return personajes;
+            return BadRequest();
+        }
+
+        // GET: api/Personajes/sala/{id}
+        [HttpGet]
+        [Route("usuario/{email}/sala/{sala}")]
+        public IHttpActionResult GetPersonajeByUsuarioAndSala(string email, string sala)
+        {
+            Personaje personaje = PersonajeServ.GetPersonajeByUsuarioAndSala(email, sala);
+            if (personaje != null)
+            {
+                return Ok(personaje);
+            }
+            return BadRequest();
         }
 
         // PUT: api/Personajes/5

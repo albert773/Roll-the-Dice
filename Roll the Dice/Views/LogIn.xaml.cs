@@ -22,7 +22,7 @@ namespace Roll_the_Dice.Views
             client = new RestClient("https://roll-the-dice-service.conveyor.cloud/api/");
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             errorMail.Visibility = Visibility.Hidden;
             errorPass.Visibility = Visibility.Hidden;
@@ -39,7 +39,7 @@ namespace Roll_the_Dice.Views
             //if (true) confirm = false;
             //if(confirm)
 
-           /* if (!Validations.IsValidEmail(Email.Text))
+            if (!Validations.IsValidEmail(Email.Text))
             {
                 //TODO - Email no valido
                 return;
@@ -57,14 +57,16 @@ namespace Roll_the_Dice.Views
             var param = new RegisterRequest { Email = Email.Text, Password = Encryption.EncodePasswordToBase64(Contraseña.Password) };
             request.AddJsonBody(param);
 
-            var response = client.ExecuteAsync(request);
+            var response = await client.ExecuteAsync(request);
 
-            if (response.IsFaulted)
+            if (!response.IsSuccessful)
             {
                 //TODO - Credenciales incorrectos
                 return;
             }
-            */
+
+            Constants.Token = "Bearer " + response.Content.Substring(2, response.Content.Length - 2);
+
             NavigationService.Navigate(new CreateJoin());
         }
 

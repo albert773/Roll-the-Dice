@@ -43,6 +43,25 @@ namespace Roll_the_Dice.Views
             }
         }
 
+        private void Defensa_Click(object sender, RoutedEventArgs e)
+        {
+            //Recoger info dado + recoger daño
+            //si el dado es superior a 80 lo defiendes entero
+            /*Si es inferior es:
+             mirar si tiene elemento
+                defensa contra elemento
+            mirar que tipo de ataque
+                defensa contra el tipo de ataque
+             */
+             Window.Sh
+            
+        }
+
+        private void Esquiva_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
         private void Perso_Click(object sender, RoutedEventArgs e)
         {
             if (perso.ShowActivated) {
