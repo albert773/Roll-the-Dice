@@ -72,10 +72,10 @@
             <TextBlock Text="¿Has olvidado la contraseña?" Foreground="AliceBlue" TextDecorations="Underline" FontFamily="Georgia" FontSize="4" Mouse.MouseDown="Contraseña_Clicked"/>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="3">
-            <TextBox x:Name="correoText"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Correo" Width="247" Height="53" Foreground="White"/>
+            <TextBox Name="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Correo" Width="247" Height="53" Foreground="White"/>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3">
-            <PasswordBox x:Name="passText" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Contraseña" Width="223" Height="47" Foreground="White"/>
+            <PasswordBox Name="Contraseña" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Contraseña" Width="223" Height="47" Foreground="White"/>
         </Viewbox>
         <Grid Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="3" >
             <Grid.ColumnDefinitions>

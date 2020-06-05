@@ -1,4 +1,8 @@
-﻿using System;
+﻿using RestSharp;
+using Roll_the_Dice.Models;
+using Roll_the_Dice.Utils;
+using System;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,10 +13,13 @@ namespace Roll_the_Dice.Views
     /// </summary>
     public partial class LogIn : Page
     {
+        RestClient client;
         Boolean confirm = true;
+
         public LogIn()
         {
             InitializeComponent();
+            client = new RestClient("https://roll-the-dice-service.conveyor.cloud/api/");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -24,7 +31,6 @@ namespace Roll_the_Dice.Views
             correoMessageError.Visibility = Visibility.Hidden;
             textErrorPass.Visibility = Visibility.Hidden;
 
-
             /*if (correoText.Text.Equals(""))
             {
                 confirm = false;
@@ -32,6 +38,33 @@ namespace Roll_the_Dice.Views
             }*/
             //if (true) confirm = false;
             //if(confirm)
+
+            if (!Validations.IsValidEmail(Email.Text))
+            {
+                //TODO - Email no valido
+                return;
+            }
+
+            if(Contraseña.Password == null || Contraseña.Password == "")
+            {
+                //TODO - Debes introducir una contraseña
+                return;
+            }
+
+            var request = new RestRequest("auth/login", Method.POST);
+            request.AddHeader("Content-type", "application/json");
+
+            var param = new RegisterRequest { Email = Email.Text, Password = Encryption.EncodePasswordToBase64(Contraseña.Password) };
+            request.AddJsonBody(param);
+
+            var response = client.ExecuteAsync(request);
+
+            if (response.IsFaulted)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+
             NavigationService.Navigate(new CreateJoin());
         }
 
