@@ -11,6 +11,7 @@ namespace RolltheDiceService.Models
         private Singleton() { }
 
         public static string Accion { get; set; }
+        public static string Daño { get; set; }
         public static int Emisor { get; set; }
         public static int Receptor { get; set; }
 

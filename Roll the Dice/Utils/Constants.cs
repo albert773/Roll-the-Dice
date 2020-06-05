@@ -3,5 +3,6 @@
     public static class Constants
     {
         public static string IP = null;
+        public static string Token = null;
     }
 }

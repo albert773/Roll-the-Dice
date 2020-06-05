@@ -28,7 +28,7 @@ namespace Roll_the_Dice.Views
             NavigationService.Navigate(new LogIn());
         }
 
-        private void Registrarse_Clicked(object sender, RoutedEventArgs e)
+        private async void Registrarse_Clicked(object sender, RoutedEventArgs e)
         {
             if (!Validations.IsValidEmail(Email.Text))
             {
@@ -65,15 +65,15 @@ namespace Roll_the_Dice.Views
             var param = new RegisterRequest { Email = Email.Text, Nickname = Nickname.Text, Password = Encryption.EncodePasswordToBase64(Contraseña.Password) };
             request.AddJsonBody(param);
             
-            var response = client.ExecuteAsync(request);
+            var response = await client.ExecuteAsync(request);
 
-            if (!response.IsCompleted)
+            if (!response.IsSuccessful)
             {
                 //TODO - No se ha podido insertar el usuario
-                
+                return;
             }
             
-            NavigationService.Navigate(new CreateJoin());
+            NavigationService.Navigate(new LogIn());
         }
 
         private void VisibleErrorValidate_Click(object sender, RoutedEventArgs e)

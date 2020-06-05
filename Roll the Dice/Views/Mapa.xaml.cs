@@ -25,9 +25,9 @@ namespace Roll_the_Dice.Views
         List<Button> buttonList = new List<Button>();
         List<Rectangle> rectangleList = new List<Rectangle>();
         const int X = 15;
-        int posX { get; set; }=8;
+        int posX { get; set; }=5;
         int posY { get; set; }=5;
-        int range = 1;
+        int range = 5;
         public Mapa()
         {
             InitializeComponent();

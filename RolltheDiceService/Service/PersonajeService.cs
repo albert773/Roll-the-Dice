@@ -2,6 +2,7 @@
 using RolltheDiceService.Service.Interface;
 using RolltheDiceService.Utils;
 using System.Collections.Generic;
+using System.Linq;
 using static RolltheDiceService.IoC.InjectableAttribute;
 
 namespace RolltheDiceService.Service
@@ -33,6 +34,13 @@ namespace RolltheDiceService.Service
             //TODO
             //return uow.RepositoryClient<Personaje>().GetMany(q => q.Usuario.usuarioId == id);
             return null;
+        }
+
+        public Personaje GetPersonajeByUsuarioAndSala(string email, string sala)
+        {
+            //TODO
+            return uow.RepositoryClient<Personaje>().getDbSet().SqlQuery("SELECT * FROM Personaje WHERE usuario = (Select u.usuarioId from Usuario as u where u.email = '" + email + "') AND sala = (select s.salaId from Sala as s where s.nombre = '" + sala + "');").FirstOrDefault();
+            //return uow.RepositoryClient<Personaje>().GetMany(q => q.Usuario.usuarioId == id);
         }
 
         public Personaje GetPersonajeById(int id)
