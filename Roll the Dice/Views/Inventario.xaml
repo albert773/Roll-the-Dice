@@ -6,21 +6,23 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="Inventario" Width="370" Height="420" MinWidth="370" MinHeight="20" MaxWidth="370"  MaxHeight="420" WindowStartupLocation="CenterScreen">
+        Title="" Width="39" Height="420" MinWidth="390" MinHeight="20" MaxWidth="390"  MaxHeight="420" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Images/paper.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*" />
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="50*"  />
             <ColumnDefinition Width="50*"  />
             <ColumnDefinition Width="50*"  />
             <ColumnDefinition Width="50*"  />
             <ColumnDefinition Width="50*"  />
             <ColumnDefinition Width="50*"  />
-            <ColumnDefinition Width="50*"  />
+            <ColumnDefinition Width="15*"  />
 
 
 
@@ -55,65 +57,73 @@
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
         </Grid.RowDefinitions>
-        <Image Grid.ColumnSpan="4"  Grid.RowSpan="12" Width="auto" Height="auto"  Source="/Roll the Dice;component/Images/inventario.png" Margin="0,0,0,0">
+        <Image Grid.ColumnSpan="4"  Grid.RowSpan="12" Width="auto" Height="auto"  Source="/Roll the Dice;component/Images/inventario.png" >
         </Image>
-        <Viewbox Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="INVENTARIO"  Width="3155" Height="538" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center"  FontSize="350" />
-        </Viewbox>
-        <Viewbox Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Arma:"  Width="3155" Height="538" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Left"  FontSize="350" />
-        </Viewbox>
-        <Viewbox Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
-            <ComboBox  Width="203" Height="auto" materialDesign:HintAssist.Hint="Arma" materialDesign:HintAssist.HintOpacity=".65" IsEditable="True" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20">
-                <ComboBoxItem Content="Daga"></ComboBoxItem>
-                <ComboBoxItem Content="Arco"></ComboBoxItem>
+       
+
+        <Viewbox Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
+            <ComboBox  Width="203" Height="auto" materialDesign:HintAssist.Hint="Item" materialDesign:HintAssist.HintOpacity=".65" IsEditable="False" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20">
             </ComboBox>
         </Viewbox>
-        <Viewbox Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Armadura:"  Width="3155" Height="538" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Left"  FontSize="350" />
+        <Viewbox Grid.Column="5" Grid.ColumnSpan="5" Grid.RowSpan="5" Grid.Row="5"  Height="auto"  Width="auto" >
+            <TextBox Style="{StaticResource MaterialDesignComboBoxEditableTextBox }" Text="Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas , las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum."  TextWrapping="Wrap"  Width="4654" Height="1686" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Left" FontSize="180" IsReadOnly = "True" />
         </Viewbox>
-        <Viewbox Grid.Column="4" Grid.Row="9" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
-            <ComboBox  Width="203" Height="auto" materialDesign:HintAssist.Hint="Armadura" materialDesign:HintAssist.HintOpacity=".65" IsEditable="True" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20">
-                <ComboBoxItem Content="Aramdura de tela"></ComboBoxItem>
-                <ComboBoxItem Content="Armadura pesada"></ComboBoxItem>
-            </ComboBox>
-        </Viewbox>
-        <Viewbox Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
+        <Viewbox Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="INVENTARIO"  Width="3155" Height="538" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center"  FontSize="350" />
         </Viewbox>
-        <Label Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Rareza:"/>
-        <Label Grid.Row="13" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Daño:"/>
-        <Label Grid.Row="13" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Defensa:"/>
-        <Label Grid.Row="13" Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Esquiva:"/>
-        <Viewbox  Grid.ColumnSpan="1" Grid.RowSpan="2" Grid.Column="1" Grid.Row="15"  Height="auto"  Width="auto">
+        <Viewbox Grid.Column="5" Grid.Row="11" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
+            <ComboBox  Width="223" Height="auto" materialDesign:HintAssist.Hint="Arma" materialDesign:HintAssist.HintOpacity=".65" IsEditable="False" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20">
+            </ComboBox>
+        </Viewbox>
+        <Label Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Rareza:"  />
+        <Viewbox Grid.Column="1"  Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="15"  Height="auto"  Width="auto" >
             <TextBlock x:Name="Rareza" Text="-" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
         </Viewbox>
-        <Viewbox  Grid.ColumnSpan="1" Grid.RowSpan="2" Grid.Column="3" Grid.Row="15"  Height="auto"  Width="auto">
-            <TextBlock x:Name="Daño" Text="0" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
+        <Label Grid.Column="3" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Elemento:"  />
+        <Viewbox Grid.Column="3"   Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="15"  Height="auto"  Width="auto" >
+            <TextBlock x:Name="Elemento" Text="-" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
         </Viewbox>
-        <Viewbox  Grid.ColumnSpan="1" Grid.RowSpan="2" Grid.Column="5" Grid.Row="15"  Height="auto"  Width="auto">
-            <TextBlock x:Name="Defensa" Text="0" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
+        <Label Grid.Column="5" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Defensa:"  />
+        <Viewbox Grid.Column="5"   Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="15"  Height="auto"  Width="auto" >
+            <TextBlock x:Name="Defensa" Text="-" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
         </Viewbox>
-        <Viewbox  Grid.ColumnSpan="1" Grid.RowSpan="2" Grid.Column="7" Grid.Row="15"  Height="auto"  Width="auto">
-            <TextBlock x:Name="Esquiva"  Text="0" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
+        <Label Grid.Column="7" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Esquiva:"  />
+        <Viewbox Grid.Column="7"   Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="15"  Height="auto"  Width="auto" >
+            <TextBlock x:Name="Esquiva" Text="-" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
         </Viewbox>
-        <Viewbox Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Items:"  Width="3561" Height="538" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Left"  FontSize="350" />
+        <Label Grid.Column="9" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Daño:"  />
+        <Viewbox Grid.Column="9"  Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="15"  Height="auto"  Width="auto" >
+            <TextBlock x:Name="Daño" Text="-" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
         </Viewbox>
-        <Viewbox Grid.Column="1" Grid.Row="20" Grid.ColumnSpan="7" Grid.RowSpan="2"   Height="auto"  Width="auto">
-            <ComboBox  Width="331" Height="auto" materialDesign:HintAssist.Hint="Items" materialDesign:HintAssist.HintOpacity=".65" IsEditable="True" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20">
-                <ComboBoxItem Content="Aramdura de tela"></ComboBoxItem>
-                <ComboBoxItem Content="Armadura pesada"></ComboBoxItem>
+        <Viewbox Grid.Column="1" Grid.Row="17" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
+            <ComboBox  Width="223" Height="auto" materialDesign:HintAssist.Hint="Armadura" materialDesign:HintAssist.HintOpacity=".65" IsEditable="False" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20">
             </ComboBox>
         </Viewbox>
-        <Viewbox Grid.Row="23" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <Button Height="Auto" Width="Auto" Content="Soltar" Background="DimGray" BorderBrush="AliceBlue"/>
+        <Label Grid.Column="1" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Rareza:"  />
+        <Viewbox Grid.Column="1"  Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="21"  Height="auto"  Width="auto" >
+            <TextBlock x:Name="Rareza2" Text="-" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
         </Viewbox>
-        <Viewbox Grid.Row="23" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="2">
-            <Button Height="Auto" Width="Auto" Content="Usar" Background="DimGray" BorderBrush="AliceBlue"/>
+        <Label Grid.Column="3" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Elemento:"  />
+        <Viewbox Grid.Column="3"   Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="21"  Height="auto"  Width="auto" >
+            <TextBlock x:Name="Elemento2" Text="-" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
         </Viewbox>
-        <Viewbox Grid.Row="23" Grid.Column="6" Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <Button Height="Auto" Width="Auto" Content="Equipar" Background="DimGray" BorderBrush="AliceBlue"/>
+        <Label Grid.Column="5" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Defensa:"  />
+        <Viewbox Grid.Column="5"   Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="21"  Height="auto"  Width="auto" >
+            <TextBlock x:Name="Defensa2" Text="-" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
         </Viewbox>
+        <Label Grid.Column="7" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Esquiva:"  />
+        <Viewbox Grid.Column="7"   Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="21"  Height="auto"  Width="auto" >
+            <TextBlock x:Name="Esquiva2" Text="-" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
+        </Viewbox>
+        <Label Grid.Column="9" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Daño:"  />
+        <Viewbox Grid.Column="9"  Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="21"  Height="auto"  Width="auto" >
+            <TextBlock x:Name="Daño2" Text="-" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
+        </Viewbox>
+        <Button Grid.Column="1" Grid.Row="23" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="Auto" Width="Auto" Content="Soltar" Background="DimGray" BorderBrush="AliceBlue"/>
+        <Viewbox Grid.Column="4" Grid.Row="23" Grid.ColumnSpan="3" Grid.RowSpan="2">
+            <Button  Height="Auto" Width="66" Content="Usar" Background="DimGray" BorderBrush="AliceBlue"/>
+        </Viewbox>
+        <Button Grid.Column="8" Grid.Row="23" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="Auto" Width="Auto" Content="Equipar" Background="DimGray" BorderBrush="AliceBlue"/>
+        
     </Grid>
 </Window>

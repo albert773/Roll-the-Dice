@@ -39,7 +39,7 @@ namespace Roll_the_Dice.Views
             //if (true) confirm = false;
             //if(confirm)
 
-            if (!Validations.IsValidEmail(Email.Text))
+           /* if (!Validations.IsValidEmail(Email.Text))
             {
                 //TODO - Email no valido
                 return;
@@ -64,7 +64,7 @@ namespace Roll_the_Dice.Views
                 //TODO - Credenciales incorrectos
                 return;
             }
-
+            */
             NavigationService.Navigate(new CreateJoin());
         }
 
