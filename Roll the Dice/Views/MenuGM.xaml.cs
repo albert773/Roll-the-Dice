@@ -23,6 +23,7 @@ namespace Roll_the_Dice.Views
         MainWindow main = new MainWindow();
         CreacionDeCosas crea= new CreacionDeCosas();
         EliminarCosas eliminar = new EliminarCosas();
+        CharacterShe caraceter = new CharacterShe();
 
         public static List<string> armas = new List<string>();
         static List<Object> armaduras = new List<object>();
@@ -79,6 +80,18 @@ namespace Roll_the_Dice.Views
             perso.Show();
 
         }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            if (caraceter.ShowActivated)
+            {
+                caraceter.Close();
+            }
+            this.caraceter = new CharacterShe();
+            caraceter.Show();
+
+        }
+
         private void Dice_Click(object sender, RoutedEventArgs e)
         {
             diceChange();

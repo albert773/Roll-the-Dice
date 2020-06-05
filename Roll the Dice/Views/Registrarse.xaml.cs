@@ -20,7 +20,7 @@ namespace Roll_the_Dice.Views
         public Registrarse()
         {
             InitializeComponent();
-            client = new RestClient("https://roll-the-dice-service.conveyor.cloud/api/");
+            client = new RestClient(Constants.IP);
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
@@ -33,24 +33,31 @@ namespace Roll_the_Dice.Views
             if (!Validations.IsValidEmail(Email.Text))
             {
                 //TODO - El Email no es valido
+                errorMail.Visibility = Visibility.Visible;
                 return;
             }
 
             if (!Regex.IsMatch(Contraseña.Password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$"))
             {
                 //TODO - La contraseña no es valida
+                errorPass.Visibility = Visibility.Visible;
+                textErrorPass.Text = "La contraseña no es valida";
                 return;
             }
 
             if (!Regex.IsMatch(ContraseñaRepetida.Password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$"))
             {
                 //TODO - La contraseña no es valida
+                errorIconValidatePass.Visibility = Visibility.Visible;
+                textValidatePass.Text = "La contraseña no es valida";
                 return;
             }
 
             if (Contraseña.Password != ContraseñaRepetida.Password)
             {
                 //TODO - Las contraseñas no coinciden
+                errorIconValidatePass.Visibility = Visibility.Visible;
+                textValidatePass.Text = "La contraseña no coincide con la anterior";
                 return;
             }
 
@@ -80,6 +87,18 @@ namespace Roll_the_Dice.Views
         {
             borderValidatePass.Visibility = Visibility.Visible;
             textValidatePass.Visibility = Visibility.Visible;
+        }
+
+        private void VisibleErrorEmail_Click(object sender, RoutedEventArgs e)
+        {
+            borderMessagePass.Visibility = Visibility.Visible;
+            textErrorPass.Visibility = Visibility.Visible;
+        }
+
+        private void VisibleErrorRePass_Click(object sender, RoutedEventArgs e)
+        {
+            borderMessageCorreo.Visibility = Visibility.Visible;
+            correoMessageError.Visibility = Visibility.Visible;
         }
 
     }

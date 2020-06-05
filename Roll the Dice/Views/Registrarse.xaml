@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="Registrarse" Height="auto" Width="auto"  MinWidth="1280" MinHeight="720" d:DesignWidth="850" d:DesignHeight="450">
+        Title="" Height="auto" Width="auto"  MinWidth="1280" MinHeight="720" d:DesignWidth="850" d:DesignHeight="450">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
@@ -61,7 +61,7 @@
             <PasswordBox Foreground="White" Name="ContraseñaRepetida" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Confirma tu contraseña" Width="223" Height="47"/>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="11">
-            <Button Content="Registrarse" FontSize="18" Background="DimGray" BorderBrush="AliceBlue" Height="33" FontFamily="Georgia" Click="Registrarse_Clicked">
+            <Button Content="Volver" FontSize="14" Background="DimGray" BorderBrush="AliceBlue" Height="33" FontFamily="Georgia" Click="Login_Click" Width="118">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -70,7 +70,7 @@
             </Button>
         </Viewbox>
         <Viewbox Grid.Column="5" Grid.Row="11">
-            <Button Content="Iniciar Sesión" FontSize="11" Background="DimGray" BorderBrush="AliceBlue" Height="27" FontFamily="Georgia" Width="102" Click="Login_Click">
+            <Button Content="Registrarse" FontSize="14" Background="DimGray" BorderBrush="AliceBlue" Height="27" FontFamily="Georgia" Width="102" Click="Registrarse_Clicked">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -90,11 +90,11 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Viewbox Grid.Column="0" Grid.Row="0">
-                <materialDesign:PackIcon x:Name="errorMail" Kind="Error" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="Salmon" Visibility="Hidden"/>
+                <materialDesign:PackIcon x:Name="errorMail" Kind="Error" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="Salmon" Visibility="Hidden" Mouse.MouseMove="VisibleErrorEmail_Click"/>
             </Viewbox>
             <Border x:Name="borderMessageCorreo" Grid.Row="0" Grid.Column="2" Background="White" CornerRadius="15" Visibility="Hidden"/>
             <Viewbox Grid.Column="2" Grid.Row="0">
-                <TextBlock x:Name="correoMessageError" Text="Error, correo no valido" FontSize="8" FontFamily="Gregotian" Visibility="Hidden"/>
+                <TextBlock x:Name="correoMessageError" Text="Error, correo no valido o ya exsistente" FontSize="8" FontFamily="Gregotian" Visibility="Hidden"/>
             </Viewbox>
         </Grid>
         <Grid Grid.Row="6" Grid.Column="6" Grid.ColumnSpan="3">
@@ -109,7 +109,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Viewbox Grid.Column="0" Grid.Row="0">
-                <materialDesign:PackIcon x:Name="errorPass" Kind="Error" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="Salmon" Visibility="Hidden"/>
+                <materialDesign:PackIcon x:Name="errorPass" Kind="Error" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="Salmon" Visibility="Hidden" Mouse.MouseMove="VisibleErrorRePass_Click"/>
             </Viewbox>
             <Border x:Name="borderMessagePass" Grid.Row="0" Grid.Column="2" Background="White" CornerRadius="15" Visibility="Hidden"/>
             <Viewbox Grid.Column="2" Grid.Row="0">
@@ -128,11 +128,11 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Viewbox Grid.Column="0" Grid.Row="0">
-                <materialDesign:PackIcon x:Name="errorIconValidatePass" Kind="Error" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="Salmon" Visibility="Visible" Mouse.MouseMove="VisibleErrorValidate_Click"/>
+                <materialDesign:PackIcon x:Name="errorIconValidatePass" Kind="Error" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="Salmon" Visibility="Hidden" Mouse.MouseMove="VisibleErrorValidate_Click"/>
             </Viewbox>
             <Border x:Name="borderValidatePass" Grid.Row="0" Grid.Column="2" Background="White" CornerRadius="15" Visibility="Hidden"/>
             <Viewbox Grid.Column="2" Grid.Row="0">
-                <TextBlock x:Name="textValidatePass" Text="Error, la contraseña no coincide con la anterior" FontSize="5" Visibility="Hidden"/>
+                <TextBlock x:Name="textValidatePass" Text="" FontSize="5" Visibility="Hidden"/>
             </Viewbox>
         </Grid>
     </Grid>

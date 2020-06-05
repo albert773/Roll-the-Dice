@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="Join" Height="auto" Width="auto"  MinWidth="1280" MinHeight="720" d:DesignWidth="850" d:DesignHeight="450">
+        Title="" Height="auto" Width="auto"  MinWidth="1280" MinHeight="720" d:DesignWidth="850" d:DesignHeight="450">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
@@ -44,17 +44,8 @@
                 <DropShadowEffect/>
             </Border.Effect>
         </Border>
-        <Viewbox Grid.Column="3" Grid.Row="11">
-            <Button Content="OK" FontSize="18" Background="DimGray" BorderBrush="AliceBlue " Height="Auto" FontFamily="Georgia" Click="Unirse_Click">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-        </Viewbox>
         <Viewbox Grid.Column="5" Grid.Row="11">
-            <Button Content="Volver" FontSize="18" Background="DimGray" BorderBrush="AliceBlue " Height="39" FontFamily="Georgia" Click="Return_Click">
+            <Button Content="Entrar" FontSize="18" Background="DimGray" BorderBrush="AliceBlue " Height="Auto" FontFamily="Georgia" Click="Unirse_Click" Width="101">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -62,7 +53,16 @@
                 </Button.Resources>
             </Button>
         </Viewbox>
-        <Viewbox Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="3">
+        <Viewbox Grid.Column="3" Grid.Row="11">
+            <Button Content="Volver" FontSize="18" Background="DimGray" BorderBrush="AliceBlue " Height="39" FontFamily="Georgia" Click="Return_Click" Width="142">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Viewbox>
+        <Viewbox Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3">
             <TextBox   Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="IP" Width="247" Height="53" Foreground="White"/>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="8" Grid.ColumnSpan="3">
@@ -71,11 +71,13 @@
         <Viewbox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3">
             <Label Content="UNIRTE A UNA SALA" FontFamily="Georgia" FontSize="72" FontWeight="Bold" Foreground="White"/>
         </Viewbox>
-        <ComboBox Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Partidas jugadas" IsEditable="True" Foreground="LightGray" FontFamily="Georgia" FontSize="15" Height="auto" Width="auto" Margin= "38 0 40 0">
-            <ComboBoxItem Content="Sala1"></ComboBoxItem>
-            <ComboBoxItem Content="Sala2"></ComboBoxItem>
-            <ComboBoxItem Content="Sala3"></ComboBoxItem>
-            <ComboBoxItem Content="Sala4"></ComboBoxItem>
-        </ComboBox>
+        <Viewbox Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="3">
+            <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Partidas jugadas" IsEditable="True" Foreground="LightGray" FontFamily="Georgia" FontSize="18" Height="auto" Width="357" Margin= "38 0 40 0">
+                <ComboBoxItem Content="Sala1"></ComboBoxItem>
+                <ComboBoxItem Content="Sala2"></ComboBoxItem>
+                <ComboBoxItem Content="Sala3"></ComboBoxItem>
+                <ComboBoxItem Content="Sala4"></ComboBoxItem>
+            </ComboBox>
+        </Viewbox>
     </Grid>
 </Page>

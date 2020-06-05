@@ -19,7 +19,7 @@ namespace Roll_the_Dice.Views
         public LogIn()
         {
             InitializeComponent();
-            client = new RestClient("https://roll-the-dice-service.conveyor.cloud/api/");
+            client = new RestClient(Constants.IP);
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -30,6 +30,10 @@ namespace Roll_the_Dice.Views
             borderMessagePass.Visibility = Visibility.Hidden;
             correoMessageError.Visibility = Visibility.Hidden;
             textErrorPass.Visibility = Visibility.Hidden;
+
+            if (Email.Text.Equals("")) {
+                NavigationService.Navigate(new CreateJoin());
+            }
 
             /*if (correoText.Text.Equals(""))
             {
@@ -53,6 +57,7 @@ namespace Roll_the_Dice.Views
 
             var request = new RestRequest("auth/login", Method.POST);
             request.AddHeader("Content-type", "application/json");
+            //request.AddHeader("Authorization", Constants.Token);
 
             var param = new RegisterRequest { Email = Email.Text, Password = Encryption.EncodePasswordToBase64(Contraseña.Password) };
             request.AddJsonBody(param);
