@@ -40,9 +40,58 @@ namespace RolltheDiceService.Controllers
 
         [HttpPost]
         [Route("dados")]
-        public IHttpActionResult Post(int[] d)
+        public IHttpActionResult PostDados(int[] d)
         {
             Singleton.Dado = d[0];
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("orden")]
+        public IHttpActionResult GetOrden()
+        {
+            object[] s = { Singleton.OrdenTurnos };
+            return Ok(s);
+        }
+
+        [HttpPost]
+        [Route("orden")]
+        public IHttpActionResult PostOrden(int[] o)
+        {
+            Singleton.OrdenTurnos = new List<int>();
+            foreach (var user in o)
+            {
+                Singleton.OrdenTurnos.Add(user);
+            }
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("turnoActual")]
+        public IHttpActionResult GetTurnoActual()
+        {
+            return Ok(Singleton.TurnoActual);
+        }
+
+        [HttpPost]
+        [Route("turnoActual")]
+        public IHttpActionResult PostTurnoActual(int t)
+        {
+            Singleton.TurnoActual = t;
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("isMyTurn/{usuarioId}")]
+        public IHttpActionResult GetIsMyTurn(int usuarioId)
+        {
+            if (Singleton.OrdenTurnos == null) return Ok(false);
+            if (usuarioId == null || usuarioId == 0) return Ok(false);
+            if (Singleton.OrdenTurnos.Contains(usuarioId))
+            {
+                return Ok(Singleton.isMyTurn(usuarioId));
+            }  
+
             return Ok();
         }
     }
