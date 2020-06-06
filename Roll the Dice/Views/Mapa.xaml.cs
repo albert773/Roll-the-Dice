@@ -25,9 +25,13 @@ namespace Roll_the_Dice.Views
         List<Button> buttonList = new List<Button>();
         List<Rectangle> rectangleList = new List<Rectangle>();
         const int X = 15;
-        int posX { get; set; }=5;
-        int posY { get; set; }=5;
-        int range = 5;
+        int disponibleMovement = 0;
+        int posX { get; set; }=0;
+        int posY { get; set; }=14;
+        int range = 1;
+        bool ataque = false;
+        bool mover = false;
+        bool habilidad = false;
         public Mapa()
         {
             InitializeComponent();
@@ -76,17 +80,16 @@ namespace Roll_the_Dice.Views
         public void buttonCreate(int x, int y)
         {
             Button but = new Button();
-            but.Name = "b" + x + "b" + y;
+            but.Name = "b" + indexGetter(x, y);
             but.Background = null;
             but.Height = Double.NaN;
             but.Width = Double.NaN;
-           
             buttonList.Add(but);
         }
         public void rectangleCreate(int x, int y)
         {
             Rectangle rec = new Rectangle();
-            rec.Name = "r" + x + "r" + y;
+            rec.Name = "r"+indexGetter(x,y);
             rec.Opacity = 0.3;
             rec.Fill = null;
             rec.Height = Double.NaN;
@@ -102,26 +105,6 @@ namespace Roll_the_Dice.Views
         {
             int ubi = indexGetter(posX, posY);
             paintSquareYellow(ubi);
-            for(int i=1; i<range+1; i++)
-            {
-                int p1, p2, p3, p4, p5, p6, p7, p8;
-                p1=indexGetter(posX - i, posY);
-                p2=indexGetter(posX, posY - i);
-                p3=indexGetter(posX + i, posY);
-                p4=indexGetter(posX, posY + i);
-                p5=indexGetter(posX + i, posY + i);
-                p6=indexGetter(posX - i, posY - i);
-                p7= indexGetter(posX - i, posY + i);
-                p8= indexGetter(posX + i, posY - i);
-                int[] pList = { p1, p2, p3, p4, p5, p6, p7, p8 };
-                for(int j = 0; j < pList.Length; j++)
-                {
-                    if (!(pList[j] < 0))
-                    {
-                        paintSquareRed(pList[j]);
-                    }
-                }
-            }
         }
         public int indexGetter(int x, int y)
         {
@@ -136,6 +119,264 @@ namespace Roll_the_Dice.Views
         {
             rectangleList[i].Fill = Brushes.Red;
         }
+        public void paintSquareBlue(int i)
+        {
+            rectangleList[i].Fill = Brushes.Blue;
+        }
+        public void painterMachineRange(Boolean move)
+        {
+            for (int i = 1; i < range + 1; i++)
+            {
+            
+                int p1, p2, p3, p4, p5, p6, p7, p8;
+                if (posX - i >= 0)
+                {
+                    p1 = indexGetter(posX - i, posY);
+                    if (move)
+                    {
+                        paintSquareBlue(p1);
+                    }
+                    else
+                    {
+                        paintSquareRed(p1);
+                    }
+                    
+                }
+                if (posY - i >= 0)
+                {
+                    p2 = indexGetter(posX, posY - i);
+                    if (move)
+                    {
+                        paintSquareBlue(p2);
+                    }
+                    else
+                    {
+                        paintSquareRed(p2);
+                    }
+                }
+                if (posX + i < 15)
+                {
+                    p3 = indexGetter(posX + i, posY);
+                    if (move)
+                    {
+                        paintSquareBlue(p3);
+                    }
+                    else
+                    {
+                        paintSquareRed(p3);
+                    }
+                }
+                if (posY + i < 15)
+                {
+                    p4 = indexGetter(posX, posY + i);
+                    if (move)
+                    {
+                        paintSquareBlue(p4);
+                    }
+                    else
+                    {
+                        paintSquareRed(p4);
+                    }
+                }
+                if (posX + i < 15 && posY + i < 15)
+                {
+                    p5 = indexGetter(posX + i, posY + i);
+                    if (move)
+                    {
+                        paintSquareBlue(p5);
+                    }
+                    else
+                    {
+                        paintSquareRed(p5);
+                    }
+                }
+                if (posX - i >= 0 && posY - i >= 0)
+                {
+                    p6 = indexGetter(posX - i, posY - i);
+                    if (move)
+                    {
+                        paintSquareBlue(p6);
+                    }
+                    else
+                    {
+                        paintSquareRed(p6);
+                    }
+                }
+                if (posX - i >= 0 && posY + i < 15)
+                {
+                    p7 = indexGetter(posX - i, posY + i);
+                    if (move)
+                    {
+                        paintSquareBlue(p7);
+                    }
+                    else
+                    {
+                        paintSquareRed(p7);
+                    }
+                }
+                if (posX + i < 15 && posY - i >= 0)
+                {
+                    p8 = indexGetter(posX + i, posY - i);
+                    if (move)
+                    {
+                        paintSquareBlue(p8);
+                    }
+                    else
+                    {
+                        paintSquareRed(p8);
+                    }
+                }
+            }
+        }
+        
 
+        //CLICK PARA EL ICONO DE ATACAR
+        public void setAtaque()
+        {
+            cleanRectangle();
+            if (mover)
+            {
+                mover = false;
+            }
+            if (habilidad)
+            {
+                habilidad = false;
+            }
+            if (ataque)
+            {
+                ataque = false;
+            }
+            else
+            {
+                ataque = true;
+                painterMachineRange(false);
+            }
+        }
+        //CLICK PARA EL ICONO DE MOVER
+        public void setMover()
+        {
+            cleanRectangle();
+            if (ataque)
+            {
+                ataque = false;
+            }
+            if (habilidad)
+            {
+                habilidad = false;
+            }
+            if (mover)
+            {
+                mover = false;
+            }
+            else
+            {
+                mover = true;
+                painterMachineRange(true);
+            }
+        }
+        //CLICK PARA EL ICONO DE HABILIDAD
+        public void setHabilidad()
+        {
+            cleanRectangle();
+            if (ataque)
+            {
+                ataque = false;
+            }
+            if (mover)
+            {
+                mover = false;
+            }
+            if (habilidad)
+            {
+                habilidad = false;
+            }
+            else
+            {
+                habilidad = true;
+                painterMachineRange(false);
+            }
+        }
+
+        public void cleanRectangle()
+        {
+            for(int i=0; i<rectangleList.Count; i++)
+            {
+                rectangleList[i].Fill = null;
+            }
+        }
+
+        public void isTurn()
+        {
+            disponibleMovement = 2;
+        }
+
+        public void hacerAtaque(int x, int y)
+        {
+
+        }
+        public void tirarHabilidad(int x, int y)
+        {
+
+        }
+        public void theButtonClicked(object sender, RoutedEventArgs e)
+        {
+            var but = (Button)sender;
+            int index = int.Parse(but.Name);
+            int x, y;
+            if (!mover && !ataque && !habilidad)
+            {
+
+            }
+            else
+            {
+                if (mover)
+                {
+                    if (rectangleList[index].Fill == Brushes.Blue)
+                    {
+                        y = 0; x = 0;
+                        while (index % 15 == 0)
+                        {
+                            y++;
+                            index = index - 15;
+                        }
+                        x = index;
+                        posX = x; posY = y;
+                        disponibleMovement--;
+                        if (disponibleMovement > 0)
+                        {
+                            cleanRectangle();
+                            painterMachineRange(true);
+                        }
+                    }
+                }
+                else if (ataque)
+                {
+                    if (rectangleList[index].Fill == Brushes.Red)
+                    {
+                        y = 0; x = 0;
+                        while (index % 15 == 0)
+                        {
+                            y++;
+                            index = index - 15;
+                        }
+                        x = index;
+                        hacerAtaque(x, y);
+
+                    }
+
+                }
+                else
+                {
+                    y = 0; x = 0;
+                    while (index % 15 == 0)
+                    {
+                        y++;
+                        index = index - 15;
+                    }
+                    x = index;
+                    tirarHabilidad(x, y);
+                }
+            }
+        }
     }
 }

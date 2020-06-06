@@ -1,5 +1,6 @@
 ﻿using RolltheDiceService.Models;
 using RolltheDiceService.Service.Interface;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -19,11 +20,16 @@ namespace RolltheDiceService.Controllers
             this.PersonajeServ = PersonajeServ;
         }
 
-        // GET: api/Personajes
+        // GET: api/personajes
         [HttpGet]
         [Route("")]
         public IHttpActionResult GetAllPersonajes()
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             IEnumerable<Personaje> personajes = PersonajeServ.GetAllPersonajes();
             if (personajes.Count() > 0)
             {
@@ -32,12 +38,109 @@ namespace RolltheDiceService.Controllers
             return BadRequest("No se ha encontrado ningun personaje");
         }
 
-        // GET: api/Personajes/5
+        // GET: api/personajes/usuario/{usuarioId}
+        [HttpGet]
+        [Route("usuario/{usuarioId:int}")]
+        public IHttpActionResult GetAllPersonajesByUsuario(int usuarioId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IEnumerable<Personaje> personajes = PersonajeServ.GetAllPersonajesByUsuario(usuarioId);
+            if (personajes.Count() > 0)
+            {
+                return Ok(personajes);
+            }
+            return BadRequest();
+        }
+
+        // GET: api/personajes/sala/{salaId}
+        [HttpGet]
+        [Route("sala/{salaId:int}")]
+        public IHttpActionResult GetAllPersonajesBySala(int salaId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IEnumerable<Personaje> personajes = PersonajeServ.GetAllPersonajesBySala(salaId);
+            if (personajes.Count() > 0)
+            {
+                return Ok(personajes);
+            }
+            return BadRequest();
+        }
+
+        // GET: api/personajes/usuario/{email}
+        [HttpGet]
+        [Route("usuario/{email}")]
+        public IHttpActionResult GetAllPersonajesByEmail(string email)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IEnumerable<Personaje> personajes = PersonajeServ.GetAllPersonajesByEmail(email);
+            if (personajes.Count() > 0)
+            {
+                return Ok(personajes);
+            }
+            return BadRequest();
+        }
+
+        // GET: api/personajes/usuario/{email}/sala/{id}
+        [HttpGet]
+        [Route("usuario/{email}/sala/{salaId:int}")]
+        public IHttpActionResult GetPersonajeByUsuarioAndSala(string email, int salaId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Personaje personaje = PersonajeServ.GetPersonajeByUsuarioAndSala(email, salaId);
+            if (personaje != null)
+            {
+                return Ok(personaje);
+            }
+            return BadRequest();
+        }
+
+        // GET: api/personajes/posicion/{id}
+        [HttpGet]
+        [Route("posicion/{id:int}")]
+        [ResponseType(typeof(Personaje))]
+        public IHttpActionResult GetPersonajeWithPosicion(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Personaje personaje = PersonajeServ.GetPersonajeWithPosicion(id);
+            if (personaje == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(personaje);
+        }
+
+        // GET: api/personajes/{id}
         [HttpGet]
         [Route("{id:int}")]
         [ResponseType(typeof(Personaje))]
-        public IHttpActionResult GetPersonaje(int id)
+        public IHttpActionResult GetPersonajeById(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             Personaje personaje = PersonajeServ.GetPersonajeById(id);
             if (personaje == null)
             {
@@ -47,33 +150,7 @@ namespace RolltheDiceService.Controllers
             return Ok(personaje);
         }
 
-        // GET: api/Personajes/sala/{id}
-        [HttpGet]
-        [Route("sala/{salaId:int}")]
-        public IHttpActionResult GetAllPersonajesBySala(int salaId)
-        {
-            IEnumerable<Personaje> personajes = PersonajeServ.GetAllPersonajesBySala(salaId);
-            if (personajes.Count() > 0)
-            {
-                return Ok(personajes);
-            }
-            return BadRequest();
-        }
-
-        // GET: api/Personajes/sala/{id}
-        [HttpGet]
-        [Route("usuario/{email}/sala/{sala}")]
-        public IHttpActionResult GetPersonajeByUsuarioAndSala(string email, string sala)
-        {
-            Personaje personaje = PersonajeServ.GetPersonajeByUsuarioAndSala(email, sala);
-            if (personaje != null)
-            {
-                return Ok(personaje);
-            }
-            return BadRequest();
-        }
-
-        // PUT: api/Personajes/5
+        // PUT: api/Personajes/{id}
         [HttpPut]
         [Route("{id:int}")]
         [ResponseType(typeof(void))]
@@ -90,13 +167,13 @@ namespace RolltheDiceService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                throw;
+                return InternalServerError();
             }
 
             return Ok("El personaje se ha modificado correctamente");
         }
 
-        // POST: api/Personajes
+        // POST: api/personajes
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(Personaje))]
@@ -107,18 +184,37 @@ namespace RolltheDiceService.Controllers
                 return BadRequest(ModelState);
             }
 
-            PersonajeServ.PostPersonaje(personaje);
+            try
+            {
+                PersonajeServ.PostPersonaje(personaje);
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
 
             return Ok();
         }
 
-        // DELETE: api/Personajes/5
+        // DELETE: api/personajes/{id}
         [HttpDelete]
         [Route("{id:int}")]
         [ResponseType(typeof(Personaje))]
         public IHttpActionResult DeletePersonaje(int id)
         {
-            PersonajeServ.DeletePersonaje(id);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                PersonajeServ.DeletePersonaje(id);
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
 
             return Ok("Se ha eliminado correctamente");
         }

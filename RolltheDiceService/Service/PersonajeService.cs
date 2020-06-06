@@ -2,6 +2,7 @@
 using RolltheDiceService.Service.Interface;
 using RolltheDiceService.Utils;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using static RolltheDiceService.IoC.InjectableAttribute;
 
@@ -22,30 +23,50 @@ namespace RolltheDiceService.Service
             return uow.RepositoryClient<Personaje>().GetAll();
         }
 
-        public IEnumerable<Personaje> GetAllPersonajesBySala(int id)
-        {
-            //TODO
-            //return uow.RepositoryClient<Personaje>().GetMany(q => q.Sala.salaId == id);
-            return null;
-        }
-
         public IEnumerable<Personaje> GetAllPersonajesByUsuario(int id)
         {
-            //TODO
-            //return uow.RepositoryClient<Personaje>().GetMany(q => q.Usuario.usuarioId == id);
-            return null;
+            return uow.RepositoryClient<Personaje>().GetWithInclude(q => q.usuario == id, "Inventario.Arma",
+                                                                                          "Inventario.Armadura",
+                                                                                          "Inventario.Item");
         }
 
-        public Personaje GetPersonajeByUsuarioAndSala(string email, string sala)
+        public IEnumerable<Personaje> GetAllPersonajesBySala(int id)
         {
-            //TODO
-            return uow.RepositoryClient<Personaje>().getDbSet().SqlQuery("SELECT * FROM Personaje WHERE usuario = (Select u.usuarioId from Usuario as u where u.email = '" + email + "') AND sala = (select s.salaId from Sala as s where s.nombre = '" + sala + "');").FirstOrDefault();
-            //return uow.RepositoryClient<Personaje>().GetMany(q => q.Usuario.usuarioId == id);
+            return uow.RepositoryClient<Personaje>().GetWithInclude(q => q.Sala1.salaId == id, "Posicion1");
+        }
+
+        public Personaje GetPersonajeWithPosicion(int id)
+        {
+            return uow.RepositoryClient<Personaje>().GetWithInclude(q => q.Posicion1.posicionId == id, "Posicion1").FirstOrDefault();
+        }
+
+        public IEnumerable<Personaje> GetAllPersonajesByEmail(string email)
+        {
+            return uow.RepositoryClient<Personaje>().GetWithInclude(q => q.Usuario1.email == email, "Inventario.Arma", 
+                                                                                                    "Inventario.Armadura", 
+                                                                                                    "Inventario.Item");
+        }
+
+        public Personaje GetPersonajeByUsuarioAndSala(string email, int sala)
+        {
+            return uow.RepositoryClient<Personaje>().GetWithInclude(q => q.Usuario1.email == email && q.Sala1.salaId == sala, "Inventario.Arma", 
+                                                                                                                              "Inventario.Armadura", 
+                                                                                                                              "Inventario.Item").FirstOrDefault();
         }
 
         public Personaje GetPersonajeById(int id)
         {
-            return uow.RepositoryClient<Personaje>().GetByID(id);
+            return uow.RepositoryClient<Personaje>().GetWithInclude(q => q.personajeId == id, "Inventario.Arma",
+                                                                                              "Inventario.Armadura",
+                                                                                              "Inventario.Item", 
+                                                                                              "Habilidad", 
+                                                                                              "Posicion1", 
+                                                                                              "UnionEstatPerso", 
+                                                                                              "Usuario1",
+                                                                                              "Raza1",
+                                                                                              "Sala1",
+                                                                                              "Clase1",
+                                                                                              "Estado").FirstOrDefault();
         }
 
         public Personaje PostPersonaje(Personaje personaje)
