@@ -62,7 +62,7 @@
        
 
         <Viewbox Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
-            <ComboBox  Width="203" Height="auto" materialDesign:HintAssist.Hint="Item" materialDesign:HintAssist.HintOpacity=".65" IsEditable="False" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20">
+            <ComboBox x:Name="Item" Width="203" Height="auto" materialDesign:HintAssist.Hint="Item" materialDesign:HintAssist.HintOpacity=".65" IsEditable="False" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20">
             </ComboBox>
         </Viewbox>
         <Viewbox Grid.Column="5" Grid.ColumnSpan="5" Grid.RowSpan="5" Grid.Row="5"  Height="auto"  Width="auto" >
@@ -72,7 +72,7 @@
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="INVENTARIO"  Width="3155" Height="538" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center"  FontSize="350" />
         </Viewbox>
         <Viewbox Grid.Column="5" Grid.Row="11" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
-            <ComboBox  Width="223" Height="auto" materialDesign:HintAssist.Hint="Arma" materialDesign:HintAssist.HintOpacity=".65" IsEditable="False" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20">
+            <ComboBox x:Name="Arma"  Width="223" Height="auto" materialDesign:HintAssist.Hint="Arma" materialDesign:HintAssist.HintOpacity=".65" IsEditable="False" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20">
             </ComboBox>
         </Viewbox>
         <Label Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Rareza:"  />
@@ -96,7 +96,7 @@
             <TextBlock x:Name="Daño" Text="-" Foreground="Black" Background="White" Width="35" TextAlignment="Center"/>
         </Viewbox>
         <Viewbox Grid.Column="1" Grid.Row="17" Grid.ColumnSpan="5" Grid.RowSpan="2"   Height="auto"  Width="auto">
-            <ComboBox  Width="223" Height="auto" materialDesign:HintAssist.Hint="Armadura" materialDesign:HintAssist.HintOpacity=".65" IsEditable="False" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20">
+            <ComboBox x:Name="Armdura" Width="223" Height="auto" materialDesign:HintAssist.Hint="Armadura" materialDesign:HintAssist.HintOpacity=".65" IsEditable="False" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20">
             </ComboBox>
         </Viewbox>
         <Label Grid.Column="1" Grid.Row="19" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="Rareza:"  />

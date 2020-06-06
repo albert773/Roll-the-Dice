@@ -19,8 +19,9 @@ namespace Roll_the_Dice.Views
         public LogIn()
         {
             InitializeComponent();
-            client = new RestClient("https://roll-the-dice-service.conveyor.cloud/api/");   
+            client = new RestClient(Constants.IP);
             //Constrants.IP
+            //https://roll-the-dice-service.conveyor.cloud/api/
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
