@@ -63,7 +63,11 @@
             </Button>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3">
-            <TextBox   Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="IP" Width="247" Height="53" Foreground="White"/>
+            <TextBox Name="Ip" LostFocus="Ip_LostFocus" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="IP" Width="247" Height="53" Foreground="White"/>
+        </Viewbox>
+        <Viewbox Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="3">
+            <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}" Name="Salas" materialDesign:HintAssist.Hint="Partidas jugadas" IsEditable="True" Foreground="LightGray" FontFamily="Georgia" FontSize="18" Height="auto" Width="357" Margin= "38 0 40 0">
+            </ComboBox>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="8" Grid.ColumnSpan="3">
             <PasswordBox Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Contraseña" Width="223" Height="47" Foreground="White"/>
@@ -71,11 +75,5 @@
         <Viewbox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3">
             <Label Content="UNIRTE A UNA SALA" FontFamily="Georgia" FontSize="72" FontWeight="Bold" Foreground="White"/>
         </Viewbox>
-        <ComboBox Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Partidas jugadas" IsEditable="True" Foreground="LightGray" FontFamily="Georgia" FontSize="18" Height="auto" Width="auto">
-            <ComboBoxItem Content="Sala1"></ComboBoxItem>
-            <ComboBoxItem Content="Sala2"></ComboBoxItem>
-            <ComboBoxItem Content="Sala3"></ComboBoxItem>
-            <ComboBoxItem Content="Sala4"></ComboBoxItem>
-        </ComboBox>
     </Grid>
 </Page>

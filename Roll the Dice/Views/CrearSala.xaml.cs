@@ -64,6 +64,8 @@ namespace Roll_the_Dice.Views
                 return;
             }
 
+            Constants.Sala = Newtonsoft.Json.JsonConvert.DeserializeObject<Sala>(response.Content);
+
             MenuGM gm = new MenuGM();
             gm.Show();
             MainWindow main = Window.GetWindow(this) as MainWindow;
