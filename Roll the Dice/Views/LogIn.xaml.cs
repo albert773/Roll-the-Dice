@@ -32,18 +32,6 @@ namespace Roll_the_Dice.Views
             correoMessageError.Visibility = Visibility.Hidden;
             textErrorPass.Visibility = Visibility.Hidden;
 
-            /*if (Email.Text.Equals("")) {
-                NavigationService.Navigate(new CreateJoin());
-            }*/
-
-            /*if (correoText.Text.Equals(""))
-            {
-                confirm = false;
-                errorMail.Visibility = Visibility.Visible;
-            }*/
-            //if (true) confirm = false;
-            //if(confirm)
-
             if (!Validations.IsValidEmail(Email.Text))
             {
                 //TODO - Email no valido

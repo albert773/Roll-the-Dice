@@ -28,7 +28,7 @@ namespace Roll_the_Dice.Views
         public CrearSala()
         {
             InitializeComponent();
-            client = new RestClient("https://roll-the-dice-service.conveyor.cloud/api/");
+            client = new RestClient(Constants.IP);
         }
 
         private void Volver_Click(object sender, RoutedEventArgs e) {
@@ -63,6 +63,8 @@ namespace Roll_the_Dice.Views
                 //TODO - Credenciales incorrectos
                 return;
             }
+
+            Constants.Sala = Newtonsoft.Json.JsonConvert.DeserializeObject<Sala>(response.Content);
 
             MenuGM gm = new MenuGM();
             gm.Show();

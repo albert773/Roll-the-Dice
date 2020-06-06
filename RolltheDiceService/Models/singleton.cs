@@ -16,6 +16,8 @@ namespace RolltheDiceService.Models
         public static int Emisor { get; set; }
         public static int Receptor { get; set; }
         public static int Dado { get; set; }
+        public static List<int> OrdenTurnos { get; set; }
+        public static int TurnoActual { get; set; }
 
         public static Singleton Instance
         {
@@ -28,6 +30,11 @@ namespace RolltheDiceService.Models
 
                 return instance;
             }
+        }
+
+        internal static bool isMyTurn(int id)
+        {
+           return OrdenTurnos.IndexOf(id) == TurnoActual;
         }
     }
 }
