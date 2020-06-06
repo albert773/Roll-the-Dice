@@ -71,7 +71,21 @@ namespace Roll_the_Dice.Views
                 return;
             }
 
-            Constants.Token = "Bearer " + response.Content.Substring(2, response.Content.Length - 2);
+            Constants.Token = "Bearer " + response.Content.Substring(1, response.Content.Length - 2);
+
+            var request2 = new RestRequest("usuarios/email/{email}/", Method.GET);
+            request2.AddHeader("Content-type", "application/json");
+            request2.AddHeader("Authorization", Constants.Token);
+            request2.AddParameter("email", Email.Text, ParameterType.UrlSegment);
+            var response2 = client.Execute(request2);
+
+            if (!response2.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+
+            Constants.Usuario = Newtonsoft.Json.JsonConvert.DeserializeObject<Usuario>(response2.Content);
 
             NavigationService.Navigate(new CreateJoin());
         }

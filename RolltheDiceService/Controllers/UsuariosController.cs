@@ -3,6 +3,7 @@ using RolltheDiceService.Service.Interface;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -50,9 +51,9 @@ namespace RolltheDiceService.Controllers
             }
         }
 
-        // GET: api/Usuarios/ejemplo@ejemplo.com
+        // GET: api/usuarios/email/ejemplo@ejemplo.com
         [HttpGet]
-        [Route("{email}")]
+        [Route("email/{email}")]
         [ResponseType(typeof(Usuario))]
         public IHttpActionResult GetUsuarioByEmail(string email)
         {
