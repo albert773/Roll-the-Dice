@@ -15,7 +15,7 @@ namespace RolltheDiceService.Controllers
         [Route("")]
         public IHttpActionResult Get()
         {
-            object[] s = { Singleton.Accion, Singleton.Emisor, Singleton.Receptor };
+            object[] s = { Singleton.Accion, Singleton.Elemento, Singleton.Emisor, Singleton.Receptor };
             return Ok(s);
         }
 
@@ -40,9 +40,9 @@ namespace RolltheDiceService.Controllers
 
         [HttpPost]
         [Route("dados")]
-        public IHttpActionResult Post(int d)
+        public IHttpActionResult Post(int[] d)
         {
-            Singleton.Dado = d;
+            Singleton.Dado = d[0];
             return Ok();
         }
     }
