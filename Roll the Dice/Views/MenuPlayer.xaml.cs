@@ -13,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RestSharp;
+using Roll_the_Dice.Utils;
+using Roll_the_Dice.Models;
+using System.Diagnostics;
 
 namespace Roll_the_Dice.Views
 {
@@ -31,7 +34,7 @@ namespace Roll_the_Dice.Views
         public MenuPlayer()
         {
             InitializeComponent();
-            client = new RestClient("https://roll-the-dice-service.conveyor.cloud/api/");
+            client = new RestClient(Constants.IP);
             //passworw.Background = Brushes.White;
             //passworw.Foreground = Brushes.Black;
             CharacterShe caracter = new CharacterShe();
@@ -41,13 +44,10 @@ namespace Roll_the_Dice.Views
             caracter.Topmost = true;
         }
 
-        private void Ataq_Click(object sender, RoutedEventArgs e)
+        private async void Ataq_Click(object sender, RoutedEventArgs e)
         {
-            sword.Foreground = new SolidColorBrush(Colors.White);
-            if (sword.Foreground == Brushes.White)
-            {
-                sword.Foreground = new SolidColorBrush(Colors.Purple);
-            }
+            
+            
         }
 
         private void Defensa_Click(object sender, RoutedEventArgs e)

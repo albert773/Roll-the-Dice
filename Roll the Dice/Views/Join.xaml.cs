@@ -9,6 +9,7 @@ namespace Roll_the_Dice.Views
     /// </summary>
     public partial class Join : Page
     {
+        MenuPlayer menu = null;
         public Join()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace Roll_the_Dice.Views
         private void Unirse_Click(object sender, RoutedEventArgs e)
         {
             //Cambio de pagina a Ventana
-            MenuPlayer menu = new MenuPlayer();
+            menu = new MenuPlayer();
             menu.Show();
             MainWindow main = Window.GetWindow(this) as MainWindow;
             main.Close();

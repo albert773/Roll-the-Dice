@@ -71,13 +71,11 @@
         <Viewbox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3">
             <Label Content="UNIRTE A UNA SALA" FontFamily="Georgia" FontSize="72" FontWeight="Bold" Foreground="White"/>
         </Viewbox>
-        <Viewbox Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="3">
-            <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Partidas jugadas" IsEditable="True" Foreground="LightGray" FontFamily="Georgia" FontSize="18" Height="auto" Width="357" Margin= "38 0 40 0">
-                <ComboBoxItem Content="Sala1"></ComboBoxItem>
-                <ComboBoxItem Content="Sala2"></ComboBoxItem>
-                <ComboBoxItem Content="Sala3"></ComboBoxItem>
-                <ComboBoxItem Content="Sala4"></ComboBoxItem>
-            </ComboBox>
-        </Viewbox>
+        <ComboBox Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Partidas jugadas" IsEditable="True" Foreground="LightGray" FontFamily="Georgia" FontSize="18" Height="auto" Width="auto">
+            <ComboBoxItem Content="Sala1"></ComboBoxItem>
+            <ComboBoxItem Content="Sala2"></ComboBoxItem>
+            <ComboBoxItem Content="Sala3"></ComboBoxItem>
+            <ComboBoxItem Content="Sala4"></ComboBoxItem>
+        </ComboBox>
     </Grid>
 </Page>

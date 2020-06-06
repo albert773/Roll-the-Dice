@@ -1,6 +1,8 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using RestSharp;
+using Roll_the_Dice.Utils;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
