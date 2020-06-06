@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="Log In" Height="auto" Width="auto"  MinWidth="1280" MinHeight="720" d:DesignWidth="850" d:DesignHeight="450">
+        Title="" Height="auto" Width="auto"  MinWidth="1280" MinHeight="720" d:DesignWidth="850" d:DesignHeight="450">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*" />
@@ -27,10 +27,10 @@
             <RowDefinition Height="50*" />
             <RowDefinition Height="25*" />
             <RowDefinition Height="25*" />
+            <RowDefinition Height="13*" />
+            <RowDefinition Height="17*" />
             <RowDefinition Height="10*" />
-            <RowDefinition Height="25*" />
-            <RowDefinition Height="10*" />
-            <RowDefinition Height="25*" />
+            <RowDefinition Height="30*" />
             <RowDefinition Height="40*" />
             <RowDefinition Height="10*" />
             <RowDefinition Height="35*" />
@@ -69,7 +69,7 @@
             <TextBlock Text="No te has registrado todavia? Registrate aquí" Foreground="AliceBlue" TextDecorations="Underline" FontFamily="Georgia" FontSize="5" Mouse.MouseDown="Registrarse_Clicked"/>
         </Viewbox>
         <Viewbox Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="3">
-            <TextBlock Text="¿Has olvidado la contraseña?" Foreground="AliceBlue" TextDecorations="Underline" FontFamily="Georgia" FontSize="4" Mouse.MouseDown="Contraseña_Clicked"/>
+            <TextBlock Text="¿Has olvidado la contraseña?" Foreground="AliceBlue" TextDecorations="Underline" FontFamily="Georgia" FontSize="5" Mouse.MouseDown="Contraseña_Clicked" Height="auto" Width="auto"/>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="3">
             <TextBox Name="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Correo" Width="247" Height="53" Foreground="White"/>

@@ -45,9 +45,11 @@
                 <DropShadowEffect/>
             </Border.Effect>
         </Border>
-        <Viewbox Grid.Column="2" Grid.Row="1">
-            <Button Height="55" Width="50" Background="DarkGray" Click="Login_Clicked">
-                <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White"/>
+        <Viewbox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1">
+            <Button Height="55" Width="50" Click="Login_Clicked" BorderBrush="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Roll the Dice;component/Images/flecha.png"/>
+                </Button.Background>
             </Button>
         </Viewbox>
         <Border x:Name="borderCreate" Grid.Row="2" Grid.RowSpan="6" Grid.Column="3" Background="#FF4C7195" CornerRadius="15"/>

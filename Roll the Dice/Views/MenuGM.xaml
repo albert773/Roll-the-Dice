@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MenuPlayer" Height="450" Width="800" MinHeight="720" MinWidth="1280" WindowState="Maximized" ResizeMode="CanResizeWithGrip">
+        Title="" Height="450" Width="800" MinHeight="720" MinWidth="1280" WindowState="Maximized" ResizeMode="CanResizeWithGrip">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Roll the Dice;component/Images/MenuPlayer.jpg"/>
@@ -65,7 +65,7 @@
             <materialDesign:PackIcon x:Name="create" Kind="AddBox" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"  Mouse.MouseDown="Create_Click"/>
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="13">
-            <materialDesign:PackIcon x:Name="edit" Kind="Edit" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+            <materialDesign:PackIcon x:Name="edit" Kind="Edit" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="Edit_Click"/>
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="9">
             <materialDesign:PackIcon x:Name="eliminate" Kind="Delete" Width="Auto" Height="Auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="Eliminar_Click"/>

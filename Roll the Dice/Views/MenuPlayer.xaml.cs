@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RestSharp;
 
 namespace Roll_the_Dice.Views
 {
@@ -24,14 +25,20 @@ namespace Roll_the_Dice.Views
         TicketCharacter perso = new TicketCharacter();
         Inventario inv = new Inventario();
         int diceNum { get; set; } = 10;
-        
+
+        RestClient client;
 
         public MenuPlayer()
         {
             InitializeComponent();
+            client = new RestClient("https://roll-the-dice-service.conveyor.cloud/api/");
             //passworw.Background = Brushes.White;
             //passworw.Foreground = Brushes.Black;
-            frameMap.Content = new Mapa();
+            CharacterShe caracter = new CharacterShe();
+            caracter.Show();
+            caracter.Activate();
+            caracter.Focus();
+            caracter.Topmost = true;
         }
 
         private void Ataq_Click(object sender, RoutedEventArgs e)
@@ -45,7 +52,10 @@ namespace Roll_the_Dice.Views
 
         private void Defensa_Click(object sender, RoutedEventArgs e)
         {
-            //Recoger info dado + recoger daño
+            //Recoger info daño
+
+            //var request = new RestRequest("", Method.POST);
+            
             //si el dado es superior a 80 lo defiendes entero
             /*Si es inferior es:
              mirar si tiene elemento
@@ -53,8 +63,8 @@ namespace Roll_the_Dice.Views
             mirar que tipo de ataque
                 defensa contra el tipo de ataque
              */
-             Window.Sh
-            
+
+
         }
 
         private void Esquiva_Click(object sender, RoutedEventArgs e)

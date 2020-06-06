@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="CreacionArma" Height="auto" Width="auto"  d:DesignWidth="850" d:DesignHeight="450">
+        Title="" Height="auto" Width="auto"  d:DesignWidth="850" d:DesignHeight="450">
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -51,22 +51,12 @@
         </Rectangle>
         <Image Height="auto" Grid.ColumnSpan="3" Grid.RowSpan="9" Width="auto"  Source="/Roll the Dice;component/Images/logo.png" Margin="0,0,106.2,31.6"  />
         <Image Height="auto" Grid.ColumnSpan="1" Grid.Row="5" Grid.RowSpan="4" Width="auto"  Source="/Roll the Dice;component/Images/Espada.png" Grid.Column="5"  />
-        <Viewbox Grid.Column="2" Grid.Row="5"  Height="auto"  Width="auto">
+        <Viewbox Grid.Column="2" Grid.Row="6"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Nombre:"  Width="726" Height="175" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"  />
         </Viewbox>
-        <Viewbox Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="2"  Height="auto"  Width="auto">
+        <Viewbox Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2"  Height="auto"  Width="auto">
             <TextBox x:Name="nombreArma" Height="29"  Grid.Row="5" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="239" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" TextAlignment="Center"/>
         </Viewbox>
-        <Viewbox Grid.Column="2" Grid.Row="6"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Tipo:"  Width="707" Height="170" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" />
-        </Viewbox>
-        <ComboBox Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2"  Width="auto" Height="38" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="25"  >
-            <ComboBoxItem Content="Espada"></ComboBoxItem>
-            <ComboBoxItem Content="Lanza"></ComboBoxItem>
-            <ComboBoxItem Content="Arco"></ComboBoxItem>
-            <ComboBoxItem Content="Daga"></ComboBoxItem>
-            <ComboBoxItem Content="Garrote"></ComboBoxItem>
-        </ComboBox>
 
         <Viewbox Grid.Column="2" Grid.Row="7"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Rareza:"  Width="749" Height="179" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"  />
