@@ -19,7 +19,8 @@ namespace Roll_the_Dice.Views
         public LogIn()
         {
             InitializeComponent();
-            client = new RestClient(Constants.IP);
+            client = new RestClient("https://roll-the-dice-service.conveyor.cloud/api/");   
+            //Constrants.IP
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -31,9 +32,9 @@ namespace Roll_the_Dice.Views
             correoMessageError.Visibility = Visibility.Hidden;
             textErrorPass.Visibility = Visibility.Hidden;
 
-            if (Email.Text.Equals("")) {
+            /*if (Email.Text.Equals("")) {
                 NavigationService.Navigate(new CreateJoin());
-            }
+            }*/
 
             /*if (correoText.Text.Equals(""))
             {

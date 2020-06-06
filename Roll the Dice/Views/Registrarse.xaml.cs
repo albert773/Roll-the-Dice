@@ -20,7 +20,8 @@ namespace Roll_the_Dice.Views
         public Registrarse()
         {
             InitializeComponent();
-            client = new RestClient(Constants.IP);
+            client = new RestClient("https://roll-the-dice-service.conveyor.cloud/api/");
+            //Constraits.IP
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
