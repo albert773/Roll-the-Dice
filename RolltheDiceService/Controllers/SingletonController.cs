@@ -86,13 +86,12 @@ namespace RolltheDiceService.Controllers
         public IHttpActionResult GetIsMyTurn(int usuarioId)
         {
             if (Singleton.OrdenTurnos == null) return Ok(false);
-            if (usuarioId == null || usuarioId == 0) return Ok(false);
             if (Singleton.OrdenTurnos.Contains(usuarioId))
             {
                 return Ok(Singleton.isMyTurn(usuarioId));
             }  
 
-            return Ok();
+            return Ok(false);
         }
     }
 }
