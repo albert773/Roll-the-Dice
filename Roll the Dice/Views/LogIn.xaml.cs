@@ -77,7 +77,7 @@ namespace Roll_the_Dice.Views
             request2.AddHeader("Content-type", "application/json");
             request2.AddHeader("Authorization", Constants.Token);
             request2.AddParameter("email", Email.Text, ParameterType.UrlSegment);
-            var response2 = client.Execute(request2);
+            var response2 = await client.ExecuteAsync(request2);
 
             if (!response2.IsSuccessful)
             {

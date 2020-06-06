@@ -39,6 +39,11 @@ namespace RolltheDiceService.Controllers
         [ResponseType(typeof(Usuario))]
         public IHttpActionResult GetUsuario(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             Usuario usuario = UsuarioServ.GetUsuarioById(id);
 
             if (usuario != null)
@@ -57,7 +62,13 @@ namespace RolltheDiceService.Controllers
         [ResponseType(typeof(Usuario))]
         public IHttpActionResult GetUsuarioByEmail(string email)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             Usuario usuario = UsuarioServ.GetUsuarioByEmail(email);
+
             if (usuario != null)
             {
                 return Ok(usuario);

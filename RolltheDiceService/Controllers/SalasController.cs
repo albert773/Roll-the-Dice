@@ -74,7 +74,7 @@ namespace RolltheDiceService.Controllers
             return Ok("La sala se ha modificado correctamente");
         }
 
-        // POST: api/Salas
+        // POST: api/salas
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(Sala))]
@@ -85,7 +85,14 @@ namespace RolltheDiceService.Controllers
                 return BadRequest(ModelState);
             }
 
-            SalaServ.PostSala(sala);
+            try
+            {
+                SalaServ.PostSala(sala);
+            }
+            catch (System.Exception)
+            {
+                return InternalServerError();
+            }
 
             return Ok();
         }
