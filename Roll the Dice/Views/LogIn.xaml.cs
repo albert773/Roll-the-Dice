@@ -14,7 +14,6 @@ namespace Roll_the_Dice.Views
     public partial class LogIn : Page
     {
         RestClient client;
-        Boolean confirm = true;
 
         public LogIn()
         {

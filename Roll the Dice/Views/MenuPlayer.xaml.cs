@@ -39,8 +39,8 @@ namespace Roll_the_Dice.Views
             //passworw.Foreground = Brushes.Black;
             CharacterShe caracter = new CharacterShe();
             caracter.Show();
-            caracter.Activate();
-            caracter.Focus();
+            //caracter.Activate();
+            //caracter.Focus();
             caracter.Topmost = true;
         }
 

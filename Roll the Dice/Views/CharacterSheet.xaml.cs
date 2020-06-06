@@ -24,18 +24,27 @@ namespace Roll_the_Dice.Views
     public partial class CharacterShe : Window
     {
         RestClient client;
+        List<Clase> clases;
+        List<Raza> razas;
         public CharacterShe()
         {
             InitializeComponent();
             client = new RestClient(Constants.IP);
+            clasesCombo();
+            razasCombo();
         }
 
 
-        public async void Crear_CLick() {
+        public async void Crear_Click()
+        {
 
             Personaje per = new Personaje();
 
-
+            per.nombre = NombrePer.Text;
+            per.misionOculta = historia.Text;
+            per.experiencia = 0;
+            per.cansancio = 0;
+            //per.clase;
 
             var request = new RestRequest("{id}", Method.POST);
             request.AddHeader("Content-type", "application/json");
@@ -55,8 +64,70 @@ namespace Roll_the_Dice.Views
 
         }
 
-        public async void verificar() { 
-        
+        public async void clasesCombo() {
+            var request = new RestRequest("clases", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+
+            //request.AddParameter(ParameterType.UrlSegment);
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+
+            clases = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Clase>>(response.Content);
+
+            foreach (var nom in clases) {
+                //clase;
+                TextBlock text = new TextBlock();
+                text.Foreground = new SolidColorBrush(Colors.Black);
+                text.TextAlignment = TextAlignment.Left;
+                text.Text = nom.nombre.ToString();
+                clase.Items.Add(text);
+            }
+        }
+
+        public async void razasCombo()
+        {
+            var request = new RestRequest("razas", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+
+            //request.AddParameter(ParameterType.UrlSegment);
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+
+            //Eror no se porque
+            /*razas = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Raza>>(response.Content);
+
+            foreach (var nom in razas)
+            {
+                TextBlock text = new TextBlock();
+                text.Foreground = new SolidColorBrush(Colors.Gray);
+                text.TextAlignment = TextAlignment.Left;
+                text.Text = nom.nombre.ToString();
+                raza.Items.Add(text);
+            }*/
+        }
+
+        public async void SexoCombo()
+        {
+            //poner el sexo
+        }
+
+        public async void verificar()
+        {
+            //TODO crear metodo post
         }
     }
 }

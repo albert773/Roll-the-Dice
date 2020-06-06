@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RestSharp;
+using Roll_the_Dice.Utils;
+using Roll_the_Dice.Models;
+using System.Diagnostics;
 
 namespace Roll_the_Dice.Views
 {
@@ -22,6 +26,10 @@ namespace Roll_the_Dice.Views
         public TicketCharacter()
         {
             InitializeComponent();
+        }
+
+        public async void iniciarValores() { 
+            //TODO valores
         }
     }
 }
