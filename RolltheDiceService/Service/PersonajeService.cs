@@ -37,7 +37,7 @@ namespace RolltheDiceService.Service
 
         public Personaje GetPersonajeWithPosicion(int id)
         {
-            return uow.RepositoryClient<Personaje>().GetWithInclude(q => q.Posicion1.posicionId == id, "Posicion1").FirstOrDefault();
+            return uow.RepositoryClient<Personaje>().GetWithInclude(q => q.personajeId == id, "Posicion1").FirstOrDefault();
         }
 
         public IEnumerable<Personaje> GetAllPersonajesByEmail(string email)

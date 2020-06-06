@@ -275,6 +275,7 @@
     <Compile Include="Service\IdiomaService.cs" />
     <Compile Include="Service\Interface\IEstadNPCService.cs" />
     <Compile Include="Service\Interface\IEstadPersoService.cs" />
+    <Compile Include="Service\PosicionService.cs" />
     <Compile Include="Utils\GenericRepository.cs" />
     <Compile Include="Service\Interface\IAccionService.cs" />
     <Compile Include="Service\Interface\IArmaduraService.cs" />
@@ -306,7 +307,7 @@
     <Compile Include="Utils\TokenValidationHandler.cs" />
     <Compile Include="Utils\UnitOfWork.cs" />
     <Compile Include="Service\InventarioService.cs" />
-    <Compile Include="Service\IService.cs" />
+    <Compile Include="Service\Interface\IService.cs" />
     <Compile Include="Service\ItemService.cs" />
     <Compile Include="Service\MapaService.cs" />
     <Compile Include="Service\MonstruoService.cs" />

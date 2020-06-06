@@ -19,11 +19,17 @@ namespace RolltheDiceService.Controllers
         {
             this.PosicionServ = PosicionServ;
         }
-        // GET: api/Posiciones
+
+        // GET: api/posiciones
         [HttpGet]
         [Route("")]
         public IHttpActionResult GetAllPosiciones()
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             IEnumerable<Posicion> posiciones = PosicionServ.GetAllPosiciones();
             if (posiciones.Count() > 0)
             {
@@ -32,12 +38,17 @@ namespace RolltheDiceService.Controllers
             return BadRequest("No se ha encontrado ninguna posicion");
         }
 
-        // GET: api/Posiciones/5
+        // GET: api/posiciones/5
         [HttpGet]
         [Route("{id:int}")]
         [ResponseType(typeof(Posicion))]
         public IHttpActionResult GetPosicion(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             Posicion posicion = PosicionServ.GetPosicionById(id);
             if (posicion == null)
             {
@@ -47,7 +58,47 @@ namespace RolltheDiceService.Controllers
             return Ok(posicion);
         }
 
-        // PUT: api/Posiciones/5
+        // GET: api/posiciones/personaje/{id}
+        [HttpGet]
+        [Route("personaje/{id:int}")]
+        [ResponseType(typeof(Posicion))]
+        public IHttpActionResult GetPosicionByPersonaje(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Posicion posicion = PosicionServ.GetPosicionByPersonaje(id);
+            if (posicion == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(posicion);
+        }
+
+        // GET: api/posiciones/sala/{id}
+        [HttpGet]
+        [Route("sala/{id:int}")]
+        [ResponseType(typeof(Posicion))]
+        public IHttpActionResult GetAllPosicionesBySala(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IEnumerable<Posicion> posiciones = PosicionServ.GetAllPosicionesBySala(id);
+            if (posiciones == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(posiciones);
+        }
+
+        // PUT: api/posiciones/5
         [HttpPut]
         [Route("{id:int}")]
         [ResponseType(typeof(void))]
@@ -69,13 +120,13 @@ namespace RolltheDiceService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                throw;
+                return InternalServerError();
             }
 
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Posiciones
+        // POST: api/posiciones
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(Posicion))]
@@ -86,18 +137,37 @@ namespace RolltheDiceService.Controllers
                 return BadRequest(ModelState);
             }
 
-            PosicionServ.PostPosicion(posicion);
+            try
+            {
+                PosicionServ.PostPosicion(posicion);
+            }
+            catch (System.Exception)
+            {
+                return InternalServerError();
+            }
 
             return Ok();
         }
 
-        // DELETE: api/Posiciones/5
+        // DELETE: api/posiciones/5
         [HttpDelete]
         [Route("{id:int}")]
         [ResponseType(typeof(Posicion))]
         public IHttpActionResult DeletePosicion(int id)
         {
-            PosicionServ.DeletePosicion(id);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                PosicionServ.DeletePosicion(id);
+            }
+            catch (System.Exception)
+            {
+                return InternalServerError();
+            }
 
             return Ok("Se ha eliminado correctamente");
         }

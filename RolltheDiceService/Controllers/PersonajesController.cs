@@ -150,7 +150,7 @@ namespace RolltheDiceService.Controllers
             return Ok(personaje);
         }
 
-        // PUT: api/Personajes/{id}
+        // PUT: api/personajes/{id}
         [HttpPut]
         [Route("{id:int}")]
         [ResponseType(typeof(void))]
