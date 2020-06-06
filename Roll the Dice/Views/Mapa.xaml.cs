@@ -1,4 +1,7 @@
-﻿using System;
+﻿using RestSharp;
+using Roll_the_Dice.Models;
+using Roll_the_Dice.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,19 +18,22 @@ using System.Windows.Shapes;
 
 namespace Roll_the_Dice.Views
 {
-    /// <summary>
-    /// Lógica de interacción para Mapa.xaml
-    /// </summary>
+   
+    
+
     public partial class Mapa : Page
     {
+        RestClient client;
+        
         List<ColumnDefinition> colList = new List<ColumnDefinition>();
         List<RowDefinition> rowList = new List<RowDefinition>();
         List<Button> buttonList = new List<Button>();
         List<Rectangle> rectangleList = new List<Rectangle>();
         const int X = 15;
         int disponibleMovement = 0;
-        int posX { get; set; }=0;
-        int posY { get; set; }=14;
+        List<int> positionsX= new List<int>();
+        List<int> positionsY = new List<int>();
+        int persoActual { get; set; } = 0;
         int range = 1;
         bool ataque = false;
         bool mover = false;
@@ -35,8 +41,10 @@ namespace Roll_the_Dice.Views
         public Mapa()
         {
             InitializeComponent();
-           
-            for(int i=0; i< X; i++)
+            client = new RestClient(Constants.IP);
+            positionsX.Add(0);
+            positionsY.Add(0);
+            for (int i=0; i< X; i++)
             {
                 colList.Add(new ColumnDefinition());
                 rowList.Add(new RowDefinition());
@@ -103,7 +111,7 @@ namespace Roll_the_Dice.Views
         }
         public void rangePerso()
         {
-            int ubi = indexGetter(posX, posY);
+            int ubi = indexGetter(positionsX[persoActual], positionsY[persoActual]);
             paintSquareYellow(ubi);
         }
         public int indexGetter(int x, int y)
@@ -129,9 +137,9 @@ namespace Roll_the_Dice.Views
             {
             
                 int p1, p2, p3, p4, p5, p6, p7, p8;
-                if (posX - i >= 0)
+                if (positionsX[persoActual] - i >= 0)
                 {
-                    p1 = indexGetter(posX - i, posY);
+                    p1 = indexGetter(positionsX[persoActual] - i, positionsY[persoActual]);
                     if (move)
                     {
                         paintSquareBlue(p1);
@@ -142,9 +150,9 @@ namespace Roll_the_Dice.Views
                     }
                     
                 }
-                if (posY - i >= 0)
+                if (positionsY[persoActual] - i >= 0)
                 {
-                    p2 = indexGetter(posX, posY - i);
+                    p2 = indexGetter(positionsX[persoActual], positionsY[persoActual] - i);
                     if (move)
                     {
                         paintSquareBlue(p2);
@@ -154,9 +162,9 @@ namespace Roll_the_Dice.Views
                         paintSquareRed(p2);
                     }
                 }
-                if (posX + i < 15)
+                if (positionsX[persoActual] + i < 15)
                 {
-                    p3 = indexGetter(posX + i, posY);
+                    p3 = indexGetter(positionsX[persoActual] + i, positionsY[persoActual]);
                     if (move)
                     {
                         paintSquareBlue(p3);
@@ -166,9 +174,9 @@ namespace Roll_the_Dice.Views
                         paintSquareRed(p3);
                     }
                 }
-                if (posY + i < 15)
+                if (positionsY[persoActual] + i < 15)
                 {
-                    p4 = indexGetter(posX, posY + i);
+                    p4 = indexGetter(positionsX[persoActual], positionsY[persoActual] + i);
                     if (move)
                     {
                         paintSquareBlue(p4);
@@ -178,9 +186,9 @@ namespace Roll_the_Dice.Views
                         paintSquareRed(p4);
                     }
                 }
-                if (posX + i < 15 && posY + i < 15)
+                if (positionsX[persoActual] + i < 15 && positionsY[persoActual] + i < 15)
                 {
-                    p5 = indexGetter(posX + i, posY + i);
+                    p5 = indexGetter(positionsX[persoActual] + i, positionsY[persoActual] + i);
                     if (move)
                     {
                         paintSquareBlue(p5);
@@ -190,9 +198,9 @@ namespace Roll_the_Dice.Views
                         paintSquareRed(p5);
                     }
                 }
-                if (posX - i >= 0 && posY - i >= 0)
+                if (positionsX[persoActual] - i >= 0 && positionsY[persoActual] - i >= 0)
                 {
-                    p6 = indexGetter(posX - i, posY - i);
+                    p6 = indexGetter(positionsX[persoActual] - i, positionsY[persoActual] - i);
                     if (move)
                     {
                         paintSquareBlue(p6);
@@ -202,9 +210,9 @@ namespace Roll_the_Dice.Views
                         paintSquareRed(p6);
                     }
                 }
-                if (posX - i >= 0 && posY + i < 15)
+                if (positionsX[persoActual] - i >= 0 && positionsY[persoActual] + i < 15)
                 {
-                    p7 = indexGetter(posX - i, posY + i);
+                    p7 = indexGetter(positionsX[persoActual] - i, positionsY[persoActual] + i);
                     if (move)
                     {
                         paintSquareBlue(p7);
@@ -214,9 +222,9 @@ namespace Roll_the_Dice.Views
                         paintSquareRed(p7);
                     }
                 }
-                if (posX + i < 15 && posY - i >= 0)
+                if (positionsX[persoActual] + i < 15 && positionsY[persoActual] - i >= 0)
                 {
-                    p8 = indexGetter(posX + i, posY - i);
+                    p8 = indexGetter(positionsX[persoActual] + i, positionsY[persoActual] - i);
                     if (move)
                     {
                         paintSquareBlue(p8);
@@ -305,9 +313,22 @@ namespace Roll_the_Dice.Views
             }
         }
 
-        public void isTurn()
+        public async void isTurn(int id)
         {
             disponibleMovement = 2;
+            var request = new RestRequest("posiciones/personaje/{id}", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+            request.AddParameter("id", id, ParameterType.UrlSegment);
+            var response = await client.ExecuteAsync(request);
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+            Posicion pos=Newtonsoft.Json.JsonConvert.DeserializeObject<Posicion>(response.Content);
+            positionsX[persoActual] = pos.x;
+            positionsY[persoActual] = pos.y;
         }
 
         public void hacerAtaque(int x, int y)
@@ -340,7 +361,7 @@ namespace Roll_the_Dice.Views
                             index = index - 15;
                         }
                         x = index;
-                        posX = x; posY = y;
+                        positionsX[persoActual] = x; positionsY[persoActual] = y;
                         disponibleMovement--;
                         if (disponibleMovement > 0)
                         {

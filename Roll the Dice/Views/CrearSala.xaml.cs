@@ -28,7 +28,7 @@ namespace Roll_the_Dice.Views
         public CrearSala()
         {
             InitializeComponent();
-            client = new RestClient("https://roll-the-dice-service.conveyor.cloud/api/");
+            client = new RestClient(Constants.IP);
         }
 
         private void Volver_Click(object sender, RoutedEventArgs e) {
