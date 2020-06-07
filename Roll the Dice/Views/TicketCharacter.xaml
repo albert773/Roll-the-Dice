@@ -73,7 +73,7 @@
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="SAB:"  Width="726" Height="215" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center"  FontSize="200" />
         </Viewbox>
         <Viewbox Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="14"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="INT:"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+            <TextBlock x:Name="intel" Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="INT:"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
         </Viewbox>
         <Viewbox Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="4"  Height="auto"  Width="auto">
             <TextBlock x:Name="fue" Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />

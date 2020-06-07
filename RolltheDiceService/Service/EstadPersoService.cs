@@ -2,6 +2,7 @@
 using RolltheDiceService.Service.Interface;
 using RolltheDiceService.Utils;
 using System.Collections.Generic;
+using System.Linq;
 using static RolltheDiceService.IoC.InjectableAttribute;
 
 namespace RolltheDiceService.Service
@@ -27,16 +28,16 @@ namespace RolltheDiceService.Service
             return uow.RepositoryClient<UnionEstatPerso>().GetAll();
         }
 
-        public UnionEstatPerso GetEstatPersoById(int id)
+        public UnionEstatPerso GetEstatPersoById(int id, int id2)
         {
-            return uow.RepositoryClient<UnionEstatPerso>().GetByID(id);
+            return uow.RepositoryClient<UnionEstatPerso>().getDbSet().Find(id, id2);
         }
 
         public UnionEstatPerso PostEstatPerso(UnionEstatPerso unionEstatPerso)
         {
             uow.RepositoryClient<UnionEstatPerso>().Insert(unionEstatPerso);
             uow.SaveChanges();
-            return GetEstatPersoById(unionEstatPerso.estadisticaId);
+            return GetEstatPersoById(unionEstatPerso.estadisticaId, unionEstatPerso.personajeId);
         }
 
         public void PostAllEstatPerso(List<UnionEstatPerso> unionesEstatPerso)
@@ -53,7 +54,7 @@ namespace RolltheDiceService.Service
         {
             uow.RepositoryClient<UnionEstatPerso>().Update(unionEstatPerso);
             uow.SaveChanges();
-            return GetEstatPersoById(id);
+            return GetEstatPersoById(id, unionEstatPerso.personajeId);
         }
 
         public void DeleteEstatPerso(int id)

@@ -61,7 +61,7 @@ namespace Roll_the_Dice.Views
             NavigationService.Navigate(new CreateJoin());
         }
 
-            private async void Unirse_Click(object sender, RoutedEventArgs e)
+        private async void Unirse_Click(object sender, RoutedEventArgs e)
         {
             if (salaSeleccionada == null || Contraseña.Password == null || Contraseña.Password == "" || Ip.Text == null || Ip.Text == "")
             {
@@ -91,6 +91,25 @@ namespace Roll_the_Dice.Views
             {
                 //TODO - Contraseña Incorrecta
                 return;
+            }
+
+            var request2 = new RestRequest("personajes/usuario/{email}/sala/{salaId}/all", Method.GET);
+            request2.AddHeader("Content-type", "application/json");
+            request2.AddHeader("Authorization", Constants.Token);
+            request2.AddParameter("email", Constants.Usuario.email, ParameterType.UrlSegment);
+            request2.AddParameter("salaId", Constants.Sala.salaId, ParameterType.UrlSegment);
+
+            var response2 = await client.ExecuteAsync(request2);
+
+            if (!response2.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                //return;
+                Constants.Personaje = null;
+            }
+            else
+            {
+                Constants.Personaje = Newtonsoft.Json.JsonConvert.DeserializeObject<Personaje>(response2.Content);
             }
 
             if (Constants.Sala.propietario == Constants.Usuario.usuarioId)

@@ -3,6 +3,8 @@ using RolltheDiceService.Service.Interface;
 using RolltheDiceService.Utils;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using static RolltheDiceService.IoC.InjectableAttribute;
 
@@ -54,6 +56,21 @@ namespace RolltheDiceService.Service
                                                                                                                               "Inventario.Item").FirstOrDefault();
         }
 
+        public Personaje GetPersonajeByUsuarioAndSala2(string email, int sala)
+        {
+            return uow.RepositoryClient<Personaje>().GetWithInclude(q => q.Usuario1.email == email && q.Sala1.salaId == sala, "Inventario.Arma",
+                                                                                                                              "Inventario.Armadura",
+                                                                                                                              "Inventario.Item",
+                                                                                                                              "Habilidad",
+                                                                                                                              "Posicion1",
+                                                                                                                              "UnionEstatPerso",
+                                                                                                                              "Usuario1",
+                                                                                                                              "Raza1",
+                                                                                                                              "Sala1",
+                                                                                                                              "Clase1",
+                                                                                                                              "Estado").FirstOrDefault();
+        }
+
         public Personaje GetPersonajeById(int id)
         {
             return uow.RepositoryClient<Personaje>().GetWithInclude(q => q.personajeId == id, "Inventario.Arma",
@@ -72,7 +89,25 @@ namespace RolltheDiceService.Service
         public Personaje PostPersonaje(Personaje personaje)
         {
             uow.RepositoryClient<Personaje>().Insert(personaje);
-            uow.SaveChanges();
+            try
+            {
+                uow.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Debug.WriteLine("- Property: \"{0}\", Value: \"{1}\", Error: \"{2}\"",
+                            ve.PropertyName,
+                            eve.Entry.CurrentValues.GetValue<object>(ve.PropertyName),
+                            ve.ErrorMessage);
+                    }
+                }
+            }
             return GetPersonajeById(personaje.personajeId);
         }
 

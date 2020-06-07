@@ -36,11 +36,11 @@ namespace RolltheDiceService.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int}")]
+        [Route("{id:int}/{id2:int}")]
         [ResponseType(typeof(UnionEstatPerso))]
-        public IHttpActionResult GetEstadMonstById(int id)
+        public IHttpActionResult GetEstatPersoById(int id, int id2)
         {
-            UnionEstatPerso estatPerso = EstadPersoServ.GetEstatPersoById(id);
+            UnionEstatPerso estatPerso = EstadPersoServ.GetEstatPersoById(id, id2);
             if (estatPerso == null)
             {
                 return NotFound();
