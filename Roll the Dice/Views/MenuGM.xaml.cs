@@ -49,22 +49,34 @@ namespace Roll_the_Dice.Views
         }
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            if (crea.ShowActivated)
+            crea = new CreacionDeCosas();
+            if (crea == null)
+            {
+                this.crea = new CreacionDeCosas();
+                crea.Show();
+            }
+            else if (!crea.IsActive && crea.ShowActivated)
             {
                 crea.Close();
+                this.crea = new CreacionDeCosas();
+                crea.Show();
             }
-            this.crea = new CreacionDeCosas();
-            crea.Show();
         }
 
         private void Agregar_Click(object sender, RoutedEventArgs e)
         {
-            if (eliminar.ShowActivated)
+            eliminar = new AsignarCosasPlayers();
+            if (crea == null)
+            {
+                this.eliminar = new AsignarCosasPlayers();
+                eliminar.Show();
+            }
+            else if (!eliminar.IsActive && eliminar.ShowActivated)
             {
                 eliminar.Close();
+                this.eliminar = new AsignarCosasPlayers();
+                eliminar.Show();
             }
-            this.eliminar = new AsignarCosasPlayers();
-            eliminar.Show();
         }
 
         public void reloadListCrear() {
@@ -75,24 +87,34 @@ namespace Roll_the_Dice.Views
         }
         private void Perso_Click(object sender, RoutedEventArgs e)
         {
-            if (perso.ShowActivated)
+            perso = new TicketCharacter();
+            if (perso == null)
+            {
+                this.perso = new TicketCharacter();
+                perso.Show();
+            }
+            else if (!perso.IsActive && perso.ShowActivated)
             {
                 perso.Close();
+                this.perso = new TicketCharacter();
+                perso.Show();
             }
-            this.perso = new TicketCharacter();
-            perso.Show();
-
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            if (caraceter.ShowActivated)
+            caraceter = new CharacterShe();
+            if (caraceter == null)
+            {
+                this.caraceter = new CharacterShe();
+                caraceter.Show();
+            }
+            else if (!caraceter.IsActive && caraceter.ShowActivated)
             {
                 caraceter.Close();
+                this.caraceter = new CharacterShe();
+                caraceter.Show();
             }
-            this.caraceter = new CharacterShe();
-            caraceter.Show();
-
         }
 
         private void Dice_Click(object sender, RoutedEventArgs e)
@@ -101,9 +123,6 @@ namespace Roll_the_Dice.Views
             Random random = new Random();
          
                 Number.Text = randomDice();
-            
-           
-
         }
         private string randomDice()
         {
