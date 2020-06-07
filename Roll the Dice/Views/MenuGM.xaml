@@ -52,13 +52,13 @@
         <Border Background="White" Grid.Column="14" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="5"/>
 
         <Viewbox Grid.Column="14" Grid.Row="5" Grid.ColumnSpan="1">
-            <materialDesign:PackIcon x:Name="sword" Kind="Sword" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+            <materialDesign:PackIcon x:Name="sword" Kind="Sword" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="sword_MouseDown" />
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="1" Grid.RowSpan="3">
             <materialDesign:PackIcon x:Name="person" Kind="Person" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="7">
-            <materialDesign:PackIcon x:Name="moviment" Kind="ArrowAll" Width="Auto" Height="Auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+            <materialDesign:PackIcon x:Name="moviment" Kind="ArrowAll" Width="Auto" Height="Auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="moviment_MouseDown"/>
         </Viewbox>
 
         <Viewbox Grid.Column="14" Grid.Row="11" Grid.ColumnSpan="1">

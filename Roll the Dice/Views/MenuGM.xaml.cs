@@ -26,7 +26,7 @@ namespace Roll_the_Dice.Views
         CreacionDeCosas crea= new CreacionDeCosas();
         AsignarCosasPlayers eliminar = new AsignarCosasPlayers();
         CharacterShe caraceter = new CharacterShe();
-
+        Mapa mapa = new Mapa();
         public static List<string> armas = new List<string>();
         static List<Object> armaduras = new List<object>();
         static List<Object> items = new List<object>();
@@ -44,7 +44,7 @@ namespace Roll_the_Dice.Views
             turnos.Topmost = true;
             InitializeComponent();
             //reloadListCrear();
-            frameMap.Content = new Mapa();
+            frameMap.Content = mapa;
         }
         private void Create_Click(object sender, RoutedEventArgs e)
         {
@@ -151,6 +151,16 @@ namespace Roll_the_Dice.Views
             this.Close();
             main.Show();
 
+        }
+
+        private void moviment_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            mapa.setMover();
+        }
+
+        private void sword_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            mapa.setAtaque();
         }
     }
 }
