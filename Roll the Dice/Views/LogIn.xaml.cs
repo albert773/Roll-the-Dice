@@ -14,7 +14,6 @@ namespace Roll_the_Dice.Views
     public partial class LogIn : Page
     {
         RestClient client;
-        Boolean confirm = true;
 
         public LogIn()
         {
@@ -32,18 +31,6 @@ namespace Roll_the_Dice.Views
             borderMessagePass.Visibility = Visibility.Hidden;
             correoMessageError.Visibility = Visibility.Hidden;
             textErrorPass.Visibility = Visibility.Hidden;
-
-            /*if (Email.Text.Equals("")) {
-                NavigationService.Navigate(new CreateJoin());
-            }*/
-
-            /*if (correoText.Text.Equals(""))
-            {
-                confirm = false;
-                errorMail.Visibility = Visibility.Visible;
-            }*/
-            //if (true) confirm = false;
-            //if(confirm)
 
             if (!Validations.IsValidEmail(Email.Text))
             {

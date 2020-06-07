@@ -46,6 +46,21 @@ namespace RolltheDiceService.Controllers
             return Ok(sala);
         }
 
+        // GET: api/Salas/nombre/Sala 1
+        [HttpGet]
+        [Route("{nombre}")]
+        [ResponseType(typeof(Sala))]
+        public IHttpActionResult GetSalaByNombre(string nombre)
+        {
+            Sala sala = SalaServ.GetSalaByNombre(nombre);
+            if (sala == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(sala);
+        }
+
         // PUT: api/Salas/5
         [HttpPut]
         [Route("{id:int}")]
@@ -80,6 +95,8 @@ namespace RolltheDiceService.Controllers
         [ResponseType(typeof(Sala))]
         public IHttpActionResult PostSala(Sala sala)
         {
+            Sala sala1;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -87,14 +104,14 @@ namespace RolltheDiceService.Controllers
 
             try
             {
-                SalaServ.PostSala(sala);
+                sala1 = SalaServ.PostSala(sala);
             }
             catch (System.Exception)
             {
                 return InternalServerError();
             }
 
-            return Ok();
+            return Ok(sala1);
         }
 
         // DELETE: api/Salas/5

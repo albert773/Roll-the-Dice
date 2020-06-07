@@ -16,14 +16,16 @@ namespace Roll_the_Dice.Views
     public partial class Join : Page
     {
         RestClient client;
+        string salaSeleccionada;
 
         public Join()
         {
-            InitializeComponent();        }
+            InitializeComponent();        
+        }
 
         private async void Ip_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (Ip.Text == null || Ip.Text == "")
+            /*if (Ip.Text == null || Ip.Text == "")
             {
                 return;
             }
@@ -46,21 +48,70 @@ namespace Roll_the_Dice.Views
             foreach (Sala sala in salas)
             {
                 Salas.Items.Add(sala.nombre);
-            }
+            }*/
+        }
+
+        private void Salas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //salaSeleccionada = Salas.SelectedValue.ToString();
         }
 
         private void Return_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new CreateJoin());
+            //NavigationService.Navigate(new CreateJoin());
         }
 
-        private void Unirse_Click(object sender, RoutedEventArgs e)
+            private async void Unirse_Click(object sender, RoutedEventArgs e)
         {
-            //Cambio de pagina a Ventana
             MenuPlayer menu = new MenuPlayer();
             menu.Show();
             MainWindow main = Window.GetWindow(this) as MainWindow;
             main.Close();
+
+            /*if (salaSeleccionada == null || Contraseña.Password == null || Contraseña.Password == "" || Ip.Text == null || Ip.Text == "")
+            {
+                //TODO - Todos los campos deben tener valores
+                return;
+            }
+
+            var request = new RestRequest("salas/{nombre}", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+            request.AddParameter("nombre", salaSeleccionada, ParameterType.UrlSegment);
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                return;
+            }
+
+            Sala sala = Newtonsoft.Json.JsonConvert.DeserializeObject<Sala>(response.Content);
+
+            if(sala.password == Encryption.EncodePasswordToBase64(Contraseña.Password))
+            {
+                Constants.Sala = sala;
+            }
+            else
+            {
+                //TODO - Contraseña Incorrecta
+                return;
+            }
+
+            if (Constants.Sala.propietario == Constants.Usuario.usuarioId)
+            {
+                MenuGM menuGM = new MenuGM();
+                menuGM.Show();
+            }
+            else
+            {
+                //Cambio de pagina a Ventana
+                MenuPlayer menu = new MenuPlayer();
+                menu.Show();
+            }
+
+            MainWindow main = Window.GetWindow(this) as MainWindow;
+            main.Close();*/
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Roll_the_Dice.Views
     {
         MainWindow main = new MainWindow();
         CreacionDeCosas crea= new CreacionDeCosas();
-        EliminarCosas eliminar = new EliminarCosas();
+        AsignarCosasPlayers eliminar = new AsignarCosasPlayers();
         CharacterShe caraceter = new CharacterShe();
         Mapa mapa = new Mapa();
         public static List<string> armas = new List<string>();
@@ -56,13 +56,13 @@ namespace Roll_the_Dice.Views
             crea.Show();
         }
 
-        private void Eliminar_Click(object sender, RoutedEventArgs e)
+        private void Agregar_Click(object sender, RoutedEventArgs e)
         {
             if (eliminar.ShowActivated)
             {
                 eliminar.Close();
             }
-            this.eliminar = new EliminarCosas();
+            this.eliminar = new AsignarCosasPlayers();
             eliminar.Show();
         }
 

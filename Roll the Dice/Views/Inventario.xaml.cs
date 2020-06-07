@@ -24,6 +24,8 @@ namespace Roll_the_Dice.Views
     public partial class Inventario : Window
     {
         RestClient client;
+        List<Models.Item> Listaitem;
+        List<Models.Arma> listaArma;
         public Inventario()
         {
             InitializeComponent();
@@ -51,11 +53,11 @@ namespace Roll_the_Dice.Views
         }
 
         public async void InicializarItems() {
-            var request = new RestRequest("inventario/personaje/{id}", Method.GET);
+            var request = new RestRequest("items", Method.GET);
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("Authorization", Constants.Token);
 
-            request.AddParameter("id", Constants.Usuario.usuarioId, ParameterType.UrlSegment);
+            //request.AddParameter("id", Constants.Usuario.usuarioId, ParameterType.UrlSegment);
 
             var response = await client.ExecuteAsync(request);
 
@@ -64,8 +66,78 @@ namespace Roll_the_Dice.Views
             //request.AddJsonBody(param);
 
             //sword.Foreground = new SolidColorBrush(Colors.White);
-            Inventario invent = Newtonsoft.Json.JsonConvert.DeserializeObject<Inventario>(response.Content);
-            Debug.WriteLine(invent);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+
+            Listaitem = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Models.Item>>(response.Content);
+
+            foreach (var items in Listaitem) {
+                TextBlock text = new TextBlock();
+                text.Foreground = new SolidColorBrush(Colors.Black);
+                text.TextAlignment = TextAlignment.Left;
+                text.Text = items.nombre.ToString();
+                ItemBox.Items.Add(text);
+            }
+            
         }
+
+        public async void descripcionItem_Click(object sender, SelectionChangedEventArgs e) {
+            string text = ((sender as ComboBox).SelectedItem as ComboBoxItem).Content as string;
+            foreach (var item in Listaitem) {
+                if (item.nombre.Equals(text)) {
+                    descripcionItem.Text = item.descripcion.ToString();
+                }
+            }
+        }
+
+        public async void descripcionArma_Click(object sender, SelectionChangedEventArgs e)
+        {
+            string text = ((sender as ComboBox).SelectedItem as ComboBoxItem).Content as string;
+            foreach (var item in listaArma)
+            {
+                if (item.nombre.Equals(text))
+                {
+                    Rareza.Text = item.rareza.ToString();
+                    Elemento.Text = item.elemento.ToString();
+                    Defensa.Text = item.defensa.ToString();
+                    Esquiva.Text = item.esquiva.ToString();
+                    Daño.Text = item.daño.ToString();
+                }
+            }
+        }
+
+        public async void descripcionArmadura_Click(object sender, SelectionChangedEventArgs e)
+        {
+            string text = ((sender as ComboBox).SelectedItem as ComboBoxItem).Content as string;
+            foreach (var item in listaArma)
+            {
+                if (item.nombre.Equals(text))
+                {
+                    RarezaArmadura.Text = item.rareza.ToString();
+                    ElementoArmadura.Text = item.elemento.ToString();
+                    DefensaArmadura.Text = item.defensa.ToString();
+                }
+            }
+        }
+
+        public async void usar_Click(object sender, SelectionChangedEventArgs e)
+        {
+            //TODO Post
+        }
+
+        public async void soltar_Click(object sender, SelectionChangedEventArgs e)
+        {
+            //TODO Post
+        }
+
+        public async void equipar_Click(object sender, SelectionChangedEventArgs e)
+        {
+            //TODO Post
+        }
+
     }
 }

@@ -2,6 +2,8 @@
 using RolltheDiceService.Service.Interface;
 using RolltheDiceService.Utils;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Policy;
 using static RolltheDiceService.IoC.InjectableAttribute;
 
 namespace RolltheDiceService.Service
@@ -26,9 +28,22 @@ namespace RolltheDiceService.Service
             return uow.RepositoryClient<Sala>().GetMany(q => q.Usuario.usuarioId == id);
         }
 
+        public Sala GetSalaByNombre(string nombre)
+        {
+            return uow.RepositoryClient<Sala>().GetWithInclude(q => q.nombre == nombre, "Mapa",
+                                                                                        "Monstruo",
+                                                                                        "NPC",
+                                                                                        "Personaje",
+                                                                                        "Usuario").FirstOrDefault();
+        }
+
         public Sala GetSalaById(int id)
         {
-            return uow.RepositoryClient<Sala>().GetByID(id);
+            return uow.RepositoryClient<Sala>().GetWithInclude(q => q.salaId == id, "Mapa",
+                                                                                    "Monstruo",
+                                                                                    "NPC",
+                                                                                    "Personaje",
+                                                                                    "Usuario").FirstOrDefault();
         }
 
         public Sala PostSala(Sala sala)

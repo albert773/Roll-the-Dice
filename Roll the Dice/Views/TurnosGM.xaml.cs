@@ -1,4 +1,7 @@
-﻿using System;
+﻿using RestSharp;
+using Roll_the_Dice.Models;
+using Roll_the_Dice.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,35 +22,61 @@ namespace Roll_the_Dice.Views
     /// </summary>
     public partial class TurnosGM : Window
     {
-        List<String> itemList = new List<String>() { "1.-", "2.-", "3.-","4.-"};
-        List<String> playerList = new List<String>() { "Ben", "Pepe", "Marta", "Veronica" };
+        List<Usuario> playerList;
+        List<ComboBox> comboboxes = new List<ComboBox>();
+        RestClient client;
+        List<int> orden = new List<int>();
+        Grid grid;
+
         public TurnosGM()
         {
             InitializeComponent();
-            dinamicCheckboxList();
+            dynamicCheckboxList();
         }
 
-        private void dinamicCheckboxList()
+        private async void dynamicCheckboxList()
         {
-            //Acabar de mirar
-            //var itemList = MenuGM.armas.ToList();
-            foreach (var item in itemList)
+            client = new RestClient(Constants.IP);
+            var request = new RestRequest("usuarios/sala/{salaId}", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+            request.AddParameter("salaId", Constants.Sala.salaId, ParameterType.UrlSegment);
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+
+            playerList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Usuario>>(response.Content);
+
+            if (playerList.Count == 0)
+            {
+                //TODO - No existe ningun Usuario dentro de la sala
+                return;
+            }
+
+            playerList.Add(Constants.Usuario);
+
+            for (int i = 0; i < playerList.Count(); i++)
             {
                 ComboBox combo = new ComboBox();
-                combo.HorizontalContentAlignment = HorizontalAlignment.Left;
+                combo.HorizontalContentAlignment = HorizontalAlignment.Center;
 
                 foreach (var player in playerList) {
                     TextBlock text = new TextBlock();
                     text.Foreground = new SolidColorBrush(Colors.Gray);
                     text.Width = 70;
                     text.TextAlignment = TextAlignment.Left;
-                    text.Text = player.ToString();
+                    text.Text = player.nickname;
                     combo.Items.Add(text);
                 }
 
-                Grid grid = new Grid();
+                grid = new Grid();
                 ColumnDefinition col1 = new ColumnDefinition();
-                col1.Width = new GridLength(20);
+                col1.Width = new GridLength(40);
                 ColumnDefinition col2 = new ColumnDefinition();
                 col2.Width = new GridLength(80);
                 ColumnDefinition col3 = new ColumnDefinition();
@@ -65,7 +94,7 @@ namespace Roll_the_Dice.Views
                 grid.Children.Add(combo);
 
                 Label label = new Label();
-                label.Content = item.ToString();
+                label.Content = (i + 1) + " - ";
                 label.Foreground = new SolidColorBrush(Colors.White);
 
                 Grid.SetRow(label, 0);
@@ -73,6 +102,38 @@ namespace Roll_the_Dice.Views
                 grid.Children.Add(label);
 
                 turnosList.Items.Add(grid);
+                comboboxes.Add(combo);
+            }
+        }
+
+        private void Actualizar_Click(object sender, RoutedEventArgs e)
+        {
+            playerList.Clear();
+            this.Close();
+            TurnosGM turnos = new TurnosGM();
+            turnos.Show();
+            dynamicCheckboxList();
+        }
+
+        private async void Confirmar_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (ComboBox combobox in comboboxes)
+            {
+                orden.Add(playerList.FirstOrDefault(q => q.nickname == combobox.Text).usuarioId);
+            }
+            
+            var request = new RestRequest("singleton/orden", Method.POST);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+
+            request.AddJsonBody(orden.ToArray());
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
             }
         }
     }

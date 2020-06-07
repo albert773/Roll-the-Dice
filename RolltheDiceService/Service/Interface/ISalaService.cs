@@ -11,5 +11,6 @@ namespace RolltheDiceService.Service.Interface
         Sala PostSala(Sala sala);
         Sala PutSala(int id, Sala sala);
         void DeleteSala(int id);
+        Sala GetSalaByNombre(string nombre);
     }
 }

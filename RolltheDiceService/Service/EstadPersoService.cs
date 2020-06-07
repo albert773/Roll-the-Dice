@@ -39,6 +39,16 @@ namespace RolltheDiceService.Service
             return GetEstatPersoById(unionEstatPerso.estadisticaId);
         }
 
+        public void PostAllEstatPerso(List<UnionEstatPerso> unionesEstatPerso)
+        {
+            foreach (var unionEstatPerso in unionesEstatPerso)
+            {
+                uow.RepositoryClient<UnionEstatPerso>().Insert(unionEstatPerso);
+            }
+
+            uow.SaveChanges();
+        }
+
         public UnionEstatPerso PutEstatPerso(int id, UnionEstatPerso unionEstatPerso)
         {
             uow.RepositoryClient<UnionEstatPerso>().Update(unionEstatPerso);

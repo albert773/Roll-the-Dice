@@ -54,7 +54,7 @@
         <Image Grid.ColumnSpan="5"  Grid.RowSpan="9" Width="auto" Height="auto"  Source="/Roll the Dice;component/Images/armadura.png">
         </Image>
         <Viewbox Grid.Column="5" Grid.ColumnSpan="4" Grid.RowSpan="4"   Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="HAVEL THE ROCK"  Width="1454" Height="587" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center"  FontSize="200" />
+            <TextBlock x:Name="nombreJg" Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="HAVEL THE ROCK"  Width="1454" Height="587" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center"  FontSize="200" />
         </Viewbox>
         <Viewbox Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="4"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="FUE:"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
@@ -76,49 +76,49 @@
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="INT:"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
         </Viewbox>
         <Viewbox Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="4"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+            <TextBlock x:Name="fue" Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
         </Viewbox>
         <Viewbox Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="6"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+            <TextBlock x:Name="des" Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
         </Viewbox>
         <Viewbox Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="8"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+            <TextBlock x:Name="con" Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
         </Viewbox>
         <Viewbox Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="10"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+            <TextBlock x:Name="car" Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
         </Viewbox>
         <Viewbox Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="12"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+            <TextBlock x:Name="sab" Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
         </Viewbox>
         <Viewbox Grid.Column="7" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="14"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+            <TextBlock x:Name="int" Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="0"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
         </Viewbox>
         <Viewbox Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="9"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="HP:"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
         </Viewbox>
         <Viewbox Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="9"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="100"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+            <TextBlock x:Name="hp" Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="100"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
         </Viewbox>
         <Viewbox Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="11"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="LVL:"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
         </Viewbox>
         <Viewbox Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="11"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="100"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+            <TextBlock x:Name="lvl" Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="100"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
         </Viewbox>
         <Viewbox Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="13"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="EXP:"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
         </Viewbox>
         <Viewbox Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="13"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="100"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+            <TextBlock x:Name="exp" Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="100"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
         </Viewbox>
         <Viewbox Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="15"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Turnos:"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="170"  />
         </Viewbox>
         <Viewbox Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="15"  Height="auto"  Width="auto">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="4"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
+            <TextBlock x:Name="turno" Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="4"  Width="726" Height="220" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Center" FontSize="200"  />
         </Viewbox>
         <Viewbox  Grid.ColumnSpan="9" Grid.RowSpan="4" Grid.Row="18"  Height="auto"  Width="auto">
-            <TextBox Style="{StaticResource MaterialDesignComboBoxEditableTextBox }"  TextWrapping="Wrap" Text="Havel era amigo de Gwyn y uno de los soldados del ejército del Gran Señor. Era un hombre resistente y fuerte, que animaba a sus hombres a lograr grandes cosas. Tanto él como sus hombres crearon armaduras talladas de piedra maciza y llevaban anillos que les permitían transportar una carga más pesada"  Width="3381" Height="724" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Left" FontSize="150" IsReadOnly = "True" />
+            <TextBox x:Name="historia" Style="{StaticResource MaterialDesignComboBoxEditableTextBox }"  TextWrapping="Wrap" Text="Havel era amigo de Gwyn y uno de los soldados del ejército del Gran Señor. Era un hombre resistente y fuerte, que animaba a sus hombres a lograr grandes cosas. Tanto él como sus hombres crearon armaduras talladas de piedra maciza y llevaban anillos que les permitían transportar una carga más pesada"  Width="3381" Height="724" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" TextAlignment="Left" FontSize="150" IsReadOnly = "True" />
         </Viewbox>
     </Grid>
 </Window>

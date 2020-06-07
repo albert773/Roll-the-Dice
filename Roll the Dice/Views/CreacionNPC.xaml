@@ -64,25 +64,12 @@
         <Viewbox Grid.Column="2" Grid.Row="6"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Raza:"  Width="707" Height="170" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"  />
         </Viewbox>
-        <ComboBox Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2"  Width="auto" Height="38" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="25"   >
-            <ComboBoxItem Content="Humano"></ComboBoxItem>
-            <ComboBoxItem Content="Elfo"></ComboBoxItem>
-            <ComboBoxItem Content="SemiElfo"></ComboBoxItem>
-            <ComboBoxItem Content="Draconico"></ComboBoxItem>
-            <ComboBoxItem Content="Orco"></ComboBoxItem>
-            <ComboBoxItem Content="Enano"></ComboBoxItem>
+        <ComboBox x:Name="razaBox"  Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2"  Width="auto" Height="38" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="25"   >
         </ComboBox>
         <Viewbox Grid.Column="2" Grid.Row="7"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Habilidades:"  Width="745" Height="186" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" />
         </Viewbox>
-        <ListBox Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="1"  Width="auto" Height="auto"  Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="12" SelectionMode="Multiple" >
-            <ListBoxItem Content="Bola de fuego"></ListBoxItem>
-            <ListBoxItem Content="Sol prohibido"></ListBoxItem>
-            <ListBoxItem Content="Ventisca mañanera"></ListBoxItem>
-            <ListBoxItem Content="Grieta interminable"></ListBoxItem>
-            <ListBoxItem Content="Armadura solar"></ListBoxItem>
-            <ListBoxItem Content="Juramento sagrado"></ListBoxItem>
-            <ListBoxItem Content="Veneno empalagoso"></ListBoxItem>
+        <ListBox x:Name="listhab" Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="1"  Width="auto" Height="auto"  Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="12" SelectionMode="Multiple" >
         </ListBox>
         <Viewbox Grid.Column="4" Grid.Row="7"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text=" Sexo:"  Width="745" Height="186" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" />

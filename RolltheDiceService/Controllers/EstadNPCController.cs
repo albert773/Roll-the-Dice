@@ -107,6 +107,22 @@ namespace RolltheDiceService.Controllers
             return Ok();
         }
 
+        // POST: api/estatNPC/all
+        [HttpPost]
+        [Route("all")]
+        [ResponseType(typeof(UnionEstatNPC))]
+        public IHttpActionResult PostAllEstadNPC(List<UnionEstatNPC> estatNPC)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            EstadNPCServ.PostAllEstatNPC(estatNPC);
+
+            return Ok();
+        }
+
         // DELETE: api/estatNPC/5
         [HttpDelete]
         [Route("{id:int}")]

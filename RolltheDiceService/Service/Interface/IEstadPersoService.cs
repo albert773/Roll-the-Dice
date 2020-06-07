@@ -14,6 +14,7 @@ namespace RolltheDiceService.Service.Interface
         UnionEstatPerso GetEstatPersoById(int id);
         UnionEstatPerso PostEstatPerso(UnionEstatPerso unionEstatPerso);
         UnionEstatPerso PutEstatPerso(int id, UnionEstatPerso unionEstatPerso);
+        void PostAllEstatPerso(List<UnionEstatPerso> unionesEstatPerso);
         void DeleteEstatPerso(int id);
     }
 }
