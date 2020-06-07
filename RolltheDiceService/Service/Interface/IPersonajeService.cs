@@ -10,6 +10,7 @@ namespace RolltheDiceService.Service.Interface
         IEnumerable<Personaje> GetAllPersonajesByUsuario(int id);
         IEnumerable<Personaje> GetAllPersonajesByEmail(string email);
         Personaje GetPersonajeByUsuarioAndSala(string email, int sala);
+        Personaje GetPersonajeByUsuarioAndSala2(string email, int sala);
         Personaje GetPersonajeWithPosicion(int id);
         Personaje GetPersonajeById(int id);
         Personaje PostPersonaje(Personaje personaje);

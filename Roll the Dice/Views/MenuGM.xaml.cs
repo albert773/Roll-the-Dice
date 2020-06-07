@@ -34,7 +34,8 @@ namespace Roll_the_Dice.Views
         static List<Object> items = new List<object>();
         static List<Object> npcMonstruos = new List<Object>();
         static List<Object> players = new List<object>();
-        TicketCharacter perso = new TicketCharacter();
+        //TODO - Modificar
+        //TicketCharacter perso = new TicketCharacter();
         private int DiceNum { get; set; }=6;
 
         public MenuGM()
@@ -45,6 +46,7 @@ namespace Roll_the_Dice.Views
             turnos.Focus();
             turnos.Topmost = true;
             InitializeComponent();
+            ip.Text = Constants.IP.Substring(Constants.IP.Length-4);
             //reloadListCrear();
             frameMap.Content = mapa;
             client = new RestClient(Constants.IP);

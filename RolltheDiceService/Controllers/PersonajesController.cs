@@ -110,6 +110,23 @@ namespace RolltheDiceService.Controllers
             return BadRequest();
         }
 
+        [HttpGet]
+        [Route("usuario/{email}/sala/{salaId:int}/all")]
+        public IHttpActionResult GetPersonajeByUsuarioAndSala2(string email, int salaId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Personaje personaje = PersonajeServ.GetPersonajeByUsuarioAndSala2(email, salaId);
+            if (personaje != null)
+            {
+                return Ok(personaje);
+            }
+            return BadRequest();
+        }
+
         // GET: api/personajes/posicion/{id}
         [HttpGet]
         [Route("posicion/{id:int}")]
@@ -184,16 +201,18 @@ namespace RolltheDiceService.Controllers
                 return BadRequest(ModelState);
             }
 
+            Personaje p;
+
             try
             {
-                PersonajeServ.PostPersonaje(personaje);
+                p = PersonajeServ.PostPersonaje(personaje);
             }
             catch (Exception)
             {
                 return InternalServerError();
             }
 
-            return Ok();
+            return Ok(p);
         }
 
         // DELETE: api/personajes/{id}

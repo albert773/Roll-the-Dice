@@ -9,6 +9,7 @@ namespace Roll_the_Dice.Utils
         public static string Token = null;
         public static Usuario Usuario = null;
         public static Sala Sala = null;
+        public static Personaje Personaje = null;
     }
     //https://roll-the-dice-service-uc7.conveyor.cloud/api/
 }
