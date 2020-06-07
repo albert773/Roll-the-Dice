@@ -133,10 +133,8 @@
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Utils\Constants.cs" />
     <Compile Include="Utils\Encryption.cs" />
+    <Compile Include="Utils\Thread.cs" />
     <Compile Include="Utils\Validations.cs" />
-    <Compile Include="Views\AdministrarAtaque.xaml.cs">
-      <DependentUpon>AdministrarAtaque.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\AsignarCosasPlayers.xaml.cs">
       <DependentUpon>AsignarCosasPlayers.xaml</DependentUpon>
     </Compile>
@@ -212,10 +210,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\AdministrarAtaque.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\AsignarCosasPlayers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

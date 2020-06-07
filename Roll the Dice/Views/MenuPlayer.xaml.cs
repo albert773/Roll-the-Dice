@@ -24,6 +24,7 @@ namespace Roll_the_Dice.Views
     /// </summary>
     public partial class MenuPlayer : Window
     {
+        Mapa mapa = new Mapa();
         MainWindow main = new MainWindow();
         TicketCharacter perso = new TicketCharacter();
         Inventario inv = new Inventario();
@@ -35,6 +36,7 @@ namespace Roll_the_Dice.Views
         {
             InitializeComponent();
             client = new RestClient(Constants.IP);
+            frameMap.Content = mapa;
             //passworw.Background = Brushes.White;
             //passworw.Foreground = Brushes.Black;
 
@@ -88,12 +90,12 @@ namespace Roll_the_Dice.Views
 
         private void Esquiva_Click(object sender, RoutedEventArgs e)
         {
-            
+            mapa.setMover();
         }
 
         private void Ataq_Click(object sender, RoutedEventArgs e)
         {
-
+            mapa.setAtaque();
         }
 
         private void Perso_Click(object sender, RoutedEventArgs e)
@@ -171,6 +173,21 @@ namespace Roll_the_Dice.Views
             this.Close();
             main.Show();
 
+        }
+        public async void UpdateDice()
+        {
+            var request = new RestRequest("singleton/dados", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+            var response = await client.ExecuteAsync(request);
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+            this.diceNum = Newtonsoft.Json.JsonConvert.DeserializeObject<int>(response.Content);
+
+            diceChange();
         }
     }
 }

@@ -237,5 +237,10 @@ namespace Roll_the_Dice.Views
 
             Number.Text = randomDice();
         }
+        public void isTurn()
+        {
+
+           
+        }
     }
 }

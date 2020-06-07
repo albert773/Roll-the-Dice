@@ -565,16 +565,6 @@ namespace Roll_the_Dice.Views
                     }
 
                 }
-                else
-                {
-                    while (index > 14)
-                    {
-                        y++;
-                        index = index - 15;
-                    }
-                    x = index;
-                    tirarHabilidad(x, y);
-                }
             }
         }
     }
