@@ -26,18 +26,13 @@ namespace Roll_the_Dice.Views
         RestClient client;
         List<Clase> clases;
         List<Raza> razas;
+        List<UnionEstatPerso> listaEstats = new List<UnionEstatPerso>();
         public CharacterShe()
         {
             InitializeComponent();
             client = new RestClient(Constants.IP);
             clasesCombo();
             razasCombo();
-
-            /*System.Windows.Resources.StreamResourceInfo streamInfo = Application.GetResourceStream(new Uri("/Images/arrow.png", UriKind.Relative));
-            BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
-            var brush = new ImageBrush();
-            brush.ImageSource = temp;
-            Crear.Background = brush;*/
 
         }
 
@@ -83,13 +78,33 @@ namespace Roll_the_Dice.Views
                 return;
             }
 
+            var requestPeronajeId = new RestRequest("personajes/usuario/{id}", Method.GET);
+            requestPeronajeId.AddHeader("Content-type", "application/json");
+            requestPeronajeId.AddHeader("Authorization", Constants.Token);
+
+            requestPeronajeId.AddParameter("id", Constants.Usuario.usuarioId, ParameterType.UrlSegment);
+
+            var responseIdPer = await client.ExecuteAsync(requestPeronajeId);
+
+            if (!responseIdPer.IsSuccessful)
+            {
+                return;
+            }
+
+            int idPerso = int.Parse(responseIdPer.Content);
+
             var requestStats = new RestRequest("estadisticas/all", Method.POST);
             requestStats.AddHeader("Content-type", "application/json");
             requestStats.AddHeader("Authorization", Constants.Token);
 
-            
+            request.AddJsonBody(valorPersonaje(idPerso));
 
-            //request.AddJsonBody();
+            var responseStats = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                return;
+            }
         }
 
         public async void clasesCombo() {
@@ -135,7 +150,7 @@ namespace Roll_the_Dice.Views
                 return;
             }
             Debug.WriteLine(response.Content);
-            //Eror no se porque
+
             razas = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Raza>>(response.Content);
 
             foreach (var nom in razas)
@@ -160,6 +175,21 @@ namespace Roll_the_Dice.Views
         public int calcluloTurnos(int destreza) {
             if (destreza < 10) return 2;
             return (destreza % 10) + 2;
+        }
+
+        public List<UnionEstatPerso> valorPersonaje(int idPerso) {
+            List<int> statsPer = new List<int>() { int.Parse(fue.Text), int.Parse(des.Text), int.Parse(con.Text), int.Parse(intel.Text), int.Parse(sab.Text), int.Parse(car.Text)
+        };
+            foreach (var valor in statsPer)
+            {
+                UnionEstatPerso union = new UnionEstatPerso();
+                union.bonus = 1;
+                union.personajeId = idPerso;
+                union.estadisticaId = 1;
+                union.valorBase = valor;
+                listaEstats.Add(union);
+            }
+            return listaEstats;
         }
     }
 }

@@ -38,15 +38,12 @@ namespace Roll_the_Dice.Views
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("Authorization", Constants.Token);
 
+            //TODO - mirar
+
             request.AddParameter("id", Constants.Usuario.usuarioId, ParameterType.UrlSegment);
 
             var response = await client.ExecuteAsync(request);
 
-            //var param = new Arma {daño =  }
-            //{ Email = Email.Text, Password = Encryption.EncodePasswordToBase64(Contraseña.Password) };
-            //request.AddJsonBody(param);
-
-            //sword.Foreground = new SolidColorBrush(Colors.White);
             Inventario invent = Newtonsoft.Json.JsonConvert.DeserializeObject<Inventario>(response.Content);
             Debug.WriteLine(invent.Name);
             Console.WriteLine(invent.Name);

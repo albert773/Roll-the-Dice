@@ -35,6 +35,35 @@ namespace Roll_the_Dice.Views
             habilCombo();
         }
 
+        public async void crearNPC_Click(object sender, RoutedEventArgs e) {
+            var request = new RestRequest("NPCs", Method.POST);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+
+            request.AddJsonBody(new Monstruo
+            {
+                cobre = int.Parse(cobre.Text),
+                estadosAlterados = 0,
+                vida = int.Parse(vida.Text),
+                nivel = int.Parse(lvl.Text),
+                nombre = nombreNpc.Text,
+                oro = int.Parse(oro.Text),
+                plata = int.Parse(plata.Text),
+                sala = Constants.Sala.salaId,
+                turnos = int.Parse(turno.Text),
+            });
+
+            //request.AddParameter(ParameterType.UrlSegment);
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+        }
+
         public async void razaCombo()
         {
             var request = new RestRequest("razas", Method.GET);

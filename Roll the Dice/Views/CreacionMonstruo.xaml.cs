@@ -34,10 +34,37 @@ namespace Roll_the_Dice.Views
             habilCombo();
         }
 
-        private void ComboBox_Selected(object sender, RoutedEventArgs e)
+        private async void crearMonstruo_Click(object sender, RoutedEventArgs e)
         {
+            var request = new RestRequest("monstruos", Method.POST);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
 
+            request.AddJsonBody(new Monstruo
+            {
+                cobre = int.Parse(cobre.Text),
+                nivel = int.Parse(lvl.Text),
+                nombre = nombreMons.Text,
+                oro = int.Parse(oro.Text),
+                plata = int.Parse(plata.Text),
+                sala = Constants.Sala.salaId,
+                turnos = int.Parse(turno.Text),
+                vida = int.Parse(vida.Text),
+                estadosAlterados = 0
+            });
+
+            //request.AddParameter(ParameterType.UrlSegment);
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
         }
+
+        //TODO- añadir habilidades seleccionadas al monstruo
 
         public async void razaCombo()
         {
