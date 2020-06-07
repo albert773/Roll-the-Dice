@@ -29,7 +29,6 @@ namespace Roll_the_Dice.Views
         //TicketCharacter perso = new TicketCharacter();
         Inventario inv = new Inventario();
         int diceNum { get; set; } = 10;
-        Mapa mapa = new Mapa();
         RestClient client;
 
         public MenuPlayer()
@@ -37,7 +36,6 @@ namespace Roll_the_Dice.Views
             InitializeComponent();
             Ip.Text = Constants.IP.Substring(Constants.IP.Length - 4);
             client = new RestClient(Constants.IP);
-            frameMap.Content = mapa;
             //passworw.Background = Brushes.White;
             //passworw.Foreground = Brushes.Black;
             frameMap.Content = mapa;

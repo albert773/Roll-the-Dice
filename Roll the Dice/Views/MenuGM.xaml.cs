@@ -91,7 +91,7 @@ namespace Roll_the_Dice.Views
         }
         private void Perso_Click(object sender, RoutedEventArgs e)
         {
-            perso = new TicketCharacter();
+           /* perso = new TicketCharacter();
             if (perso == null)
             {
                 this.perso = new TicketCharacter();
@@ -102,7 +102,7 @@ namespace Roll_the_Dice.Views
                 perso.Close();
                 this.perso = new TicketCharacter();
                 perso.Show();
-            }
+            }*/
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
