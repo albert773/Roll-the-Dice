@@ -52,13 +52,13 @@
         <Border Background="White" Grid.Column="14" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="5"/>
 
         <Viewbox Grid.Column="14" Grid.Row="5" Grid.ColumnSpan="1">
-            <materialDesign:PackIcon x:Name="sword" Kind="Sword" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+            <materialDesign:PackIcon x:Name="sword" Kind="Sword" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="sword_MouseDown" />
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="1" Grid.RowSpan="3">
             <materialDesign:PackIcon x:Name="person" Kind="Person" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="7">
-            <materialDesign:PackIcon x:Name="moviment" Kind="ArrowAll" Width="Auto" Height="Auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+            <materialDesign:PackIcon x:Name="moviment" Kind="ArrowAll" Width="Auto" Height="Auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="moviment_MouseDown"/>
         </Viewbox>
 
         <Viewbox Grid.Column="14" Grid.Row="11" Grid.ColumnSpan="1">
@@ -68,7 +68,7 @@
             <materialDesign:PackIcon x:Name="edit" Kind="Edit" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="Edit_Click"/>
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="9">
-            <materialDesign:PackIcon x:Name="eliminate" Kind="Delete" Width="Auto" Height="Auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="Agregar_Click"/>
+            <materialDesign:PackIcon x:Name="eliminate" Kind="BagPersonal" Width="Auto" Height="Auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="Agregar_Click"/>
         </Viewbox>
 
         <ComboBox  Grid.Row="1" Grid.Column="11" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Dados" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"     >

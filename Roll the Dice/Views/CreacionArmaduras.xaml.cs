@@ -26,6 +26,7 @@ namespace Roll_the_Dice.Views
         RestClient client;
         List<Rareza> rarezas;
         List<Elemento> elementos;
+        List<NombreArmadura> nombrearmadura;
         public CreacionArmaduras()
         {
             client = new RestClient(Constants.IP);
@@ -34,6 +35,40 @@ namespace Roll_the_Dice.Views
             elementoCombo();
         }
 
+        public async void crearArmadura_Click(Object sender, EventArgs e) {
+
+            postNombreArmadura();
+
+            var request = new RestRequest("armas", Method.POST);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+
+            request.AddJsonBody(new Armadura
+            {
+                bonus = int.Parse(bonus.Text),
+                contundente = int.Parse(contundente.Text),
+                corte = int.Parse(corteArmadura.Text),
+                defFisica = int.Parse(defFisica.Text),
+                defMagica = int.Parse(defMag.Text),
+                descripcion = descripcion.Text,
+                durabilidad = 100,
+                elemento = elementos.FirstOrDefault(q => q.nombre.Equals(elementosBox.Text)).elementoId,
+                equipado = false,
+                nombre = nombrearmadura.FirstOrDefault(q => q.nombre.Equals(nombreArmaduraPer.Text)).nombreArmaduraId,
+                penetracion = int.Parse(penetracion.Text),
+                rareza = rarezas.FirstOrDefault(q => q.nombre.Equals(rarezaBox.Text)).rarezaId
+            });
+
+            //request.AddParameter(ParameterType.UrlSegment);
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+        }
         public async void rarezaCombo()
         {
             var request = new RestRequest("rarezas", Method.GET);
@@ -90,6 +125,48 @@ namespace Roll_the_Dice.Views
                 text.Text = nom.nombre.ToString();
                 elementosBox.Items.Add(text);
             }
+        }
+
+        public async void postNombreArmadura()
+        {
+
+            var request = new RestRequest("nombreArmaduras", Method.POST);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+
+            request.AddJsonBody(new NombreArma
+            {
+                nombre = nombreArmaduraPer.Text
+            });
+
+            //request.AddParameter(ParameterType.UrlSegment);
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+        }
+
+        public async void getNombreArmadura()
+        {
+            var request = new RestRequest("nombreArmaduras", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+
+            //request.AddParameter(ParameterType.UrlSegment);
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+
+            nombrearmadura = Newtonsoft.Json.JsonConvert.DeserializeObject<List<NombreArmadura>>(response.Content);
         }
     }
 }

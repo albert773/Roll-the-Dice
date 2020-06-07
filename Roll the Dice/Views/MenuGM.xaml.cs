@@ -44,7 +44,7 @@ namespace Roll_the_Dice.Views
             turnos.Topmost = true;
             InitializeComponent();
             //reloadListCrear();
-            frameMap.Content = new Mapa();
+            frameMap.Content = mapa;
         }
         private void Create_Click(object sender, RoutedEventArgs e)
         {
@@ -152,6 +152,16 @@ namespace Roll_the_Dice.Views
             main = new MainWindow();
             main.Show();
 
+        }
+
+        private void moviment_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            mapa.setMover();
+        }
+
+        private void sword_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            mapa.setAtaque();
         }
     }
 }

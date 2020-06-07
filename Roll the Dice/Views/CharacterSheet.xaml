@@ -206,7 +206,7 @@
         <Viewbox Grid.Column="4" Grid.Row="11"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="  Int:"  Width="690" Height="165" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"/>
         </Viewbox>
-        <ComboBox x:Name="int" Grid.Column="5" Grid.Row="11" Grid.ColumnSpan="1"  Width="auto" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Height="37" >
+        <ComboBox x:Name="intel" Grid.Column="5" Grid.Row="11" Grid.ColumnSpan="1"  Width="auto" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Height="37" >
             <ComboBoxItem Content="1"></ComboBoxItem>
             <ComboBoxItem Content="2"></ComboBoxItem>
             <ComboBoxItem Content="3"></ComboBoxItem>

@@ -25,6 +25,9 @@ namespace Roll_the_Dice.Views
     {
         RestClient client;
         List<Personaje> personajes;
+        List<Arma> armas;
+        List<Armadura> armaduras;
+        List<Item> items;
         public AsignarCosasPlayers()
         {
             client = new RestClient(Constants.IP);
@@ -57,6 +60,90 @@ namespace Roll_the_Dice.Views
                 text.TextAlignment = TextAlignment.Left;
                 text.Text = nom.nombre.ToString();
                 PersonajeBox.Items.Add(text);
+            }
+        }
+
+        public async void armaList()
+        {
+            var request = new RestRequest("armas", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+
+            //request.AddParameter("salaId", Constants.Sala.salaId, ParameterType.UrlSegment);
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+
+            armas = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Arma>>(response.Content);
+
+            foreach (var nom in armas)
+            {
+                TextBlock text = new TextBlock();
+                text.Foreground = new SolidColorBrush(Colors.Black);
+                text.TextAlignment = TextAlignment.Left;
+                text.Text = nom.nombre.ToString();
+                ArmaBox.Items.Add(text);
+            }
+        }
+
+        public async void armaduraList()
+        {
+            var request = new RestRequest("armaduras", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+
+            //request.AddParameter("salaId", Constants.Sala.salaId, ParameterType.UrlSegment);
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+
+            armaduras = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Armadura>>(response.Content);
+
+            foreach (var nom in armaduras)
+            {
+                TextBlock text = new TextBlock();
+                text.Foreground = new SolidColorBrush(Colors.Black);
+                text.TextAlignment = TextAlignment.Left;
+                text.Text = nom.nombre.ToString();
+                ArmaduraBox.Items.Add(text);
+            }
+        }
+
+        public async void itemList()
+        {
+            var request = new RestRequest("personajessala/{salaId}", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+
+            //request.AddParameter("salaId", Constants.Sala.salaId, ParameterType.UrlSegment);
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+
+            items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Item>>(response.Content);
+
+            foreach (var nom in items)
+            {
+                TextBlock text = new TextBlock();
+                text.Foreground = new SolidColorBrush(Colors.Black);
+                text.TextAlignment = TextAlignment.Left;
+                text.Text = nom.nombre.ToString();
+                ItemBox.Items.Add(text);
             }
         }
     }

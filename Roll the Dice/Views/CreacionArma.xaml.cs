@@ -26,19 +26,39 @@ namespace Roll_the_Dice.Views
         RestClient client;
         List<Rareza> rarezas;
         List<Elemento> elementos;
+        List<NombreArma> nombresarma;
         public CreacionArma()
         {
             client = new RestClient(Constants.IP);
             InitializeComponent();
             rarezaCombo();
             elementoCombo();
+            getNombreArma();
         }
 
-        private void CrearArma_CLick(Object sender, EventArgs e) {
-            //Acabar de mirar
-            MenuGM.armas.Add(nombreArma.Text);
-            //MenuGM menu = new MenuGM();
-            //menu.reloadListCrear();
+        private async void CrearArma_CLick(Object sender, EventArgs e) {
+
+            postNombreArma();
+
+            var request = new RestRequest("armas", Method.POST);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+
+            request.AddJsonBody(new Arma {alcance = int.Parse(alcance.Text), bonus = int.Parse(bonus.Text), daño = int.Parse(daño.Text), 
+                defensa = int.Parse(defensa.Text), descripcion = descripcion.Text, durabilidad = 100, elemento = elementos.FirstOrDefault(q => q.nombre.Equals(elementosBox.Text)).elementoId,
+                equipado = false, esquiva = int.Parse(esquiva.Text), estadistica = 1, rareza = rarezas.FirstOrDefault(q => q.nombre.Equals(rarezaBox.Text)).rarezaId,
+                nombre = nombresarma.FirstOrDefault(q => q.nombre.Equals(nombreArmaPer.Text)).nombreArmaId
+            });
+
+            //request.AddParameter(ParameterType.UrlSegment);
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
         }
 
         public async void rarezaCombo()
@@ -96,6 +116,47 @@ namespace Roll_the_Dice.Views
                 text.TextAlignment = TextAlignment.Left;
                 text.Text = nom.nombre.ToString();
                 elementosBox.Items.Add(text);
+            }
+        }
+
+        public async void getNombreArma()
+        {
+            var request = new RestRequest("nombreArmas", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+
+            //request.AddParameter(ParameterType.UrlSegment);
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+
+            nombresarma = Newtonsoft.Json.JsonConvert.DeserializeObject<List<NombreArma>>(response.Content);
+        }
+
+        public async void postNombreArma() {
+
+            var request = new RestRequest("nombreArmas", Method.POST);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+
+            request.AddJsonBody(new NombreArma
+            {
+                nombre = nombreArmaPer.Text
+            });
+
+            //request.AddParameter(ParameterType.UrlSegment);
+
+            var response = await client.ExecuteAsync(request);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
             }
         }
     }

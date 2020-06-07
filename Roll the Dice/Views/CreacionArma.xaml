@@ -55,7 +55,7 @@
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Nombre:"  Width="726" Height="175" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"  />
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2"  Height="auto"  Width="auto">
-            <TextBox x:Name="nombreArma" Height="29"  Grid.Row="5" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="239" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" TextAlignment="Center"/>
+            <TextBox x:Name="nombreArmaPer" Height="29"  Grid.Row="5" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="239" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" TextAlignment="Center"/>
         </Viewbox>
 
         <Viewbox Grid.Column="2" Grid.Row="7"  Height="auto"  Width="auto">
@@ -88,26 +88,26 @@
         </Viewbox>
         <Viewbox Grid.Column="2" Grid.Row="12"  Height="auto"  Width="auto"/>
         <Viewbox Grid.Column="3" Grid.Row="12" Grid.ColumnSpan="3" Grid.RowSpan="2"  Height="auto"  Width="auto">
-            <TextBox Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"  Height="54"  Grid.Row="5" Grid.RowSpan="2" TextWrapping="Wrap" Text=""  Width="332" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" TextAlignment="Center"/>
+            <TextBox x:Name="descripcion" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"  Height="54"  Grid.Row="5" Grid.RowSpan="2" TextWrapping="Wrap" Text=""  Width="332" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" TextAlignment="Center"/>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="10" Grid.ColumnSpan="1"  Height="auto"  Width="auto">
-            <TextBox  Height="53"  Grid.Row="8" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="209" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" FontSize="24" TextAlignment="Center">
+            <TextBox x:Name="esquiva" Height="53"  Grid.Row="8" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="209" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" FontSize="24" TextAlignment="Center">
             </TextBox>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="9" Grid.ColumnSpan="1"  Height="auto"  Width="auto">
-            <TextBox  Height="53"  Grid.Row="8" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="209" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" FontSize="24" TextAlignment="Center">
+            <TextBox x:Name="daño"  Height="53"  Grid.Row="8" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="209" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" FontSize="24" TextAlignment="Center">
             </TextBox>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="11" Grid.ColumnSpan="1"  Height="auto"  Width="auto">
-            <TextBox  Height="53"  Grid.Row="8" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="209" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" FontSize="24" TextAlignment="Center">
+            <TextBox x:Name="defensa" Height="53"  Grid.Row="8" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="209" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" FontSize="24" TextAlignment="Center">
             </TextBox>
         </Viewbox>
         <Viewbox Grid.Column="5" Grid.Row="10" Grid.ColumnSpan="1"  Height="auto"  Width="auto">
-            <TextBox  Height="53"  Grid.Row="8" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="209" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" FontSize="24" TextAlignment="Center">
+            <TextBox x:Name="bonus" Height="53"  Grid.Row="8" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="209" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" FontSize="24" TextAlignment="Center">
             </TextBox>
         </Viewbox>
         <Viewbox Grid.Column="5" Grid.Row="9" Grid.ColumnSpan="1"  Height="auto"  Width="auto">
-            <TextBox  Height="53"  Grid.Row="8" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="209" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" FontSize="24" TextAlignment="Center">
+            <TextBox  x:Name="alcance" Height="53"  Grid.Row="8" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="209" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" FontSize="24" TextAlignment="Center">
             </TextBox>
         </Viewbox>
         <Viewbox Grid.Row="15" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2">

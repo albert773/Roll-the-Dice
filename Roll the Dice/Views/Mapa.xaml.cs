@@ -29,8 +29,9 @@ namespace Roll_the_Dice.Views
         List<RowDefinition> rowList = new List<RowDefinition>();
         List<Button> buttonList = new List<Button>();
         List<Rectangle> rectangleList = new List<Rectangle>();
+        List<Posicion> positionList = new List<Posicion>();
         const int X = 15;
-        int disponibleMovement = 0;
+        int disponibleMovement = 5;
         List<int> positionsX= new List<int>();
         List<int> positionsY = new List<int>();
         int persoActual { get; set; } = 0;
@@ -38,12 +39,25 @@ namespace Roll_the_Dice.Views
         bool ataque = false;
         bool mover = false;
         bool habilidad = false;
+        List<Brush> brushList = new List<Brush>();
+        string[] imageVector = { "/Images/Perso/Draconico Hembra.png", "/Images/Perso/Draconico Macho.png", "/Images/Perso/Elfo Hembra.png", "/Images/Perso/Elfo Macho.png", "/Images/Perso/Enano Hembra.png", "/Images/Perso/Enano Macho.png", "/Images/Perso/Helicoptero de Combate.png", "/Images/Perso/Humano Hembra.png", "/Images/Perso/Humano Macho.png", "/Images/Perso/No Especificado.png", "/Images/Perso/Orco Hombre.png", "/Images/Perso/Orco Mujer.png", "/Images/Perso/SemiElfo Hembra.png", "/Images/Perso/SemiElfo Macho.png", };
         public Mapa()
         {
             InitializeComponent();
             client = new RestClient(Constants.IP);
+            
             positionsX.Add(0);
             positionsY.Add(0);
+            
+            for(int i=0; i<imageVector.Length; i++)
+            {
+                System.Windows.Resources.StreamResourceInfo streamInfo = Application.GetResourceStream(new Uri(imageVector[i], UriKind.Relative));
+                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                var brush = new ImageBrush();
+                brush.ImageSource = temp;
+                brush.Stretch = Stretch.Uniform;
+                brushList.Add(brush);
+            }
             for (int i=0; i< X; i++)
             {
                 colList.Add(new ColumnDefinition());
@@ -82,8 +96,33 @@ namespace Roll_the_Dice.Views
                 mapa.Children.Add(rectangleList[i]);
                 mapa.Children.Add(buttonList[i]);
             }
+            positionAllSetter();
             rangePerso();
 
+        }
+        public async void asignCharacters()
+        {
+            
+            var request = new RestRequest("posiciones/sala/{id:int}", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+            request.AddParameter("id", Constants.Sala.salaId, ParameterType.UrlSegment);
+            var response = await client.ExecuteAsync(request);
+            if (!response.IsSuccessful)
+            {
+                return;
+            }
+             positionList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Posicion>>(response.Content);
+        }
+
+        public void positionAllSetter()
+        {
+            //TODO - COMO SABEMOS QUE FOTO TIENE CADA PERSONAJE, UNA PRIMERA IDEA ES RECOGER SEXO Y CLASE YA QUE ES EN LOS QUE SE BASAN LAS FOTOS SI ALGUNO TIENE IDEA QUE LO DIGA
+            asignCharacters();
+            for (int i=0; i<positionList.Count; i++)
+            {
+
+            }
         }
         public void buttonCreate(int x, int y)
         {
@@ -92,6 +131,7 @@ namespace Roll_the_Dice.Views
             but.Background = null;
             but.Height = Double.NaN;
             but.Width = Double.NaN;
+            but.Click += new RoutedEventHandler(theButtonClicked);
             buttonList.Add(but);
         }
         public void rectangleCreate(int x, int y)
@@ -113,6 +153,7 @@ namespace Roll_the_Dice.Views
         {
             int ubi = indexGetter(positionsX[persoActual], positionsY[persoActual]);
             paintSquareYellow(ubi);
+            buttonList[ubi].Background = brushList[0];
         }
         public int indexGetter(int x, int y)
         {
@@ -279,6 +320,7 @@ namespace Roll_the_Dice.Views
             else
             {
                 mover = true;
+                paintSquareYellow(indexGetter(positionsX[0], positionsY[0]));
                 painterMachineRange(true);
             }
         }
@@ -315,7 +357,7 @@ namespace Roll_the_Dice.Views
 
         public async void isTurn(int id)
         {
-            disponibleMovement = 2;
+            //TODO - CADA VEZ QUE SEA TU TURNO TIRAR DE ESTO
             var request = new RestRequest("posiciones/personaje/{id}", Method.GET);
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("Authorization", Constants.Token);
@@ -324,7 +366,7 @@ namespace Roll_the_Dice.Views
             if (!response.IsSuccessful)
             {
                 //TODO - Credenciales incorrectos
-                return;
+                return; 
             }
             Posicion pos=Newtonsoft.Json.JsonConvert.DeserializeObject<Posicion>(response.Content);
             positionsX[persoActual] = pos.x;
@@ -333,40 +375,46 @@ namespace Roll_the_Dice.Views
 
         public void hacerAtaque(int x, int y)
         {
-
+            //TODO - IMPLEMENTAR ATAQUE
         }
         public void tirarHabilidad(int x, int y)
         {
-
+            //TODO - IMPLEMENTAR HABILIDAD 
         }
         public void theButtonClicked(object sender, RoutedEventArgs e)
         {
-            var but = (Button)sender;
-            int index = int.Parse(but.Name);
+            Button but = (Button)sender;
+            int index=buttonList.IndexOf(buttonList.Find(q => q.Name.Equals(but.Name)));
+            int ubi = index;
             int x, y;
             if (!mover && !ataque && !habilidad)
             {
-
+                return;
             }
             else
             {
-                if (mover)
+                if (mover&& disponibleMovement > 0)
                 {
                     if (rectangleList[index].Fill == Brushes.Blue)
                     {
                         y = 0; x = 0;
-                        while (index % 15 == 0)
+                        while (index>14)
                         {
                             y++;
                             index = index - 15;
                         }
                         x = index;
-                        positionsX[persoActual] = x; positionsY[persoActual] = y;
+                        buttonList[indexGetter(positionsX[0], positionsY[0])].Background = null;
+                        positionsX[persoActual] = x; 
+                        positionsY[persoActual] = y;
+                        cleanRectangle();
+                        but.Background = brushList[0];
+                        painterMachineRange(true);
+                        paintSquareYellow(ubi);
                         disponibleMovement--;
-                        if (disponibleMovement > 0)
+                        if (disponibleMovement == 0)
                         {
-                            cleanRectangle();
-                            painterMachineRange(true);
+                            mover = false;
                         }
                     }
                 }
