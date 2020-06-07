@@ -1,8 +1,17 @@
+using System;
+using System.Collections.Generic;
+
 namespace Roll_the_Dice.Models
 {
     public class Personaje
     {
-        public Personaje() { }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Personaje()
+        {
+            this.Inventario = new HashSet<Inventario>();
+            this.UnionEstatPerso = new HashSet<UnionEstatPerso>();
+            this.Habilidad = new HashSet<Habilidad>();
+        }
 
         public int personajeId { get; set; }
         public string nombre { get; set; }
@@ -13,7 +22,7 @@ namespace Roll_the_Dice.Models
         public int vida { get; set; }
         public int turnos { get; set; }
         public int cansancio { get; set; }
-        public int estadosAlterados { get; set; }
+        public Nullable<int> estadosAlterados { get; set; }
         public string misionOculta { get; set; }
         public int nivel { get; set; }
         public int experiencia { get; set; }
@@ -22,6 +31,19 @@ namespace Roll_the_Dice.Models
         public int cobre { get; set; }
         public int sala { get; set; }
         public int usuario { get; set; }
-        public int posicion { get; set; }
+        public Nullable<int> posicion { get; set; }
+
+        public virtual Clase Clase1 { get; set; }
+        public virtual Estado Estado { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Inventario> Inventario { get; set; }
+        public virtual Posicion Posicion1 { get; set; }
+        public virtual Raza Raza1 { get; set; }
+        public virtual Sala Sala1 { get; set; }
+        public virtual Usuario Usuario1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UnionEstatPerso> UnionEstatPerso { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Habilidad> Habilidad { get; set; }
     }
 }

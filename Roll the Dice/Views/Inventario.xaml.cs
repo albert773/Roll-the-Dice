@@ -34,13 +34,13 @@ namespace Roll_the_Dice.Views
         }
 
         public async void Actualizar_Clicked() {
-            var request = new RestRequest("inventario/personaje/{id}", Method.GET);
+            var request = new RestRequest("inventario/usuario/{id}/sala/{salaId}", Method.GET);
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("Authorization", Constants.Token);
 
             //TODO - mirar
 
-            request.AddParameter("id", Constants.Usuario.usuarioId, ParameterType.UrlSegment);
+            request.AddParameter("id", Constants.Usuario, ParameterType.UrlSegment);
 
             var response = await client.ExecuteAsync(request);
 

@@ -158,6 +158,9 @@
     <Compile Include="Views\CreateJoin.cs">
       <DependentUpon>CreateJoin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditChar.xaml.cs">
+      <DependentUpon>EditChar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EliminarCosas.xaml.cs">
       <DependentUpon>EliminarCosas.xaml</DependentUpon>
     </Compile>
@@ -237,6 +240,10 @@
     <Page Include="Views\CreateJoin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditChar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\EliminarCosas.xaml">
       <SubType>Designer</SubType>

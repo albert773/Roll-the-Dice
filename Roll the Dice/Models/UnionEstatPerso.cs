@@ -6,5 +6,8 @@ namespace Roll_the_Dice.Models
         public int personajeId { get; set; }
         public int valorBase { get; set; }
         public decimal bonus { get; set; }
+
+        public virtual Estadistica Estadistica { get; set; }
+        public virtual Personaje Personaje { get; set; }
     }
 }

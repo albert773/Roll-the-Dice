@@ -1,3 +1,5 @@
+using System;
+
 namespace Roll_the_Dice.Models
 {
     public class Armadura
@@ -12,11 +14,17 @@ namespace Roll_the_Dice.Models
         public int contundente { get; set; }
         public int estadistica { get; set; }
         public decimal bonus { get; set; }
-        public int elemento { get; set; }
+        public Nullable<int> elemento { get; set; }
         public string descripcion { get; set; }
         public bool equipado { get; set; }
-        public int peso { get; set; }
-        public int durabilidad { get; set; }
-        public int inventario { get; set; }
+        public Nullable<int> peso { get; set; }
+        public Nullable<int> durabilidad { get; set; }
+        public Nullable<int> inventario { get; set; }
+
+        public virtual Elemento Elemento1 { get; set; }
+        public virtual Estadistica Estadistica1 { get; set; }
+        public virtual Inventario Inventario1 { get; set; }
+        public virtual NombreArmadura NombreArmadura { get; set; }
+        public virtual Rareza Rareza1 { get; set; }
     }
 }

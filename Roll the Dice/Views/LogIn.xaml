@@ -54,7 +54,7 @@
             </Border.RenderTransform>
         </Border>
         <Viewbox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3">
-            <Label Content="LOGIN" FontFamily="Georgia" FontSize="72" FontWeight="Bold" Foreground="White"/>
+            <Label Content="Iniciar Sesión" FontFamily="Georgia" FontSize="72" FontWeight="Bold" Foreground="White"/>
         </Viewbox>
         <Viewbox Grid.Column="3" Grid.Row="11" Grid.ColumnSpan="3">
             <Button Content="Iniciar Sesión" FontSize="18" Background="DimGray" BorderBrush="AliceBlue" Height="33" FontFamily="Georgia" Click="Button_Click">

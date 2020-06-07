@@ -32,7 +32,7 @@ namespace RolltheDiceService.Service
 
         public IEnumerable<Personaje> GetAllPersonajesBySala(int id)
         {
-            return uow.RepositoryClient<Personaje>().GetWithInclude(q => q.Sala1.salaId == id, "Posicion1");
+            return uow.RepositoryClient<Personaje>().GetWithInclude(q => q.Sala1.salaId == id, "Posicion1", "Raza1");
         }
 
         public Personaje GetPersonajeWithPosicion(int id)

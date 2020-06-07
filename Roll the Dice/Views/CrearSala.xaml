@@ -48,7 +48,7 @@
             </Border.Effect>
         </Border>
         <Viewbox Grid.Column="5" Grid.Row="11">
-            <Button Content="OK" FontSize="18" Background="DimGray" BorderBrush="AliceBlue " Height="Auto" FontFamily="Georgia" Click="Unirse_Click">
+            <Button Content="Crear" FontSize="18" Background="DimGray" BorderBrush="AliceBlue " Height="Auto" FontFamily="Georgia" Click="Unirse_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>

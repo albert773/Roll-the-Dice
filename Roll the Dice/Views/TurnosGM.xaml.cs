@@ -66,7 +66,7 @@ namespace Roll_the_Dice.Views
 
                 foreach (var player in playerList) {
                     TextBlock text = new TextBlock();
-                    text.Foreground = new SolidColorBrush(Colors.Gray);
+                    text.Foreground = new SolidColorBrush(Colors.DarkGray);
                     text.Width = 70;
                     text.TextAlignment = TextAlignment.Left;
                     text.Text = player.nickname;
