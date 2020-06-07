@@ -50,7 +50,7 @@ namespace Roll_the_Dice.Views
             {
                bonusStat = decimal.Parse(bonus.Text);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 bonusStat = 1;
             }

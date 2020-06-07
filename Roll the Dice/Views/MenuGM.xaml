@@ -71,15 +71,15 @@
             <materialDesign:PackIcon x:Name="eliminate" Kind="BagPersonal" Width="Auto" Height="Auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="Agregar_Click"/>
         </Viewbox>
 
-        <ComboBox  Grid.Row="1" Grid.Column="11" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Dados" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"     >
+        <ComboBox x:Name="diceController"  LostFocus="diceController_LostFocus" Grid.Row="1" Grid.Column="11" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Dados" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"     >
             <ComboBoxItem Content="3"></ComboBoxItem>
+            <ComboBoxItem Content="4"></ComboBoxItem>
+            <ComboBoxItem Content="5"></ComboBoxItem>
             <ComboBoxItem Content="6"></ComboBoxItem>
             <ComboBoxItem Content="8"></ComboBoxItem>
             <ComboBoxItem Content="10"></ComboBoxItem>
             <ComboBoxItem Content="12"></ComboBoxItem>
             <ComboBoxItem Content="20"></ComboBoxItem>
-            <ComboBoxItem Content="4"></ComboBoxItem>
-            <ComboBoxItem Content="5"></ComboBoxItem>
         </ComboBox>
 
         <ComboBox  Grid.Row="1" Grid.Column="8" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Mapa" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"    >
@@ -89,11 +89,8 @@
             
         </ComboBox>
 
-        <ComboBox  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="En Partida" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"    >
-            <ComboBoxItem Content="Golbin1"></ComboBoxItem>
-            <ComboBoxItem Content="Golbin2"></ComboBoxItem>
-            <ComboBoxItem Content="Hombre Lobo1"></ComboBoxItem>
-            <ComboBoxItem Content="Peter el Picsero1"></ComboBoxItem>
+        <ComboBox x:Name="enPartida"  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="En Partida" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"    >
+            
 
         </ComboBox>
 
@@ -144,7 +141,7 @@
         </Grid>
 
         <Viewbox Grid.Column="11" Grid.Row="13" Grid.ColumnSpan="1">
-            <materialDesign:PackIcon x:Name="dice" Kind="Dice6" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+            <materialDesign:PackIcon x:Name="dice" Kind="Dice6" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="dice_MouseDown"/>
         </Viewbox>
         <Viewbox Grid.Column="12" Grid.Row="13">
             <TextBlock x:Name="Number" Foreground="DodgerBlue"/>

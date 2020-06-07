@@ -27,6 +27,7 @@ namespace Roll_the_Dice.Views
         AsignarCosasPlayers eliminar;
         CharacterShe caraceter;
         Mapa mapa = new Mapa();
+        RestClient client;
 
         public static List<string> armas = new List<string>();
         static List<Object> armaduras = new List<object>();
@@ -46,6 +47,7 @@ namespace Roll_the_Dice.Views
             InitializeComponent();
             //reloadListCrear();
             frameMap.Content = mapa;
+            client = new RestClient(Constants.IP);
         }
         private void Create_Click(object sender, RoutedEventArgs e)
         {
@@ -117,13 +119,7 @@ namespace Roll_the_Dice.Views
             }
         }
 
-        private void Dice_Click(object sender, RoutedEventArgs e)
-        {
-            diceChange();
-            Random random = new Random();
-         
-                Number.Text = randomDice();
-        }
+
         private string randomDice()
         {
 
@@ -182,11 +178,64 @@ namespace Roll_the_Dice.Views
         private void sword_MouseDown(object sender, MouseButtonEventArgs e)
         {
             mapa.setAtaque();
+            
         }
 
         public void recibirDaño(int daño, int enemigo) { 
             
 
+        }
+
+        private void diceController_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if ((diceController.Text == "" )||(diceController.Text == null))
+            {
+                return;
+            }
+            int dice=int.Parse(diceController.Text);
+            diceSetterAsync(dice);
+
+        }
+        public async void diceSetterAsync(int dice)
+        {
+            int[] dicePost = { dice };
+            var request = new RestRequest("singleton/dados", Method.POST);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+            request.AddJsonBody(dicePost);
+            var response = await client.ExecuteAsync(request);
+            
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+            UpdateDice();
+
+        }
+
+        public async void UpdateDice()
+        {
+            var request = new RestRequest("singleton/dados", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+            var response = await client.ExecuteAsync(request);
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+            this.DiceNum = Newtonsoft.Json.JsonConvert.DeserializeObject<int>(response.Content);
+           
+            diceChange();
+        }
+
+        private void dice_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            diceChange();
+            Random random = new Random();
+
+            Number.Text = randomDice();
         }
     }
 }
