@@ -26,6 +26,7 @@ namespace Roll_the_Dice.Views
         CreacionDeCosas crea;
         AsignarCosasPlayers eliminar;
         CharacterShe caraceter;
+        Mapa mapa = new Mapa();
 
         public static List<string> armas = new List<string>();
         static List<Object> armaduras = new List<object>();
