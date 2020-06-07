@@ -133,6 +133,7 @@
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Utils\Constants.cs" />
     <Compile Include="Utils\Encryption.cs" />
+    <Compile Include="Utils\Thread.cs" />
     <Compile Include="Utils\Validations.cs" />
     <Compile Include="Views\AsignarCosasPlayers.xaml.cs">
       <DependentUpon>AsignarCosasPlayers.xaml</DependentUpon>
@@ -444,6 +445,12 @@
     <Resource Include="Images\Perso\Otro.png" />
     <Resource Include="Images\Perso\SemiElfo Hembra.png" />
     <Resource Include="Images\Perso\SemiElfo Macho.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Perso\monstruo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Perso\npc.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.3.1.2\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.3.1.2\build\MaterialDesignThemes.targets')" />

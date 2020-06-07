@@ -24,20 +24,21 @@ namespace Roll_the_Dice.Views
     /// </summary>
     public partial class MenuPlayer : Window
     {
+        Mapa mapa = new Mapa();
         MainWindow main = new MainWindow();
-        TicketCharacter perso = new TicketCharacter();
+        //TicketCharacter perso = new TicketCharacter();
         Inventario inv = new Inventario();
         int diceNum { get; set; } = 10;
-
         RestClient client;
 
         public MenuPlayer()
         {
             InitializeComponent();
+            Ip.Text = Constants.IP.Substring(Constants.IP.Length - 4);
             client = new RestClient(Constants.IP);
             //passworw.Background = Brushes.White;
             //passworw.Foreground = Brushes.Black;
-
+            frameMap.Content = mapa;
             if (Constants.Sala.propietario != Constants.Usuario.usuarioId && !usuarioHasPersonaje())
             {
                 CharacterShe caracter = new CharacterShe();
@@ -52,7 +53,7 @@ namespace Roll_the_Dice.Views
         private bool usuarioHasPersonaje()
         {
             //TODO - Acabar de revisar si funciona o no
-            var request = new RestRequest("usuario/{email}/sala/{salaId}", Method.GET);
+            var request = new RestRequest("personajes/usuario/{email}/sala/{salaId}", Method.GET);
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("Authorization", Constants.Token);
             request.AddParameter("email", Constants.Usuario.email, ParameterType.UrlSegment);
@@ -66,6 +67,7 @@ namespace Roll_the_Dice.Views
                 return false;
             }
 
+            
             return true;
         }
 
@@ -88,21 +90,21 @@ namespace Roll_the_Dice.Views
 
         private void Esquiva_Click(object sender, RoutedEventArgs e)
         {
-            
+            mapa.setMover();
         }
 
         private void Ataq_Click(object sender, RoutedEventArgs e)
         {
-
+            mapa.setAtaque();
         }
 
         private void Perso_Click(object sender, RoutedEventArgs e)
         {
-            if (perso.ShowActivated) {
+            /*if (perso.ShowActivated) {
                 perso.Close();
             }
             this.perso = new TicketCharacter();
-            perso.Show();
+            perso.Show();*/
            
         }
 
@@ -171,6 +173,21 @@ namespace Roll_the_Dice.Views
             this.Close();
             main.Show();
 
+        }
+        public async void UpdateDice()
+        {
+            var request = new RestRequest("singleton/dados", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+            var response = await client.ExecuteAsync(request);
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+            this.diceNum = Newtonsoft.Json.JsonConvert.DeserializeObject<int>(response.Content);
+
+            diceChange();
         }
     }
 }

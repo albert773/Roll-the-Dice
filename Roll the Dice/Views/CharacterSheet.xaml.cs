@@ -27,22 +27,32 @@ namespace Roll_the_Dice.Views
         List<Clase> clases;
         List<Raza> razas;
         List<UnionEstatPerso> listaEstats = new List<UnionEstatPerso>();
+        List<Estadistica> listaEstadisticas = new List<Estadistica>();
         public CharacterShe()
         {
             InitializeComponent();
             client = new RestClient(Constants.IP);
             clasesCombo();
             razasCombo();
-
         }
 
 
         public async void Crear_Click(object sender, RoutedEventArgs e)
         {
-
+            //Post Personaje
             Personaje per = new Personaje();
 
-            //TODO validaciones
+            if (NombrePer.Text == "") return;
+            if (raza.Text == "" || raza.Text == null) return;
+            if (clase.Text == "" || clase.Text == null) return;
+            if (sexo.Text == "" || sexo.Text == null) return;
+            if (fue.Text == "" || fue.Text == null) return;
+            if (car.Text == "" || car.Text == null) return;
+            if (intel.Text == "" || intel.Text == null) return;
+            if (sab.Text == "" || sab.Text == null) return;
+            if (des.Text == "" || des.Text == null) return;
+            if (con.Text == "" || con.Text == null) return;
+            if (historia.Text == "") return;
 
             per.nombre = NombrePer.Text;
             per.misionOculta = historia.Text;
@@ -55,56 +65,123 @@ namespace Roll_the_Dice.Views
             per.plata = 0;
             per.cobre = 0;
             per.edad = 0;
-            per.posicion = 0;
+
+            switch (NombrePer.Text)
+            {
+                case "peter":
+                    per.posicion = 2;
+                    break;
+
+                case "victor":
+                    per.posicion = 4;
+                    break;
+
+                case "jose":
+                    per.posicion = 3;
+                    break;
+
+                case "albert":
+                    per.posicion = 5;
+                    break;
+
+                default:
+                    break;
+            }
+            /*per.posicion = 0;*/
             per.sexo = sexo.Text;
-            per.estadosAlterados = 0;
             per.sala = Constants.Sala.salaId;
             per.usuario = Constants.Usuario.usuarioId;
             per.vida = calculoVida(clase.Text, Int32.Parse(con.Text), Int32.Parse(fue.Text));
             per.turnos = calcluloTurnos(Int32.Parse(des.Text));
 
-
             var request = new RestRequest("personajes", Method.POST);
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("Authorization", Constants.Token);
 
-            //request.AddParameter("id", Constants.Usuario.usuarioId, ParameterType.UrlSegment);
-            request.AddJsonBody(per) ;
-            //new Personaje{nombre = NombrePer.Text, ....}
+            request.AddJsonBody(per);
 
             var response = await client.ExecuteAsync(request);
 
             if (!response.IsSuccessful) {
                 return;
             }
+            //FIN Post Personaje
 
-            var requestPeronajeId = new RestRequest("personajes/usuario/{id}", Method.GET);
-            requestPeronajeId.AddHeader("Content-type", "application/json");
-            requestPeronajeId.AddHeader("Authorization", Constants.Token);
+            var request2 = new RestRequest("personajes/usuario/{email}/sala/{salaId}/all", Method.GET);
+            request2.AddHeader("Content-type", "application/json");
+            request2.AddHeader("Authorization", Constants.Token);
+            request2.AddParameter("email", Constants.Usuario.email, ParameterType.UrlSegment);
+            request2.AddParameter("salaId", Constants.Sala.salaId, ParameterType.UrlSegment);
 
-            requestPeronajeId.AddParameter("id", Constants.Usuario.usuarioId, ParameterType.UrlSegment);
+            var response2 = await client.ExecuteAsync(request2);
 
-            var responseIdPer = await client.ExecuteAsync(requestPeronajeId);
+            if (!response2.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                //return;
+                Constants.Personaje = null;
+            }
+            else
+            {
+                Constants.Personaje = Newtonsoft.Json.JsonConvert.DeserializeObject<Personaje>(response2.Content);
+            }
 
-            if (!responseIdPer.IsSuccessful)
+            //Get All Estadisticas
+            var request3 = new RestRequest("estadisticas", Method.GET);
+            request3.AddHeader("Content-type", "application/json");
+            request3.AddHeader("Authorization", Constants.Token);
+
+            var response3 = await client.ExecuteAsync(request3);
+
+            if (!response3.IsSuccessful)
             {
                 return;
             }
 
-            int idPerso = int.Parse(responseIdPer.Content);
+            listaEstadisticas = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Estadistica>>(response3.Content);
+            //FIN Get All Estadisticas
 
-            var requestStats = new RestRequest("estadisticas/all", Method.POST);
+            // Post UnionEstatsPers
+            var requestStats = new RestRequest("estatPerso/all", Method.POST);
             requestStats.AddHeader("Content-type", "application/json");
             requestStats.AddHeader("Authorization", Constants.Token);
 
-            request.AddJsonBody(valorPersonaje(idPerso));
+            valorPersonaje();
+
+            requestStats.AddJsonBody(listaEstats);
 
             var responseStats = await client.ExecuteAsync(request);
 
-            if (!response.IsSuccessful)
+            if (!responseStats.IsSuccessful)
             {
                 return;
             }
+            //FIN Post UnionEstatsPers
+
+            
+
+            //Post inventario
+
+            var request4 = new RestRequest("inventarios", Method.POST);
+            request4.AddHeader("Content-type", "application/json");
+            request4.AddHeader("Authorization", Constants.Token);
+
+            Models.Inventario inv = new Models.Inventario();
+            inv.propietario = Constants.Personaje.personajeId;
+            inv.capacidad = 50;
+
+            request4.AddJsonBody(inv);
+
+            var response4 = await client.ExecuteAsync(request4);
+
+            if (!response4.IsSuccessful)
+            {
+                return;
+            }
+
+            //FIN Post Inventario
+
+            Close();
         }
 
         public async void clasesCombo() {
@@ -164,7 +241,7 @@ namespace Roll_the_Dice.Views
         }
 
         public int calculoVida(String clase, int cons, int fuerza) {
-            if (clase.Equals("Mago")) return 4*cons;
+            if (clase.Equals("Mago")) return 4 * cons;
             if (clase.Equals("Guerrero")) return 12 * cons;
             if (clase.Equals("Mistico")) return 10 * cons;
             if (clase.Equals("Arquero")) return 8 * cons;
@@ -177,19 +254,41 @@ namespace Roll_the_Dice.Views
             return (destreza % 10) + 2;
         }
 
-        public List<UnionEstatPerso> valorPersonaje(int idPerso) {
-            List<int> statsPer = new List<int>() { int.Parse(fue.Text), int.Parse(des.Text), int.Parse(con.Text), int.Parse(intel.Text), int.Parse(sab.Text), int.Parse(car.Text)
-        };
-            foreach (var valor in statsPer)
+        public void valorPersonaje() {
+            for (int i = 0; i < listaEstadisticas.Count; i++)
             {
                 UnionEstatPerso union = new UnionEstatPerso();
-                union.bonus = 1;
-                union.personajeId = idPerso;
-                union.estadisticaId = 1;
-                union.valorBase = valor;
+                union.personajeId = Constants.Personaje.personajeId;
+                union.estadisticaId = listaEstadisticas[i].estadisticaId;
+                union.bonus = Convert.ToDecimal(1.5);
+                switch (listaEstadisticas[i].nombre)
+                {
+                    case "Fuerza":
+                        union.valorBase = Int32.Parse(fue.Text);
+                        break;
+
+                    case "Inteligencia":
+                        union.valorBase = Int32.Parse(intel.Text);
+                        break;
+
+                    case "Destreza":
+                        union.valorBase = Int32.Parse(des.Text);
+                        break;
+
+                    case "Constitucion":
+                        union.valorBase = Int32.Parse(con.Text);
+                        break;
+
+                    case "Carisma":
+                        union.valorBase = Int32.Parse(car.Text);
+                        break;
+
+                    case "Sabiduria":
+                        union.valorBase = Int32.Parse(sab.Text);
+                        break;
+                }
                 listaEstats.Add(union);
             }
-            return listaEstats;
         }
     }
 }

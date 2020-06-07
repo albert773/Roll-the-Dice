@@ -39,11 +39,11 @@ namespace Roll_the_Dice.Views
 
         public async void estatsPersonaje()
         {
-            var request = new RestRequest("personajes/usuario/{id}", Method.GET);
+            var request = new RestRequest("personajes/usuario/{email}/sala/{salaId}", Method.GET);
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("Authorization", Constants.Token);
-
-            request.AddParameter("id", Constants.Usuario.usuarioId, ParameterType.UrlSegment);
+            request.AddParameter("email", Constants.Usuario.email, ParameterType.UrlSegment);
+            request.AddParameter("salaId", Constants.Sala.salaId, ParameterType.UrlSegment);
 
             var response = await client.ExecuteAsync(request);
 
@@ -61,6 +61,12 @@ namespace Roll_the_Dice.Views
             exp.Text = personaje.experiencia.ToString();
             turno.Text = personaje.turnos.ToString();
             historia.Text = personaje.misionOculta;
+            fue.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Fuerza").valorBase.ToString();
+            des.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Destreza").valorBase.ToString();
+            con.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Constitucion").valorBase.ToString();
+            car.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Carisma").valorBase.ToString();
+            sab.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Sabiduria").valorBase.ToString();
+            intel.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Inteligencia").valorBase.ToString();
         }
     }
 }

@@ -38,9 +38,8 @@ namespace Roll_the_Dice.Views
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("Authorization", Constants.Token);
 
-            //TODO - mirar
-
-            request.AddParameter("id", Constants.Usuario, ParameterType.UrlSegment);
+            request.AddParameter("id", Constants.Usuario.usuarioId, ParameterType.UrlSegment);
+            request.AddParameter("salaId", Constants.Sala.salaId, ParameterType.UrlSegment);
 
             var response = await client.ExecuteAsync(request);
 
