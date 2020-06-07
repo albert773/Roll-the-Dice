@@ -108,6 +108,22 @@ namespace RolltheDiceService.Controllers
             return Ok();
         }
 
+        // POST: api/estatMonst/all
+        [HttpPost]
+        [Route("all")]
+        [ResponseType(typeof(UnionEstatMonst))]
+        public IHttpActionResult PostAllEstadMonst(List<UnionEstatMonst> estatMonst)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            EstadMonstServ.PostAllEstadMonst(estatMonst);
+
+            return Ok();
+        }
+
         // DELETE: api/estatMonst/5
         [HttpDelete]
         [Route("{id:int}")]

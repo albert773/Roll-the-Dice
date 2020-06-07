@@ -13,6 +13,7 @@ namespace RolltheDiceService.Service.Interface
         IEnumerable<UnionEstatNPC> GetAllEstadisticasByNPC(int id);
         UnionEstatNPC GetEstatNPCById(int id);
         UnionEstatNPC PostEstatNPC(UnionEstatNPC unionEstatNPC);
+        void PostAllEstatNPC(List<UnionEstatNPC> unionesEstatNPC);
         UnionEstatNPC PutEstatNPC(int id, UnionEstatNPC unionEstatNPC);
         void DeleteEstatNPC(int id);
     }

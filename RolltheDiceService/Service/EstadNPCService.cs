@@ -39,6 +39,16 @@ namespace RolltheDiceService.Service
             return GetEstatNPCById(unionEstatNPC.estadisticaId);
         }
 
+        public void PostAllEstatNPC(List<UnionEstatNPC> unionesEstatNPC)
+        {
+            foreach (var unionEstatNPC in unionesEstatNPC)
+            {
+                uow.RepositoryClient<UnionEstatNPC>().Insert(unionEstatNPC);
+            }
+
+            uow.SaveChanges();
+        }
+
         public UnionEstatNPC PutEstatNPC(int id, UnionEstatNPC unionEstatNPC)
         {
             uow.RepositoryClient<UnionEstatNPC>().Update(unionEstatNPC);

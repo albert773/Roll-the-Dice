@@ -56,6 +56,29 @@ namespace RolltheDiceService.Controllers
             }
         }
 
+        // GET: api/Usuarios/sala/salaId
+        [HttpGet]
+        [Route("sala/{id:int}")]
+        [ResponseType(typeof(Usuario))]
+        public IHttpActionResult GetUsuarioBySalaId(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IEnumerable<Usuario> usuario = UsuarioServ.GetUsuariosBySalaId(id);
+
+            if (usuario != null)
+            {
+                return Ok(usuario);
+            }
+            else
+            {
+                return BadRequest("No existe ningun usuario que corresponda con ese id");
+            }
+        }
+
         // GET: api/usuarios/email/ejemplo@ejemplo.com
         [HttpGet]
         [Route("email/{email}")]

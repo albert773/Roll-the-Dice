@@ -39,6 +39,16 @@ namespace RolltheDiceService.Service
             return GetEstadMonstById(unionEstatMonst.estadisticaId);
         }
 
+        public void PostAllEstadMonst(List<UnionEstatMonst> unionesEstatMonst)
+        {
+            foreach (var unionEstatMonst in unionesEstatMonst)
+            {
+                uow.RepositoryClient<UnionEstatMonst>().Insert(unionEstatMonst);
+            }
+
+            uow.SaveChanges();
+        }
+
         public UnionEstatMonst PutEstadMonst(int id, UnionEstatMonst unionEstatMonst)
         {
             uow.RepositoryClient<UnionEstatMonst>().Update(unionEstatMonst);
