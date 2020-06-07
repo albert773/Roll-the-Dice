@@ -167,7 +167,7 @@
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Historia:"  Width="726" Height="175" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"  />
         </Viewbox>
         <Viewbox Grid.Column="6" Grid.Row="10" Grid.ColumnSpan="2" Grid.RowSpan="4"  Height="auto"  Width="auto">
-            <TextBox x:Name="hoistoria" Height="124"  Grid.Row="5" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="239" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" TextAlignment="Center"/>
+            <TextBox x:Name="historia" Height="124"  Grid.Row="5" Grid.RowSpan="2" TextWrapping="Wrap" Text=""   Width="239" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}" TextAlignment="Center"/>
         </Viewbox>
         <Viewbox Grid.Row="16" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="2">
             <Button Height="Auto" Width="Auto" Content="Crear" Background="DimGray" BorderBrush="AliceBlue" Click="crearNPC_Click" />

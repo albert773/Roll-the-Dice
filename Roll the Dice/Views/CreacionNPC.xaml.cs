@@ -40,10 +40,17 @@ namespace Roll_the_Dice.Views
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("Authorization", Constants.Token);
 
-            request.AddJsonBody(new Monstruo
+            validateEntradas();
+
+            NPC npc = new NPC
             {
+                clase = 1,
+                edad = 20,
+                experiencia = 0,
+                misionOculta = historia.Text,
+                raza = razas.FirstOrDefault(q => q.nombre.Equals(razaBox.Text)).razaId,
+                sexo = sexoBox.Text,
                 cobre = int.Parse(cobre.Text),
-                estadosAlterados = 0,
                 vida = int.Parse(vida.Text),
                 nivel = int.Parse(lvl.Text),
                 nombre = nombreNpc.Text,
@@ -51,7 +58,24 @@ namespace Roll_the_Dice.Views
                 plata = int.Parse(plata.Text),
                 sala = Constants.Sala.salaId,
                 turnos = int.Parse(turno.Text),
+                cansancio = 0
             });
+
+            switch (nombreNpc.Text)
+            {
+                case "jose":
+                    npc.posicion = 8;
+                    break;
+
+                case "albert":
+                    npc.posicion = 9;
+                    break;
+
+                default:
+                    break;
+            }
+
+            request.AddJsonBody(npc);
 
             //request.AddParameter(ParameterType.UrlSegment);
 
@@ -119,6 +143,18 @@ namespace Roll_the_Dice.Views
                 text.Content = nom.nombre.ToString();
                 listhab.Items.Add(text);
             }
+        }
+
+        public void validateEntradas()
+        {
+            if (nombreNpc.Text.Equals("")) return;
+            if (razaBox.Text.Equals("") || razaBox.Text == null) return;
+            if (fue.Text.Equals("") || fue.Text == null) return;
+            if (car.Text.Equals("") || car.Text == null) return;
+            if (intel.Text.Equals("") || intel.Text == null) return;
+            if (sab.Text.Equals("") || sab.Text == null) return;
+            if (des.Text.Equals("") || des.Text == null) return;
+            if (con.Text.Equals("") || con.Text == null) return;
         }
     }
 }

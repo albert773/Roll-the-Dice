@@ -38,26 +38,60 @@ namespace Roll_the_Dice.Views
         public async void crearArmadura_Click(Object sender, EventArgs e) {
 
             postNombreArmadura();
+            getNombreArmadura();
 
-            var request = new RestRequest("armas", Method.POST);
+            var request = new RestRequest("armaduras", Method.POST);
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("Authorization", Constants.Token);
 
-            request.AddJsonBody(new Armadura
+            decimal bonusArmadura;
+            try
             {
-                bonus = int.Parse(bonus.Text),
-                contundente = int.Parse(contundente.Text),
-                corte = int.Parse(corteArmadura.Text),
-                defFisica = int.Parse(defFisica.Text),
-                defMagica = int.Parse(defMag.Text),
-                descripcion = descripcion.Text,
-                durabilidad = 100,
-                elemento = elementos.FirstOrDefault(q => q.nombre.Equals(elementosBox.Text)).elementoId,
-                equipado = false,
-                nombre = nombrearmadura.FirstOrDefault(q => q.nombre.Equals(nombreArmaduraPer.Text)).nombreArmaduraId,
-                penetracion = int.Parse(penetracion.Text),
-                rareza = rarezas.FirstOrDefault(q => q.nombre.Equals(rarezaBox.Text)).rarezaId
-            });
+                bonusArmadura = decimal.Parse(bonus.Text);
+            }
+            catch (Exception except)
+            {
+                bonusArmadura = 1;
+            }
+
+            if (!elementosBox.Text.Equals("") || elementosBox.Text != null)
+            {
+                //TODO - crear armadura
+                Armadura a = new Armadura
+                {
+                    estadistica = 3,
+                    bonus = bonusArmadura,
+                    contundente = int.Parse(contundente.Text),
+                    corte = int.Parse(corteArmadura.Text),
+                    defFisica = int.Parse(defFisica.Text),
+                    defMagica = int.Parse(defMag.Text),
+                    descripcion = descripcion.Text,
+                    durabilidad = 100,
+                    equipado = false,
+                    nombre = nombrearmadura.FirstOrDefault(q => q.nombre.Equals(nombreArmaduraPer.Text)).nombreArmaduraId,
+                    penetracion = int.Parse(penetracion.Text),
+                    rareza = rarezas.FirstOrDefault(q => q.nombre.Equals(rarezaBox.Text)).rarezaId
+                };
+                request.AddJsonBody(a);
+            }
+            else {
+                request.AddJsonBody(new Armadura
+                {
+                    estadistica = 3,
+                    bonus = bonusArmadura,
+                    contundente = int.Parse(contundente.Text),
+                    corte = int.Parse(corteArmadura.Text),
+                    defFisica = int.Parse(defFisica.Text),
+                    defMagica = int.Parse(defMag.Text),
+                    descripcion = descripcion.Text,
+                    durabilidad = 100,
+                    elemento = elementos.FirstOrDefault(q => q.nombre.Equals(elementosBox.Text)).elementoId,
+                    equipado = false,
+                    nombre = nombrearmadura.FirstOrDefault(q => q.nombre.Equals(nombreArmaduraPer.Text)).nombreArmaduraId,
+                    penetracion = int.Parse(penetracion.Text),
+                    rareza = rarezas.FirstOrDefault(q => q.nombre.Equals(rarezaBox.Text)).rarezaId
+                });
+            }
 
             //request.AddParameter(ParameterType.UrlSegment);
 
@@ -127,21 +161,21 @@ namespace Roll_the_Dice.Views
             }
         }
 
-        public async void postNombreArmadura()
+        public void postNombreArmadura()
         {
 
             var request = new RestRequest("nombreArmaduras", Method.POST);
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("Authorization", Constants.Token);
 
-            request.AddJsonBody(new NombreArma
+            request.AddJsonBody(new NombreArmadura
             {
                 nombre = nombreArmaduraPer.Text
             });
 
             //request.AddParameter(ParameterType.UrlSegment);
 
-            var response = await client.ExecuteAsync(request);
+            var response = client.Execute(request);
 
             if (!response.IsSuccessful)
             {
@@ -150,7 +184,7 @@ namespace Roll_the_Dice.Views
             }
         }
 
-        public async void getNombreArmadura()
+        public void getNombreArmadura()
         {
             var request = new RestRequest("nombreArmaduras", Method.GET);
             request.AddHeader("Content-type", "application/json");
@@ -158,7 +192,7 @@ namespace Roll_the_Dice.Views
 
             //request.AddParameter(ParameterType.UrlSegment);
 
-            var response = await client.ExecuteAsync(request);
+            var response = client.Execute(request);
 
             if (!response.IsSuccessful)
             {
