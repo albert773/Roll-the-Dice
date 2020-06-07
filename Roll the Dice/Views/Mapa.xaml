@@ -10,7 +10,6 @@
 
     <Grid ShowGridLines="True" Name="mapa">
         <Image Grid.ColumnSpan="200" Height="auto"  Grid.RowSpan="200"  Width="auto" Source="/Roll the Dice;component/Images/camino.jpg" Stretch="Fill"/>
-        
 
 
     </Grid>

@@ -42,12 +42,14 @@ namespace Roll_the_Dice.Views
             caracter.Activate();
             caracter.Focus();
             caracter.Topmost = true;
+            frameMap.Content = new Mapa();
         }
 
         private async void Ataq_Click(object sender, RoutedEventArgs e)
         {
             
-            
+
+
         }
 
         private void Defensa_Click(object sender, RoutedEventArgs e)
