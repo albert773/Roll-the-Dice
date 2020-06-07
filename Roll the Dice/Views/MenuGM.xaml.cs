@@ -27,6 +27,7 @@ namespace Roll_the_Dice.Views
         AsignarCosasPlayers eliminar;
         CharacterShe caraceter;
         Mapa mapa = new Mapa();
+        RestClient client;
 
         public static List<string> armas = new List<string>();
         static List<Object> armaduras = new List<object>();
@@ -48,25 +49,38 @@ namespace Roll_the_Dice.Views
             ip.Text = Constants.IP.Substring(Constants.IP.Length-4);
             //reloadListCrear();
             frameMap.Content = mapa;
+            client = new RestClient(Constants.IP);
         }
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            if (crea.ShowActivated)
+            crea = new CreacionDeCosas();
+            if (crea == null)
+            {
+                this.crea = new CreacionDeCosas();
+                crea.Show();
+            }
+            else if (!crea.IsActive && crea.ShowActivated)
             {
                 crea.Close();
+                this.crea = new CreacionDeCosas();
+                crea.Show();
             }
-            this.crea = new CreacionDeCosas();
-            crea.Show();
         }
 
         private void Agregar_Click(object sender, RoutedEventArgs e)
         {
-            if (eliminar.ShowActivated)
+            eliminar = new AsignarCosasPlayers();
+            if (crea == null)
+            {
+                this.eliminar = new AsignarCosasPlayers();
+                eliminar.Show();
+            }
+            else if (!eliminar.IsActive && eliminar.ShowActivated)
             {
                 eliminar.Close();
+                this.eliminar = new AsignarCosasPlayers();
+                eliminar.Show();
             }
-            this.eliminar = new AsignarCosasPlayers();
-            eliminar.Show();
         }
 
         public void reloadListCrear() {
@@ -77,36 +91,37 @@ namespace Roll_the_Dice.Views
         }
         private void Perso_Click(object sender, RoutedEventArgs e)
         {
-            /*if (perso.ShowActivated)
+            perso = new TicketCharacter();
+            if (perso == null)
+            {
+                this.perso = new TicketCharacter();
+                perso.Show();
+            }
+            else if (!perso.IsActive && perso.ShowActivated)
             {
                 perso.Close();
+                this.perso = new TicketCharacter();
+                perso.Show();
             }
-            this.perso = new TicketCharacter();
-            perso.Show();*/
-
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            if (caraceter.ShowActivated)
+            caraceter = new CharacterShe();
+            if (caraceter == null)
+            {
+                this.caraceter = new CharacterShe();
+                caraceter.Show();
+            }
+            else if (!caraceter.IsActive && caraceter.ShowActivated)
             {
                 caraceter.Close();
+                this.caraceter = new CharacterShe();
+                caraceter.Show();
             }
-            this.caraceter = new CharacterShe();
-            caraceter.Show();
-
         }
 
-        private void Dice_Click(object sender, RoutedEventArgs e)
-        {
-            diceChange();
-            Random random = new Random();
-         
-                Number.Text = randomDice();
-            
-           
 
-        }
         private string randomDice()
         {
 
@@ -165,11 +180,64 @@ namespace Roll_the_Dice.Views
         private void sword_MouseDown(object sender, MouseButtonEventArgs e)
         {
             mapa.setAtaque();
+            
         }
 
         public void recibirDaño(int daño, int enemigo) { 
             
 
+        }
+
+        private void diceController_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if ((diceController.Text == "" )||(diceController.Text == null))
+            {
+                return;
+            }
+            int dice=int.Parse(diceController.Text);
+            diceSetterAsync(dice);
+
+        }
+        public async void diceSetterAsync(int dice)
+        {
+            int[] dicePost = { dice };
+            var request = new RestRequest("singleton/dados", Method.POST);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+            request.AddJsonBody(dicePost);
+            var response = await client.ExecuteAsync(request);
+            
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+            UpdateDice();
+
+        }
+
+        public async void UpdateDice()
+        {
+            var request = new RestRequest("singleton/dados", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+            var response = await client.ExecuteAsync(request);
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return;
+            }
+            this.DiceNum = Newtonsoft.Json.JsonConvert.DeserializeObject<int>(response.Content);
+           
+            diceChange();
+        }
+
+        private void dice_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            diceChange();
+            Random random = new Random();
+
+            Number.Text = randomDice();
         }
     }
 }

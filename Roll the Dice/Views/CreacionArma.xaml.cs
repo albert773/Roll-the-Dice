@@ -44,11 +44,26 @@ namespace Roll_the_Dice.Views
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("Authorization", Constants.Token);
 
-            request.AddJsonBody(new Arma {alcance = int.Parse(alcance.Text), bonus = int.Parse(bonus.Text), daño = int.Parse(daño.Text), 
+            decimal bonusStat;
+
+            try
+            {
+               bonusStat = decimal.Parse(bonus.Text);
+            }
+            catch (Exception)
+            {
+                bonusStat = 1;
+            }
+
+            validatePost();
+
+            request.AddJsonBody(new Arma {alcance = int.Parse(alcance.Text),
+                bonus = bonusStat, 
+                daño = int.Parse(daño.Text), 
                 defensa = int.Parse(defensa.Text), descripcion = descripcion.Text, durabilidad = 100, elemento = elementos.FirstOrDefault(q => q.nombre.Equals(elementosBox.Text)).elementoId,
                 equipado = false, esquiva = int.Parse(esquiva.Text), estadistica = 1, rareza = rarezas.FirstOrDefault(q => q.nombre.Equals(rarezaBox.Text)).rarezaId,
                 nombre = nombresarma.FirstOrDefault(q => q.nombre.Equals(nombreArmaPer.Text)).nombreArmaId
-            });
+             });
 
             //request.AddParameter(ParameterType.UrlSegment);
 
@@ -158,6 +173,25 @@ namespace Roll_the_Dice.Views
                 //TODO - Credenciales incorrectos
                 return;
             }
+        }
+
+        public void validatePost() {
+            /*request.AddJsonBody(new Arma
+            {
+                alcance = int.Parse(alcance.Text),
+                bonus = bonusStat,
+                daño = int.Parse(daño.Text),
+                defensa = int.Parse(defensa.Text),
+                descripcion = descripcion.Text,
+                durabilidad = 100,
+                elemento = elementos.FirstOrDefault(q => q.nombre.Equals(elementosBox.Text)).elementoId,
+                equipado = false,
+                esquiva = int.Parse(esquiva.Text),
+                estadistica = 1,
+                rareza = rarezas.FirstOrDefault(q => q.nombre.Equals(rarezaBox.Text)).rarezaId,
+                nombre = nombresarma.FirstOrDefault(q => q.nombre.Equals(nombreArmaPer.Text)).nombreArmaId
+            });*/
+
         }
     }
 }

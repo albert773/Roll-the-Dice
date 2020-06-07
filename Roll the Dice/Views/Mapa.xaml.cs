@@ -29,7 +29,10 @@ namespace Roll_the_Dice.Views
         List<RowDefinition> rowList = new List<RowDefinition>();
         List<Button> buttonList = new List<Button>();
         List<Rectangle> rectangleList = new List<Rectangle>();
-        List<Posicion> positionList = new List<Posicion>();
+        List<Personaje> personajeList = new List<Personaje>();
+        List<Monstruo> monstruoList = new List<Monstruo>();
+        List<NPC> npcList = new List<NPC>();
+        List<Posicion> posList = new List<Posicion>();
         const int X = 15;
         int disponibleMovement = 5;
         List<int> positionsX= new List<int>();
@@ -40,9 +43,14 @@ namespace Roll_the_Dice.Views
         bool mover = false;
         bool habilidad = false;
         List<Brush> brushList = new List<Brush>();
-        string[] imageVector = { "/Images/Perso/Draconico Hembra.png", "/Images/Perso/Draconico Macho.png", "/Images/Perso/Elfo Hembra.png", "/Images/Perso/Elfo Macho.png", "/Images/Perso/Enano Hembra.png", "/Images/Perso/Enano Macho.png", "/Images/Perso/Helicoptero de Combate.png", "/Images/Perso/Humano Hembra.png", "/Images/Perso/Humano Macho.png", "/Images/Perso/No Especificado.png", "/Images/Perso/Orco Hombre.png", "/Images/Perso/Orco Mujer.png", "/Images/Perso/SemiElfo Hembra.png", "/Images/Perso/SemiElfo Macho.png", };
+        string[] imageVector = { "/Images/Perso/Helicoptero de Combate.png", "/Images/Perso/Draconico Hembra.png", "/Images/Perso/Draconico Macho.png", "/Images/Perso/Elfo Hembra.png", "/Images/Perso/Elfo Macho.png", "/Images/Perso/Enano Hembra.png", "/Images/Perso/Enano Macho.png", "/Images/Perso/Humano Hembra.png", "/Images/Perso/Humano Macho.png", "/Images/Perso/Orco Hombre.png", "/Images/Perso/Orco Mujer.png", "/Images/Perso/SemiElfo Hembra.png", "/Images/Perso/SemiElfo Macho.png", };
+        string imageMonster = "/Images/Perso/monstruo.png";
+        string imageNPC = "/Images/Perso/npc.png";
+        List<Posicion> monstruoPos = new List<Posicion>();
+        List<Posicion> npcPos = new List<Posicion>();
         public Mapa()
         {
+            
             InitializeComponent();
             client = new RestClient(Constants.IP);
             
@@ -103,7 +111,7 @@ namespace Roll_the_Dice.Views
         public async void asignCharacters()
         {
             
-            var request = new RestRequest("posiciones/sala/{id}", Method.GET);
+            var request = new RestRequest("personajes/sala/{id}", Method.GET);
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("Authorization", Constants.Token);
             request.AddParameter("id", Constants.Sala.salaId, ParameterType.UrlSegment);
@@ -112,15 +120,131 @@ namespace Roll_the_Dice.Views
             {
                 return;
             }
-             positionList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Posicion>>(response.Content);
+             personajeList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Personaje>>(response.Content);
+        }
+        public async void asignPositions()
+        {
+
+            var request = new RestRequest("posiciones", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+            request.AddParameter("id", Constants.Sala.salaId, ParameterType.UrlSegment);
+            var response = await client.ExecuteAsync(request);
+            if (!response.IsSuccessful)
+            {
+                return;
+            }
+            posList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Posicion>>(response.Content);
+            for (int i = 0; i< posList.Count; i++){
+                if (posList[i].Monstruo != null)
+                {
+                    monstruoList.Add(posList[i].Monstruo.FirstOrDefault());
+                    monstruoPos.Add(posList[i]);
+                }
+                else if(posList[i].NPC != null)
+                {
+                    npcList.Add(posList[i].NPC.FirstOrDefault());
+                    npcPos.Add(posList[i]);
+                }
+            }
         }
 
-        public void positionAllSetter()
+        public async void positionAllSetter()
         {
-            //TODO - COMO SABEMOS QUE FOTO TIENE CADA PERSONAJE, UNA PRIMERA IDEA ES RECOGER SEXO Y CLASE YA QUE ES EN LOS QUE SE BASAN LAS FOTOS SI ALGUNO TIENE IDEA QUE LO DIGA
+            
             asignCharacters();
-            for (int i=0; i<positionList.Count; i++)
+            asignPositions();
+            for (int i=0; i< personajeList.Count; i++)
             {
+                cleanButtons();
+                var request = new RestRequest("posiciones/personaje/{id}", Method.GET);
+                request.AddHeader("Content-type", "application/json");
+                request.AddHeader("Authorization", Constants.Token);
+                request.AddParameter("id", personajeList[i].posicion, ParameterType.UrlSegment);
+                var response = await client.ExecuteAsync(request);
+                if (!response.IsSuccessful)
+                {
+                    //TODO - Credenciales incorrectos
+                    return;
+                }
+                Posicion pos = Newtonsoft.Json.JsonConvert.DeserializeObject<Posicion>(response.Content);
+                int index = indexGetter(pos.x, pos.y);
+                switch (personajeList[i].sexo)
+                {
+                    case "Hombre":
+                        switch (personajeList[i].Raza1.nombre)
+                        {
+                            case "Humano":
+                                buttonList[index].Background = brushList[8];
+                                break;
+                            case "Draconico":
+                                buttonList[index].Background = brushList[2];
+                                break;
+                            case "Elfo":
+                                buttonList[index].Background = brushList[4];
+                                break;
+                            case "SemiElfo":
+                                buttonList[index].Background = brushList[12];
+                                break;
+                            case "Orco":
+                                buttonList[index].Background = brushList[10];
+                                break;
+                            case "Enano":
+                                buttonList[index].Background = brushList[6];
+                                break;
+                        }
+                        
+                        break;
+                    case "Mujer":
+                        switch (personajeList[i].Raza1.nombre)
+                        {
+                            case "Humano":
+                                buttonList[index].Background = brushList[7];
+                                break;
+                            case "Draconico":
+                                buttonList[index].Background = brushList[1];
+                                break;
+                            case "Elfo":
+                                buttonList[index].Background = brushList[3];
+                                break;
+                            case "SemiElfo":
+                                buttonList[index].Background = brushList[11];
+                                break;
+                            case "Orco":
+                                buttonList[index].Background = brushList[9];
+                                break;
+                            case "Enano":
+                                buttonList[index].Background = brushList[5];
+                                break;
+                        }
+                        break;
+                    case "Helicoptero Combate":
+                        buttonList[index].Background = brushList[0];
+                        break;
+                }
+            }
+            for(int i=0; i < monstruoList.Count; i++)
+            {
+                
+                System.Windows.Resources.StreamResourceInfo streamInfo = Application.GetResourceStream(new Uri(imageMonster, UriKind.Relative));
+                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                var brush = new ImageBrush();
+                brush.ImageSource = temp;
+                brush.Stretch = Stretch.Uniform;
+                int index = indexGetter(monstruoPos[i].x, monstruoPos[i].y);
+                buttonList[index].Background = brush;
+                
+            }
+            for (int i = 0; i < npcList.Count; i++)
+            {
+
+                System.Windows.Resources.StreamResourceInfo streamInfo = Application.GetResourceStream(new Uri(imageNPC, UriKind.Relative));
+                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                var brush = new ImageBrush();
+                brush.ImageSource = temp;
+                brush.Stretch = Stretch.Uniform;
+                int index = indexGetter(npcPos[i].x, npcPos[i].y);
+                buttonList[index].Background = brush;
 
             }
         }
@@ -354,6 +478,14 @@ namespace Roll_the_Dice.Views
                 rectangleList[i].Fill = null;
             }
         }
+        public void cleanButtons()
+        {
+            for (int i = 0; i < buttonList.Count; i++)
+            {
+                buttonList[i].Background = null;
+            }
+        }
+
 
         public async void isTurn(int id)
         {
@@ -423,21 +555,19 @@ namespace Roll_the_Dice.Views
                     if (rectangleList[index].Fill == Brushes.Red)
                     {
                         y = 0; x = 0;
-                        while (index % 15 == 0)
+                        while (index > 14)
                         {
                             y++;
                             index = index - 15;
                         }
                         x = index;
-                        hacerAtaque(x, y);
-
+                        
                     }
 
                 }
                 else
                 {
-                    y = 0; x = 0;
-                    while (index % 15 == 0)
+                    while (index > 14)
                     {
                         y++;
                         index = index - 15;
