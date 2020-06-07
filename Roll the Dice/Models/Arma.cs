@@ -1,3 +1,5 @@
+using System;
+
 namespace Roll_the_Dice.Models
 {
     public class Arma
