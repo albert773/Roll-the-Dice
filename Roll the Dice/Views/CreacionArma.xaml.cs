@@ -33,12 +33,13 @@ namespace Roll_the_Dice.Views
             InitializeComponent();
             rarezaCombo();
             elementoCombo();
-            getNombreArma();
+            
         }
 
         private async void CrearArma_CLick(Object sender, EventArgs e) {
 
             postNombreArma();
+            getNombreArma();
 
             var request = new RestRequest("armas", Method.POST);
             request.AddHeader("Content-type", "application/json");
@@ -50,21 +51,45 @@ namespace Roll_the_Dice.Views
             {
                bonusStat = decimal.Parse(bonus.Text);
             }
-            catch (Exception e)
+            catch (Exception except)
             {
                 bonusStat = 1;
             }
 
-            validatePost();
+            //validatePost();
 
-            request.AddJsonBody(new Arma {alcance = int.Parse(alcance.Text),
-                bonus = bonusStat, 
-                daño = int.Parse(daño.Text), 
-                defensa = int.Parse(defensa.Text), descripcion = descripcion.Text, durabilidad = 100, elemento = elementos.FirstOrDefault(q => q.nombre.Equals(elementosBox.Text)).elementoId,
-                equipado = false, esquiva = int.Parse(esquiva.Text), estadistica = 1, rareza = rarezas.FirstOrDefault(q => q.nombre.Equals(rarezaBox.Text)).rarezaId,
+            if (!elementosBox.Text.Equals("") || elementosBox.Text != null)
+            {
+                request.AddJsonBody(new Arma
+                {
+                    alcance = int.Parse(alcance.Text),
+                    bonus = bonusStat,
+                    daño = int.Parse(daño.Text),
+                    defensa = int.Parse(defensa.Text),
+                    descripcion = descripcion.Text,
+                    equipado = false, 
+                    esquiva = int.Parse(esquiva.Text), 
+                    estadistica = 1,
+                    rareza = rarezas.FirstOrDefault(q => q.nombre.Equals(rarezaBox.Text)).rarezaId,
+                    nombre = nombresarma.FirstOrDefault(q => q.nombre.Equals(nombreArmaPer.Text)).nombreArmaId
+             });
+            }
+            else {
+                request.AddJsonBody(new Arma
+                {
+                alcance = int.Parse(alcance.Text),
+                bonus = bonusStat,
+                daño = int.Parse(daño.Text),
+                defensa = int.Parse(defensa.Text),
+                descripcion = descripcion.Text,
+                elemento = elementos.FirstOrDefault(q => q.nombre.Equals(elementosBox.Text)).elementoId,
+                equipado = false, esquiva = int.Parse(esquiva.Text), 
+                estadistica = 1, 
+                rareza = rarezas.FirstOrDefault(q => q.nombre.Equals(rarezaBox.Text)).rarezaId,
                 nombre = nombresarma.FirstOrDefault(q => q.nombre.Equals(nombreArmaPer.Text)).nombreArmaId
              });
-
+            }
+        
             //request.AddParameter(ParameterType.UrlSegment);
 
             var response = await client.ExecuteAsync(request);
@@ -134,7 +159,7 @@ namespace Roll_the_Dice.Views
             }
         }
 
-        public async void getNombreArma()
+        public void getNombreArma()
         {
             var request = new RestRequest("nombreArmas", Method.GET);
             request.AddHeader("Content-type", "application/json");
@@ -142,7 +167,7 @@ namespace Roll_the_Dice.Views
 
             //request.AddParameter(ParameterType.UrlSegment);
 
-            var response = await client.ExecuteAsync(request);
+            var response = client.Execute(request);
 
             if (!response.IsSuccessful)
             {
@@ -153,26 +178,27 @@ namespace Roll_the_Dice.Views
             nombresarma = Newtonsoft.Json.JsonConvert.DeserializeObject<List<NombreArma>>(response.Content);
         }
 
-        public async void postNombreArma() {
+        public void postNombreArma() {
 
             var request = new RestRequest("nombreArmas", Method.POST);
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("Authorization", Constants.Token);
 
-            request.AddJsonBody(new NombreArma
-            {
-                nombre = nombreArmaPer.Text
-            });
+            NombreArma nombreara = new NombreArma();
+            nombreara.nombre = nombreArmaPer.Text;
+
+            request.AddJsonBody(nombreara);
 
             //request.AddParameter(ParameterType.UrlSegment);
 
-            var response = await client.ExecuteAsync(request);
+            var response = client.Execute(request);
 
             if (!response.IsSuccessful)
             {
                 //TODO - Credenciales incorrectos
                 return;
             }
+
         }
 
         public void validatePost() {

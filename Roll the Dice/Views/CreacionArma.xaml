@@ -111,7 +111,7 @@
             </TextBox>
         </Viewbox>
         <Viewbox Grid.Row="15" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <Button Height="Auto" Width="Auto" Content="Crear" Background="DimGray" BorderBrush="AliceBlue"/>
+            <Button Height="Auto" Width="Auto" Content="Crear" Background="DimGray" BorderBrush="AliceBlue" Click="CrearArma_CLick"/>
         </Viewbox>
     </Grid>
 </Page>
