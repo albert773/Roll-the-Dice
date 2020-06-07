@@ -164,5 +164,10 @@ namespace Roll_the_Dice.Views
         {
             mapa.setAtaque();
         }
+
+        public void recibirDaño(int daño, int enemigo) { 
+            
+
+        }
     }
 }

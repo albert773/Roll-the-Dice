@@ -91,7 +91,7 @@
         <Border Background="White" Grid.Column="13" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="4"/>
 
         <Viewbox Grid.Column="13" Grid.Row="5" Grid.ColumnSpan="2">
-            <materialDesign:PackIcon x:Name="sword" Kind="Sword" Width="Auto" Height="auto" VerticalAlignment="Center" Mouse.MouseDown="Ataq_Click" Foreground="DodgerBlue"/>
+            <materialDesign:PackIcon x:Name="sword" Kind="Sword" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="3">
             <materialDesign:PackIcon x:Name="person" Kind="Person" Width="Auto" Height="auto" VerticalAlignment="Center" Mouse.MouseDown="Perso_Click" Foreground="DodgerBlue"/>
@@ -124,7 +124,7 @@
             </Viewbox.OpacityMask>-->
             <TextBlock x:Name="Ip" Text="192.168.X.X" FontSize="18" Width="auto"   TextAlignment="Center" Foreground="White" Background="#FF575757" />
         </Viewbox>
-        <Grid x:Name="gridDefEsq" Grid.Row="3" Grid.Column="10" Grid.ColumnSpan="2" Visibility="Hidden">
+        <Grid x:Name="gridDefEsq" Grid.Row="3" Grid.Column="10" Grid.ColumnSpan="2" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
