@@ -167,6 +167,29 @@ namespace Roll_the_Dice.Views
             request4.AddHeader("Authorization", Constants.Token);
 
             Models.Inventario inv = new Models.Inventario();
+
+            switch (NombrePer.Text)
+            {
+                case "peter":
+                    inv.inventarioId = 2;
+                    break;
+
+                case "victor":
+                    inv.inventarioId = 4;
+                    break;
+
+                case "jose":
+                    inv.inventarioId = 3;
+                    break;
+
+                case "albert":
+                    inv.inventarioId = 5;
+                    break;
+
+                default:
+                    break;
+            }
+
             inv.propietario = Constants.Personaje.personajeId;
             inv.capacidad = 50;
 

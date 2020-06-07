@@ -59,15 +59,15 @@ namespace Roll_the_Dice.Views
                 sala = Constants.Sala.salaId,
                 turnos = int.Parse(turno.Text),
                 cansancio = 0
-            });
+            };
 
             switch (nombreNpc.Text)
             {
-                case "jose":
+                case "alfredo":
                     npc.posicion = 8;
                     break;
 
-                case "albert":
+                case "alfonso":
                     npc.posicion = 9;
                     break;
 

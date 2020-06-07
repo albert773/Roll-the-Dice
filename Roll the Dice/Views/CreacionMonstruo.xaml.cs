@@ -59,11 +59,11 @@ namespace Roll_the_Dice.Views
 
             switch (nombreMons.Text)
             {
-                case "peter":
+                case "teostra":
                     m.posicion = 6;
                     break;
 
-                case "victor":
+                case "nergigante":
                     m.posicion = 7;
                     break;
 

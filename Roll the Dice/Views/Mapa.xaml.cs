@@ -48,6 +48,7 @@ namespace Roll_the_Dice.Views
         string imageNPC = "/Images/Perso/npc.png";
         List<Posicion> monstruoPos = new List<Posicion>();
         List<Posicion> npcPos = new List<Posicion>();
+
         public Mapa()
         {
             
@@ -104,7 +105,7 @@ namespace Roll_the_Dice.Views
                 mapa.Children.Add(rectangleList[i]);
                 mapa.Children.Add(buttonList[i]);
             }
-            positionAllSetter();
+            //positionAllSetter();
             rangePerso();
 
         }
@@ -151,12 +152,12 @@ namespace Roll_the_Dice.Views
 
         public async void positionAllSetter()
         {
-            
+            cleanButtons();
             asignCharacters();
             asignPositions();
             for (int i=0; i< personajeList.Count; i++)
             {
-                cleanButtons();
+                
                 var request = new RestRequest("posiciones/personaje/{id}", Method.GET);
                 request.AddHeader("Content-type", "application/json");
                 request.AddHeader("Authorization", Constants.Token);
