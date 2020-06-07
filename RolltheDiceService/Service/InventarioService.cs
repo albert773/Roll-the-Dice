@@ -32,6 +32,11 @@ namespace RolltheDiceService.Service
             return uow.RepositoryClient<Inventario>().GetWithInclude("Arma", "Armadura", "Item").FirstOrDefault(q => q.Personaje.personajeId == id);
         }
 
+        public Inventario GetInventarioByUsuario(int id)
+        {
+            return uow.RepositoryClient<Inventario>().GetWithInclude("Arma", "Armadura", "Item").FirstOrDefault(q => q.Personaje.usuario == id);
+        }
+
         public Inventario PostInventario(Inventario inventario)
         {
             uow.RepositoryClient<Inventario>().Insert(inventario);

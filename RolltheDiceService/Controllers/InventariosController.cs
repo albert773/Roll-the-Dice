@@ -46,6 +46,19 @@ namespace RolltheDiceService.Controllers
             return Ok(inventario);
         }
 
+        [HttpGet]
+        [Route("usuario/{id:int}")]
+        public IHttpActionResult GetInventarioByUsuario(int id)
+        {
+            Inventario inventario = InventarioServ.GetInventarioByUsuario(id);
+            if (inventario == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(inventario);
+        }
+
         // GET: api/Inventarios/5
         [HttpGet]
         [Route("{id:int}")]

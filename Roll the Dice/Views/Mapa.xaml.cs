@@ -103,7 +103,7 @@ namespace Roll_the_Dice.Views
         public async void asignCharacters()
         {
             
-            var request = new RestRequest("posiciones/sala/{id:int}", Method.GET);
+            var request = new RestRequest("posiciones/sala/{id}", Method.GET);
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("Authorization", Constants.Token);
             request.AddParameter("id", Constants.Sala.salaId, ParameterType.UrlSegment);

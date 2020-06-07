@@ -8,6 +8,7 @@ namespace RolltheDiceService.Service.Interface
         IEnumerable<Inventario> GetAllInventarios();
         Inventario GetInventarioById(int id);
         Inventario GetInventarioByPersonaje(int id);
+        Inventario GetInventarioByUsuario(int id);
         Inventario PostInventario(Inventario inventario);
         Inventario PutInventario(int id, Inventario inventario);
         void DeleteInventario(int id);
