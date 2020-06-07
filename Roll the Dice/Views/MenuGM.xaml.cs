@@ -22,10 +22,10 @@ namespace Roll_the_Dice.Views
     /// </summary>
     public partial class MenuGM : Window
     {
-        MainWindow main = new MainWindow();
-        CreacionDeCosas crea= new CreacionDeCosas();
-        AsignarCosasPlayers eliminar = new AsignarCosasPlayers();
-        CharacterShe caraceter = new CharacterShe();
+        MainWindow main;
+        CreacionDeCosas crea;
+        AsignarCosasPlayers eliminar;
+        CharacterShe caraceter;
 
         public static List<string> armas = new List<string>();
         static List<Object> armaduras = new List<object>();
@@ -149,6 +149,7 @@ namespace Roll_the_Dice.Views
         private void cerrarSesion_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            main = new MainWindow();
             main.Show();
 
         }
