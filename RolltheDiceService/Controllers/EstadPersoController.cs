@@ -92,7 +92,7 @@ namespace RolltheDiceService.Controllers
             return Ok("El estatPerso se ha modificado correctamente");
         }
 
-        // POST: api/Items
+        // POST: api/estatPerso
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(UnionEstatPerso))]
@@ -104,6 +104,22 @@ namespace RolltheDiceService.Controllers
             }
 
             EstadPersoServ.PostEstatPerso(estatPerso);
+
+            return Ok();
+        }
+
+        // POST: api/estatPerso/all
+        [HttpPost]
+        [Route("all")]
+        [ResponseType(typeof(UnionEstatPerso))]
+        public IHttpActionResult PostAllEstatPerso(List<UnionEstatPerso> estatPerso)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            EstadPersoServ.PostAllEstatPerso(estatPerso);
 
             return Ok();
         }

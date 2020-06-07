@@ -2,6 +2,7 @@
 using RolltheDiceService.Service.Interface;
 using RolltheDiceService.Utils;
 using System.Collections.Generic;
+using System.Linq;
 using static RolltheDiceService.IoC.InjectableAttribute;
 
 namespace RolltheDiceService.Service
@@ -24,6 +25,11 @@ namespace RolltheDiceService.Service
         public Usuario GetUsuarioByEmail(string email)
         {
             return uow.RepositoryClient<Usuario>().GetSingle(q => q.email == email);
+        }
+
+        public IEnumerable<Usuario> GetUsuariosBySalaId(int id)
+        {
+            return uow.RepositoryClient<Usuario>().GetWithInclude(q => q.Personaje.Any(x => x.Sala1.salaId == id));
         }
 
         public Usuario GetUsuarioById(int id)

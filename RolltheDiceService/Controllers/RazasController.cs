@@ -18,6 +18,7 @@ namespace RolltheDiceService.Controllers
         {
             this.RazaServ = RazaServ;
         }
+
         // GET: api/Razas
         [HttpGet]
         [Route("")]

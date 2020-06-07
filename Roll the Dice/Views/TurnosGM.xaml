@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Roll_the_Dice.Views"
         mc:Ignorable="d"
-        Title="TurnosGM"  Width="370" Height="420" MinWidth="370" MinHeight="420" MaxWidth="370"  MaxHeight="420" WindowStartupLocation="CenterScreen">
+        Width="430" Height="420" MinWidth="430" MinHeight="420" MaxWidth="370"  MaxHeight="420" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Roll the Dice;component/Images/backgroundTurno.jpg"/>
@@ -27,7 +27,7 @@
             <RowDefinition Height="20*" />
             <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
-        <ListBox x:Name="turnosList"
+        <ListBox Name="turnosList"
                  Foreground="Black"
                  Grid.Row="0" Grid.RowSpan="4"
                  Grid.Column="1" Grid.ColumnSpan="4"
@@ -54,10 +54,10 @@
             </ListBox.Resources>-->
         </ListBox>
         <Viewbox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2">
-            <Button Content="Actualizar" Height="Auto" Width="Auto" Background="DimGray" BorderBrush="AliceBlue" Padding="3"/>
+            <Button Content="Actualizar" Click="Actualizar_Click" Height="Auto" Width="Auto" Background="DimGray" BorderBrush="AliceBlue" Padding="3"/>
         </Viewbox>
         <Viewbox Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2">
-            <Button Content="Confirmar" Height="Auto" Width="Auto" Background="DimGray" BorderBrush="AliceBlue" Padding="3"/>
+            <Button Content="Confirmar" Click="Confirmar_Click" Height="Auto" Width="Auto" Background="DimGray" BorderBrush="AliceBlue" Padding="3"/>
         </Viewbox>
     </Grid>
 </Window>
