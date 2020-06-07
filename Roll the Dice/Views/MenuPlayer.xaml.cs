@@ -24,7 +24,7 @@ namespace Roll_the_Dice.Views
     /// </summary>
     public partial class MenuPlayer : Window
     {
-        Mapa mapa = new Mapa();
+        public static Mapa mapa { get; set; } = new Mapa();
         MainWindow main = new MainWindow();
         //TicketCharacter perso = new TicketCharacter();
         Inventario inv = new Inventario();

@@ -22,6 +22,9 @@ namespace Roll_the_Dice.Utils
             {
                 diceComprobatorAsync();
                 turnTryer();
+                MenuGM.mapa.positionAllSetter();
+                MenuPlayer.mapa.positionAllSetter();
+
             }
         }
         public static async void diceComprobatorAsync()
