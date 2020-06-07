@@ -46,6 +46,8 @@ namespace Roll_the_Dice.Views
         string[] imageVector = { "/Images/Perso/Helicoptero de Combate.png", "/Images/Perso/Draconico Hembra.png", "/Images/Perso/Draconico Macho.png", "/Images/Perso/Elfo Hembra.png", "/Images/Perso/Elfo Macho.png", "/Images/Perso/Enano Hembra.png", "/Images/Perso/Enano Macho.png", "/Images/Perso/Humano Hembra.png", "/Images/Perso/Humano Macho.png", "/Images/Perso/Orco Hombre.png", "/Images/Perso/Orco Mujer.png", "/Images/Perso/SemiElfo Hembra.png", "/Images/Perso/SemiElfo Macho.png", };
         string imageMonster = "/Images/Perso/monstruo.png";
         string imageNPC = "/Images/Perso/npc.png";
+        List<Posicion> monstruoPos = new List<Posicion>();
+        List<Posicion> npcPos = new List<Posicion>();
         public Mapa()
         {
             
@@ -133,12 +135,25 @@ namespace Roll_the_Dice.Views
                 return;
             }
             posList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Posicion>>(response.Content);
+            for (int i = 0; i< posList.Count; i++){
+                if (posList[i].Monstruo != null)
+                {
+                    monstruoList.Add(posList[i].Monstruo.FirstOrDefault());
+                    monstruoPos.Add(posList[i]);
+                }
+                else if(posList[i].NPC != null)
+                {
+                    npcList.Add(posList[i].NPC.FirstOrDefault());
+                    npcPos.Add(posList[i]);
+                }
+            }
         }
 
         public async void positionAllSetter()
         {
             
             asignCharacters();
+            asignPositions();
             for (int i=0; i< personajeList.Count; i++)
             {
                 cleanButtons();
@@ -207,6 +222,30 @@ namespace Roll_the_Dice.Views
                         buttonList[index].Background = brushList[0];
                         break;
                 }
+            }
+            for(int i=0; i < monstruoList.Count; i++)
+            {
+                
+                System.Windows.Resources.StreamResourceInfo streamInfo = Application.GetResourceStream(new Uri(imageMonster, UriKind.Relative));
+                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                var brush = new ImageBrush();
+                brush.ImageSource = temp;
+                brush.Stretch = Stretch.Uniform;
+                int index = indexGetter(monstruoPos[i].x, monstruoPos[i].y);
+                buttonList[index].Background = brush;
+                
+            }
+            for (int i = 0; i < npcList.Count; i++)
+            {
+
+                System.Windows.Resources.StreamResourceInfo streamInfo = Application.GetResourceStream(new Uri(imageNPC, UriKind.Relative));
+                BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+                var brush = new ImageBrush();
+                brush.ImageSource = temp;
+                brush.Stretch = Stretch.Uniform;
+                int index = indexGetter(npcPos[i].x, npcPos[i].y);
+                buttonList[index].Background = brush;
+
             }
         }
         public void buttonCreate(int x, int y)
