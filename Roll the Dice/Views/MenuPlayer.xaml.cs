@@ -37,17 +37,42 @@ namespace Roll_the_Dice.Views
             client = new RestClient(Constants.IP);
             //passworw.Background = Brushes.White;
             //passworw.Foreground = Brushes.Black;
-            CharacterShe caracter = new CharacterShe();
-            caracter.Show();
-            caracter.Activate();
-            caracter.Focus();
-            caracter.Topmost = true;
+
+            if (Constants.Sala.propietario != Constants.Usuario.usuarioId && !usuarioHasPersonaje())
+            {
+                CharacterShe caracter = new CharacterShe();
+                caracter.Show();
+                caracter.Activate();
+                caracter.Focus();
+                caracter.Topmost = true;
+            }
+
         }
 
         private async void Ataq_Click(object sender, RoutedEventArgs e)
         {
             
             
+        }
+
+        private bool usuarioHasPersonaje()
+        {
+            //TODO - Acabar de revisar si funciona o no
+            var request = new RestRequest("usuario/{email}/sala/{salaId}", Method.GET);
+            request.AddHeader("Content-type", "application/json");
+            request.AddHeader("Authorization", Constants.Token);
+            request.AddParameter("email", Constants.Usuario.email, ParameterType.UrlSegment);
+            request.AddParameter("salaId", Constants.Sala.salaId, ParameterType.UrlSegment);
+
+            var response = client.Execute(request);
+
+            if (!response.IsSuccessful)
+            {
+                //TODO - Credenciales incorrectos
+                return false;
+            }
+
+            return true;
         }
 
         private void Defensa_Click(object sender, RoutedEventArgs e)

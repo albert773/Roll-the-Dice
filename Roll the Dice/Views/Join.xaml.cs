@@ -93,9 +93,18 @@ namespace Roll_the_Dice.Views
                 return;
             }
 
-            //Cambio de pagina a Ventana
-            MenuPlayer menu = new MenuPlayer();
-            menu.Show();
+            if (Constants.Sala.propietario == Constants.Usuario.usuarioId)
+            {
+                MenuGM menuGM = new MenuGM();
+                menuGM.Show();
+            }
+            else
+            {
+                //Cambio de pagina a Ventana
+                MenuPlayer menu = new MenuPlayer();
+                menu.Show();
+            }
+
             MainWindow main = Window.GetWindow(this) as MainWindow;
             main.Close();
         }
