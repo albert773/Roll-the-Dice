@@ -49,12 +49,6 @@ namespace Roll_the_Dice.Views
 
         }
 
-        private async void Ataq_Click(object sender, RoutedEventArgs e)
-        {
-            
-            
-        }
-
         private bool usuarioHasPersonaje()
         {
             //TODO - Acabar de revisar si funciona o no
@@ -95,6 +89,11 @@ namespace Roll_the_Dice.Views
         private void Esquiva_Click(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void Ataq_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void Perso_Click(object sender, RoutedEventArgs e)

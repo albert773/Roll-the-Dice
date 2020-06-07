@@ -25,7 +25,7 @@ namespace Roll_the_Dice.Views
 
         private async void Ip_LostFocus(object sender, RoutedEventArgs e)
         {
-            /*if (Ip.Text == null || Ip.Text == "")
+            if (Ip.Text == null || Ip.Text == "")
             {
                 return;
             }
@@ -48,17 +48,17 @@ namespace Roll_the_Dice.Views
             foreach (Sala sala in salas)
             {
                 Salas.Items.Add(sala.nombre);
-            }*/
+            }
         }
 
         private void Salas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //salaSeleccionada = Salas.SelectedValue.ToString();
+            salaSeleccionada = Salas.SelectedValue.ToString();
         }
 
         private void Return_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new CreateJoin());
+            NavigationService.Navigate(new CreateJoin());
         }
 
             private async void Unirse_Click(object sender, RoutedEventArgs e)
@@ -68,7 +68,7 @@ namespace Roll_the_Dice.Views
             MainWindow main = Window.GetWindow(this) as MainWindow;
             main.Close();
 
-            /*if (salaSeleccionada == null || Contraseña.Password == null || Contraseña.Password == "" || Ip.Text == null || Ip.Text == "")
+            if (salaSeleccionada == null || Contraseña.Password == null || Contraseña.Password == "" || Ip.Text == null || Ip.Text == "")
             {
                 //TODO - Todos los campos deben tener valores
                 return;
@@ -106,12 +106,12 @@ namespace Roll_the_Dice.Views
             else
             {
                 //Cambio de pagina a Ventana
-                MenuPlayer menu = new MenuPlayer();
-                menu.Show();
+                MenuPlayer menu1 = new MenuPlayer();
+                menu1.Show();
             }
 
-            MainWindow main = Window.GetWindow(this) as MainWindow;
-            main.Close();*/
+            MainWindow main1 = Window.GetWindow(this) as MainWindow;
+            main1.Close();
         }
     }
 }
