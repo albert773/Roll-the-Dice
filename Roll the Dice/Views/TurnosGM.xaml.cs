@@ -26,7 +26,6 @@ namespace Roll_the_Dice.Views
         List<ComboBox> comboboxes = new List<ComboBox>();
         RestClient client;
         List<int> orden = new List<int>();
-        Grid grid;
 
         public TurnosGM()
         {
@@ -74,7 +73,7 @@ namespace Roll_the_Dice.Views
                     combo.Items.Add(text);
                 }
 
-                grid = new Grid();
+                Grid grid = new Grid();
                 ColumnDefinition col1 = new ColumnDefinition();
                 col1.Width = new GridLength(40);
                 ColumnDefinition col2 = new ColumnDefinition();
@@ -117,6 +116,7 @@ namespace Roll_the_Dice.Views
 
         private async void Confirmar_Click(object sender, RoutedEventArgs e)
         {
+            if (comboboxes.Any(q => q.Text == "")) return;
             foreach (ComboBox combobox in comboboxes)
             {
                 orden.Add(playerList.FirstOrDefault(q => q.nickname == combobox.Text).usuarioId);
@@ -132,9 +132,11 @@ namespace Roll_the_Dice.Views
 
             if (!response.IsSuccessful)
             {
-                //TODO - Credenciales incorrectos
+                //TODO - Error en Peticion
                 return;
             }
+
+            Close();
         }
     }
 }

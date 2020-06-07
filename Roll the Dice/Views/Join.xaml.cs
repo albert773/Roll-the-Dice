@@ -63,11 +63,6 @@ namespace Roll_the_Dice.Views
 
             private async void Unirse_Click(object sender, RoutedEventArgs e)
         {
-            MenuPlayer menu = new MenuPlayer();
-            menu.Show();
-            MainWindow main = Window.GetWindow(this) as MainWindow;
-            main.Close();
-
             if (salaSeleccionada == null || Contraseña.Password == null || Contraseña.Password == "" || Ip.Text == null || Ip.Text == "")
             {
                 //TODO - Todos los campos deben tener valores
@@ -106,12 +101,12 @@ namespace Roll_the_Dice.Views
             else
             {
                 //Cambio de pagina a Ventana
-                MenuPlayer menu1 = new MenuPlayer();
-                menu1.Show();
+                MenuPlayer menu = new MenuPlayer();
+                menu.Show();
             }
 
-            MainWindow main1 = Window.GetWindow(this) as MainWindow;
-            main1.Close();
+            MainWindow main = Window.GetWindow(this) as MainWindow;
+            main.Close();
         }
     }
 }
