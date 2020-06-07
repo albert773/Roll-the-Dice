@@ -32,12 +32,12 @@ namespace Roll_the_Dice.Views
         }
 
         private void Volver_Click(object sender, RoutedEventArgs e) {
-            NavigationService.Navigate(new CreateJoin());
+            //NavigationService.Navigate(new CreateJoin());
         }
 
         private async void Unirse_Click(object sender, RoutedEventArgs e)
         {
-            if (Nombre.Text == null || Nombre.Text == "")
+            /*if (Nombre.Text == null || Nombre.Text == "")
             {
                 //TODO - Debes introducir un nombre
                 return;
@@ -64,7 +64,7 @@ namespace Roll_the_Dice.Views
                 return;
             }
 
-            Constants.Sala = Newtonsoft.Json.JsonConvert.DeserializeObject<Sala>(response.Content);
+            Constants.Sala = Newtonsoft.Json.JsonConvert.DeserializeObject<Sala>(response.Content);*/
 
             MenuGM gm = new MenuGM();
             gm.Show();
@@ -74,19 +74,19 @@ namespace Roll_the_Dice.Views
 
         private void ShowPasswordCharsCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            Contraseña.Visibility = System.Windows.Visibility.Collapsed;
+            /*Contraseña.Visibility = System.Windows.Visibility.Collapsed;
             MyTextBox.Visibility = System.Windows.Visibility.Visible;
             MyTextBox.Text = Contraseña.Password.ToString();
 
-            MyTextBox.Focus();
+            MyTextBox.Focus();*/
         }
 
         private void ShowPasswordCharsCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            Contraseña.Visibility = System.Windows.Visibility.Visible;
+            /*Contraseña.Visibility = System.Windows.Visibility.Visible;
             MyTextBox.Visibility = System.Windows.Visibility.Collapsed;
 
-            Contraseña.Focus();
+            Contraseña.Focus();*/
         }
     }
 }

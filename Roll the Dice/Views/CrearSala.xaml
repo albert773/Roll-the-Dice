@@ -47,7 +47,7 @@
                 <DropShadowEffect/>
             </Border.Effect>
         </Border>
-        <Viewbox Grid.Column="3" Grid.Row="11">
+        <Viewbox Grid.Column="5" Grid.Row="11">
             <Button Content="OK" FontSize="18" Background="DimGray" BorderBrush="AliceBlue " Height="Auto" FontFamily="Georgia" Click="Unirse_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -56,7 +56,7 @@
                 </Button.Resources>
             </Button>
         </Viewbox>
-        <Viewbox Grid.Column="5" Grid.Row="11">
+        <Viewbox Grid.Column="3" Grid.Row="11">
             <Button Content="Volver" FontSize="18" Background="DimGray" BorderBrush="AliceBlue " Height="39" FontFamily="Georgia" Click="Volver_Click">
                 <Button.Resources>
                     <Style TargetType="Border">

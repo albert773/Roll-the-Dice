@@ -30,6 +30,8 @@ namespace Roll_the_Dice.Views
         {
             client = new RestClient(Constants.IP);
             InitializeComponent();
+            rarezaCombo();
+            elementoCombo();
         }
 
         private void CrearArma_CLick(Object sender, EventArgs e) {
@@ -70,7 +72,7 @@ namespace Roll_the_Dice.Views
 
         public async void elementoCombo()
         {
-            var request = new RestRequest("rarezas", Method.GET);
+            var request = new RestRequest("elementos", Method.GET);
             request.AddHeader("Content-type", "application/json");
             request.AddHeader("Authorization", Constants.Token);
 

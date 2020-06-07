@@ -65,7 +65,6 @@
         </Viewbox>
         <ComboBox x:Name="raza" Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2"  Width="auto" Height="38" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="25"  >
         </ComboBox>
-
         <Viewbox Grid.Column="2" Grid.Row="7"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Clase:"  Width="749" Height="179" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"  />
         </Viewbox>
@@ -77,14 +76,12 @@
         <ComboBox x:Name="sexo" Grid.Column="3" Grid.Row="8" Grid.ColumnSpan="2"  Width="auto" Height="38" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="25" >
             <ComboBoxItem Content="Hombre"></ComboBoxItem>
             <ComboBoxItem Content="Mujer"></ComboBoxItem>
-            <ComboBoxItem Content="Otro"></ComboBoxItem>
-            <ComboBoxItem Content="No Especificado"></ComboBoxItem>
             <ComboBoxItem Content="Helicoptero de combate"></ComboBoxItem>
         </ComboBox>
         <Viewbox Grid.Column="2" Grid.Row="9"  Height="auto"  Width="auto">
             <TextBlock Style="{StaticResource MaterialDesignHeadline1TextBlock}"  TextWrapping="Wrap" Text="Fue:"  Width="745" Height="179" Foreground="Black" FontFamily="Georgia" FontWeight="Bold"/>
         </Viewbox>
-        <ComboBox x:Name="fue" Grid.Column="3" Grid.Row="9" Grid.ColumnSpan="1"  Width="auto" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Height="38" >
+        <ComboBox  x:Name="fue" Grid.Column="3" Grid.Row="9" Grid.ColumnSpan="1"  Width="auto" Style="{StaticResource MaterialDesignComboBox}" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Height="38" >
             <ComboBoxItem Content="1"></ComboBoxItem>
             <ComboBoxItem Content="2"></ComboBoxItem>
             <ComboBoxItem Content="3"></ComboBoxItem>
@@ -238,7 +235,7 @@
             <TextBox x:Name="historia" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"  Height="54"  Grid.Row="5" Grid.RowSpan="2" TextWrapping="Wrap" Text=""  Width="332" FontFamily="Georgia" FontWeight="Bold" Background="{x:Null}"/>
         </Viewbox>
         <Viewbox Grid.Row="15" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <Button Height="Auto" Width="Auto" Content="Crear" Background="DimGray" BorderBrush="AliceBlue"/>
+            <Button x:Name="Crear" Height="Auto" Width="Auto" Content="Crear" Background="DimGray" BorderBrush="AliceBlue" Click="Crear_Click"/>
         </Viewbox>
     </Grid>
 </Window>

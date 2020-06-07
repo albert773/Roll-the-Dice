@@ -68,7 +68,7 @@
             <materialDesign:PackIcon x:Name="edit" Kind="Edit" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="Edit_Click"/>
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="9">
-            <materialDesign:PackIcon x:Name="eliminate" Kind="Delete" Width="Auto" Height="Auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="Eliminar_Click"/>
+            <materialDesign:PackIcon x:Name="eliminate" Kind="Delete" Width="Auto" Height="Auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="Agregar_Click"/>
         </Viewbox>
 
         <ComboBox  Grid.Row="1" Grid.Column="11" Grid.ColumnSpan="2"  Width="auto" Height="auto"   materialDesign:HintAssist.Hint="Dados" materialDesign:HintAssist.HintOpacity=".26" IsEditable="True" Foreground="DodgerBlue" FontFamily="Georgia" FontWeight="Bold" FontSize="20"     >

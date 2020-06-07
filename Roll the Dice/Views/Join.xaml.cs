@@ -25,7 +25,7 @@ namespace Roll_the_Dice.Views
 
         private async void Ip_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (Ip.Text == null || Ip.Text == "")
+            /*if (Ip.Text == null || Ip.Text == "")
             {
                 return;
             }
@@ -48,22 +48,27 @@ namespace Roll_the_Dice.Views
             foreach (Sala sala in salas)
             {
                 Salas.Items.Add(sala.nombre);
-            }
+            }*/
         }
 
         private void Salas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            salaSeleccionada = Salas.SelectedValue.ToString();
+            //salaSeleccionada = Salas.SelectedValue.ToString();
         }
 
         private void Return_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new CreateJoin());
+            //NavigationService.Navigate(new CreateJoin());
         }
 
-        private async void Unirse_Click(object sender, RoutedEventArgs e)
+            private async void Unirse_Click(object sender, RoutedEventArgs e)
         {
-            if (salaSeleccionada == null || Contraseña.Password == null || Contraseña.Password == "" || Ip.Text == null || Ip.Text == "")
+            MenuPlayer menu = new MenuPlayer();
+            menu.Show();
+            MainWindow main = Window.GetWindow(this) as MainWindow;
+            main.Close();
+
+            /*if (salaSeleccionada == null || Contraseña.Password == null || Contraseña.Password == "" || Ip.Text == null || Ip.Text == "")
             {
                 //TODO - Todos los campos deben tener valores
                 return;
@@ -97,7 +102,7 @@ namespace Roll_the_Dice.Views
             MenuPlayer menu = new MenuPlayer();
             menu.Show();
             MainWindow main = Window.GetWindow(this) as MainWindow;
-            main.Close();
+            main.Close();*/
         }
     }
 }
