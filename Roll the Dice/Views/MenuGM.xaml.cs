@@ -26,7 +26,7 @@ namespace Roll_the_Dice.Views
         MainWindow main;
         CreacionDeCosas crea;
         AsignarCosasPlayers eliminar;
-        CharacterShe caraceter;
+        EditChar caraceter;
         public Mapa mapa;
         RestClient client;
 
@@ -133,16 +133,16 @@ namespace Roll_the_Dice.Views
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            caraceter = new CharacterShe();
+            caraceter = new EditChar();
             if (caraceter == null)
             {
-                this.caraceter = new CharacterShe();
+                this.caraceter = new EditChar();
                 caraceter.Show();
             }
             else if (!caraceter.IsActive && caraceter.ShowActivated)
             {
                 caraceter.Close();
-                this.caraceter = new CharacterShe();
+                this.caraceter = new EditChar();
                 caraceter.Show();
             }
         }
