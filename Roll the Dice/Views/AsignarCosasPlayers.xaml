@@ -71,7 +71,7 @@
         <ComboBox x:Name="ArmaduraBox" VerticalContentAlignment="Center" materialDesign:HintAssist.Hint="Aramdura" materialDesign:HintAssist.HintOpacity=".65" IsEditable="False" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Grid.Column="12" Grid.Row="7" Grid.ColumnSpan="4"  Width="auto" Height="38" Style="{StaticResource MaterialDesignComboBox}" >
             <ComboBoxItem Content="armadura de tela"></ComboBoxItem>
         </ComboBox>
-        <ComboBox x:Name="PersonajeBox" VerticalContentAlignment="Center" materialDesign:HintAssist.Hint="Persoanje" materialDesign:HintAssist.HintOpacity=".65" IsEditable="False" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Grid.Column="3" Grid.Row="14" Grid.ColumnSpan="12"  Width="auto" Height="38" Style="{StaticResource MaterialDesignComboBox}"  >
+        <ComboBox x:Name="PersonajeBox" VerticalContentAlignment="Center" materialDesign:HintAssist.Hint="Personaje" materialDesign:HintAssist.HintOpacity=".65" IsEditable="False" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Grid.Column="3" Grid.Row="14" Grid.ColumnSpan="12"  Width="auto" Height="38" Style="{StaticResource MaterialDesignComboBox}"  >
             <ComboBoxItem Content="peter"></ComboBoxItem>
             <ComboBoxItem Content="jose"></ComboBoxItem>
         </ComboBox>
