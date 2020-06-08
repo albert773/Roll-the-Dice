@@ -66,13 +66,17 @@
         <ComboBox x:Name="ItemBox" VerticalContentAlignment="Center" materialDesign:HintAssist.Hint="Item" materialDesign:HintAssist.HintOpacity=".65" IsEditable="False" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="4"  Width="auto" Height="38" Style="{StaticResource MaterialDesignComboBox}" >
         </ComboBox>
         <ComboBox x:Name="ArmaBox" VerticalContentAlignment="Center" materialDesign:HintAssist.Hint="Arma" materialDesign:HintAssist.HintOpacity=".65" IsEditable="False" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Grid.Column="7" Grid.Row="7" Grid.ColumnSpan="4"  Width="auto" Height="38" Style="{StaticResource MaterialDesignComboBox}" >
+            <ComboBoxItem Content="espada"></ComboBoxItem>
         </ComboBox>
         <ComboBox x:Name="ArmaduraBox" VerticalContentAlignment="Center" materialDesign:HintAssist.Hint="Aramdura" materialDesign:HintAssist.HintOpacity=".65" IsEditable="False" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Grid.Column="12" Grid.Row="7" Grid.ColumnSpan="4"  Width="auto" Height="38" Style="{StaticResource MaterialDesignComboBox}" >
+            <ComboBoxItem Content="armadura de tela"></ComboBoxItem>
         </ComboBox>
         <ComboBox x:Name="PersonajeBox" VerticalContentAlignment="Center" materialDesign:HintAssist.Hint="Persoanje" materialDesign:HintAssist.HintOpacity=".65" IsEditable="False" Foreground="Black" FontFamily="Georgia" FontWeight="Bold" FontSize="20" Grid.Column="3" Grid.Row="14" Grid.ColumnSpan="12"  Width="auto" Height="38" Style="{StaticResource MaterialDesignComboBox}"  >
+            <ComboBoxItem Content="peter"></ComboBoxItem>
+            <ComboBoxItem Content="jose"></ComboBoxItem>
         </ComboBox>
         <Viewbox Grid.Column="6" Grid.Row="20" Grid.ColumnSpan="5" Grid.RowSpan="3">
-            <Button  Height="Auto" Width="66" Content="Agregar" Background="DimGray" FontSize="9" BorderBrush="AliceBlue"/>
+            <Button  Height="Auto" Width="66" Content="Agregar" Background="DimGray" FontSize="9" BorderBrush="AliceBlue" Click="Asignar_Click"/>
         </Viewbox>
     </Grid>
 </Window>
