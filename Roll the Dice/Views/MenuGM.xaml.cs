@@ -45,9 +45,9 @@ namespace Roll_the_Dice.Views
             InitializeComponent();
             mapa = new Mapa();
             frameMap.Content = mapa;
-            Thread t = new Thread(ThreadGUI.threadGO);
+            /*Thread t = new Thread(ThreadGUI.threadGO);
             t.SetApartmentState(ApartmentState.STA);
-            t.Start();
+            t.Start();*/
             
             ip.Text = Constants.IP.Substring(0,Constants.IP.Length-4);
             //reloadListCrear();

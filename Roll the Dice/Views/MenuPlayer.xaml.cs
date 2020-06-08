@@ -31,14 +31,14 @@ namespace Roll_the_Dice.Views
         Inventario inv = new Inventario();
         int diceNum { get; set; } = 10;
         RestClient client;
+        CharacterShe caracter;
 
         public MenuPlayer()
         {
             InitializeComponent();
             frameMap.Content = mapa;
-            Thread t = new Thread(ThreadGUI.threadGO);
-            t.SetApartmentState(ApartmentState.STA);
-            t.Start();
+            
+            
             Ip.Text = Constants.IP.Substring(0, Constants.IP.Length - 4);
             client = new RestClient(Constants.IP);
             //passworw.Background = Brushes.White;
@@ -46,13 +46,29 @@ namespace Roll_the_Dice.Views
             
             if (Constants.Sala.propietario != Constants.Usuario.usuarioId && !usuarioHasPersonaje())
             {
-                CharacterShe caracter = new CharacterShe();
+                /*caracter = new CharacterShe();
                 caracter.Show();
                 caracter.Activate();
                 caracter.Focus();
-                caracter.Topmost = true;
+                caracter.Topmost = true;*/
+
+                caracter = new CharacterShe();
+                if (caracter == null)
+                {
+                    caracter = new CharacterShe();
+                    caracter.Show();
+                }
+                else if (!caracter.IsActive && caracter.ShowActivated)
+                {
+                    caracter.Close();
+                    caracter = new CharacterShe();
+                    caracter.Show();
+                }
             }
 
+            /*Thread t = new Thread(ThreadGUI.threadGO);
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();*/
         }
         public void mapaSetterPos()
         {

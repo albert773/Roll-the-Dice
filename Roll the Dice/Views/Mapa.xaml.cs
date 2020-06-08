@@ -484,10 +484,13 @@ namespace Roll_the_Dice.Views
         }
         public void cleanButtons()
         {
-            for (int i = 0; i < buttonList.Count-1; i++)
+            this.Dispatcher.Invoke(() =>
             {
-                buttonList[i].Background = null;
-            }
+                for (int i = 0; i < buttonList.Count - 1; i++)
+                {
+                    buttonList[i].Background = null;
+                }
+            });
         }
 
 

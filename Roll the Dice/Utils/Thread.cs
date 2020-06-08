@@ -20,7 +20,7 @@ namespace Roll_the_Dice.Utils
             client = new RestClient(Constants.IP);
             
             if ((Constants.Usuario.usuarioId != Constants.Sala.propietario))
-            {   
+            {
                 mPm = new MenuPlayer();
             }
             else
@@ -42,14 +42,10 @@ namespace Roll_the_Dice.Utils
                     mGm.mapaSetterPos();
                     mGm.UpdateDice(); 
                 }
-                
-                
-
             }
         }
 
-
-       /* public static async void turnTryer()
+        /* public static async void turnTryer()
         {
             var request = new RestRequest("isMyTurn/{usuarioId}", Method.GET);
             request.AddHeader("Content-type", "application/json");
