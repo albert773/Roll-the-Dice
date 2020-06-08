@@ -35,6 +35,7 @@ namespace Roll_the_Dice.Views
         public MenuPlayer()
         {
             InitializeComponent();
+            frameMap.Content = mapa;
             Thread t = new Thread(ThreadGUI.threadGO);
             t.SetApartmentState(ApartmentState.STA);
             t.Start();
@@ -42,7 +43,7 @@ namespace Roll_the_Dice.Views
             client = new RestClient(Constants.IP);
             //passworw.Background = Brushes.White;
             //passworw.Foreground = Brushes.Black;
-            frameMap.Content = mapa;
+            
             if (Constants.Sala.propietario != Constants.Usuario.usuarioId && !usuarioHasPersonaje())
             {
                 CharacterShe caracter = new CharacterShe();
@@ -52,6 +53,13 @@ namespace Roll_the_Dice.Views
                 caracter.Topmost = true;
             }
 
+        }
+        public void mapaSetterPos()
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                mapa.mapaStartOnMenu();
+            });
         }
 
         private bool usuarioHasPersonaje()

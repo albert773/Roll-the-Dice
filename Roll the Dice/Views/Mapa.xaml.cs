@@ -403,7 +403,10 @@ namespace Roll_the_Dice.Views
             }
         }
         
-
+        public void mapaStartOnMenu()
+        {
+            positionAllSetter();
+        }
         //CLICK PARA EL ICONO DE ATACAR
         public void setAtaque()
         {
@@ -481,7 +484,7 @@ namespace Roll_the_Dice.Views
         }
         public void cleanButtons()
         {
-            for (int i = 0; i < buttonList.Count; i++)
+            for (int i = 0; i < buttonList.Count-1; i++)
             {
                 buttonList[i].Background = null;
             }

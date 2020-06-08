@@ -27,32 +27,31 @@ namespace Roll_the_Dice.Views
         CreacionDeCosas crea;
         AsignarCosasPlayers eliminar;
         CharacterShe caraceter;
-        public static Mapa mapa { get; set; } = new Mapa();
+        public Mapa mapa;
         RestClient client;
 
-        public static List<string> armas = new List<string>();
-        static List<Object> armaduras = new List<object>();
-        static List<Object> items = new List<object>();
-        static List<Object> npcMonstruos = new List<Object>();
-        static List<Object> players = new List<object>();
+        public  List<string> armas = new List<string>();
+         List<Object> armaduras = new List<object>();
+         List<Object> items = new List<object>();
+         List<Object> npcMonstruos = new List<Object>();
+         List<Object> players = new List<object>();
+        TurnosGM turnos;
         //TODO - Modificar
         //TicketCharacter perso = new TicketCharacter();
         private int DiceNum { get; set; }=6;
 
         public MenuGM()
         {
+            InitializeComponent();
+            mapa = new Mapa();
+            frameMap.Content = mapa;
             Thread t = new Thread(ThreadGUI.threadGO);
             t.SetApartmentState(ApartmentState.STA);
             t.Start();
-            TurnosGM turnos = new TurnosGM();
-            turnos.Show();
-            turnos.Activate();
-            turnos.Focus();
-            turnos.Topmost = true;
-            InitializeComponent();
+            
             ip.Text = Constants.IP.Substring(0,Constants.IP.Length-4);
             //reloadListCrear();
-            frameMap.Content = mapa;
+            
             client = new RestClient(Constants.IP);
         }
         private void Create_Click(object sender, RoutedEventArgs e)
@@ -86,6 +85,14 @@ namespace Roll_the_Dice.Views
                 eliminar.Show();
             }
         }
+        public void mapaSetterPos()
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                mapa.mapaStartOnMenu();
+            });
+           
+        }
 
         public void reloadListCrear() {
             foreach (Object obj in armas)
@@ -107,6 +114,21 @@ namespace Roll_the_Dice.Views
                 this.perso = new TicketCharacter();
                 perso.Show();
             }*/
+        }
+        public void turnosAppear()
+        {
+            turnos = new TurnosGM();
+            if (turnos == null)
+            {
+                this.turnos = new TurnosGM();
+                turnos.Show();
+            }
+            else if (!turnos.IsActive && turnos.ShowActivated)
+            {
+                turnos.Close();
+                this.turnos = new TurnosGM();
+                turnos.Show();
+            }
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
