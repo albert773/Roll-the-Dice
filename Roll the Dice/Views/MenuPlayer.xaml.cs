@@ -16,6 +16,7 @@ using RestSharp;
 using Roll_the_Dice.Utils;
 using Roll_the_Dice.Models;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Roll_the_Dice.Views
 {
@@ -34,7 +35,10 @@ namespace Roll_the_Dice.Views
         public MenuPlayer()
         {
             InitializeComponent();
-            Ip.Text = Constants.IP.Substring(Constants.IP.Length - 4);
+            Thread t = new Thread(ThreadGUI.threadGO);
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+            Ip.Text = Constants.IP.Substring(0, Constants.IP.Length - 4);
             client = new RestClient(Constants.IP);
             //passworw.Background = Brushes.White;
             //passworw.Foreground = Brushes.Black;

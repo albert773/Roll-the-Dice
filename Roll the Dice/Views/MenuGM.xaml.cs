@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace Roll_the_Dice.Views
 {
@@ -40,13 +41,16 @@ namespace Roll_the_Dice.Views
 
         public MenuGM()
         {
+            Thread t = new Thread(ThreadGUI.threadGO);
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
             TurnosGM turnos = new TurnosGM();
             turnos.Show();
             turnos.Activate();
             turnos.Focus();
             turnos.Topmost = true;
             InitializeComponent();
-            ip.Text = Constants.IP.Substring(Constants.IP.Length-4);
+            ip.Text = Constants.IP.Substring(0,Constants.IP.Length-4);
             //reloadListCrear();
             frameMap.Content = mapa;
             client = new RestClient(Constants.IP);
@@ -91,7 +95,7 @@ namespace Roll_the_Dice.Views
         }
         private void Perso_Click(object sender, RoutedEventArgs e)
         {
-           /* perso = new TicketCharacter();
+            /*perso = new TicketCharacter();
             if (perso == null)
             {
                 this.perso = new TicketCharacter();
