@@ -146,5 +146,9 @@ namespace Roll_the_Dice.Views
                 ItemBox.Items.Add(text);
             }
         }
+
+        public void Asignar_Click(object sender, RoutedEventArgs e) {
+            MessageBox.Show("Se ha añadido correctamente");   
+        }
     }
 }
