@@ -148,7 +148,7 @@ namespace Roll_the_Dice.Views
 
         private void Dice_Click(object sender, RoutedEventArgs e)
         {
-            diceChange();
+            UpdateDice();
             Number.Text = randomDice();
 
         }
@@ -216,6 +216,21 @@ namespace Roll_the_Dice.Views
             this.diceNum = Newtonsoft.Json.JsonConvert.DeserializeObject<int>(response.Content);
 
             diceChange();
+        }
+
+        private void Moverse_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Moverse_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            mapa.setMover();
+        }
+
+        private void sword_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            mapa.setAtaque();
         }
     }
 }

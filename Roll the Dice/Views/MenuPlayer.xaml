@@ -91,7 +91,7 @@
         <Border Background="White" Grid.Column="13" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="4"/>
 
         <Viewbox Grid.Column="13" Grid.Row="5" Grid.ColumnSpan="2">
-            <materialDesign:PackIcon x:Name="sword" Kind="Sword" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue"/>
+            <materialDesign:PackIcon x:Name="sword" Kind="Sword" Width="Auto" Height="auto" VerticalAlignment="Center" Foreground="DodgerBlue" Mouse.MouseDown="sword_MouseDown"/>
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="3">
             <materialDesign:PackIcon x:Name="person" Kind="Person" Width="Auto" Height="auto" VerticalAlignment="Center" Mouse.MouseDown="Perso_Click" Foreground="DodgerBlue"/>
@@ -106,7 +106,7 @@
             <TextBlock x:Name="Number" Foreground="DodgerBlue"></TextBlock>
         </Viewbox>
         <Viewbox Grid.Column="14" Grid.Row="7">
-            <materialDesign:PackIcon x:Name="Moverse" Kind="ArrowAll" Width="Auto" Height="auto" VerticalAlignment="Center" Mouse.MouseDown="Dice_Click" Foreground="DodgerBlue"/>
+            <materialDesign:PackIcon x:Name="Moverse" Kind="ArrowAll" Width="Auto" Height="auto" VerticalAlignment="Center" Mouse.MouseDown="Moverse_MouseDown_1" Foreground="DodgerBlue"/>
         </Viewbox>
 
         <Frame x:Name="frameMap" BorderBrush="Black" Grid.Column="1" Grid.Row="5" Grid.RowSpan="7" Grid.ColumnSpan="11" BorderThickness="1"  Background="White"/>
