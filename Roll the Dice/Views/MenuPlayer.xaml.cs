@@ -27,7 +27,7 @@ namespace Roll_the_Dice.Views
     {
         public static Mapa mapa { get; set; } = new Mapa();
         MainWindow main = new MainWindow();
-        //TicketCharacter perso = new TicketCharacter();
+        TicketCharacter perso;
         Inventario inv = new Inventario();
         int diceNum { get; set; } = 10;
         RestClient client;
@@ -128,11 +128,12 @@ namespace Roll_the_Dice.Views
 
         private void Perso_Click(object sender, RoutedEventArgs e)
         {
-            /*if (perso.ShowActivated) {
+            perso = new TicketCharacter();
+            if (perso.ShowActivated) {
                 perso.Close();
             }
             this.perso = new TicketCharacter();
-            perso.Show();*/
+            perso.Show();
            
         }
 
