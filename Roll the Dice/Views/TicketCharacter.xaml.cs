@@ -61,12 +61,12 @@ namespace Roll_the_Dice.Views
             exp.Text = personaje.experiencia.ToString();
             turno.Text = personaje.turnos.ToString();
             historia.Text = personaje.misionOculta;
-            fue.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Fuerza").valorBase.ToString();
-            des.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Destreza").valorBase.ToString();
-            con.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Constitucion").valorBase.ToString();
-            car.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Carisma").valorBase.ToString();
-            sab.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Sabiduria").valorBase.ToString();
-            intel.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Inteligencia").valorBase.ToString();
+            //fue.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Fuerza").valorBase.ToString();
+            //des.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Destreza").valorBase.ToString();
+            //con.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Constitucion").valorBase.ToString();
+            //car.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Carisma").valorBase.ToString();
+            //sab.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Sabiduria").valorBase.ToString();
+            //intel.Text = personaje.UnionEstatPerso.FirstOrDefault(q => q.Estadistica.nombre == "Inteligencia").valorBase.ToString();
         }
     }
 }
