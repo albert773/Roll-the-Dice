@@ -35,31 +35,31 @@ namespace Roll_the_Dice.Views
             if (!Validations.IsValidEmail(Email.Text))
             {
                 //TODO - El Email no es valido
-                errorMail.Visibility = Visibility.Visible;
+                //errorMail.Visibility = Visibility.Visible;
                 return;
             }
 
             if (!Regex.IsMatch(Contraseña.Password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$"))
             {
                 //TODO - La contraseña no es valida
-                errorPass.Visibility = Visibility.Visible;
-                textErrorPass.Text = "La contraseña no es valida";
+                //errorPass.Visibility = Visibility.Visible;
+                //textErrorPass.Text = "La contraseña no es valida";
                 return;
             }
 
             if (!Regex.IsMatch(ContraseñaRepetida.Password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$"))
             {
                 //TODO - La contraseña no es valida
-                errorIconValidatePass.Visibility = Visibility.Visible;
-                textValidatePass.Text = "La contraseña no es valida";
+                //errorIconValidatePass.Visibility = Visibility.Visible;
+                //textValidatePass.Text = "La contraseña no es valida";
                 return;
             }
 
             if (Contraseña.Password != ContraseñaRepetida.Password)
             {
                 //TODO - Las contraseñas no coinciden
-                errorIconValidatePass.Visibility = Visibility.Visible;
-                textValidatePass.Text = "La contraseña no coincide con la anterior";
+                //errorIconValidatePass.Visibility = Visibility.Visible;
+                //textValidatePass.Text = "La contraseña no coincide con la anterior";
                 return;
             }
 

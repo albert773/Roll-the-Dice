@@ -34,13 +34,13 @@ namespace Roll_the_Dice.Views
 
             if (!Validations.IsValidEmail(Email.Text))
             {
-                errorMail.Visibility = Visibility.Visible;
+                /*errorMail.Visibility = Visibility.Visible;*/
                 return;
             }
 
             if(Contraseña.Password == null || Contraseña.Password == "")
             {
-                errorPass.Visibility = Visibility.Visible;
+                //errorPass.Visibility = Visibility.Visible;
                 return;
             }
 
