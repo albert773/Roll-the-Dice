@@ -75,7 +75,7 @@
             <TextBox x:Name="MyTextBox" Text="{Binding Password, Mode=TwoWay, ElementName=Contraseña}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Visibility="Collapsed" Width="223" Height="47  " Foreground="White" FontFamily="Georgia" FontSize="8"/>
         </Viewbox>
         <Viewbox Grid.Row="8" Grid.Column="3">
-            <CheckBox x:Name="ShowPasswordCharsCheckBox" Content="Show password" Checked="ShowPasswordCharsCheckBox_Checked" Unchecked="ShowPasswordCharsCheckBox_Unchecked"  Foreground="LightGray" FontSize="8"/>
+            <CheckBox x:Name="ShowPasswordCharsCheckBox" Content="Mostrar Contraseña" Checked="ShowPasswordCharsCheckBox_Checked" Unchecked="ShowPasswordCharsCheckBox_Unchecked"  Foreground="LightGray" FontSize="8"/>
         </Viewbox>
         <Viewbox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3">
             <Label Content="CREAR UNA SALA" FontFamily="Georgia" FontSize="72" FontWeight="Bold" Foreground="White"/>
