@@ -57,8 +57,12 @@ namespace Roll_the_Dice.Views
             
             positionsX.Add(0);
             positionsY.Add(0);
-            
-            for(int i=0; i<imageVector.Length; i++)
+            positionsX.Add(12);
+            positionsY.Add(3);
+            positionsX.Add(5);
+            positionsY.Add(13);
+
+            for (int i=0; i<imageVector.Length; i++)
             {
                 System.Windows.Resources.StreamResourceInfo streamInfo = Application.GetResourceStream(new Uri(imageVector[i], UriKind.Relative));
                 BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
@@ -105,8 +109,14 @@ namespace Roll_the_Dice.Views
                 mapa.Children.Add(rectangleList[i]);
                 mapa.Children.Add(buttonList[i]);
             }
-            //positionAllSetter();
-            rangePerso();
+            positionAllSetter();
+            for(int i=0; i < positionsX.Count; i++)
+            {
+                rangePerso();
+                persoActual++;
+            }
+            persoActual = 0;
+            
 
         }
         public async void asignCharacters()
@@ -278,7 +288,12 @@ namespace Roll_the_Dice.Views
         {
             int ubi = indexGetter(positionsX[persoActual], positionsY[persoActual]);
             paintSquareYellow(ubi);
-            buttonList[ubi].Background = brushList[0];
+            if(persoActual==1) buttonList[ubi].Background = brushList[3];
+            else if(persoActual == 2) buttonList[ubi].Background = brushList[7];
+            else
+            {
+                buttonList[ubi].Background = brushList[0];
+            }
         }
         public int indexGetter(int x, int y)
         {
