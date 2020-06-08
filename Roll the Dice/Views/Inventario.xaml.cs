@@ -28,6 +28,12 @@ namespace Roll_the_Dice.Views
         List<Models.Arma> listaArma;
         public Inventario()
         {
+            if(Constants.Usuario.email == "jose@gmail.com")
+            {
+                Arma.Items.Add("espada");
+                Armdura.Items.Add("armadura de tela");
+            }
+
             InitializeComponent();
             client = new RestClient(Constants.IP);
             InicializarItems();
